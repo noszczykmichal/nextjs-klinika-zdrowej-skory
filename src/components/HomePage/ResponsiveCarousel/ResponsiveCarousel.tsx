@@ -11,7 +11,7 @@ import {
   CarouselPrevious,
 } from "@/components/ui/carousel";
 import Link from "next/link";
-import Image from "next/image";
+// import Image from "next/image";
 
 import zabieg from "@/assets/zabieg-1024x342.jpg";
 import landscape from "@/assets/us-placeholder-landscape-1024x683.jpg";
@@ -71,14 +71,27 @@ export function ResponsiveCarousel() {
           {carouselConfig.map((photo, index) => (
             <CarouselItem key={index} className="md:basis-1/2 lg:basis-1/3">
               <div className="p-1">
-                <Card className="py-0">
-                  <CardContent className="flex aspect-square items-center justify-center px-0">
-                    <Image
+                <Card className="py-0 h-[250px] overflow-hidden">
+                  <CardContent className="flex aspect-square items-center justify-center px-0 ">
+                    {/* <Image
                       src={photo.src}
                       width={250}
                       height={250}
                       alt=""
-                      className="object-cover"
+                      className="object-contain"
+                    /> */}
+                    <div
+                      style={{
+                        backgroundImage: `url(${photo.src})`,
+                        height: "100%",
+                        width: "100%",
+                        // objectFit: "contain",
+                        // objectPosition: "center",
+                        backgroundSize: "cover",
+                        backgroundRepeat: "no-repeat",
+                        backgroundPosition: "center",
+                        overflow: "hidden",
+                      }}
                     />
                   </CardContent>
                 </Card>
