@@ -3,7 +3,7 @@ import { ResponsiveCarousel } from "@/components/HomePage/ResponsiveCarousel/Res
 
 export default function Home() {
   return (
-    <section className="max-w-[1300px] mx-auto grid gap-y-[100px]">
+    <section className="max-w-[1300px] mx-auto grid gap-y-[100px] pb-[100px]">
       <MainBanner />
       <article>
         <div className="flex gap-x-[50px]">

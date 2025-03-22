@@ -23,7 +23,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={`${montserrat.variable} antialiased`}>
+      <body className={`${montserrat.className} antialiased`}>
         <Navigation />
         <main className="max-w-[1300px] mx-auto">{children}</main>
         <Footer />
