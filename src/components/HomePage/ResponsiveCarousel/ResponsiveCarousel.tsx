@@ -1,17 +1,16 @@
 "use client";
 
-// import { useRef } from "react";
-// import Autoplay from "embla-carousel-autoplay";
+import { useRef } from "react";
+import Autoplay from "embla-carousel-autoplay";
 import { Card, CardContent } from "@/components/ui/card";
 import {
   Carousel,
   CarouselContent,
   CarouselItem,
-  CarouselNext,
-  CarouselPrevious,
+  // CarouselNext,
+  // CarouselPrevious,
 } from "@/components/ui/carousel";
 import Link from "next/link";
-// import Image from "next/image";
 
 import zabieg from "@/assets/zabieg-1024x342.jpg";
 import landscape from "@/assets/us-placeholder-landscape-1024x683.jpg";
@@ -20,7 +19,7 @@ import leavesBottle from "@/assets/us-placeholder-square-1024x1024.jpg";
 import fern from "@/assets/us-placeholder-portrait-683x1024.jpg";
 
 export function ResponsiveCarousel() {
-  // const plugin = useRef(Autoplay({ delay: 5000, stopOnInteraction: true }));
+  const plugin = useRef(Autoplay({ delay: 5000, stopOnInteraction: true }));
 
   const carouselConfig = [
     { id: "needles", src: zabieg.src },
@@ -38,7 +37,7 @@ export function ResponsiveCarousel() {
 
   return (
     <div
-      style={{ gridTemplateColumns: "340px 1fr" }}
+      style={{ gridTemplateColumns: "300px 1fr" }}
       className="grid h-full w-[100%] px-[50px] py-[55px] gap-x-[50px] bg-[var(--green-100)] rounded-[var(--primary-border-radius)]"
     >
       <div className="flex flex-col gap-[30px] text-white">
@@ -65,13 +64,17 @@ export function ResponsiveCarousel() {
         opts={{
           align: "start",
         }}
+        plugins={[plugin.current]}
         className="w-full"
       >
         <CarouselContent>
           {carouselConfig.map((photo, index) => (
-            <CarouselItem key={index} className="md:basis-1/2 lg:basis-1/3">
-              <div className="p-1">
-                <Card className="py-0 h-[250px] overflow-hidden">
+            <CarouselItem
+              key={index}
+              className="md:basis-1/2 lg:basis-1/3 pl-[34px]"
+            >
+              <div className="max-w-[250px]">
+                <Card className="py-0 h-[250px] overflow-hidden border-none rounded-[var(--primary-border-radius)]">
                   <CardContent className="flex aspect-square items-center justify-center px-0 ">
                     {/* <Image
                       src={photo.src}
@@ -99,8 +102,8 @@ export function ResponsiveCarousel() {
             </CarouselItem>
           ))}
         </CarouselContent>
-        <CarouselPrevious />
-        <CarouselNext />
+        {/* <CarouselPrevious />
+        <CarouselNext /> */}
       </Carousel>
     </div>
   );
