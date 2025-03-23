@@ -11,6 +11,7 @@ import {
   // CarouselPrevious,
 } from "@/components/ui/carousel";
 import Link from "next/link";
+import Image from "next/image";
 
 import zabieg from "@/assets/zabieg-1024x342.jpg";
 import landscape from "@/assets/us-placeholder-landscape-1024x683.jpg";
@@ -22,23 +23,23 @@ export function ResponsiveCarousel() {
   const plugin = useRef(Autoplay({ delay: 5000, stopOnInteraction: true }));
 
   const carouselConfig = [
-    { id: "needles", src: zabieg.src },
+    { id: "needles", src: zabieg },
     {
       id: "landscape",
-      src: landscape.src,
+      src: landscape,
     },
-    { id: "marble", src: marble.src },
+    { id: "marble", src: marble },
     {
       id: "leaves-bottle",
-      src: leavesBottle.src,
+      src: leavesBottle,
     },
-    { id: "fern", src: fern.src },
+    { id: "fern", src: fern },
   ];
 
   return (
     <div
       style={{ gridTemplateColumns: "300px 1fr" }}
-      className="grid h-full w-[100%] px-[50px] py-[55px] gap-x-[50px] bg-[var(--green-100)] rounded-[var(--primary-border-radius)]"
+      className="grid h-full w-[100%] px-[50px] py-[55px] gap-x-[50px] bg-[var(--green-100)] rounded-[var(--big-border-radius)]"
     >
       <div className="flex flex-col gap-[30px] text-white">
         <h3
@@ -54,7 +55,7 @@ export function ResponsiveCarousel() {
         </p>
         <Link
           href="/zabiegi"
-          className="px-[34px] py-[16px] border-2 border-white rounded-[60px]"
+          className="px-[34px] py-[16px] border-2 border-white rounded-[var(--big-border-radius)]"
           style={{ width: "fit-content" }}
         >
           Wszystkie zabiegi
@@ -74,27 +75,14 @@ export function ResponsiveCarousel() {
               className="md:basis-1/2 lg:basis-1/3 pl-[34px]"
             >
               <div className="max-w-[250px]">
-                <Card className="py-0 h-[250px] overflow-hidden border-none rounded-[var(--primary-border-radius)]">
+                <Card className="py-0 h-[250px] overflow-hidden border-none rounded-[var(--big-border-radius)]">
                   <CardContent className="flex aspect-square items-center justify-center px-0 ">
-                    {/* <Image
+                    <Image
                       src={photo.src}
-                      width={250}
-                      height={250}
+                      width={photo.src.width}
+                      height={photo.src.height}
                       alt=""
-                      className="object-contain"
-                    /> */}
-                    <div
-                      style={{
-                        backgroundImage: `url(${photo.src})`,
-                        height: "100%",
-                        width: "100%",
-                        // objectFit: "contain",
-                        // objectPosition: "center",
-                        backgroundSize: "cover",
-                        backgroundRepeat: "no-repeat",
-                        backgroundPosition: "center",
-                        overflow: "hidden",
-                      }}
+                      className="h-full w-full object-cover"
                     />
                   </CardContent>
                 </Card>

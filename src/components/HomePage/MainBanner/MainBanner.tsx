@@ -5,17 +5,21 @@ import pkBannerRight from "@/assets/pk-banner-right.jpg";
 
 function MainBanner() {
   return (
-    <div className="flex rounded-[var(--primary-border-radius)] overflow-hidden max-h-[500px]">
-      <div
-        className="w-[50%] flex justify-center items-center"
-        style={{ backgroundImage: `url(${pkBannerLeft.src})` }}
-      >
+    <div className="flex rounded-[var(--big-border-radius)] overflow-hidden max-h-[500px]">
+      <div className="w-[50%] relative flex items-center justify-center">
+        <Image
+          className="h-full w-full object-cover"
+          src={pkBannerLeft}
+          alt=""
+          width={1000}
+          height={1000}
+        />
         <h1
           style={{
             fontSize: "var(--font-size-banner)",
             lineHeight: "var(--font-size-banner)",
           }}
-          className="w-[60%] font-extralight"
+          className="absolute w-[80%] font-extralight"
         >
           Kosmetologia na światowym poziomie
         </h1>
@@ -23,8 +27,8 @@ function MainBanner() {
       <Image
         src={pkBannerRight}
         alt=""
-        width={0}
-        height={0}
+        width={1000}
+        height={1080}
         className="w-[50%] object-cover"
       />
     </div>
