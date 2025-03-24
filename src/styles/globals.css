@@ -20,32 +20,7 @@ footer {
   grid-area: footer;
 }
 
-/* Hamburger  */
-
-.hamburger {
-  transition-timing-function: linear;
-  transition-duration: 0.15s;
-  transition-property: opacity, filter;
-}
-
-.hamburger__box {
-  display: inline-block;
-  position: relative;
-  width: var(--hamburger-width);
-  height: 24px;
-}
-
-.box__inner {
-  position: absolute;
-  top: 50%;
-  right: 0;
-  width: var(--hamburger-width);
-  height: 2px;
-  border-radius: var(--small-border-radius);
-  background-color: var(--gray-100);
-  transition-duration: 0.22s;
-  transition-property: transform;
-}
+/* Hamburger Animation*/
 
 .box__inner:after,
 .box__inner:before {

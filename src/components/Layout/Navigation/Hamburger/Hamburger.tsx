@@ -1,71 +1,31 @@
 "use client";
 
-import { useState, useRef } from "react";
-import { TransitionGroup, CSSTransition } from "react-transition-group";
-
 import useMobileNav from "@/hooks/useMobileNav";
-import usePrefersReducedMotion from "@/hooks/usePrefersReducedMotion";
 import "@/styles/globals.css";
 
 function Hamburger() {
   const { menuOpen, onClickHandler } = useMobileNav();
-  const [isMounted, setIsMounted] = useState(true);
-  const prefersReducedMotion = usePrefersReducedMotion();
-  // const prefersReducedMotionRef = useRef(prefersReducedMotion);
-  const nodeRef = useRef<HTMLButtonElement | null>(null);
 
-  // useEffect(() => {
-  //   if (prefersReducedMotionRef.current) {
-  //     return undefined;
-  //   }
-
-  //   const timeout = setTimeout(() => {
-  //     setIsMounted(true);
-  //   }, 100);
-
-  //   return () => {
-  //     clearTimeout(timeout);
-  //   };
-  // }, []);
-
-  let attachedClasses = ["box__inner", "box__inner--side-nav-closed"];
+  let boxInnerClasses = "box__inner box__inner--side-nav-closed";
 
   if (menuOpen) {
-    attachedClasses = ["box__inner", "box__inner--side-nav-open"];
+    boxInnerClasses = "box__inner box__inner--side-nav-open";
   }
 
-  return prefersReducedMotion ? (
+  return (
     <button
       type="button"
-      className="hamburger lg:hidden z-[15] cursor-pointer p-[15px] mr-[-15px]"
+      className={
+        "lg:hidden z-[15] cursor-pointer ml-[20px] ease-linear duration-[0.15s] transition-all"
+      }
       onClick={onClickHandler}
     >
-      <div className="hamburger__box">
-        <div className={attachedClasses.join(" ")} />
+      <div className="relative inline-block w-[var(--hamburger-width)] h-[24px]">
+        <div
+          className={`absolute top-[50%] right-0 w-[var(--hamburger-width)] h-[2px] rounded-[var(--small-border-radius)] bg-[var(--gray-100)] duration-[0.22s] transition-transform ${boxInnerClasses}`}
+        />
       </div>
     </button>
-  ) : (
-    <TransitionGroup component={null}>
-      {isMounted && (
-        <CSSTransition
-          in={isMounted}
-          timeout={300}
-          classNames="fade"
-          nodeRef={nodeRef}
-        >
-          <button
-            type="button"
-            className="hamburger lg:hidden z-[15] cursor-pointer p-[15px] mr-[15px]"
-            onClick={onClickHandler}
-            ref={nodeRef}
-          >
-            <div className="hamburger__box">
-              <div className={attachedClasses.join(" ")} />
-            </div>
-          </button>
-        </CSSTransition>
-      )}
-    </TransitionGroup>
   );
 }
 

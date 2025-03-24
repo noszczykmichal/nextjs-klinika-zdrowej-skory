@@ -3,11 +3,10 @@
 import { createPortal } from "react-dom";
 import { useEffect, useContext, useRef } from "react";
 import { CSSTransition } from "react-transition-group";
-import Link from "next/link";
 
 import Backdrop from "@/components/Layout/Navigation/SideNav/Backdrop/Backdrop";
 import UIContext from "@/store/uiContext";
-import { linksConfig } from "@/utils/config";
+import NavigationItems from "../NavigationItems/NavigationItems";
 
 function SideNav() {
   const { menuOpen: isMenuOpen, closeSideNavHandler } = useContext(UIContext);
@@ -44,17 +43,11 @@ function SideNav() {
         unmountOnExit
       >
         <aside
-          className="fixed top-0 right-0 bg-white h-[100vh] w-[50vw] z-[12]"
+          className="fixed top-0 right-0 bg-white h-[100vh] w-[50vw] z-[12] shadow-[var(--custom-box-shadow)]"
           ref={nodeRef}
         >
-          <nav>
-            <ul className="hidden lg:flex">
-              {linksConfig.map((link) => (
-                <li key={link.id} className="px-[20px]">
-                  <Link href={link.href}>{link.label}</Link>
-                </li>
-              ))}
-            </ul>
+          <nav className="mt-[150px]">
+            <NavigationItems className="" />
           </nav>
         </aside>
       </CSSTransition>
