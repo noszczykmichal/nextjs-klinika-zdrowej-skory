@@ -6,7 +6,7 @@ import { linksConfig } from "@/utils/config";
 function Footer() {
   return (
     <footer className="text-[var(--white-100)] text-[15px] leading-[26px]">
-      <section className="max-w-[1300px] h-[100%] mx-auto px-[50px] py-[65px] flex gap-[48px] bg-[var(--black-100)] rounded-[var(--primary-border-radius)]">
+      <section className="max-w-[1300px] h-[100%] mx-auto px-[50px] py-[65px] flex gap-[48px] bg-[var(--black-100)] rounded-[var(--big-border-radius)]">
         <div className="w-1/3">
           <Link href="/">
             <Logo className="fill-[var(--white-100)]" />

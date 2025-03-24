@@ -25,6 +25,7 @@ export default function RootLayout({
     <html lang="en">
       <body className={`${montserrat.className} antialiased`}>
         <Navigation />
+        <div id="overlay-root" />
         <main className="max-w-[1300px] mx-auto">{children}</main>
         <Footer />
       </body>
