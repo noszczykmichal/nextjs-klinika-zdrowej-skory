@@ -1,7 +1,7 @@
 "use client";
 
-import { useRef } from "react";
-import Autoplay from "embla-carousel-autoplay";
+// import { useRef } from "react";
+// import Autoplay from "embla-carousel-autoplay";
 import { Card, CardContent } from "@/components/ui/card";
 import {
   Carousel,
@@ -11,7 +11,7 @@ import {
   // CarouselPrevious,
 } from "@/components/ui/carousel";
 import Link from "next/link";
-import Image from "next/image";
+// import Image from "next/image";
 
 import zabieg from "@/assets/zabieg-1024x342.jpg";
 import landscape from "@/assets/us-placeholder-landscape-1024x683.jpg";
@@ -20,7 +20,7 @@ import leavesBottle from "@/assets/us-placeholder-square-1024x1024.jpg";
 import fern from "@/assets/us-placeholder-portrait-683x1024.jpg";
 
 export function ResponsiveCarousel() {
-  const plugin = useRef(Autoplay({ delay: 5000, stopOnInteraction: true }));
+  // const plugin = useRef(Autoplay({ delay: 5000, stopOnInteraction: true }));
 
   const carouselConfig = [
     { id: "needles", src: zabieg },
@@ -37,10 +37,7 @@ export function ResponsiveCarousel() {
   ];
 
   return (
-    <div
-      style={{ gridTemplateRows: "auto auto" }}
-      className="grid h-full w-[100%] px-[20px] py-[55px] gap-x-[50px] bg-[var(--green-100)] rounded-[var(--big-border-radius)]"
-    >
+    <div className="px-[20px] py-[55px] bg-[var(--green-100)]">
       <div className="flex flex-col gap-[30px] text-white">
         <h3
           style={{
@@ -61,38 +58,34 @@ export function ResponsiveCarousel() {
           Wszystkie zabiegi
         </Link>
       </div>
-      <Carousel
-        opts={{
-          align: "start",
-        }}
-        // plugins={[plugin.current]}
-        className="w-full max-h-[var(--test)]"
-      >
-        <CarouselContent className="-ml-1">
-          {carouselConfig.map((photo, index) => (
-            <CarouselItem
-              key={index}
-              className="pl-1 md:basis-1/2 lg:basis-1/3"
-            >
-              <div className="pl-1">
-                <Card className="py-0 h-auto overflow-hidden border-none rounded-[var(--big-border-radius)]">
-                  <CardContent className="flex aspect-square items-center justify-center px-0 ">
-                    <Image
-                      src={photo.src}
-                      width={photo.src.width}
-                      height={photo.src.height}
-                      alt=""
-                      className="h-full w-full object-cover"
-                    />
-                  </CardContent>
-                </Card>
-              </div>
-            </CarouselItem>
-          ))}
-        </CarouselContent>
-        {/* <CarouselPrevious />
-        <CarouselNext /> */}
-      </Carousel>
+      <div className="flex items-end">
+        <Carousel className="w-full">
+          <CarouselContent className="-ml-1">
+            {carouselConfig.map((photo, index) => {
+              console.log(photo.src);
+              return (
+                <CarouselItem
+                  key={index}
+                  className="pl-1 md:basis-1/2 lg:basis-1/3"
+                >
+                  <div className="p-1">
+                    <Card>
+                      <CardContent className="flex aspect-square items-center justify-center p-6">
+                        <div
+                          style={{ backgroundImage: `url('${photo.src.src}')` }}
+                          className="h-full w-full bg-no-repeat bg-cover bg-center"
+                        />
+                      </CardContent>
+                    </Card>
+                  </div>
+                </CarouselItem>
+              );
+            })}
+          </CarouselContent>
+          {/* <CarouselPrevious />
+      <CarouselNext /> */}
+        </Carousel>
+      </div>
     </div>
   );
 }
