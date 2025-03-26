@@ -13,6 +13,7 @@ import {
 import Link from "next/link";
 import Image from "next/image";
 
+
 import usePrefersReducedMotion from "@/hooks/usePrefersReducedMotion";
 import zabieg from "@/assets/zabieg-1024x342.jpg";
 import landscape from "@/assets/us-placeholder-landscape-1024x683.jpg";
