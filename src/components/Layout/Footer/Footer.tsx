@@ -1,40 +1,35 @@
 import Link from "next/link";
 import Logo from "@/components/Icons/Logo";
 
-import { linksConfig } from "@/utils/config";
+interface FooterProps {
+  className: string;
+}
 
-function Footer() {
+function Footer({ className }: FooterProps) {
   return (
-    <footer className="text-[var(--white-100)] text-[15px] leading-[26px]">
-      <section className="max-w-[1300px] h-[100%] mx-auto px-[50px] py-[65px] flex gap-[48px] bg-[var(--black-100)] rounded-[var(--primary-border-radius)]">
-        <div className="w-1/3">
+    <footer
+      className={`w-full px-[25px] md:px-[42px] text-[var(--white-100)] text-[15px] leading-[26px] ${className}`}
+    >
+      <section className="w-full flex flex-col max-w-[1300px] h-[100%] mx-auto px-[50px] py-[65px] gap-[48px] bg-[var(--black-100)] rounded-[var(--big-border-radius)]">
+        <div className="w-full">
           <Link href="/">
-            <Logo className="fill-[var(--white-100)]" />
+            <Logo className="fill-[var(--white-100)] w-full max-w-[233px]" />
           </Link>
         </div>
-        <div className="w-1/3 flex flex-col justify-between">
+        <div className="h-full flex flex-col md:flex-row justify-between flex-wrap max-w-[650px]">
           <div>
             <p className="font-semibold">Adres</p>
-            <p>ul. Fort Służew 3 lok. U2</p>
-            <p>02-787 Warszawa</p>
+            <p>ul. Szaserów 31 lok. U1</p>
+            <p>04-306 Warszawa</p>
           </div>
-          <div>
+          <div className="py-[10px] md:py-0">
             <p className="font-semibold">Telefon</p>
-            <p>+48 792 044 090</p>
+            <p>+48 508 832 553</p>
           </div>
-          <div>
+          <div className="">
             <p className="font-semibold">E-mail</p>
-            <p>gabinet@platinumkosmetologia.pl</p>
+            <p>olga.noszczyk@gmail.com</p>
           </div>
-        </div>
-        <div className="w-1/3">
-          <ul className="list-none">
-            {linksConfig.map((link) => (
-              <li key={link.id} className="">
-                <Link href={link.href}>{link.label}</Link>
-              </li>
-            ))}
-          </ul>
         </div>
       </section>
     </footer>
