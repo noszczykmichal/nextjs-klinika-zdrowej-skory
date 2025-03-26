@@ -38,8 +38,8 @@ export function ResponsiveCarousel() {
 
   return (
     <div
-      style={{ gridTemplateColumns: "300px 1fr" }}
-      className="grid h-full w-[100%] px-[50px] py-[55px] gap-x-[50px] bg-[var(--green-100)] rounded-[var(--big-border-radius)]"
+      style={{ gridTemplateRows: "auto auto" }}
+      className="grid h-full w-[100%] px-[20px] py-[55px] gap-x-[50px] bg-[var(--green-100)] rounded-[var(--big-border-radius)]"
     >
       <div className="flex flex-col gap-[30px] text-white">
         <h3
@@ -65,17 +65,17 @@ export function ResponsiveCarousel() {
         opts={{
           align: "start",
         }}
-        plugins={[plugin.current]}
-        className="w-full"
+        // plugins={[plugin.current]}
+        className="w-full max-h-[var(--test)]"
       >
-        <CarouselContent>
+        <CarouselContent className="-ml-1">
           {carouselConfig.map((photo, index) => (
             <CarouselItem
               key={index}
-              className="md:basis-1/2 lg:basis-1/3 pl-[34px]"
+              className="pl-1 md:basis-1/2 lg:basis-1/3"
             >
-              <div className="max-w-[250px]">
-                <Card className="py-0 h-[250px] overflow-hidden border-none rounded-[var(--big-border-radius)]">
+              <div className="pl-1">
+                <Card className="py-0 h-auto overflow-hidden border-none rounded-[var(--big-border-radius)]">
                   <CardContent className="flex aspect-square items-center justify-center px-0 ">
                     <Image
                       src={photo.src}

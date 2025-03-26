@@ -16,7 +16,7 @@ function Hamburger() {
     <button
       type="button"
       className={
-        "lg:hidden z-[15] cursor-pointer ml-[20px] ease-linear duration-[0.15s] transition-all"
+        "lg:hidden z-[15] cursor-pointer ease-linear duration-[0.15s] transition-all"
       }
       onClick={onClickHandler}
     >

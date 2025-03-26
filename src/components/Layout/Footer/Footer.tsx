@@ -1,18 +1,16 @@
 import Link from "next/link";
 import Logo from "@/components/Icons/Logo";
 
-import { linksConfig } from "@/utils/config";
-
 function Footer() {
   return (
-    <footer className="text-[var(--white-100)] text-[15px] leading-[26px]">
-      <section className="max-w-[1300px] h-[100%] mx-auto px-[50px] py-[65px] flex gap-[48px] bg-[var(--black-100)] rounded-[var(--big-border-radius)]">
-        <div className="w-1/3">
+    <footer className="w-full text-[var(--white-100)] text-[15px] leading-[26px]">
+      <section className="w-full flex flex-col max-w-[1300px] h-[100%] mx-auto px-[50px] py-[65px] gap-[48px] bg-[var(--black-100)] rounded-[var(--big-border-radius)]">
+        <div className="w-full">
           <Link href="/">
-            <Logo className="fill-[var(--white-100)]" />
+            <Logo className="fill-[var(--white-100)] w-full max-w-[233px] hidden" />
           </Link>
         </div>
-        <div className="w-1/3 flex flex-col justify-between">
+        <div className="w-full">
           <div>
             <p className="font-semibold">Adres</p>
             <p>ul. Fort Służew 3 lok. U2</p>
@@ -24,17 +22,8 @@ function Footer() {
           </div>
           <div>
             <p className="font-semibold">E-mail</p>
-            <p>gabinet@platinumkosmetologia.pl</p>
+            <p>gabinet@platinum</p>
           </div>
-        </div>
-        <div className="w-1/3">
-          <ul className="list-none">
-            {linksConfig.map((link) => (
-              <li key={link.id} className="">
-                <Link href={link.href}>{link.label}</Link>
-              </li>
-            ))}
-          </ul>
         </div>
       </section>
     </footer>

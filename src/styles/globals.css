@@ -3,9 +3,9 @@
 body {
   color: var(--black-100);
   display: grid;
-  grid-template-rows: 120px auto 363px;
+  grid-template-rows: 80px auto 363px;
   grid-template-areas: "header" "main" "footer";
-  padding: 0 42px 50px 42px;
+  /* padding: 0 42px 50px 42px; */
 }
 
 header {

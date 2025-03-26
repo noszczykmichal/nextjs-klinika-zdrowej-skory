@@ -3,19 +3,19 @@ import { ResponsiveCarousel } from "@/components/HomePage/ResponsiveCarousel/Res
 
 export default function Home() {
   return (
-    <section className="max-w-[1300px] mx-auto grid gap-y-[100px] pb-[100px]">
+    <section className="flex flex-col gap-y-[50px] pb-[50px] max-w-[1300px] ">
       <MainBanner />
       <article>
-        <div className="flex gap-x-[50px]">
+        <div className="flex flex-col gap-x-[50px]">
           <h2
             style={{
               fontSize: "var(--font-size-heading)",
             }}
-            className="w-[50%] font-extralight"
+            className="font-extralight text-center"
           >
             Zabiegi szyte na miarę potrzeb Twojej skóry
           </h2>
-          <div className="w-[50%] text-[17px]">
+          <div className="text-[17px] text-justify pt-[26px]">
             <p className="pb-[26px]">
               W naszym gabinecie realizujemy zabiegi szyte na miarę potrzeb
               Twojej skóry. Zespół wybitnych specjalistów w zakresie medycyny
