@@ -8,7 +8,7 @@
   --black-100: #171a1a;
   --gray-100: #706f6f;
   --gray-75: #efefef;
-  --white-100: rgba(255, 255, 255, 0.8);
+  --white-100: rgba(255, 255, 255, 0.85);
   --green-100: #4c8f61;
 
   /* sizing */
@@ -26,6 +26,7 @@
   --easing: cubic-bezier(0.645, 0.045, 0.355, 1);
 
   --custom-box-shadow: -5px 0px 20px var(--gray-100);
+  --navigation-box-shadow: 0 10px 30px -10px var(--gray-100);
 
   /* transitions */
   --ham-before: top 0.1s ease-in 0.25s, opacity 0.1s ease-in;
@@ -34,6 +35,7 @@
     transform 0.22s cubic-bezier(0.55, 0.055, 0.675, 0.19);
   --ham-after-active: bottom 0.1s ease-out,
     transform 0.22s cubic-bezier(0.215, 0.61, 0.355, 1) 0.12s;
+  --transition-navigation: cubic-bezier(0.645, 0.045, 0.355, 1);
 
   --radius: 0.625rem;
   --background: oklch(1 0 0);
