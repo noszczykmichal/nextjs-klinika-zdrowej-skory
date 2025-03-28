@@ -1,18 +1,28 @@
-import Link from "next/link";
-
 import { linksConfig } from "@/utils/config";
+import NavigationItem from "@/components/Layout/Navigation/NavigationItems/NavigationItem";
+import { NavigationColorVariant } from "@/types/types";
 
 interface NavigationItemsProps {
   className: string;
+  onClick?: () => void;
+  variant: NavigationColorVariant;
 }
 
-function NavigationItems({ className }: NavigationItemsProps) {
+function NavigationItems({
+  className,
+  onClick,
+  variant,
+}: NavigationItemsProps) {
   return (
     <ul className={className}>
       {linksConfig.map((link) => (
-        <li key={link.id} className="px-[20px]">
-          <Link href={link.href}>{link.label}</Link>
-        </li>
+        <NavigationItem
+          key={link.id}
+          href={link.href}
+          label={link.label}
+          onLinkClick={onClick}
+          variant={variant}
+        />
       ))}
     </ul>
   );

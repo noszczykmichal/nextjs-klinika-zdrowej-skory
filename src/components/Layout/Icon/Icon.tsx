@@ -10,19 +10,18 @@ interface IconProps {
   name: IconVariants;
   href: string;
   id?: string;
-  className?: string;
-  color?: string;
+  className: string;
 }
 
-function Icon({ name, href, id, className, color }: IconProps) {
+function Icon({ name, href, id, className }: IconProps) {
   const renderSwitch = (name: IconVariants) => {
     switch (name) {
       case "logo":
         return <Logo className={className} />;
       case "facebook":
-        return <SiFacebook className={className} color={color} />;
+        return <SiFacebook className={className} color={className} />;
       case "instagram":
-        return <SiInstagram className={className} color={color} />;
+        return <SiInstagram className={className} color={className} />;
       case "booksy":
         return <Booksy className={className} />;
       default:
