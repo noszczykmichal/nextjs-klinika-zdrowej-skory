@@ -52,6 +52,7 @@ function SideNav() {
             <NavigationItems
               className="h-[50%] flex flex-col justify-around items-center"
               onClick={onClickHandler}
+              variant="dark"
             />
           </nav>
         </aside>
