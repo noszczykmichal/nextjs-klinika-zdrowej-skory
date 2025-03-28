@@ -6,16 +6,16 @@ export default function Home() {
     <section className="flex flex-col gap-y-[50px] pb-[50px] max-w-[1300px] ">
       <MainBanner />
       <article>
-        <div className="flex flex-col gap-x-[50px]">
+        <div className="flex flex-col lg:flex-row gap-x-[50px]">
           <h2
             style={{
               fontSize: "var(--font-size-heading)",
             }}
-            className="font-extralight text-center"
+            className="lg:w-[50%] font-extralight text-center lg:text-left"
           >
             Zabiegi szyte na miarę potrzeb Twojej skóry
           </h2>
-          <div className="text-[17px] text-justify pt-[26px]">
+          <div className="lg:w-[50%] text-[17px] text-justify pt-[26px] lg:pt-0">
             <p className="pb-[26px]">
               W naszym gabinecie realizujemy zabiegi szyte na miarę potrzeb
               Twojej skóry. Zespół wybitnych specjalistów w zakresie medycyny

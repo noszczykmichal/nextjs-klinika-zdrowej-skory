@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, useMemo } from "react";
 import { Smartphone } from "lucide-react";
 
 import { UIContextProvider } from "@/store/uiContext";
@@ -12,30 +12,46 @@ import useScrollDirection from "@/hooks/useScrollDirection";
 import useHandleScroll from "@/hooks/useHandleScroll";
 
 function Navigation() {
+  const headerClasses = useMemo(
+    () => ({
+      toolbar:
+        "w-full flex items-center z-[10] fixed top-0 left-0 transition-all duration-[0.25s] ease-[var(--transition-navigation)] text-lg",
+      toolbarBoxShadow:
+        "bg-[var(--white-100)] shadow-[var(--navigation-box-shadow)] backdrop-blur-sm",
+      toolbarHidden:
+        "transform -translate-y-full shadow-[var(--navigation-box-shadow)]",
+    }),
+    []
+  );
+
   const scrollDirection = useScrollDirection({ initialDirection: "down" });
-  const [attachedClasses, setAttachedClasses] = useState("");
+  const [attachedClasses, setAttachedClasses] = useState([
+    headerClasses.toolbar,
+  ]);
   const isTop = useHandleScroll();
 
   useEffect(() => {
-    if (!isTop && scrollDirection === "up") {
-      setAttachedClasses(
-        "bg-[var(--white-100)] shadow-[var(--navigation-box-shadow)] backdrop-blur-sm"
-      );
+    const { toolbar, toolbarBoxShadow, toolbarHidden } = headerClasses;
+    if (isTop) {
+      setAttachedClasses([toolbar]);
+    } else if (!isTop && scrollDirection === "up") {
+      setAttachedClasses([toolbar, toolbarBoxShadow]);
     } else if (!isTop && scrollDirection === "down") {
-      setAttachedClasses(
-        "transform -translate-y-full shadow-[var(--navigation-box-shadow)]"
-      );
+      setAttachedClasses([toolbar, toolbarHidden]);
     }
-  }, [scrollDirection, isTop]);
+  }, [scrollDirection, isTop, headerClasses]);
 
   return (
     <UIContextProvider>
-      <header
-        className={`w-full flex items-center z-[10] fixed top-0 left-0 transition-all duration-[0.25s] ease-[var(--transition-navigation)] text-lg ${attachedClasses}`}
-      >
+      <header className={attachedClasses.join(" ")}>
         <nav className="w-full max-w-[1300px] mx-auto px-[10px] md:px-[42px] py-[20px] flex justify-between">
-          <Icon name="logo" href="/" className="h-[40px]" id="header-logo" />
-          <NavigationItems className="hidden lg:flex h-full" />
+          <Icon
+            name="logo"
+            href="/"
+            className="w-full h-[40px] fill-[var(--gray-100)]"
+            id="header-logo"
+          />
+          <NavigationItems className="hidden lg:flex h-full" variant="dark" />
           <div className="ml-[10px] flex items-center justify-between lg:justify-end flex-grow-[0.5] max-w-[250px]">
             <a
               href="tel:+48508832553"

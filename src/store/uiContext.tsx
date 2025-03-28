@@ -3,7 +3,7 @@
 import { FC, createContext, useState, useMemo, ReactNode } from "react";
 
 const UIContext = createContext({
-  menuOpen: false,
+  isMenuOpen: false,
   menuToggleHandler: () => {},
   closeSideNavHandler: () => {},
 });
@@ -25,7 +25,7 @@ export const UIContextProvider: FC<UIContextProviderProps> = ({ children }) => {
 
   const context = useMemo(
     () => ({
-      menuOpen: isMenuOpen,
+      isMenuOpen,
       menuToggleHandler,
       closeSideNavHandler,
     }),

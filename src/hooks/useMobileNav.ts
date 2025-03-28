@@ -3,7 +3,7 @@ import { useContext } from "react";
 import UIContext from "@/store/uiContext";
 
 function useMobileNav() {
-  const { menuOpen, menuToggleHandler } = useContext(UIContext);
+  const { isMenuOpen, menuToggleHandler } = useContext(UIContext);
 
   const onClickHandler = () => {
     const main = document.querySelector("main") as HTMLElement;
@@ -13,7 +13,7 @@ function useMobileNav() {
     menuToggleHandler();
   };
 
-  return { menuOpen, onClickHandler };
+  return { isMenuOpen, onClickHandler };
 }
 
 export default useMobileNav;

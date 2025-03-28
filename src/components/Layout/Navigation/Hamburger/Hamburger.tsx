@@ -4,11 +4,11 @@ import useMobileNav from "@/hooks/useMobileNav";
 import "@/styles/globals.css";
 
 function Hamburger() {
-  const { menuOpen, onClickHandler } = useMobileNav();
+  const { isMenuOpen, onClickHandler } = useMobileNav();
 
   let boxInnerClasses = "box__inner box__inner--side-nav-closed";
 
-  if (menuOpen) {
+  if (isMenuOpen) {
     boxInnerClasses = "box__inner box__inner--side-nav-open";
   }
 
