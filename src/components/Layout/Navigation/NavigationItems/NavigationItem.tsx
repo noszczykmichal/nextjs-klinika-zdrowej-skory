@@ -20,18 +20,24 @@ function NavigationItem({
 }: NavigationItemProps) {
   const pathname = usePathname();
 
-  const primaryColor = variant === "dark" ? "--black-100" : "--white-100";
+  let isLinkActive =
+    pathname === href ? `border-b-[var(--black-100)]` : "border-b-transparent";
+  let onHoverBehaviour = `hover:border-b-[var(--black-100)]`;
 
-  const attachedClasses =
-    pathname === href
-      ? `border-[var(${primaryColor})]`
-      : "border-b-transparent";
+  if (variant === "white") {
+    isLinkActive =
+      pathname === href
+        ? `border-b-[var(--white-100)]`
+        : "border-b-transparent";
+
+    onHoverBehaviour = `hover:border-b-[var(--white-100)]`;
+  }
 
   return (
     <li className={"px-[20px]"}>
       <Link
         href={href}
-        className={`pb-[5px] border-b-2 hover:border-[var(${primaryColor})] transition-all ease-in duration-[0.15s] ${attachedClasses}`}
+        className={`pb-[5px] border-b-2 transition-all ease-in duration-[0.15s] ${isLinkActive} ${onHoverBehaviour}`}
         onClick={onLinkClick}
       >
         {label}

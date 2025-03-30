@@ -20,7 +20,7 @@
   /* fonts */
   --font-big-banner: calc(30px + 2vw);
   --font--medium-banner: calc(30px + 1vw);
-  --font-small-banner: calc(25px +1vw);
+  --font-small-banner: calc(25px + 1vw);
   --leading-big-banner: calc(30px + 2vw);
   --font-size-heading: calc(24px + 1vmax);
   --font-size-h2: calc(20px + 1.45vmax);

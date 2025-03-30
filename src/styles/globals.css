@@ -93,6 +93,8 @@ footer {
   transition: opacity 300ms var(--easing);
 }
 
+/* SideNav */
+
 .sideNav-enter {
   transform: translateX(100%);
 }
@@ -109,4 +111,23 @@ footer {
 .sideNav-exit-active {
   transform: translateX(100%);
   transition: transform 0.3s var(--easing);
+}
+
+.main-banner-fSize-HomeP {
+  font-size: var(--font-big-banner);
+  line-height: var(--leading-big-banner);
+}
+
+@media (min-width: 640px) {
+  .main-banner-fSize-HomeP {
+    font-size: var(--font-small-banner);
+    line-height: var(--font-small-banner);
+  }
+}
+
+@media (min-width: 1024px) {
+  .main-banner-fSize-HomeP {
+    font-size: var(--font--medium-banner);
+    line-height: var(--font--medium-banner);
+  }
 }

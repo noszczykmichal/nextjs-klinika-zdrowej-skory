@@ -45,7 +45,7 @@ function SideNav() {
         unmountOnExit
       >
         <aside
-          className="fixed top-0 right-0 flex flex-col justify-center bg-white h-[100vh] w-[70vw] z-[12] shadow-[var(--custom-box-shadow)]"
+          className="fixed top-0 right-0 flex flex-col justify-center bg-white h-[100vh] w-[70vw] max-w-[300px] z-[12] shadow-[var(--custom-box-shadow)]"
           ref={nodeRef}
         >
           <nav className="h-full flex flex-col justify-center">
