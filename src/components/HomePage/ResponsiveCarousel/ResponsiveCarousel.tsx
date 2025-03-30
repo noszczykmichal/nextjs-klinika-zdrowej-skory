@@ -13,7 +13,6 @@ import {
 import Link from "next/link";
 import Image from "next/image";
 
-
 import usePrefersReducedMotion from "@/hooks/usePrefersReducedMotion";
 import zabieg from "@/assets/zabieg-1024x342.jpg";
 import landscape from "@/assets/us-placeholder-landscape-1024x683.jpg";
@@ -85,6 +84,7 @@ export function ResponsiveCarousel() {
                             alt=""
                             fill
                             className="object-cover w-full h-full"
+                            sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
                           />
                         </CardContent>
                       </Card>
@@ -142,6 +142,7 @@ export function ResponsiveCarousel() {
                             alt=""
                             fill
                             className="object-cover w-full h-full"
+                            sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
                           />
                         </CardContent>
                       </Card>
