@@ -5,7 +5,7 @@ import pkBannerRight from "@/assets/pk-banner-right.jpg";
 
 function MainBanner() {
   return (
-    <div className="sm:flex h-[70vh] rounded-[var(--big-border-radius)] overflow-hidden ">
+    <div className="sm:flex h-[70vh] max-h-[500px] rounded-[var(--big-border-radius)] overflow-hidden ">
       <div className="relative h-[40%] sm:w-[50%] sm:h-full flex items-center justify-center">
         <Image
           className="w-full object-cover"
