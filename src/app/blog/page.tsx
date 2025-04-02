@@ -14,8 +14,8 @@ const options = { next: { revalidate: 30 } };
 async function Page() {
   const posts = await client.fetch<PostDetails[]>(POSTS_QUERY, {}, options);
   return (
-    <section className="">
-      <MainBanner />
+    <section className="w-full flex flex-col gap-y-[50px] pb-[50px] max-w-[1300px]">
+      <MainBanner headerText="Blog" />
       <PostsList postsDetails={posts} />
     </section>
   );

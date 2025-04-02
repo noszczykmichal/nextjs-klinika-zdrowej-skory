@@ -39,7 +39,7 @@ function PostsList({ postsDetails }: PostsListProps) {
   }, []);
 
   const imgSrc = (postData: PostDetails) => {
-    const imageUrl = urlFor(postData.mainImage)?.width(imageWidth).url();
+    const imageUrl = urlFor(postData.mainImage)?.fit("max").url();
 
     if (imageUrl === undefined) {
       return "";
@@ -49,7 +49,7 @@ function PostsList({ postsDetails }: PostsListProps) {
   };
 
   return (
-    <ul className="flex">
+    <ul className="w-full flex flex-col lg:flex-row gap-[50px]">
       {postsDetails.map((post) => (
         <PostCard key={post._id} postData={post} imgSrc={imgSrc(post)} />
       ))}

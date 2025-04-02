@@ -23,8 +23,12 @@ export default function PostCard({ postData, imgSrc }: PostCardProps) {
   // const imgSrc = urlFor(postData.mainImage)?.width(width).url();
 
   return (
-    <Link key={postData._id} href={`/blog/${postData.slug.current}`}>
-      <Card className="p-0 border-[var(--green-100)] rounded-[var(--big-border-radius)] overflow-hidden">
+    <Link
+      key={postData._id}
+      href={`/blog/${postData.slug.current}`}
+      className="w-full"
+    >
+      <Card className="p-0 border-none rounded-[var(--big-border-radius)] overflow-hidden">
         <CardContent className="flex aspect-square items-center justify-center p-0 relative">
           {imgSrc && (
             <Image

@@ -3,8 +3,8 @@ import { ResponsiveCarousel } from "@/components/HomePage/ResponsiveCarousel/Res
 
 export default function Home() {
   return (
-    <section className="flex flex-col gap-y-[50px] pb-[50px] max-w-[1300px] ">
-      <MainBanner />
+    <section className="flex flex-col gap-y-[50px] pb-[50px] max-w-[1300px]">
+      <MainBanner headerText="Kosmetologia na światowym poziomie" />
       <article>
         <div className="flex flex-col lg:flex-row gap-x-[50px]">
           <h2

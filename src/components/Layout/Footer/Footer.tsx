@@ -11,20 +11,22 @@ function Footer({ className }: FooterProps) {
       className={`w-full px-[25px] md:px-[42px] text-[var(--white-100)] text-[15px] leading-[26px] ${className}`}
     >
       <section className="w-full flex flex-col sm:flex-row sm:justify-between md:justify-start gap-[20px] sm:gap-[50px] max-w-[1300px] h-[100%] mx-auto px-[40px] sm:px-[50px] py-[65px] bg-[var(--black-100)] rounded-[var(--big-border-radius)]">
-        <div className="sm:w-[50%] md:w-1/3 max-w-[240px] flex flex-col gap-[10px] sm:gap-[20px] ">
+        <div className="sm:w-[50%] md:w-1/3 max-w-[240px] flex flex-col justify-center gap-[32px]">
           <Icon
             name="logo"
             href="/"
-            className="h-[40px] fill-[var(--white-100)]"
+            className="h-[45px] fill-[var(--white-100)]"
             id="header-logo"
           />
-          <Icon name="facebook" href="/" className="var(--white-100)" />
-          <Icon name="instagram" href="/" className="var(--white-100)" />
-          <Icon
-            name="booksy"
-            href="/"
-            className="h-[30px] w-[30px] ml-[-6px] fill-[var(--white-100)]"
-          />
+          <div className="flex items-center gap-[33px]">
+            <Icon name="facebook" href="/" className="var(--white-100)" />
+            <Icon name="instagram" href="/" className="var(--white-100)" />
+            <Icon
+              name="booksy"
+              href="/"
+              className="h-[30px] w-[30px] fill-[var(--white-100)]"
+            />
+          </div>
         </div>
         <div className="sm:w-[50%] md:w-1/3 max-w-[300px] h-full flex flex-col justify-between flex-wrap">
           <div>
