@@ -43,8 +43,8 @@ function Navigation() {
 
   return (
     <UIContextProvider>
-      <header className={attachedClasses.join(" ")}>
-        <nav className="w-full max-w-[1300px] mx-auto px-[10px] md:px-[42px] py-[20px] flex justify-between">
+      <header className={`px-[10px] md:px-[42px] ${attachedClasses.join(" ")}`}>
+        <nav className="w-full max-w-[1300px] mx-auto py-[20px] flex justify-between">
           <Icon
             name="logo"
             href="/"
