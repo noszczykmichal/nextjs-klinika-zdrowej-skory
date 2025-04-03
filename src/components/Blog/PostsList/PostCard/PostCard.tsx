@@ -23,25 +23,23 @@ export default function PostCard({ postData, imgSrc }: PostCardProps) {
   // const imgSrc = urlFor(postData.mainImage)?.width(width).url();
 
   return (
-    <Link
-      key={postData._id}
-      href={`/blog/${postData.slug.current}`}
-      className="w-full"
-    >
-      <Card className="p-0 border-none rounded-[var(--big-border-radius)] overflow-hidden">
-        <CardContent className="flex aspect-square items-center justify-center p-0 relative">
-          {imgSrc && (
-            <Image
-              src={imgSrc}
-              alt=""
-              fill
-              className="object-cover w-full h-full"
-              sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
-            />
-          )}
-          {postData.slug.current}
-        </CardContent>
-      </Card>
-    </Link>
+    <li className="w-full sm:w-[45%] md:w-[30%] rounded-[var(--big-border-radius)] overflow-hidden shadow-[var(--custom-box-shadow)] ">
+      <Link key={postData._id} href={`/blog/${postData.slug.current}`}>
+        <Card className="p-0 border-none">
+          <CardContent className="flex aspect-square items-center justify-center p-0 relative">
+            {imgSrc && (
+              <Image
+                src={imgSrc}
+                alt=""
+                fill
+                className="object-cover w-full h-full"
+                sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
+              />
+            )}
+            {postData.slug.current}
+          </CardContent>
+        </Card>
+      </Link>
+    </li>
   );
 }

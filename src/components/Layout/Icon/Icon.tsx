@@ -1,23 +1,17 @@
-import Link from "next/link";
 import { SiFacebook, SiInstagram } from "@icons-pack/react-simple-icons";
 
-import Logo from "@/components/Layout/Icon/Icons/Logo";
 import Booksy from "@/components/Layout/Icon/Icons/Booksy";
-
-type IconVariants = "logo" | "facebook" | "instagram" | "booksy";
+import { IconVariants } from "@/types/types";
 
 interface IconProps {
   name: IconVariants;
   href: string;
-  id?: string;
   className: string;
 }
 
-function Icon({ name, href, id, className }: IconProps) {
+function Icon({ name, href, className }: IconProps) {
   const renderSwitch = (name: IconVariants) => {
     switch (name) {
-      case "logo":
-        return <Logo className={className} />;
       case "facebook":
         return <SiFacebook className={className} color={className} />;
       case "instagram":
@@ -32,9 +26,9 @@ function Icon({ name, href, id, className }: IconProps) {
   const content = renderSwitch(name);
 
   return (
-    <Link href={href} id={id}>
+    <a href={href} target="_blank">
       {content}
-    </Link>
+    </a>
   );
 }
 

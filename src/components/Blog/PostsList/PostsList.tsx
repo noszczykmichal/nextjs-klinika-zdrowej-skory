@@ -49,7 +49,7 @@ function PostsList({ postsDetails }: PostsListProps) {
   };
 
   return (
-    <ul className="w-full flex flex-col lg:flex-row gap-[50px]">
+    <ul className="w-full flex flex-col sm:flex-row sm:flex-wrap sm:justify-between gap-[50px] md:gap-[20px]">
       {postsDetails.map((post) => (
         <PostCard key={post._id} postData={post} imgSrc={imgSrc(post)} />
       ))}

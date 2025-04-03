@@ -1,4 +1,4 @@
-import { linksConfig } from "@/utils/config";
+import { navConfig } from "@/utils/config";
 import NavigationItem from "@/components/Layout/Navigation/NavigationItems/NavigationItem";
 import { NavigationColorVariant } from "@/types/types";
 
@@ -15,7 +15,7 @@ function NavigationItems({
 }: NavigationItemsProps) {
   return (
     <ul className={className}>
-      {linksConfig.map((link) => (
+      {navConfig.map((link) => (
         <NavigationItem
           key={link.id}
           href={link.href}
