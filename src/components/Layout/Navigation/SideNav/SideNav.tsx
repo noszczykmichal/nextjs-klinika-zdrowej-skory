@@ -1,7 +1,7 @@
 "use client";
 
-import { createPortal } from "react-dom";
 import { useEffect, useContext, useRef } from "react";
+import { createPortal } from "react-dom";
 import { CSSTransition } from "react-transition-group";
 
 import Backdrop from "@/components/Layout/Navigation/SideNav/Backdrop/Backdrop";
@@ -9,7 +9,11 @@ import UIContext from "@/store/uiContext";
 import NavigationItems from "../NavigationItems/NavigationItems";
 import useMobileNav from "@/hooks/useMobileNav";
 
-function SideNav() {
+interface SideNavProps {
+  onBackdropClick: () => void;
+}
+
+function SideNav({ onBackdropClick }: SideNavProps) {
   const { isMenuOpen, closeSideNavHandler } = useContext(UIContext);
   const closeSideNavRef = useRef(closeSideNavHandler);
   const nodeRef = useRef<HTMLElement | null>(null);
@@ -33,9 +37,10 @@ function SideNav() {
     <>
       {isMenuOpen &&
         createPortal(
-          <Backdrop />,
+          <Backdrop onClick={onBackdropClick} />,
           document.getElementById("overlay-root") as HTMLDivElement
         )}
+
       <CSSTransition
         in={isMenuOpen}
         timeout={300}
@@ -45,7 +50,7 @@ function SideNav() {
         unmountOnExit
       >
         <aside
-          className="fixed top-0 right-0 flex flex-col justify-center bg-white h-[100vh] w-[70vw] max-w-[300px] z-[12] shadow-[var(--custom-box-shadow)]"
+          className="w-[60vw] sm:w-[40vw] h-[100vh] fixed top-0 right-0 flex flex-col justify-center bg-white z-[12] shadow-[var(--custom-box-shadow)]"
           ref={nodeRef}
         >
           <nav className="h-full flex flex-col justify-center">

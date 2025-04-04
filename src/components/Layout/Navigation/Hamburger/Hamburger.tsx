@@ -3,7 +3,11 @@
 import useMobileNav from "@/hooks/useMobileNav";
 import "@/styles/globals.css";
 
-function Hamburger() {
+interface HamburgerProps {
+  onClick: () => void;
+}
+
+function Hamburger({ onClick }: HamburgerProps) {
   const { isMenuOpen, onClickHandler } = useMobileNav();
 
   let boxInnerClasses = "box__inner box__inner--side-nav-closed";
@@ -12,13 +16,18 @@ function Hamburger() {
     boxInnerClasses = "box__inner box__inner--side-nav-open";
   }
 
+  const onButtonClick = () => {
+    onClick();
+    onClickHandler();
+  };
+
   return (
     <button
       type="button"
       className={
         "lg:hidden z-[15] cursor-pointer ease-linear duration-[0.15s] transition-all"
       }
-      onClick={onClickHandler}
+      onClick={onButtonClick}
     >
       <div className="relative inline-block w-[var(--hamburger-width)] h-[24px]">
         <div
