@@ -1,6 +1,9 @@
 import Icon from "@/components/Layout/Icon/Icon";
 import NavigationItems from "../Navigation/NavigationItems/NavigationItems";
 
+import Logo from "../Icon/Icons/Logo";
+import { socialIconsConfig } from "@/utils/config";
+
 interface FooterProps {
   className: string;
 }
@@ -12,20 +15,17 @@ function Footer({ className }: FooterProps) {
     >
       <section className="w-full flex flex-col sm:flex-row sm:justify-between md:justify-start gap-[20px] sm:gap-[50px] max-w-[1300px] h-[100%] mx-auto px-[40px] sm:px-[50px] py-[65px] bg-[var(--black-100)] rounded-[var(--big-border-radius)]">
         <div className="sm:w-[50%] md:w-1/3 max-w-[240px] flex flex-col justify-center gap-[32px]">
-          <Icon
-            name="logo"
-            href="/"
-            className="h-[45px] fill-[var(--white-100)]"
-            id="header-logo"
-          />
+          <Logo className="h-[45px] fill-[var(--white-100)]" />
+
           <div className="flex items-center gap-[33px]">
-            <Icon name="facebook" href="/" className="var(--white-100)" />
-            <Icon name="instagram" href="/" className="var(--white-100)" />
-            <Icon
-              name="booksy"
-              href="/"
-              className="h-[30px] w-[30px] fill-[var(--white-100)]"
-            />
+            {socialIconsConfig.map((element) => (
+              <Icon
+                key={element.name}
+                name={element.name}
+                className={element.className}
+                href={element.href}
+              />
+            ))}
           </div>
         </div>
         <div className="sm:w-[50%] md:w-1/3 max-w-[300px] h-full flex flex-col justify-between flex-wrap">

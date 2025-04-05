@@ -4,12 +4,12 @@ import { useState, useEffect, useMemo } from "react";
 import { Smartphone } from "lucide-react";
 
 import { UIContextProvider } from "@/store/uiContext";
-import Icon from "@/components/Layout/Icon/Icon";
 import NavigationItems from "./NavigationItems/NavigationItems";
 import Hamburger from "./Hamburger/Hamburger";
 import SideNav from "./SideNav/SideNav";
 import useScrollDirection from "@/hooks/useScrollDirection";
 import useHandleScroll from "@/hooks/useHandleScroll";
+import Logo from "../Icon/Icons/Logo";
 
 function Navigation() {
   const headerClasses = useMemo(
@@ -45,9 +45,7 @@ function Navigation() {
     <UIContextProvider>
       <header className={`px-[10px] md:px-[42px] ${attachedClasses.join(" ")}`}>
         <nav className="w-full max-w-[1300px] mx-auto py-[20px] flex justify-between">
-          <Icon
-            name="logo"
-            href="/"
+          <Logo
             className="w-full h-[40px] fill-[var(--gray-100)]"
             id="header-logo"
           />
