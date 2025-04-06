@@ -8,10 +8,12 @@ function useMobileNav() {
   const onClickHandler = () => {
     const body = document.body;
     const main = document.querySelector("main") as HTMLElement;
+    const footer = document.querySelector("footer") as HTMLElement;
     const headerLogo = document.getElementById("header-logo") as HTMLElement;
     body.classList.toggle("overflow-hidden");
     headerLogo.classList.toggle("blur");
     main.classList.toggle("blur");
+    footer.classList.toggle("blur");
     menuToggleHandler();
   };
 
