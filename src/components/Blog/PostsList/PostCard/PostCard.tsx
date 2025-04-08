@@ -23,7 +23,7 @@ export default function PostCard({ postData, imgSrc }: PostCardProps) {
   // const imgSrc = urlFor(postData.mainImage)?.width(width).url();
 
   return (
-    <li className="w-full sm:w-[45%] md:w-[30%] rounded-[var(--big-border-radius)] overflow-hidden shadow-[var(--custom-box-shadow)] ">
+    <li className="w-full sm:w-[45%] md:w-[30%] rounded-[var(--big-border-radius)] overflow-hidden shadow-[var(--custom-box-shadow)] lg:transition-transform lg:hover:translate-y-[-10px] lg:ease-in-out lg:duration-[0.25s]">
       <Link key={postData._id} href={`/blog/${postData.slug.current}`}>
         <Card className="p-0 border-none">
           <CardContent className="flex aspect-square items-center justify-center p-0 relative">

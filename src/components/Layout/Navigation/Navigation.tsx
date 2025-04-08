@@ -15,7 +15,7 @@ function Navigation() {
   const headerClasses = useMemo(
     () => ({
       toolbar:
-        "w-full flex items-center z-[10] fixed top-0 left-0 transition-all duration-[0.25s] ease-[var(--transition-navigation)] text-lg",
+        "w-full flex items-center z-[5] fixed top-0 left-0 transition-all duration-[0.25s] ease-[var(--transition-navigation)] text-lg",
       toolbarBoxShadow:
         "bg-[var(--white-100)] shadow-[var(--navigation-box-shadow)] backdrop-blur-sm",
       toolbarHidden:
@@ -41,6 +41,14 @@ function Navigation() {
     }
   }, [scrollDirection, isTop, headerClasses]);
 
+  const hamburgerClickHandler = () => {
+    setAttachedClasses([headerClasses.toolbar]);
+  };
+
+  const backdropClickHandler = () => {
+    setAttachedClasses([headerClasses.toolbar, headerClasses.toolbarBoxShadow]);
+  };
+
   return (
     <UIContextProvider>
       <header className={`px-[10px] md:px-[42px] ${attachedClasses.join(" ")}`}>
@@ -57,9 +65,9 @@ function Navigation() {
             >
               <Smartphone className="stroke-1" /> Umów wizytę
             </a>
-            <Hamburger />
+            <Hamburger onClick={hamburgerClickHandler} />
           </div>
-          <SideNav />
+          <SideNav onBackdropClick={backdropClickHandler} />
         </nav>
       </header>
     </UIContextProvider>

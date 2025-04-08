@@ -1,12 +1,21 @@
 import useMobileNav from "@/hooks/useMobileNav";
 
-function Backdrop() {
+interface BackdropProps {
+  onClick: () => void;
+}
+
+function Backdrop({ onClick }: BackdropProps) {
   const { onClickHandler: onBackdropClick } = useMobileNav();
+
+  const handler = () => {
+    onClick();
+    onBackdropClick();
+  };
 
   return (
     <div
-      className="fixed inset-0 h-[100vh] w-[50vw] bg-transparent z-[15]"
-      onClick={onBackdropClick}
+      className="h-[100vh] w-[40vw] sm:w-[60vw] fixed inset-0  bg-transparent z-[10]"
+      onClick={handler}
     />
   );
 }
