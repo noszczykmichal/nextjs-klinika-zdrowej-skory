@@ -20,4 +20,8 @@ export interface PostDetails {
       _type: "reference";
     };
   };
+  author: { _ref: string; _type: "reference" };
+  categories: [{ _ref: string }];
+  _type: "reference";
+  _key: string;
 }

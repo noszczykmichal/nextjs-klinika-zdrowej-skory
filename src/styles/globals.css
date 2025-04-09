@@ -3,13 +3,17 @@
 body {
   color: var(--black-100);
   display: grid;
-  grid-template-rows: 80px auto auto;
-  grid-template-areas: "header" "main" "footer";
+  grid-template-rows: 80px 60px auto auto;
+  grid-template-areas: "header" "breadcrumb" "main" "footer";
   /* padding: 0 42px 50px 42px; */
 }
 
 header {
   grid-area: header;
+}
+
+nav[aria-label="breadcrumb"] {
+  grid-area: breadcrumb;
 }
 
 main {
@@ -118,10 +122,32 @@ footer {
   line-height: var(--leading-big-banner);
 }
 
+.postCard-heading,
+.postCard-footnotes {
+  font-size: calc(10px + 1vw);
+}
+
+@media (min-width: 450px) {
+  .postCard-heading {
+    font-size: calc(12px + 2vw);
+  }
+}
+
 @media (min-width: 640px) {
   .main-banner-fSize-HomeP {
     font-size: var(--font-small-banner);
     line-height: var(--font-small-banner);
+  }
+
+  .postCard-heading,
+  .postCard-footnotes {
+    font-size: calc(10px + 1vw);
+  }
+}
+
+@media (min-width: 768px) {
+  .postCard-heading {
+    font-size: calc(12px + 1vw);
   }
 }
 
@@ -129,5 +155,14 @@ footer {
   .main-banner-fSize-HomeP {
     font-size: var(--font--medium-banner);
     line-height: var(--font--medium-banner);
+  }
+
+  .postCard-heading,
+  .postCard-footnotes {
+    font-size: calc(10px + 1vw);
+  }
+
+  .postCard-footnotes {
+    font-size: 18px;
   }
 }
