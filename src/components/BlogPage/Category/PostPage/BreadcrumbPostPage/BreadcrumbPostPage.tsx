@@ -11,14 +11,16 @@ import {
 
 interface BreadcrumbPostPageProps {
   className: string;
-  category: string;
-  slug: string;
+  postSlug: string;
+  categoryTitle: string;
+  categorySlug: string;
 }
 
 export function BreadcrumbPostPage({
   className,
-  category,
-  slug,
+  postSlug,
+  categoryTitle,
+  categorySlug,
 }: BreadcrumbPostPageProps) {
   return (
     <Breadcrumb className={className}>
@@ -36,13 +38,15 @@ export function BreadcrumbPostPage({
           <Slash />
         </BreadcrumbSeparator>
         <BreadcrumbItem>
-          <BreadcrumbPage>{category}</BreadcrumbPage>
+          <BreadcrumbLink href={`/blog/${categorySlug}`}>
+            {categoryTitle}
+          </BreadcrumbLink>
         </BreadcrumbItem>
         <BreadcrumbSeparator>
           <Slash />
         </BreadcrumbSeparator>
         <BreadcrumbItem>
-          <BreadcrumbPage>{slug}</BreadcrumbPage>
+          <BreadcrumbPage>{postSlug}</BreadcrumbPage>
         </BreadcrumbItem>
       </BreadcrumbList>
     </Breadcrumb>
