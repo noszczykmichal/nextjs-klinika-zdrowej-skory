@@ -26,9 +26,7 @@ export default function RootLayout({
       <body className={`${montserrat.className} antialiased`}>
         <Navigation />
         <div id="overlay-root" />
-        <main className="w-full flex justify-center px-[25px] md:px-[42px] mx-auto">
-          {children}
-        </main>
+        {children}
         <Footer className="pb-[50px] mx-auto" />
       </body>
     </html>

@@ -44,7 +44,7 @@ function Footer({ className }: FooterProps) {
           </div>
         </div>
         <NavigationItems
-          className="hidden md:w-1/3 max-w-[240px] h-full md:flex flex-col justify-between"
+          className="h-full md:w-1/3 max-w-[240px] md:flex flex-col justify-between hidden "
           variant="white"
         />
       </section>
