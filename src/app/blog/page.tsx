@@ -12,7 +12,7 @@ const POSTS_QUERY = `*[
 
 const options = { next: { revalidate: 30 } };
 
-async function Page() {
+export default async function BlogPage() {
   const posts = await client.fetch<PostDetails[]>(POSTS_QUERY, {}, options);
   return (
     <>
@@ -26,5 +26,3 @@ async function Page() {
     </>
   );
 }
-
-export default Page;
