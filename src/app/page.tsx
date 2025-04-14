@@ -2,7 +2,7 @@ import { BreadcrumbHome } from "@/components/HomePage/BreadcrumbHome/BreadcrumbH
 import MainBanner from "@/components/HomePage/MainBanner/MainBanner";
 import { ResponsiveCarousel } from "@/components/HomePage/ResponsiveCarousel/ResponsiveCarousel";
 
-export default function Home() {
+export default function HomePage() {
   return (
     <>
       <BreadcrumbHome className="w-full max-w-[1300px] flex py-[20px] px-[25px] md:px-[42px] mx-auto" />

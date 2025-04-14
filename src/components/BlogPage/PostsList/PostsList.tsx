@@ -7,7 +7,7 @@ interface PostsListProps {
 
 function PostsList({ postsDetails }: PostsListProps) {
   return (
-    <ul className="w-full flex flex-col sm:flex-row sm:flex-wrap sm:justify-between gap-[50px] lg:gap-[20px]">
+    <ul className="w-full grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-[50px]">
       {postsDetails.map((post) => (
         <PostCard key={post._id} postData={post} />
       ))}

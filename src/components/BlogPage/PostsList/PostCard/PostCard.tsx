@@ -61,7 +61,7 @@ export default async function PostCard({ postData }: PostCardProps) {
   const fullDate = formatDate(publishedAt);
 
   return (
-    <li className="w-full sm:w-[45%] lg:w-[30%] rounded-[var(--big-border-radius)] overflow-hidden shadow-[var(--custom-box-shadow)] lg:transition-transform lg:hover:translate-y-[-10px] lg:ease-in-out lg:duration-[0.5s]">
+    <li className="w-full rounded-[var(--big-border-radius)] overflow-hidden shadow-[var(--custom-box-shadow)] lg:transition-transform lg:hover:translate-y-[-10px] lg:ease-in-out lg:duration-[0.5s]">
       <Link
         key={postData._id}
         href={`/blog/${categorySlug.current}/${slug.current}`}
