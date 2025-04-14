@@ -1,10 +1,11 @@
 import imageUrlBuilder from "@sanity/image-url";
 import type { SanityImageSource } from "@sanity/image-url/lib/types/types";
 import { client } from "@/sanity/client";
-import Link from "next/link";
-import { BreadcrumbPostPage } from "@/components/BlogPage/Category/PostPage/BreadcrumbPostPage/BreadcrumbPostPage";
 
+import { BreadcrumbPostPage } from "@/components/BlogPage/Category/PostPage/BreadcrumbPostPage/BreadcrumbPostPage";
+import PostPageBanner from "@/components/BlogPage/Category/PostPage/PostPageBanner/PostPageBanner";
 import { CategoryDetails, PostDetails } from "@/types/types";
+import Post from "@/components/BlogPage/Category/PostPage/Post/Post";
 
 const POST_QUERY = `*[_type == "post" && slug.current == $slug][0]`;
 
@@ -31,17 +32,17 @@ export default async function PostPage({
     options
   );
 
-  const postImageUrl = post.mainImage
-    ? urlFor(post.mainImage)?.width(550).height(310).url()
-    : null;
+  const { mainImage, category, title: postTitle } = post;
+  const postImageUrl = mainImage ? urlFor(mainImage)!.fit("max").url() : null;
 
   const categoryData = await client.fetch<CategoryDetails>(
-    CATEGORY_QUERY(post.category._ref),
+    CATEGORY_QUERY(category._ref),
     {},
     options
   );
 
   const { title: categoryTitle, categorySlug } = categoryData;
+  const publishAt = new Date(post.publishedAt).toLocaleDateString();
 
   return (
     <>
@@ -53,21 +54,14 @@ export default async function PostPage({
       />
       <main className="w-full flex justify-center px-[25px] md:px-[42px] mx-auto">
         <section className="w-full flex flex-col gap-y-[70px] lg:gap-y-[100px] pb-[70px] lg:pb-[100px] max-w-[1300px]">
-          <Link href="/blog" className="hover:underline">
-            ← Back to posts
-          </Link>
-          {postImageUrl && (
-            <img
-              src={postImageUrl}
-              alt={post.title}
-              className="aspect-video rounded-xl"
-              width="550"
-              height="310"
-            />
-          )}
-          <h1 className="text-4xl font-bold mb-8">{post.title}</h1>
-          <div className="prose">
-            <p>Published: {new Date(post.publishedAt).toLocaleDateString()}</p>
+          <PostPageBanner
+            headerText={postTitle}
+            publishDate={publishAt}
+            imageUrl={postImageUrl}
+          />
+          <div className="grid grid-cols-1 lg:grid-cols-[1fr_2fr]">
+            <aside className="bg-red-900"></aside>
+            <Post postDetails={post} />
           </div>
         </section>
       </main>

@@ -61,7 +61,7 @@ function Navigation() {
           <div className="ml-[10px] flex items-center justify-between lg:justify-end flex-grow-[0.5] max-w-[250px]">
             <a
               href="tel:+48508832553"
-              className="flex items-center text-nowrap py-2 px-4 font-extralight text-[15px] bg-[var(--gray-75)] rounded-[var(--big-border-radius)] mr-2"
+              className="flex items-center text-nowrap py-2 px-4 font-extralight text-[15px] bg-[var(--gray-25)] rounded-[var(--big-border-radius)] mr-2"
             >
               <Smartphone className="stroke-1" /> Umów wizytę
             </a>

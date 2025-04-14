@@ -24,6 +24,7 @@ export interface PostDetails {
   category: { _ref: string; _type: "reference" };
   _type: "reference";
   _key: string;
+  summary: string;
 }
 
 export interface CategoryDetails {

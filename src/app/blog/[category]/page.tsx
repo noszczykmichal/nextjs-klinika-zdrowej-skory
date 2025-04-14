@@ -7,7 +7,7 @@ import { PostDetails, CategoryDetails } from "@/types/types";
 
 const POSTS_BY_CATEGORY_QUERY = `*[
   _type == "post"
-  && category->categorySlug.current==$category]|order(publishedAt desc)[0...12]{_id, title, slug, publishedAt, mainImage, author, category}`;
+  && category->categorySlug.current==$category]|order(publishedAt desc)[0...12]{_id, title, slug, publishedAt, mainImage, author, category, summary}`;
 
 const CATEGORY_QUERY = `*[_type=="category" && categorySlug.current==$category][0]`;
 

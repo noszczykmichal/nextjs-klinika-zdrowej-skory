@@ -8,7 +8,7 @@ import { PostDetails } from "@/types/types";
 const POSTS_QUERY = `*[
   _type == "post"
   && defined(slug.current)
-]|order(publishedAt desc)[0...12]{_id, title, slug, publishedAt, mainImage, author, category}`;
+]|order(publishedAt desc)[0...12]{_id, title, slug, publishedAt, mainImage, author, category, summary}`;
 
 const options = { next: { revalidate: 30 } };
 
