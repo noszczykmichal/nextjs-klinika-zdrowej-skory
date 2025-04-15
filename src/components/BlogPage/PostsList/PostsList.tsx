@@ -1,5 +1,13 @@
+"use client";
+
+import dynamic from "next/dynamic";
+
 import { PostDetails } from "@/types/types";
-import PostListItem from "./PostListItem/PostListItem";
+
+const PostListItem = dynamic(
+  () => import("@/components/BlogPage/PostsList/PostListItem/PostListItem"),
+  { ssr: false }
+);
 
 interface PostsListProps {
   postsDetails: PostDetails[];
