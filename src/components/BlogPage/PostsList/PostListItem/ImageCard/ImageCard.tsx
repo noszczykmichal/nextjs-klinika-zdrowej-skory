@@ -5,11 +5,10 @@ import { client } from "@/sanity/client";
 import imageUrlBuilder from "@sanity/image-url";
 import type { SanityImageSource } from "@sanity/image-url/lib/types/types";
 
-import { PostDetails, CategoryDetails } from "@/types/types";
+import { PostDetails } from "@/types/types";
 
 interface ImageCardProps {
   postData: PostDetails;
-  categoryData: CategoryDetails;
 }
 
 const { projectId, dataset } = client.config();
@@ -19,11 +18,11 @@ const urlFor = (source: SanityImageSource) =>
     ? imageUrlBuilder({ projectId, dataset }).image(source)
     : null;
 
-export default function ImageCard({ postData, categoryData }: ImageCardProps) {
-  const { mainImage, slug } = postData;
+export default function ImageCard({ postData }: ImageCardProps) {
+  const { mainImage, slug, category } = postData;
   const imageUrl = urlFor(mainImage)?.fit("max").url() || "";
 
-  const { title: categoryTitle, categorySlug } = categoryData;
+  const { title: categoryTitle, categorySlug } = category;
 
   return (
     <Link

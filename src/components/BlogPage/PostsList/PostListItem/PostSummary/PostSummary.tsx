@@ -1,17 +1,13 @@
-import { PostDetails, CategoryDetails } from "@/types/types";
+import { PostDetails } from "@/types/types";
 import StyledButton from "@/components/ui/custom/StyledButton/StyledButton";
 
 interface PostSummaryProps {
   postData: PostDetails;
-  categoryData: CategoryDetails;
 }
 
-export default function PostSummary({
-  postData,
-  categoryData,
-}: PostSummaryProps) {
-  const { title, summary, slug } = postData;
-  const { categorySlug } = categoryData;
+export default function PostSummary({ postData }: PostSummaryProps) {
+  const { title, summary, slug, category } = postData;
+  const { categorySlug } = category;
 
   return (
     <div className="flex flex-col gap-[20px]">

@@ -8,12 +8,13 @@ import { PostDetails } from "@/types/types";
 const POSTS_QUERY = `*[
   _type == "post"
   && defined(slug.current)
-]|order(publishedAt desc)[0...12]{_id, title, slug, publishedAt, mainImage, author, category, summary}`;
+]|order(publishedAt desc)[0...12]{_id, title, slug, mainImage, summary, category->{title, categorySlug}}`;
 
 const options = { next: { revalidate: 30 } };
 
 export default async function BlogPage() {
   const posts = await client.fetch<PostDetails[]>(POSTS_QUERY, {}, options);
+
   return (
     <>
       <BreadcrumbBlog className="w-full max-w-[1300px] flex py-[20px] px-[25px] md:px-[42px] mx-auto" />
