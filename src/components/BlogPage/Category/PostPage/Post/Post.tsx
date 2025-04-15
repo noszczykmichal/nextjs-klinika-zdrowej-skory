@@ -7,5 +7,5 @@ interface PostProps {
 export default function Post({ postDetails }: PostProps) {
   const { title } = postDetails;
 
-  return <article className="bg-green-900"></article>;
+  return <article className="bg-green-900">{title}</article>;
 }
