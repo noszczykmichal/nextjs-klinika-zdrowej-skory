@@ -4,13 +4,10 @@ import { client } from "@/sanity/client";
 
 import { BreadcrumbPostPage } from "@/components/BlogPage/Category/PostPage/BreadcrumbPostPage/BreadcrumbPostPage";
 import PostPageBanner from "@/components/BlogPage/Category/PostPage/PostPageBanner/PostPageBanner";
-import { CategoryDetails, PostDetails } from "@/types/types";
+import { PostDetails } from "@/types/types";
 import Post from "@/components/BlogPage/Category/PostPage/Post/Post";
 
-const POST_QUERY = `*[_type == "post" && slug.current == $slug][0]`;
-
-const CATEGORY_QUERY = (categoryRef: string) =>
-  `*[_type=="category" && _id=="${categoryRef}"][0]`;
+const POST_QUERY = `*[_type == "post" && slug.current == $slug]{mainImage, title, publishedAt, category->{title, categorySlug}}[0]`;
 
 const { projectId, dataset } = client.config();
 
@@ -32,22 +29,16 @@ export default async function PostPage({
     options
   );
 
-  const { mainImage, category, title: postTitle } = post;
+  const { mainImage, title: postTitle, category } = post;
   const postImageUrl = mainImage ? urlFor(mainImage)!.fit("max").url() : null;
 
-  const categoryData = await client.fetch<CategoryDetails>(
-    CATEGORY_QUERY(category._ref),
-    {},
-    options
-  );
-
-  const { title: categoryTitle, categorySlug } = categoryData;
+  const { title: categoryTitle, categorySlug } = category;
   const publishAt = new Date(post.publishedAt).toLocaleDateString();
 
   return (
     <>
       <BreadcrumbPostPage
-        postSlug={post.title}
+        postSlug={postTitle}
         categoryTitle={categoryTitle}
         categorySlug={categorySlug.current}
         className="w-full max-w-[1300px] flex py-[20px] px-[25px] md:px-[42px] mx-auto"
