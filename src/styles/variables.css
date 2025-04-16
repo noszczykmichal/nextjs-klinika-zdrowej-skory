@@ -7,13 +7,15 @@
   /* colors */
   --black-100: #171a1a;
   --gray-100: #706f6f;
-  --gray-75: #efefef;
+  --gray-75: #d7d4d4;
+  --gray-25: #efefef;
   --pink-100: rgba(197, 159, 160, 0.59);
   --white-100: rgba(255, 255, 255, 0.85);
   --green-100: #4c8f61;
 
   /* sizing */
   --big-border-radius: 30px;
+  --medium-border-radius: 20px;
   --small-border-radius: 4px;
   --hamburger-width: 30px;
   --test: calc(100vw - 90px);

@@ -8,3 +8,12 @@
 
 //   return updatedCategoryName;
 // };
+
+export const formatDate = (isoString: string, locale: string = "pl-PL") => {
+  const date = new Date(isoString);
+  return new Intl.DateTimeFormat(locale, {
+    day: "numeric",
+    month: "long",
+    year: "numeric",
+  }).format(date);
+};

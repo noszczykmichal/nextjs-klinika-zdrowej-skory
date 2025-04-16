@@ -21,9 +21,10 @@ export interface PostDetails {
     };
   };
   author: { _ref: string; _type: "reference" };
-  category: { _ref: string; _type: "reference" };
+  category: CategoryDetails;
   _type: "reference";
   _key: string;
+  summary: string;
 }
 
 export interface CategoryDetails {

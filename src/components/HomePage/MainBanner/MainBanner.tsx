@@ -7,7 +7,7 @@ interface MainBannerProps {
   headerText: string;
 }
 
-function MainBanner({ headerText }: MainBannerProps) {
+export default function MainBanner({ headerText }: MainBannerProps) {
   return (
     <div className="sm:flex h-[70vh] max-h-[500px] rounded-[var(--big-border-radius)] overflow-hidden">
       <div className="relative h-[40%] sm:w-[50%] sm:h-full flex items-center justify-center">
@@ -36,5 +36,3 @@ function MainBanner({ headerText }: MainBannerProps) {
     </div>
   );
 }
-
-export default MainBanner;

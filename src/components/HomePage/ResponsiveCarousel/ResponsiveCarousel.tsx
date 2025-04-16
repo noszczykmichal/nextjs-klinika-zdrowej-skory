@@ -93,8 +93,8 @@ export function ResponsiveCarousel() {
                 );
               })}
             </CarouselContent>
-            <CarouselPrevious className="ml-[15px] md:ml-[5px]" />
-            <CarouselNext className="mr-[15px] md:mr-[5px]" />
+            <CarouselPrevious className="ml-[15px] md:ml-[5px] cursor-pointer" />
+            <CarouselNext className="mr-[15px] md:mr-[5px] cursor-pointer" />
           </Carousel>
         </div>
       ) : (

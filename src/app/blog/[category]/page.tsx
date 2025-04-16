@@ -3,13 +3,11 @@ import { client } from "@/sanity/client";
 import { BreadcrumbCategoryPage } from "@/components/BlogPage/Category/BreadcrumbCategoryPage/BreadcrumbCategoryPage";
 import MainBanner from "@/components/HomePage/MainBanner/MainBanner";
 import PostsList from "@/components/BlogPage/PostsList/PostsList";
-import { PostDetails, CategoryDetails } from "@/types/types";
+import { PostDetails } from "@/types/types";
 
 const POSTS_BY_CATEGORY_QUERY = `*[
   _type == "post"
-  && category->categorySlug.current==$category]|order(publishedAt desc)[0...12]{_id, title, slug, publishedAt, mainImage, author, category}`;
-
-const CATEGORY_QUERY = `*[_type=="category" && categorySlug.current==$category][0]`;
+  && category->categorySlug.current==$category]|order(publishedAt desc)[0...12]{_id, title, slug, mainImage, summary, category->{title, categorySlug}}`;
 
 const options = { next: { revalidate: 30 } };
 
@@ -23,12 +21,8 @@ export default async function CategoryPage({
     await params,
     options
   );
-  const { title } = await client.fetch<CategoryDetails>(
-    CATEGORY_QUERY,
-    await params,
-    options
-  );
 
+  const { title } = posts[0].category;
   return (
     <>
       <BreadcrumbCategoryPage

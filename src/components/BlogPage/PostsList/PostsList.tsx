@@ -1,5 +1,13 @@
+"use client";
+
+import dynamic from "next/dynamic";
+
 import { PostDetails } from "@/types/types";
-import PostCard from "./PostCard/PostCard";
+
+const PostListItem = dynamic(
+  () => import("@/components/BlogPage/PostsList/PostListItem/PostListItem"),
+  { ssr: false }
+);
 
 interface PostsListProps {
   postsDetails: PostDetails[];
@@ -7,9 +15,9 @@ interface PostsListProps {
 
 function PostsList({ postsDetails }: PostsListProps) {
   return (
-    <ul className="w-full grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-[50px]">
+    <ul className="w-full max-w-[500px] md:max-w-none mx-auto ">
       {postsDetails.map((post) => (
-        <PostCard key={post._id} postData={post} />
+        <PostListItem key={post._id} postData={post} />
       ))}
     </ul>
   );
