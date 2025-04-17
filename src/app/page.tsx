@@ -5,7 +5,7 @@ import { ResponsiveCarousel } from "@/components/HomePage/ResponsiveCarousel/Res
 export default function HomePage() {
   return (
     <>
-      <BreadcrumbHome className="w-full max-w-[1300px] flex py-[20px] px-[25px] md:px-[42px] mx-auto" />
+      <BreadcrumbHome className="breadcrumb-wrapper flex justify-start w-full max-w-[1300px] py-[20px] mx-auto" />
       <main className="w-full flex justify-center px-[25px] md:px-[42px] mx-auto">
         <section className="flex flex-col gap-y-[50px] pb-[50px] max-w-[1300px]">
           <MainBanner headerText="Kosmetologia na światowym poziomie" />

@@ -1,20 +1,10 @@
-import imageUrlBuilder from "@sanity/image-url";
-import type { SanityImageSource } from "@sanity/image-url/lib/types/types";
 import { client } from "@/sanity/client";
 
 import { BreadcrumbPostPage } from "@/components/BlogPage/Category/PostPage/BreadcrumbPostPage/BreadcrumbPostPage";
-import PostPageBanner from "@/components/BlogPage/Category/PostPage/PostPageBanner/PostPageBanner";
 import { PostDetails } from "@/types/types";
-import Post from "@/components/BlogPage/Category/PostPage/Post/Post";
+import PostContentWrapper from "@/components/BlogPage/Category/PostPage/PostContentWrapper/PostContentWrapper";
 
-const POST_QUERY = `*[_type == "post" && slug.current == $slug]{mainImage, title, publishedAt, category->{title, categorySlug}}[0]`;
-
-const { projectId, dataset } = client.config();
-
-const urlFor = (source: SanityImageSource) =>
-  projectId && dataset
-    ? imageUrlBuilder({ projectId, dataset }).image(source)
-    : null;
+const POST_QUERY = `*[_type == "post" && slug.current == $slug]{mainImage, title, publishedAt, summary, contentSections, category->{title, categorySlug}}[0]`;
 
 const options = { next: { revalidate: 30 } };
 
@@ -29,11 +19,9 @@ export default async function PostPage({
     options
   );
 
-  const { mainImage, title: postTitle, category } = post;
-  const postImageUrl = mainImage ? urlFor(mainImage)!.fit("max").url() : null;
-
+  const { title: postTitle, category } = post;
   const { title: categoryTitle, categorySlug } = category;
-  const publishAt = new Date(post.publishedAt).toLocaleDateString();
+  // const publishAt = new Date(post.publishedAt).toLocaleDateString();
 
   return (
     <>
@@ -41,19 +29,11 @@ export default async function PostPage({
         postSlug={postTitle}
         categoryTitle={categoryTitle}
         categorySlug={categorySlug.current}
-        className="w-full max-w-[1300px] flex py-[20px] px-[25px] md:px-[42px] mx-auto"
+        className="breadcrumb-wrapper w-full max-w-[1300px] flex justify-start py-[20px] mx-auto"
       />
       <main className="w-full flex justify-center px-[25px] md:px-[42px] mx-auto">
         <section className="w-full flex flex-col gap-y-[70px] lg:gap-y-[100px] pb-[70px] lg:pb-[100px] max-w-[1300px]">
-          <PostPageBanner
-            headerText={postTitle}
-            publishDate={publishAt}
-            imageUrl={postImageUrl}
-          />
-          <div className="grid grid-cols-1 lg:grid-cols-[1fr_2fr]">
-            <aside className="bg-red-900"></aside>
-            <Post postDetails={post} />
-          </div>
+          <PostContentWrapper postData={post} />
         </section>
       </main>
     </>

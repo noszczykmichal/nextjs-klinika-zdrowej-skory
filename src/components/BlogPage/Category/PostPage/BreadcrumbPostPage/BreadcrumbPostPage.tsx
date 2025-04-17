@@ -24,7 +24,7 @@ export function BreadcrumbPostPage({
 }: BreadcrumbPostPageProps) {
   return (
     <Breadcrumb className={className}>
-      <BreadcrumbList>
+      <BreadcrumbList className="breadcrumb-list__post-page">
         <BreadcrumbItem>
           <BreadcrumbLink href="/">Klinika</BreadcrumbLink>
         </BreadcrumbItem>
@@ -38,7 +38,10 @@ export function BreadcrumbPostPage({
           <Slash />
         </BreadcrumbSeparator>
         <BreadcrumbItem>
-          <BreadcrumbLink href={`/blog/${categorySlug}`}>
+          <BreadcrumbLink
+            href={`/blog/${categorySlug}`}
+            className="whitespace-nowrap"
+          >
             {categoryTitle}
           </BreadcrumbLink>
         </BreadcrumbItem>
@@ -46,7 +49,9 @@ export function BreadcrumbPostPage({
           <Slash />
         </BreadcrumbSeparator>
         <BreadcrumbItem>
-          <BreadcrumbPage>{postSlug}</BreadcrumbPage>
+          <BreadcrumbPage className="breadcrumb__post-page max-w-[300px] text-ellipsis overflow-hidden whitespace-nowrap">
+            {postSlug}
+          </BreadcrumbPage>
         </BreadcrumbItem>
       </BreadcrumbList>
     </Breadcrumb>

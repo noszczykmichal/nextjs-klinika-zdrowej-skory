@@ -8,6 +8,12 @@ export interface SocialIcon {
   className: string;
 }
 
+export interface ParagraphContent {
+  _key: string;
+  content: string;
+  paragraphTitle: string;
+}
+
 export interface PostDetails {
   _id: string;
   title: string;
@@ -22,9 +28,10 @@ export interface PostDetails {
   };
   author: { _ref: string; _type: "reference" };
   category: CategoryDetails;
-  _type: "reference";
-  _key: string;
+  // _type: "reference";
+  // _key: string;
   summary: string;
+  contentSections: ParagraphContent[];
 }
 
 export interface CategoryDetails {
