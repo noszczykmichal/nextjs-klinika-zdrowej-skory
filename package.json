@@ -20,6 +20,7 @@
     "next": "15.2.3",
     "next-sanity": "^9.9.5",
     "react": "^19.0.0",
+    "react-countdown-circle-timer": "^3.2.1",
     "react-dom": "^19.0.0",
     "react-transition-group": "^4.4.5",
     "scrollreveal": "^4.0.9",
