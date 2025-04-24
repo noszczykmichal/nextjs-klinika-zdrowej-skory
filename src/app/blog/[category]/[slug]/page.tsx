@@ -4,7 +4,7 @@ import { BreadcrumbPostPage } from "@/components/BlogPage/Category/PostPage/Brea
 import { PostDetails } from "@/types/types";
 import PostContentWrapper from "@/components/BlogPage/Category/PostPage/PostContentWrapper/PostContentWrapper";
 
-const POST_QUERY = `*[_type == "post" && slug.current == $slug]{mainImage, title, publishedAt, summary, contentSections, category->{title, categorySlug}}[0]`;
+const POST_QUERY = `*[_type == "post" && slug.current == $slug]{mainImage, altForMainImage, title, publishedAt, summary, contentSections, category->{title, categorySlug}, treatment->{treatmentSlug, treatmentGroup->{groupSlug}}, treatmentGroup->{groupSlug}}[0]`;
 
 const options = { next: { revalidate: 30 } };
 

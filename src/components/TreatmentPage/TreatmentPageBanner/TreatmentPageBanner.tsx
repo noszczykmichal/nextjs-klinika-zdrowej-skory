@@ -3,12 +3,11 @@ import type { SanityImageSource } from "@sanity/image-url/lib/types/types";
 import { client } from "@/sanity/client";
 import Image from "next/image";
 
-import { PostDetails } from "@/types/types";
+import { TreatmentDetails } from "@/types/types";
 import pkBannerLeft from "@/assets/pk-banner-left.jpg";
-import StyledButton from "@/components/ui/custom/StyledButton/StyledButton";
 
-interface PostPageBannerProps {
-  postDetails: PostDetails;
+interface TreatmentPageBannerProps {
+  treatmentDetails: TreatmentDetails;
 }
 
 const { projectId, dataset } = client.config();
@@ -18,16 +17,16 @@ const urlFor = (source: SanityImageSource) =>
     ? imageUrlBuilder({ projectId, dataset }).image(source)
     : null;
 
-export default function PostPageBanner({ postDetails }: PostPageBannerProps) {
+export default function TreatmentPageBanner({
+  treatmentDetails,
+}: TreatmentPageBannerProps) {
   const {
     mainImage,
     title: headerText,
-    treatment,
-    treatmentGroup: group,
+    summary,
     altForMainImage,
-  } = postDetails;
+  } = treatmentDetails;
   const imageUrl = mainImage ? urlFor(mainImage)!.fit("max").url() : null;
-  const treatmentGroup = treatment?.treatmentGroup.groupSlug.current;
 
   return (
     <div className="sm:flex h-[70vh] max-h-[500px] rounded-[var(--big-border-radius)] overflow-hidden mt-[20px] sm:mt-0">
@@ -40,26 +39,11 @@ export default function PostPageBanner({ postDetails }: PostPageBannerProps) {
           priority
           sizes="(max-width: 640px) 100vw, 50vw"
         />
-        <div className="absolute h-full w-full p-3 xxs:p-5 flex flex-col justify-between lg:gap-[50px] lg:py-10">
-          <h1 className="heading-post-banner w-[90%] font-extralight text-center">
+        <div className="absolute h-full w-full p-3 xxs:p-5 flex flex-col justify-center lg:gap-[50px] lg:py-10">
+          <h1 className="heading-post-banner w-[90%] font-extralight text-right">
             {headerText}
           </h1>
-
-          <div className="h-[25%] w-full flex items-end sm:flex-col lg:flex-row justify-between sm:items-center ">
-            <StyledButton href="/blog" text="Powrót" />
-            {treatment && (
-              <StyledButton
-                href={`/zabiegi/${treatmentGroup}/${treatment.treatmentSlug.current}`}
-                text="Pejdź do zabiegu"
-              />
-            )}
-            {group && (
-              <StyledButton
-                href={`/zabiegi/${group.groupSlug.current}`}
-                text="Pejdź do zabiegu"
-              />
-            )}
-          </div>
+          <p className="text-right">{summary}</p>
         </div>
       </div>
       <div className="h-[60%] relative sm:w-[50%] sm:h-full">
