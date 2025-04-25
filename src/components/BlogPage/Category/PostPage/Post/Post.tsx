@@ -19,6 +19,7 @@ export default function Post({ postDetails }: PostProps) {
 
   useEffect(() => {
     const animatedElement = revealItem.current;
+
     if (!prefersReducedMotion && animatedElement) {
       ScrollReveal().reveal(animatedElement, scrollRevealConfig(200, 0.1));
     }

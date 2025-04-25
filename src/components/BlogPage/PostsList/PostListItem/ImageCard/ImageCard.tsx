@@ -1,22 +1,13 @@
 import Link from "next/link";
 import { Card, CardContent } from "@/components/ui/card";
 import Image from "next/image";
-import { client } from "@/sanity/client";
-import imageUrlBuilder from "@sanity/image-url";
-import type { SanityImageSource } from "@sanity/image-url/lib/types/types";
 
 import { PostDetails } from "@/types/types";
+import { urlFor } from "@/utils/utilityFunctions";
 
 interface ImageCardProps {
   postData: PostDetails;
 }
-
-const { projectId, dataset } = client.config();
-
-const urlFor = (source: SanityImageSource) =>
-  projectId && dataset
-    ? imageUrlBuilder({ projectId, dataset }).image(source)
-    : null;
 
 export default function ImageCard({ postData }: ImageCardProps) {
   const { mainImage, slug, category } = postData;
