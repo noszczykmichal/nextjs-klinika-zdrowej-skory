@@ -4,7 +4,7 @@ import FeaturedPostsHeader from "./FeaturedPostsHeader/FeaturedPostsHeader";
 import FeaturedPostsList from "./FeaturedPostsList/FeaturedPostsList";
 import { PostDetails } from "@/types/types";
 
-const RECENT_POST_QUERY = `*[_type=='post']|order(publishedAt desc)[0...3]{_id, title, mainImage, altForMainImage}`;
+const RECENT_POST_QUERY = `*[_type=='post']|order(publishedAt desc)[0...3]{_id, title, mainImage, altForMainImage, slug, category->{categorySlug}}`;
 
 const options = { next: { revalidate: 30 } };
 
