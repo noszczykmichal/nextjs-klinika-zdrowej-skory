@@ -1,3 +1,5 @@
+import { CarouselContent } from "@/components/ui/carousel";
+
 import { PostDetails } from "@/types/types";
 import FeaturedPostCard from "./FeaturedPostCard/FeaturedPostCard";
 
@@ -7,10 +9,10 @@ interface FeaturedPostsListProps {
 
 export default function FeaturedPostsList({ posts }: FeaturedPostsListProps) {
   return (
-    <ul className="w-full flex justify-between">
+    <CarouselContent className="-ml-1">
       {posts.map((post) => (
-        <FeaturedPostCard key={post._id} featuredPost={post} />
+        <FeaturedPostCard featuredPost={post} key={post._id} />
       ))}
-    </ul>
+    </CarouselContent>
   );
 }

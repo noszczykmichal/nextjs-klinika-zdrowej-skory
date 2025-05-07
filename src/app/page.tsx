@@ -1,8 +1,7 @@
 import { BreadcrumbHome } from "@/components/HomePage/BreadcrumbHome/BreadcrumbHome";
-
 import MainBanner from "@/components/HomePage/MainBanner/MainBanner";
-import FeaturedPosts from "@/components/HomePage/FeaturedPosts/FeaturedPosts";
 import HeroArticle from "@/components/HomePage/HeroArticle/HeroArticle";
+import FeaturedPostsSection from "@/components/HomePage/FeaturedPostsSection/FeaturedPostsSection";
 
 export default function HomePage() {
   return (
@@ -13,9 +12,8 @@ export default function HomePage() {
           <MainBanner headerText="Poznaj Nas bliżej" />
           <HeroArticle />
         </section>
-        <section className="w-full flex flex-col gap-y-[50px] pb-[50px] max-w-[1300px]">
-          <FeaturedPosts />
-        </section>
+
+        <FeaturedPostsSection />
       </main>
     </>
   );
