@@ -1,11 +1,11 @@
 "use client";
 
 import { useRef, useEffect } from "react";
+import ScrollReveal from "scrollreveal";
 
 import { PostDetails } from "@/types/types";
 import Paragraph from "@/components/BlogPage/Category/PostPage/Post/Paragraph/Paragraph";
 import usePrefersReducedMotion from "@/hooks/usePrefersReducedMotion";
-import ScrollReveal from "scrollreveal";
 import { scrollRevealConfig } from "@/utils/config";
 
 interface PostProps {

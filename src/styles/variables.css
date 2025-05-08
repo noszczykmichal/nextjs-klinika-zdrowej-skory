@@ -9,9 +9,9 @@
   --gray-100: #706f6f;
   --gray-75: #d7d4d4;
   --gray-25: #efefef;
+  --magenta-100: #5b0547;
   --pink-100: rgba(197, 159, 160, 0.59);
   --white-100: rgba(255, 255, 255, 0.85);
-  --green-100: #4c8f61;
 
   /* sizing */
   --big-border-radius: 30px;
@@ -151,6 +151,7 @@
   /*  custom*/
 
   --breakpoint-xxs: 28rem;
+  --breakpoint-xs: 33rem;
 }
 
 @layer base {

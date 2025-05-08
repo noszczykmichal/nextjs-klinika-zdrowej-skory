@@ -1,7 +1,7 @@
 import Image from "next/image";
 
 import pkBannerLeft from "@/assets/pk-banner-left.jpg";
-import pkBannerRight from "@/assets/pk-banner-right.jpg";
+import bannerRightImage from "@/assets/home_page_banner_right.jpg";
 
 interface MainBannerProps {
   headerText: string;
@@ -25,10 +25,10 @@ export default function MainBanner({ headerText }: MainBannerProps) {
       </div>
       <div className="h-[60%] relative sm:w-[50%] sm:h-full">
         <Image
-          src={pkBannerRight}
+          src={bannerRightImage}
           alt=""
           fill
-          className="object-cover"
+          className="object-cover object-top"
           priority
           sizes="(max-width: 640px) 100vw, 50vw"
         />

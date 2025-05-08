@@ -45,7 +45,6 @@ export default async function TreatmentPage({
     await params,
     options
   );
-  console.log(treatment);
 
   const { title: treatmentName, treatmentGroup } = treatment;
   const breadcrumbParams = { treatmentName, treatmentGroup };
