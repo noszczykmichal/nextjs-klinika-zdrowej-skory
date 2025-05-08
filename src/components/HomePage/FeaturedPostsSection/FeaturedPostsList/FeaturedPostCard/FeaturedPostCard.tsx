@@ -55,7 +55,9 @@ export default function FeaturedPostCard({
                 sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
               />
             </div>
-            <h3 className="text-[22px] my-[40px]">{title}</h3>
+            <h3 className="text-[17px] lg:text-[22px] my-[40px] break-all xs:break-normal">
+              {title}
+            </h3>
             <StyledButton
               href={`/blog/${categorySlug}/${postSlug}`}
               text="Więcej"

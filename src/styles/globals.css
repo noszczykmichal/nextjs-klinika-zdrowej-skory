@@ -1,6 +1,7 @@
 @import url("./variables.css");
 
 body {
+  box-sizing: border-box;
   color: var(--black-100);
   display: grid;
   grid-template-rows: 80px 60px auto auto;

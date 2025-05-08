@@ -28,8 +28,8 @@ export default function FeaturedPostsHeaderContent() {
 
   return (
     <header ref={revealItem}>
-      <h2 className="text-center text-[54px]">Nasz blog</h2>
-      <h3 className="text-center uppercase text-[var(--magenta-100)]">
+      <h2 className="text-center text-[28px] lg:text-[54px]">Nasz blog</h2>
+      <h3 className="text-center text-[15px] lg:text-[16px] uppercase text-[var(--magenta-100)]">
         O kosmetologii i medycynie estetycznej
       </h3>
     </header>

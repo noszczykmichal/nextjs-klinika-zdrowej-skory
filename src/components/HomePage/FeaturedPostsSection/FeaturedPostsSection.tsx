@@ -17,8 +17,8 @@ export default async function FeaturedPostsSection() {
 
   // console.log(featuredPosts);
   return (
-    <section className="w-full flex flex-col gap-y-[50px] pb-[50px] max-w-[1300px]">
-      <article className="px-[60px] py-[55px] flex flex-col items-center gap-[50px] bg-[var(--gray-75)] rounded-[var(--big-border-radius)]">
+    <section className="flex flex-col gap-y-[50px] pb-[50px] max-w-[1300px]">
+      <article className="px-[20px] py-[55px] flex flex-col gap-[50px] rounded-[var(--big-border-radius)] bg-[var(--gray-75)]">
         <FeaturedPostsHeader />
         <ResponsiveCarousel posts={featuredPosts} />
       </article>

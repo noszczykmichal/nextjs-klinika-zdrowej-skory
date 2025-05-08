@@ -151,6 +151,7 @@
   /*  custom*/
 
   --breakpoint-xxs: 28rem;
+  --breakpoint-xs: 33rem;
 }
 
 @layer base {
