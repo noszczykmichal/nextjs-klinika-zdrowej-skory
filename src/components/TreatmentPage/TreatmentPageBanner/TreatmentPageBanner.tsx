@@ -1,21 +1,12 @@
-import imageUrlBuilder from "@sanity/image-url";
-import type { SanityImageSource } from "@sanity/image-url/lib/types/types";
-import { client } from "@/sanity/client";
 import Image from "next/image";
 
 import { TreatmentDetails } from "@/types/types";
 import pkBannerLeft from "@/assets/pk-banner-left.jpg";
+import { urlFor } from "@/utils/utilityFunctions";
 
 interface TreatmentPageBannerProps {
   treatmentDetails: TreatmentDetails;
 }
-
-const { projectId, dataset } = client.config();
-
-const urlFor = (source: SanityImageSource) =>
-  projectId && dataset
-    ? imageUrlBuilder({ projectId, dataset }).image(source)
-    : null;
 
 export default function TreatmentPageBanner({
   treatmentDetails,
@@ -26,6 +17,7 @@ export default function TreatmentPageBanner({
     summary,
     altForMainImage,
   } = treatmentDetails;
+
   const imageUrl = mainImage ? urlFor(mainImage)!.fit("max").url() : null;
 
   return (

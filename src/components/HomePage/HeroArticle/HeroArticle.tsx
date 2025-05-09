@@ -2,16 +2,18 @@
 
 import dynamic from "next/dynamic";
 
-const AnimatedContent = dynamic(
+const HeroArticleContent = dynamic(
   () =>
-    import("@/components/HomePage/HeroArticle/AnimatedContent/AnimatedContent"),
+    import(
+      "@/components/HomePage/HeroArticle/HeroArticleContent/HeroArticleContent"
+    ),
   { ssr: false }
 );
 
 export default function HeroArticle() {
   return (
     <article>
-      <AnimatedContent />
+      <HeroArticleContent />
     </article>
   );
 }

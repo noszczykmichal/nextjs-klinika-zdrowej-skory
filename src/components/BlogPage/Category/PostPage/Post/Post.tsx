@@ -1,12 +1,10 @@
 "use client";
 
-import { useRef, useEffect } from "react";
-import ScrollReveal from "scrollreveal";
+import { useRef } from "react";
 
 import { PostDetails } from "@/types/types";
 import Paragraph from "@/components/BlogPage/Category/PostPage/Post/Paragraph/Paragraph";
-import usePrefersReducedMotion from "@/hooks/usePrefersReducedMotion";
-import { scrollRevealConfig } from "@/utils/config";
+import useScrollReveal from "@/hooks/useScrollReveal";
 
 interface PostProps {
   postDetails: PostDetails;
@@ -15,21 +13,7 @@ interface PostProps {
 export default function Post({ postDetails }: PostProps) {
   const { summary, contentSections } = postDetails;
   const revealItem = useRef<HTMLElement>(null);
-  const prefersReducedMotion = usePrefersReducedMotion();
-
-  useEffect(() => {
-    const animatedElement = revealItem.current;
-
-    if (!prefersReducedMotion && animatedElement) {
-      ScrollReveal().reveal(animatedElement, scrollRevealConfig(200, 0.1));
-    }
-
-    return () => {
-      if (animatedElement) {
-        ScrollReveal().clean(animatedElement);
-      }
-    };
-  }, [prefersReducedMotion]);
+  useScrollReveal(revealItem, 200, 0.1);
 
   return (
     <article className="text-justify text-[15px]" ref={revealItem}>

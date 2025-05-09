@@ -7,13 +7,13 @@ const TREATMENT_GROUP_QUERY = `*[_type == "treatmentGroup"]{groupSlug, title, _i
 
 const options = { next: { revalidate: 30 } };
 
-interface TreatmentGroupMenuProps {
+interface TreatmentGroupsMenuProps {
   className: string;
 }
 
-export default async function TreatmentGroupMenu({
+export default async function TreatmentGroupsMenu({
   className,
-}: TreatmentGroupMenuProps) {
+}: TreatmentGroupsMenuProps) {
   const treatmentGroups = await client.fetch<TreatmentGroup[]>(
     TREATMENT_GROUP_QUERY,
     {},
