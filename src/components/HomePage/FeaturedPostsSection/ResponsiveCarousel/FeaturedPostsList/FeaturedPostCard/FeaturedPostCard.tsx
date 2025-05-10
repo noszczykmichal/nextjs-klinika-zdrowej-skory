@@ -39,8 +39,6 @@ export default function FeaturedPostCard({
     categorySlug = featuredPost.category.categorySlug.current;
   }
 
-  console.log(featuredPost);
-
   return (
     <CarouselItem className="pl-1 sm:basis-1/2 lg:basis-1/3">
       <div className="h-full p-1 sm:p-[17px]">

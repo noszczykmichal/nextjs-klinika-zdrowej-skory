@@ -11,7 +11,7 @@ import {
 } from "@/components/ui/carousel";
 import usePrefersReducedMotion from "@/hooks/usePrefersReducedMotion";
 import { PostDetails } from "@/types/types";
-import FeaturedPostsList from "../FeaturedPostsSection/FeaturedPostsList/FeaturedPostsList";
+import FeaturedPostsList from "@/components/HomePage/FeaturedPostsSection/ResponsiveCarousel/FeaturedPostsList/FeaturedPostsList";
 
 interface ResponsiveCarouselProps {
   posts: Partial<PostDetails>[];
@@ -73,25 +73,22 @@ export function ResponsiveCarousel({ posts }: ResponsiveCarouselProps) {
     </div>
   );
 
-  console.log(current);
   return (
-    <>
+    <div className="flex flex-col items-center gap-[50px]">
       {prefersReducedMotion ? (
-        <div className="px-[20px] py-[55px] flex flex-col items-center gap-[50px] rounded-[var(--big-border-radius)]">
-          <Carousel
-            opts={{
-              align: "start",
-              loop: true,
-            }}
-            className="w-[90%]"
-          >
-            <FeaturedPostsList posts={posts} />
-            <CarouselPrevious className="ml-[15px] md:ml-[5px] cursor-pointer" />
-            <CarouselNext className="mr-[15px] md:mr-[5px] cursor-pointer" />
-          </Carousel>
-        </div>
+        <Carousel
+          opts={{
+            align: "start",
+            loop: true,
+          }}
+          className="w-[90%]"
+        >
+          <FeaturedPostsList posts={posts} />
+          <CarouselPrevious className="lg:hidden ml-[15px] md:ml-[5px] cursor-pointer" />
+          <CarouselNext className="lg:hidden mr-[15px] md:mr-[5px] cursor-pointer" />
+        </Carousel>
       ) : (
-        <div className="flex flex-col items-center gap-[50px]">
+        <>
           <Carousel
             setApi={setApi}
             opts={{
@@ -105,8 +102,8 @@ export function ResponsiveCarousel({ posts }: ResponsiveCarouselProps) {
             <FeaturedPostsList posts={posts} />
           </Carousel>
           {controlButtons}
-        </div>
+        </>
       )}
-    </>
+    </div>
   );
 }
