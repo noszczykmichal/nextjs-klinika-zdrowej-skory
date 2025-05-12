@@ -1,10 +1,10 @@
 import { client } from "@/sanity/client";
 
 import { TreatmentDetails } from "@/types/types";
-import TreatmentPageBanner from "@/components/TreatmentPage/TreatmentPageBanner/TreatmentPageBanner";
-import TreatmentGroupsMenu from "@/components/TreatmentPage/TreatmentGroupsMenu/TreatmentGroupsMenu";
+import BannerWithSummary from "@/components/ui/custom/BannerWithSummary/BannerWithSummary";
+import AsideNavigation from "@/components/ui/custom/AsideNavigation/AsideNavigation";
 import { TreatmentPageBreadcrumb } from "@/components/TreatmentPage/TreatmentPageBreadcrumb/TreatmentPageBreadcrumb";
-import TreatmentArticle from "@/components/TreatmentPage/TreatmentArticle/TreatmentArticle";
+import AnimatedArticle from "@/components/ui/custom/AnimatedArticle/AnimatedArticle";
 
 const TREATMENT_QUERY = `*[_type == "treatment" && treatmentSlug.current == $treatment][0]{
   mainImage,
@@ -45,8 +45,22 @@ export default async function TreatmentPage({
     options
   );
 
-  const { title: treatmentName, treatmentGroup, description } = treatment;
+  const {
+    title: treatmentName,
+    treatmentGroup,
+    description,
+    mainImage,
+    summary,
+    altForMainImage,
+  } = treatment;
   const breadcrumbParams = { treatmentName, treatmentGroup };
+  const bannerData = {
+    mainImage,
+    title: treatmentName,
+    summary,
+    altForMainImage,
+    description,
+  };
   return (
     <>
       <TreatmentPageBreadcrumb
@@ -55,10 +69,10 @@ export default async function TreatmentPage({
       />
       <main className="w-full flex justify-center px-[25px] md:px-[42px] mx-auto">
         <section className="w-full flex flex-col gap-y-[70px] lg:gap-y-[100px] pb-[70px] lg:pb-[100px] max-w-[1300px]">
-          <TreatmentPageBanner treatmentDetails={treatment} />
+          <BannerWithSummary bannerData={bannerData} />
           <div className="grid grid-cols-1 sm:grid-cols-[4fr__6fr] gap-[20px] md:gap-[40px] lg:gap-[60px] xl:gap-[90px] max-w-[1300px]">
-            <TreatmentGroupsMenu className="order-2 sm:order-1" />
-            <TreatmentArticle description={description} />
+            <AsideNavigation className="order-2 sm:order-1" />
+            <AnimatedArticle description={description} />
           </div>
         </section>
       </main>

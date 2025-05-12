@@ -10,12 +10,6 @@ export interface SocialIcon {
   className: string;
 }
 
-export interface ParagraphContent {
-  _key: string;
-  content: string;
-  paragraphTitle: string;
-}
-
 export interface ImageDetails {
   _type: "image";
   asset: {
@@ -34,7 +28,7 @@ export interface PostDetails {
   author: { _ref: string; _type: "reference" };
   category: CategoryDetails;
   summary: string;
-  contentSections: ParagraphContent[];
+  postContent: PortableTextBlock[];
   treatmentGroup: {
     groupSlug: { current: string };
   };
@@ -49,17 +43,19 @@ export interface CategoryDetails {
   categorySlug: { current: string };
 }
 
-export interface TreatmentDetails {
+export interface TreatmentProcedure {
   altForMainImage: string;
   description: PortableTextBlock[];
   mainImage: ImageDetails;
   summary: string;
   title: string;
+}
+
+export interface TreatmentDetails extends TreatmentProcedure {
   treatmentGroup: { groupSlug: { current: string }; title: string };
 }
 
-export interface TreatmentGroup {
-  groupSlug: { current: string };
-  title: string;
+export interface TreatmentGroup extends TreatmentProcedure {
   _id: string;
+  groupSlug: { current: string };
 }
