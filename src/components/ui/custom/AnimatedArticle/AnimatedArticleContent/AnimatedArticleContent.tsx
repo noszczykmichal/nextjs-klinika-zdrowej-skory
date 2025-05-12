@@ -5,7 +5,7 @@ import { portableTextComponentConfig } from "@/utils/portableTextComponentConfig
 import { TreatmentDetails } from "@/types/types";
 import useScrollReveal from "@/hooks/useScrollReveal";
 
-export default function TreatmentArticleContent({
+export default function AnimatedArticleContent({
   description: treatmentDescription,
 }: Partial<TreatmentDetails>) {
   const revealItem = useRef<HTMLDivElement>(null);

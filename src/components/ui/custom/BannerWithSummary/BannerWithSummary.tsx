@@ -1,22 +1,17 @@
 import Image from "next/image";
 
-import { TreatmentDetails } from "@/types/types";
+import { TreatmentProcedure } from "@/types/types";
 import pkBannerLeft from "@/assets/pk-banner-left.jpg";
 import { urlFor } from "@/utils/utilityFunctions";
 
-interface TreatmentPageBannerProps {
-  treatmentDetails: TreatmentDetails;
+interface BannerWithSummaryProps {
+  bannerData: TreatmentProcedure;
 }
 
-export default function TreatmentPageBanner({
-  treatmentDetails,
-}: TreatmentPageBannerProps) {
-  const {
-    mainImage,
-    title: headerText,
-    summary,
-    altForMainImage,
-  } = treatmentDetails;
+export default function BannerWithSummary({
+  bannerData,
+}: BannerWithSummaryProps) {
+  const { mainImage, title: headerText, summary, altForMainImage } = bannerData;
 
   const imageUrl = mainImage ? urlFor(mainImage)!.fit("max").url() : null;
 

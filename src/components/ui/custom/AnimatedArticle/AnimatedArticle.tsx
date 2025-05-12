@@ -7,12 +7,12 @@ import { TreatmentDetails } from "@/types/types";
 const TreatmentArticleContent = dynamic(
   () =>
     import(
-      "@/components/TreatmentPage/TreatmentArticle/TreatmentArticleContent/TreatmentArticleContent"
+      "@/components/ui/custom/AnimatedArticle/AnimatedArticleContent/AnimatedArticleContent"
     ),
   { ssr: false }
 );
 
-export default function TreatmentArticle({
+export default function AnimatedArticle({
   description: treatmentDescription,
 }: Partial<TreatmentDetails>) {
   return <TreatmentArticleContent description={treatmentDescription} />;

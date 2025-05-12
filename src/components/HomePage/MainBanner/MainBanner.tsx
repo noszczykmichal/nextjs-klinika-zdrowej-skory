@@ -26,7 +26,7 @@ export default function MainBanner({ headerText }: MainBannerProps) {
       <div className="h-[60%] relative sm:w-[50%] sm:h-full">
         <Image
           src={bannerRightImage}
-          alt=""
+          alt="Olga Noszczyk trzymająca ampułko strzykawkę z preparatem do stymulacji skóry."
           fill
           className="object-cover object-top"
           priority
