@@ -2,7 +2,7 @@ import { client } from "@/sanity/client";
 
 import { BreadcrumbCategoryPage } from "@/components/BlogPage/Category/BreadcrumbCategoryPage/BreadcrumbCategoryPage";
 import MainBanner from "@/components/HomePage/MainBanner/MainBanner";
-import PostsList from "@/components/BlogPage/PostsList/PostsList";
+import ItemsList from "@/components/ui/custom/ItemsList/ItemsList";
 import { PostDetails } from "@/types/types";
 
 const POSTS_BY_CATEGORY_QUERY = `*[
@@ -32,7 +32,7 @@ export default async function CategoryPage({
       <main className="w-full flex justify-center px-[25px] md:px-[42px] mx-auto">
         <section className="w-full flex flex-col gap-y-[70px] lg:gap-y-[100px] pb-[70px] lg:pb-[100px] max-w-[1300px]">
           <MainBanner headerText={`Kategoria: ${title}`} />
-          <PostsList postsDetails={posts} />
+          <ItemsList listItemsData={posts} />
         </section>
       </main>
     </>
