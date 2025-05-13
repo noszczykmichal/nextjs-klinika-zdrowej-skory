@@ -1,12 +1,13 @@
-import { PostDetails } from "@/types/types";
+import { ListItemData, TopLevelRoute } from "@/types/types";
 import StyledButton from "@/components/ui/custom/StyledButton/StyledButton";
 
-interface PostSummaryProps {
-  postData: PostDetails;
+interface ItemSummaryProps {
+  itemData: ListItemData;
+  rootRoute: TopLevelRoute;
 }
 
-export default function PostSummary({ postData }: PostSummaryProps) {
-  const { title, summary, slug, category } = postData;
+export default function ItemSummary({ itemData, rootRoute }: ItemSummaryProps) {
+  const { title, summary, slug, category } = itemData;
   const { categorySlug } = category;
 
   return (
@@ -14,7 +15,7 @@ export default function PostSummary({ postData }: PostSummaryProps) {
       <h3 className="text-[17px] lg:text-[22px] font-medium">{title}</h3>
       <p className="text-justify text-[15px]">{summary}</p>
       <StyledButton
-        href={`/blog/${categorySlug.current}/${slug.current}`}
+        href={`/${rootRoute}/${categorySlug.current}/${slug.current}`}
         text="Więcej"
       />
     </div>

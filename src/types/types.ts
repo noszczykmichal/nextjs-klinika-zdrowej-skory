@@ -18,16 +18,23 @@ export interface ImageDetails {
   };
 }
 
-export interface PostDetails {
-  _id: string;
+export interface CategoryDetails {
   title: string;
-  slug: { current: string };
-  publishedAt: string;
-  mainImage: ImageDetails;
+  categorySlug: { current: string };
+}
+
+export interface ListItemData {
+  _id: string;
   altForMainImage: string;
-  author: { _ref: string; _type: "reference" };
   category: CategoryDetails;
+  mainImage: ImageDetails;
+  slug: { current: string };
   summary: string;
+  title: string;
+}
+
+export interface PostDetails extends ListItemData {
+  publishedAt: string;
   postContent: PortableTextBlock[];
   treatmentGroup: {
     groupSlug: { current: string };
@@ -36,11 +43,6 @@ export interface PostDetails {
     treatmentGroup: { groupSlug: { current: string } };
     treatmentSlug: { current: string };
   };
-}
-
-export interface CategoryDetails {
-  title: string;
-  categorySlug: { current: string };
 }
 
 export interface TreatmentProcedure {
@@ -59,3 +61,5 @@ export interface TreatmentGroup extends TreatmentProcedure {
   _id: string;
   groupSlug: { current: string };
 }
+
+export type TopLevelRoute = "blog" | "zabiegi";

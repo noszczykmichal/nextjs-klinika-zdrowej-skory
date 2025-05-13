@@ -2,30 +2,30 @@ import Link from "next/link";
 import { Card, CardContent } from "@/components/ui/card";
 import Image from "next/image";
 
-import { PostDetails } from "@/types/types";
+import { TopLevelRoute, ListItemData } from "@/types/types";
 import { urlFor } from "@/utils/utilityFunctions";
 
 interface ImageCardProps {
-  postData: PostDetails;
+  itemData: ListItemData;
+  rootRoute: TopLevelRoute;
 }
 
-export default function ImageCard({ postData }: ImageCardProps) {
-  const { mainImage, slug, category } = postData;
+export default function ImageCard({ itemData, rootRoute }: ImageCardProps) {
+  const { mainImage, slug, category, altForMainImage } = itemData;
   const imageUrl = urlFor(mainImage)?.fit("max").url() || "";
-
   const { title: categoryTitle, categorySlug } = category;
 
   return (
     <Link
-      key={postData._id}
-      href={`/blog/${categorySlug.current}/${slug.current}`}
+      key={itemData._id}
+      href={`/${rootRoute}/${categorySlug.current}/${slug.current}`}
       className="w-full lg:max-w-[300px] rounded-[var(--big-border-radius)] overflow-hidden shadow-[var(--custom-box-shadow)] aspect-square"
     >
       <Card className="p-0 border-none aspect-square">
         <CardContent className="flex aspect-square items-center justify-center p-0 relative">
           <Image
             src={imageUrl}
-            alt=""
+            alt={altForMainImage}
             fill
             className="object-cover w-full h-full"
             sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
