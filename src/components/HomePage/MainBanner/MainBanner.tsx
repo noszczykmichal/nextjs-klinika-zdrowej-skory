@@ -1,13 +1,19 @@
-import Image from "next/image";
+import Image, { StaticImageData } from "next/image";
 
 import pkBannerLeft from "@/assets/pk-banner-left.jpg";
 import bannerRightImage from "@/assets/home_page_banner_right.jpg";
 
 interface MainBannerProps {
   headerText: string;
+  customImage?: StaticImageData;
+  customAlt?: string;
 }
 
-export default function MainBanner({ headerText }: MainBannerProps) {
+export default function MainBanner({
+  headerText,
+  customImage,
+  customAlt,
+}: MainBannerProps) {
   return (
     <div className="sm:flex h-[70vh] max-h-[500px] rounded-[var(--big-border-radius)] overflow-hidden">
       <div className="relative h-[40%] sm:w-[50%] sm:h-full flex items-center justify-center">
@@ -25,8 +31,11 @@ export default function MainBanner({ headerText }: MainBannerProps) {
       </div>
       <div className="h-[60%] relative sm:w-[50%] sm:h-full">
         <Image
-          src={bannerRightImage}
-          alt="Olga Noszczyk trzymająca ampułko strzykawkę z preparatem do stymulacji skóry."
+          src={customImage || bannerRightImage}
+          alt={
+            customAlt ||
+            "Olga Noszczyk trzymająca ampułko strzykawkę z preparatem do stymulacji skóry."
+          }
           fill
           className="object-cover object-top"
           priority
