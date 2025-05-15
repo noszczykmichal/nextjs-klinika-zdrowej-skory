@@ -3,7 +3,7 @@ import { client } from "@/sanity/client";
 import { TreatmentDetails } from "@/types/types";
 import BannerWithSummary from "@/components/ui/custom/BannerWithSummary/BannerWithSummary";
 import AsideNavigation from "@/components/ui/custom/AsideNavigation/AsideNavigation";
-import { TreatmentPageBreadcrumb } from "@/components/TreatmentPage/TreatmentPageBreadcrumb/TreatmentPageBreadcrumb";
+import { BreadcrumbWrapper } from "@/components/ui/custom/BreadcrumbWrapper/BreadcrumbWrapper";
 import AnimatedArticle from "@/components/ui/custom/AnimatedArticle/AnimatedArticle";
 
 const TREATMENT_QUERY = `*[_type == "treatment" && treatmentSlug.current == $treatment][0]{
@@ -53,7 +53,21 @@ export default async function TreatmentPage({
     summary,
     altForMainImage,
   } = treatment;
-  const breadcrumbParams = { treatmentName, treatmentGroup };
+
+  const routesData = [
+    {
+      routeName: "Zabiegi",
+      url: "/zabiegi",
+    },
+    {
+      routeName: `${treatmentGroup.title}`,
+      url: `/zabiegi/${treatmentGroup.groupSlug.current}`,
+    },
+    {
+      routeName: `${treatmentName}`,
+    },
+  ];
+
   const bannerData = {
     mainImage,
     title: treatmentName,
@@ -61,12 +75,10 @@ export default async function TreatmentPage({
     altForMainImage,
     description,
   };
+
   return (
     <>
-      <TreatmentPageBreadcrumb
-        params={breadcrumbParams}
-        className="breadcrumb-wrapper flex justify-start w-full max-w-[1300px] py-[20px] mx-auto"
-      />
+      <BreadcrumbWrapper routesData={routesData} />
       <main className="w-full flex justify-center px-[25px] md:px-[42px] mx-auto">
         <section className="w-full flex flex-col gap-y-[70px] lg:gap-y-[100px] pb-[70px] lg:pb-[100px] max-w-[1300px]">
           <BannerWithSummary bannerData={bannerData} />

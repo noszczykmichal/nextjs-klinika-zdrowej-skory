@@ -1,6 +1,6 @@
 import { client } from "@/sanity/client";
 
-import { TreatmentGroupBreadcrumb } from "@/components/TreatmentGroup/TreatmentGroupBreadcrumb/TreatmentGroupBreadcrumb";
+import { BreadcrumbWrapper } from "@/components/ui/custom/BreadcrumbWrapper/BreadcrumbWrapper";
 import { TreatmentGroup } from "@/types/types";
 import BannerWithSummary from "@/components/ui/custom/BannerWithSummary/BannerWithSummary";
 import AsideNavigation from "@/components/ui/custom/AsideNavigation/AsideNavigation";
@@ -32,12 +32,17 @@ export default async function TreatmentGroupPage({
     summary,
   };
 
+  const routesData = [
+    {
+      routeName: "Zabiegi",
+      url: "/zabiegi",
+    },
+    { routeName: `${title}` },
+  ];
+
   return (
     <>
-      <TreatmentGroupBreadcrumb
-        className="breadcrumb-wrapper flex justify-start w-full max-w-[1300px] py-[20px] mx-auto"
-        groupTitle={title}
-      />
+      <BreadcrumbWrapper routesData={routesData} />
       <main className="w-full flex justify-center px-[25px] md:px-[42px] mx-auto">
         <section className="w-full flex flex-col gap-y-[70px] lg:gap-y-[100px] pb-[70px] lg:pb-[100px] max-w-[1300px]">
           <BannerWithSummary bannerData={bannerData} />
