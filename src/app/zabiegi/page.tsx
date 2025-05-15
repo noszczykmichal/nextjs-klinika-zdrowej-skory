@@ -1,5 +1,6 @@
 import { client } from "@/sanity/client";
 
+import { BreadcrumbWrapper } from "@/components/ui/custom/BreadcrumbWrapper/BreadcrumbWrapper";
 import MainBanner from "@/components/HomePage/MainBanner/MainBanner";
 import ItemsList from "@/components/ui/custom/ItemsList/ItemsList";
 import { ListItemData } from "@/types/types";
@@ -16,9 +17,11 @@ export default async function AllTreatmentsPage() {
     options
   );
 
+  const routesData = [{ routeName: "Zabiegi" }];
+
   return (
     <>
-      {/* <BreadcrumbBlog className="breadcrumb-wrapper flex justify-start w-full max-w-[1300px] py-[20px] mx-auto" /> */}
+      <BreadcrumbWrapper routesData={routesData} />
       <main className="w-full flex justify-center px-[25px] md:px-[42px] mx-auto">
         <section className="w-full flex flex-col gap-y-[70px] lg:gap-y-[100px] pb-[70px] lg:pb-[100px] max-w-[1300px]">
           <MainBanner

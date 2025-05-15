@@ -63,3 +63,8 @@ export interface TreatmentGroup extends TreatmentProcedure {
 }
 
 export type TopLevelRoute = "blog" | "zabiegi";
+
+export interface RouteData {
+  routeName: string;
+  url?: string;
+}
