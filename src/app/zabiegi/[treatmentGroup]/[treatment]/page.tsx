@@ -84,7 +84,7 @@ export default async function TreatmentPage({
           <BannerWithSummary bannerData={bannerData} />
           <div className="grid grid-cols-1 sm:grid-cols-[4fr__6fr] gap-[20px] md:gap-[40px] lg:gap-[60px] xl:gap-[90px] max-w-[1300px]">
             <AsideNavigation className="order-2 sm:order-1" />
-            <AnimatedArticle description={description} />
+            <AnimatedArticle articleContent={description} />
           </div>
         </section>
       </main>

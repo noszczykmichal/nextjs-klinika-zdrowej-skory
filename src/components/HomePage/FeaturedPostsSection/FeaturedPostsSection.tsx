@@ -1,6 +1,6 @@
 import { client } from "@/sanity/client";
 
-import { PostDetails } from "@/types/types";
+import { ListItemData } from "@/types/types";
 import { ResponsiveCarousel } from "@/components/HomePage/FeaturedPostsSection/ResponsiveCarousel/ResponsiveCarousel";
 import FeaturedPostsHeader from "./FeaturedPostsHeader/FeaturedPostsHeader";
 
@@ -9,7 +9,7 @@ const RECENT_POSTS_QUERY = `*[_type=='post']|order(publishedAt desc)[0...3]{_id,
 const options = { next: { revalidate: 30 } };
 
 export default async function FeaturedPostsSection() {
-  const featuredPosts = await client.fetch<Partial<PostDetails>[]>(
+  const featuredPosts = await client.fetch<ListItemData[]>(
     RECENT_POSTS_QUERY,
     {},
     options

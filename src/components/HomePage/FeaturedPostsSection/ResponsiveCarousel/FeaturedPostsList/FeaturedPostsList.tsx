@@ -1,10 +1,10 @@
 import { CarouselContent } from "@/components/ui/carousel";
 
-import { PostDetails } from "@/types/types";
+import { ListItemData } from "@/types/types";
 import FeaturedPostCard from "./FeaturedPostCard/FeaturedPostCard";
 
 interface FeaturedPostsListProps {
-  posts: Partial<PostDetails>[];
+  posts: ListItemData[];
 }
 
 export default function FeaturedPostsList({ posts }: FeaturedPostsListProps) {

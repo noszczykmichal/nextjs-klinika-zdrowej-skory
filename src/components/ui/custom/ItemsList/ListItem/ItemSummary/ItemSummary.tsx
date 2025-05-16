@@ -16,8 +16,9 @@ export default function ItemSummary({ itemData, rootRoute }: ItemSummaryProps) {
       <p className="text-justify text-[15px]">{summary}</p>
       <StyledButton
         href={`/${rootRoute}/${categorySlug.current}/${slug.current}`}
-        text="Więcej"
-      />
+      >
+        Więcej
+      </StyledButton>
     </div>
   );
 }
