@@ -21,7 +21,7 @@ export default function FeaturedPostCard({
     <CarouselItem className="pl-1 sm:basis-1/2 lg:basis-1/3">
       <div className="h-full p-1 sm:p-[17px]">
         <Card className="h-full p-0 rounded-none bg-transparent border-none shadow-none">
-          <CardContent className="h-full flex flex-col justify-between p-0 relative">
+          <CardContent className="h-full flex flex-col justify-between gap-[40px] p-0 relative">
             <div className="p-0 border-none aspect-square relative rounded-tl-[var(--big-border-radius)] rounded-br-[var(--big-border-radius)] overflow-hidden">
               <Image
                 src={imageUrl}
@@ -31,7 +31,7 @@ export default function FeaturedPostCard({
                 sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
               />
             </div>
-            <h3 className="text-[17px] lg:text-[22px] my-[40px] break-all xs:break-normal">
+            <h3 className="min-h-[100px] text-[17px] lg:text-[22px] break-all xs:break-normal">
               {title}
             </h3>
             <StyledButton

@@ -26,11 +26,11 @@ export default function BannerWithSummary({
           priority
           sizes="(max-width: 640px) 100vw, 50vw"
         />
-        <div className="absolute h-full w-full p-3 xxs:p-5 flex flex-col justify-center lg:gap-[50px] lg:py-10">
+        <div className="absolute h-full w-full sm:gap-[30px] p-3 xxs:p-5 flex flex-col justify-center items-end lg:gap-[50px] lg:py-10">
           <h1 className="heading-post-banner w-[90%] font-extralight text-right">
             {headerText}
           </h1>
-          <p className="text-right">{summary}</p>
+          <p className="text-right text-[14px] lg:text-[16px]">{summary}</p>
         </div>
       </div>
       <div className="h-[60%] relative sm:w-[50%] sm:h-full">

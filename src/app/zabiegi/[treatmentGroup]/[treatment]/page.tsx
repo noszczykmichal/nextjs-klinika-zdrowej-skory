@@ -82,8 +82,8 @@ export default async function TreatmentPage({
       <main className="w-full flex justify-center px-[25px] md:px-[42px] mx-auto">
         <section className="w-full flex flex-col gap-y-[70px] lg:gap-y-[100px] pb-[70px] lg:pb-[100px] max-w-[1300px]">
           <BannerWithSummary bannerData={bannerData} />
-          <div className="grid grid-cols-1 sm:grid-cols-[4fr__6fr] gap-[20px] md:gap-[40px] lg:gap-[60px] xl:gap-[90px] max-w-[1300px]">
-            <AsideNavigation className="order-2 sm:order-1" />
+          <div className="grid grid-cols-1 md:grid-cols-[4fr__6fr] gap-[20px] md:gap-[40px] lg:gap-[60px] xl:gap-[90px] max-w-[1300px]">
+            <AsideNavigation className="order-2 md:order-1" />
             <AnimatedArticle articleContent={description} />
           </div>
         </section>
