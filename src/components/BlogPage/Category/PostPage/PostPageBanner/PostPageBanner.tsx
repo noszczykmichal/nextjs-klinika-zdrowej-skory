@@ -46,18 +46,18 @@ export default function PostPageBanner({ postDetails }: PostPageBannerProps) {
           </h1>
 
           <div className="h-[25%] w-full flex items-end sm:flex-col lg:flex-row justify-between sm:items-center ">
-            <StyledButton href="/blog" text="Powrót" />
+            <StyledButton href="/blog">Powrót</StyledButton>
             {treatment && (
               <StyledButton
                 href={`/zabiegi/${treatmentGroup}/${treatment.treatmentSlug.current}`}
-                text="Pejdź do zabiegu"
-              />
+              >
+                Pejdź do zabiegu
+              </StyledButton>
             )}
             {group && (
-              <StyledButton
-                href={`/zabiegi/${group.groupSlug.current}`}
-                text="Pejdź do zabiegu"
-              />
+              <StyledButton href={`/zabiegi/${group.groupSlug.current}`}>
+                Pejdź do zabiegu
+              </StyledButton>
             )}
           </div>
         </div>

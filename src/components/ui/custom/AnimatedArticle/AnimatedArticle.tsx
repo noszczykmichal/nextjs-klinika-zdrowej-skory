@@ -2,9 +2,10 @@
 
 import dynamic from "next/dynamic";
 
-import { TreatmentDetails } from "@/types/types";
+import { ListItemData } from "@/types/types";
+import { PortableTextBlock } from "next-sanity";
 
-const TreatmentArticleContent = dynamic(
+const AnimatedArticleContent = dynamic(
   () =>
     import(
       "@/components/ui/custom/AnimatedArticle/AnimatedArticleContent/AnimatedArticleContent"
@@ -12,8 +13,19 @@ const TreatmentArticleContent = dynamic(
   { ssr: false }
 );
 
+interface AnimatedArticleProps {
+  articleContent: PortableTextBlock[];
+  featuredTreatments?: ListItemData[];
+}
+
 export default function AnimatedArticle({
-  description: treatmentDescription,
-}: Partial<TreatmentDetails>) {
-  return <TreatmentArticleContent description={treatmentDescription} />;
+  articleContent,
+  featuredTreatments,
+}: AnimatedArticleProps) {
+  return (
+    <AnimatedArticleContent
+      articleContent={articleContent}
+      featuredTreatments={featuredTreatments}
+    />
+  );
 }

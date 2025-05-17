@@ -10,11 +10,11 @@ import {
   type CarouselApi,
 } from "@/components/ui/carousel";
 import usePrefersReducedMotion from "@/hooks/usePrefersReducedMotion";
-import { PostDetails } from "@/types/types";
+import { ListItemData } from "@/types/types";
 import FeaturedPostsList from "@/components/HomePage/FeaturedPostsSection/ResponsiveCarousel/FeaturedPostsList/FeaturedPostsList";
 
 interface ResponsiveCarouselProps {
-  posts: Partial<PostDetails>[];
+  posts: ListItemData[];
 }
 
 export function ResponsiveCarousel({ posts }: ResponsiveCarouselProps) {
