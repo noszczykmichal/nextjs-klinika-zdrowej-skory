@@ -17,7 +17,7 @@ export default function BannerWithSummary({
 
   return (
     <div className="sm:flex h-[70vh] max-h-[500px] rounded-[var(--big-border-radius)] overflow-hidden mt-[20px] sm:mt-0">
-      <div className="relative h-[40%] sm:w-[50%] sm:h-full flex items-center justify-center">
+      <div className="relative h-[40%] min-h-[250px] sm:w-[50%] sm:h-full flex items-center justify-center">
         <Image
           className="w-full object-cover"
           src={pkBannerLeft}
@@ -26,7 +26,7 @@ export default function BannerWithSummary({
           priority
           sizes="(max-width: 640px) 100vw, 50vw"
         />
-        <div className="absolute h-full w-full sm:gap-[30px] p-3 xxs:p-5 flex flex-col justify-center items-end lg:gap-[50px] lg:py-10">
+        <div className="absolute h-full w-full sm:gap-[30px] p-3 xxs:p-5 flex flex-col justify-center xxs:gap-[20px] items-end lg:gap-[50px] lg:py-10">
           <h1 className="heading-post-banner w-[90%] font-extralight text-right">
             {headerText}
           </h1>
