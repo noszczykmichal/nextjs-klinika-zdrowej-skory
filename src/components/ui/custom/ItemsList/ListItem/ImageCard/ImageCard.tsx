@@ -28,7 +28,7 @@ export default function ImageCard({ itemData, rootRoute }: ImageCardProps) {
             alt={altForMainImage}
             fill
             className="object-cover w-full h-full"
-            sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
+            sizes="(max-width: 768px) 100vw, (min-width: 769px) min(30vw, 300px)"
           />
 
           <div className="absolute h-full w-full p-2 top-0 left-0 z-[2] flex flex-col justify-between bg-black/30">

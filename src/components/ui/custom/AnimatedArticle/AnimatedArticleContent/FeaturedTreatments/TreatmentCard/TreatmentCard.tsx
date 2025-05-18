@@ -28,6 +28,7 @@ export default function TreatmentCard({ cardData, ref }: TreatmentCardProps) {
             alt={altForMainImage}
             fill
             className="object-cover"
+            sizes="(max-width: 640px) 100vw, (max-width: 768px) 30vw, (max-width: 1024px) 50vw, (min-width: 1025px) min(15vw, 200px)"
           />
         </div>
         <div className="sm:w-[70%] md:w-full lg:w-[70%] flex flex-col justify-between gap-[10px]">

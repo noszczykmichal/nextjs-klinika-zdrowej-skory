@@ -31,7 +31,7 @@ export default function PostPageBanner({ postDetails }: PostPageBannerProps) {
 
   return (
     <div className="sm:flex h-[70vh] max-h-[500px] rounded-[var(--big-border-radius)] overflow-hidden mt-[20px] sm:mt-0">
-      <div className="relative h-[40%] sm:w-[50%] sm:h-full flex items-center justify-center">
+      <div className="relative h-[40%] min-h-[250px] sm:w-[50%] sm:h-full flex items-center justify-center">
         <Image
           className="w-full object-cover"
           src={pkBannerLeft}
@@ -70,7 +70,7 @@ export default function PostPageBanner({ postDetails }: PostPageBannerProps) {
             fill
             className="object-cover"
             priority
-            sizes="(max-width: 640px) 100vw, 50vw"
+            sizes="(max-width: 640px) 100vw, (min-width: 641px) min(50vw, 650px)"
           />
         )}
       </div>

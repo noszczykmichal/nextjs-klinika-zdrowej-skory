@@ -28,7 +28,7 @@ export default function FeaturedPostCard({
                 alt={altForMainImage}
                 fill
                 className="object-cover w-full h-full"
-                sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
+                sizes="(max-width: 640px) 100vw, (max-width: 1024px) 40vw, (min-width: 1025px) min(30vw, 385px)"
               />
             </div>
             <h3 className="min-h-[100px] text-[17px] lg:text-[22px] break-all xs:break-normal">

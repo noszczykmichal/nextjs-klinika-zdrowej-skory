@@ -21,8 +21,10 @@ function NavigationItem({
   const pathname = usePathname();
 
   let isLinkActive =
-    pathname === href ? `border-b-[var(--black-100)]` : "border-b-transparent";
-  let onHoverBehaviour = `hover:border-b-[var(--black-100)]`;
+    pathname === href
+      ? `border-b-[var(--magenta-100)] text-[var(--magenta-100)]`
+      : "border-b-transparent";
+  let onHoverBehaviour = `hover:border-b-[var(--magenta-100)] hover:text-[var(--magenta-100)]`;
 
   if (variant === "white") {
     isLinkActive =
@@ -34,7 +36,7 @@ function NavigationItem({
   }
 
   return (
-    <li className={"px-[20px]"}>
+    <li className={`px-[20px] ${label === "Zabiegi" ? "relative" : ""}`}>
       <Link
         href={href}
         className={`pb-[5px] border-b-2 transition-all ease-in duration-[0.15s] ${isLinkActive} ${onHoverBehaviour}`}

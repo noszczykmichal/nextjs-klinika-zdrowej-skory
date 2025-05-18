@@ -31,7 +31,7 @@ function Footer({ className }: FooterProps) {
         <div className="sm:w-[50%] md:w-1/3 max-w-[300px] h-full flex flex-col justify-between flex-wrap">
           <div>
             <p className="font-semibold">Adres</p>
-            <p>ul. Szaserów 31 lok. U1</p>
+            <p>ul. Szaserów 31 lok. U2</p>
             <p>04-306 Warszawa</p>
           </div>
           <div className="py-[10px]">
