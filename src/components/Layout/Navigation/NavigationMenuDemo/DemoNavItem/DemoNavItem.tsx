@@ -12,7 +12,7 @@ import { ListItemData } from "@/types/types";
 
 interface DemoNavItem {
   menuTrigger: boolean;
-  linkData: { label: string; href: string };
+  linkData: { id: string; label: string; href: string };
   navData: Partial<ListItemData>[];
 }
 
@@ -26,7 +26,7 @@ export default function DemoNavItem({
   const isLinkActive =
     pathname === linkData.href ? "before:w-full" : "before:w-[0px]";
 
-  const attachedClasses = `text-[18px] font-normal relative before:w-[0px] before:absolute before:bottom-0 before:left-0 before:content-[''] hover:bg-transparent hover:cursor-pointer hover:before:w-full before:h-[1px] before:bg-[var(--magenta-100)] before:transition-all before:duration-300 ${isLinkActive}`;
+  const attachedClasses = `text-[18px] font-normal relative bg-transparent focus:bg-transparent before:w-[0px] before:absolute before:bottom-0 before:left-0 before:content-[''] hover:bg-transparent hover:cursor-pointer hover:before:w-full before:h-[1px] before:bg-[var(--magenta-100)] before:transition-all before:duration-300 ${isLinkActive}`;
 
   return (
     <>
@@ -34,7 +34,12 @@ export default function DemoNavItem({
         <DropDownMenuItem navData={navData} className={attachedClasses} />
       ) : (
         <NavigationMenuItem>
-          <Link href={linkData.href} legacyBehavior passHref>
+          <Link
+            href={linkData.href}
+            legacyBehavior
+            passHref
+            scroll={linkData.id === "kontakt"}
+          >
             <NavigationMenuLink
               className={`${navigationMenuTriggerStyle()} ${attachedClasses}`}
             >

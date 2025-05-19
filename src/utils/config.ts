@@ -3,9 +3,9 @@ import { SocialIcon } from "@/types/types";
 export const navConfig = [
   { id: "o-nas", label: "O nas", href: "/o-nas" },
   { id: "zabiegi", label: "Zabiegi", href: "/zabiegi" },
-  { id: "cennik", label: "Cennik", href: "/cennik" },
+  // { id: "cennik", label: "Cennik", href: "/cennik" },
   { id: "blog", label: "Blog", href: "/blog" },
-  { id: "kontakt", label: "Kontakt", href: "/kontakt" },
+  { id: "kontakt", label: "Kontakt", href: "#contact" },
 ];
 
 export const socialIconsConfig: SocialIcon[] = [

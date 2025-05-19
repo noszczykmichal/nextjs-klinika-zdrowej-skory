@@ -12,6 +12,7 @@ function Footer({ className }: FooterProps) {
   return (
     <footer
       className={`w-full px-[25px] md:px-[42px] text-[var(--white-100)] text-[15px] leading-[26px] ${className}`}
+      id="contact"
     >
       <section className="w-full flex flex-col sm:flex-row sm:justify-between md:justify-start gap-[20px] sm:gap-[50px] max-w-[1300px] h-[100%] mx-auto px-[40px] sm:px-[50px] py-[65px] bg-[var(--black-100)] rounded-[var(--big-border-radius)]">
         <div className="sm:w-[50%] md:w-1/3 max-w-[240px] flex flex-col justify-center gap-[32px]">
