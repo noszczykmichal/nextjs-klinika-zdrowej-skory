@@ -4,14 +4,20 @@ import { useState, useEffect, useMemo } from "react";
 import { Smartphone } from "lucide-react";
 
 import { UIContextProvider } from "@/store/uiContext";
-import NavigationItems from "./NavigationItems/NavigationItems";
+// import NavigationItems from "./NavigationItems/NavigationItems";
+import { NavigationMenuDemo } from "./NavigationMenuDemo/NavigationMenuDemo";
 import Hamburger from "./Hamburger/Hamburger";
 import SideNav from "./SideNav/SideNav";
 import useScrollDirection from "@/hooks/useScrollDirection";
 import useHandleScroll from "@/hooks/useHandleScroll";
 import Logo from "../Icon/Icons/Logo";
+import { ListItemData } from "@/types/types";
 
-function Navigation() {
+interface NavigationProps {
+  navData: Partial<ListItemData>[];
+}
+
+export default function Navigation({ navData }: NavigationProps) {
   const headerClasses = useMemo(
     () => ({
       toolbar:
@@ -57,7 +63,7 @@ function Navigation() {
             className="w-full h-[40px] fill-[var(--gray-100)]"
             id="header-logo"
           />
-          <NavigationItems className="hidden lg:flex h-full" variant="dark" />
+          <NavigationMenuDemo navData={navData} />
           <div className="ml-[10px] flex items-center justify-between lg:justify-end flex-grow-[0.5] max-w-[250px]">
             <a
               href="tel:+48508832553"
@@ -73,5 +79,3 @@ function Navigation() {
     </UIContextProvider>
   );
 }
-
-export default Navigation;
