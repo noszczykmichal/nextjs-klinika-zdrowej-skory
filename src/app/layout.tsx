@@ -32,7 +32,6 @@ export default async function RootLayout({
     {},
     options
   );
-  console.log(treatmentGroups);
 
   return (
     <html lang="pl">

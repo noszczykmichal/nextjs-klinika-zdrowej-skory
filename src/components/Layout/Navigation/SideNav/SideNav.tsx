@@ -52,15 +52,16 @@ function SideNav({ onBackdropClick, navData }: SideNavProps) {
         unmountOnExit
       >
         <aside
-          className="w-[60vw] sm:w-[40vw] h-[100vh] fixed top-0 right-0 flex flex-col justify-center bg-white z-[12] shadow-[var(--custom-box-shadow)]"
+          className="w-[60vw] sm:w-[40vw] h-[100vh] fixed top-0 right-0 flex flex-col  justify-center bg-white z-[12] shadow-[var(--custom-box-shadow)]"
           ref={nodeRef}
         >
-          <nav className="h-full flex flex-col justify-center">
+          <nav className="h-full w-full flex flex-col justify-center items-center">
             <NavigationItems
-              className="h-[50%] flex flex-col justify-around items-center"
+              className="h-[50%] w-[50%] flex flex-col justify-around"
               onClick={onClickHandler}
               navData={navData}
-              variant="dark"
+              variant="white"
+              classForDropDown="top-[30%] left-[-50%] text-[16px] xxs:text-[18px] xxs:left-[-25%]"
             />
           </nav>
         </aside>

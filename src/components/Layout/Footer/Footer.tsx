@@ -48,9 +48,10 @@ function Footer({ className, navData }: FooterProps) {
           </div>
         </div>
         <NavigationItems
-          className="h-full md:w-1/3 max-w-[240px] md:flex flex-col justify-between hidden"
+          className="h-full hidden lg:flex flex-col justify-between"
           navData={navData}
-          variant="white"
+          variant="dark"
+          classForDropDown="absolute top-[-100%] right-full xl:left-auto xl:left-full"
         />
       </section>
     </footer>

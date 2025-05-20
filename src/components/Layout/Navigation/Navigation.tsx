@@ -64,8 +64,9 @@ export default function Navigation({ navData }: NavigationProps) {
           />
           <NavigationItems
             navData={navData}
-            className="hidden lg:flex h-full relative"
-            variant="dark"
+            className="hidden lg:flex h-full"
+            variant="white"
+            classForDropDown="top-full left-0"
           />
           <div className="ml-[10px] flex items-center justify-between lg:justify-end flex-grow-[0.5] max-w-[250px]">
             <a

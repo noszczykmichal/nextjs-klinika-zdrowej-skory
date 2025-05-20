@@ -7,6 +7,7 @@ interface NavigationItemsProps {
   onClick?: () => void;
   variant: NavigationColorVariant;
   navData: Partial<ListItemData>[];
+  classForDropDown: string;
 }
 
 function NavigationItems({
@@ -14,6 +15,7 @@ function NavigationItems({
   onClick,
   variant,
   navData,
+  classForDropDown,
 }: NavigationItemsProps) {
   return (
     <>
@@ -25,6 +27,7 @@ function NavigationItems({
             onLinkClick={onClick}
             variant={variant}
             navData={navData}
+            classForDropDown={classForDropDown}
           />
         ))}
       </ul>
