@@ -40,7 +40,7 @@ export default async function RootLayout({
         <Navigation navData={treatmentGroups} />
         <div id="overlay-root" />
         {children}
-        <Footer className="pb-[50px] mx-auto" />
+        <Footer className="pb-[50px] mx-auto" navData={treatmentGroups} />
       </body>
     </html>
   );

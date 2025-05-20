@@ -3,12 +3,15 @@ import NavigationItems from "../Navigation/NavigationItems/NavigationItems";
 
 import Logo from "../Icon/Icons/Logo";
 import { socialIconsConfig } from "@/utils/config";
+// import NavigationMenuDemo from "../Navigation/NavigationMenuDemo/NavigationMenuDemo";
+import { ListItemData } from "@/types/types";
 
 interface FooterProps {
   className: string;
+  navData: Partial<ListItemData>[];
 }
 
-function Footer({ className }: FooterProps) {
+function Footer({ className, navData }: FooterProps) {
   return (
     <footer
       className={`w-full px-[25px] md:px-[42px] text-[var(--white-100)] text-[15px] leading-[26px] ${className}`}
@@ -45,7 +48,8 @@ function Footer({ className }: FooterProps) {
           </div>
         </div>
         <NavigationItems
-          className="h-full md:w-1/3 max-w-[240px] md:flex flex-col justify-between hidden "
+          className="h-full md:w-1/3 max-w-[240px] md:flex flex-col justify-between hidden"
+          navData={navData}
           variant="white"
         />
       </section>

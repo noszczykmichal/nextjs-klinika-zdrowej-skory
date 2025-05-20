@@ -4,8 +4,7 @@ import { useState, useEffect, useMemo } from "react";
 import { Smartphone } from "lucide-react";
 
 import { UIContextProvider } from "@/store/uiContext";
-// import NavigationItems from "./NavigationItems/NavigationItems";
-import { NavigationMenuDemo } from "./NavigationMenuDemo/NavigationMenuDemo";
+import NavigationItems from "./NavigationItems/NavigationItems";
 import Hamburger from "./Hamburger/Hamburger";
 import SideNav from "./SideNav/SideNav";
 import useScrollDirection from "@/hooks/useScrollDirection";
@@ -58,12 +57,16 @@ export default function Navigation({ navData }: NavigationProps) {
   return (
     <UIContextProvider>
       <header className={`px-[10px] md:px-[42px] ${attachedClasses.join(" ")}`}>
-        <nav className="w-full max-w-[1300px] mx-auto py-[20px] flex justify-between">
+        <nav className="w-full max-w-[1300px] mx-auto py-[20px] flex items-center justify-between">
           <Logo
             className="w-full h-[40px] fill-[var(--gray-100)]"
             id="header-logo"
           />
-          <NavigationMenuDemo navData={navData} />
+          <NavigationItems
+            navData={navData}
+            className="hidden lg:flex h-full relative"
+            variant="dark"
+          />
           <div className="ml-[10px] flex items-center justify-between lg:justify-end flex-grow-[0.5] max-w-[250px]">
             <a
               href="tel:+48508832553"
@@ -73,7 +76,7 @@ export default function Navigation({ navData }: NavigationProps) {
             </a>
             <Hamburger onClick={hamburgerClickHandler} />
           </div>
-          <SideNav onBackdropClick={backdropClickHandler} />
+          <SideNav onBackdropClick={backdropClickHandler} navData={navData} />
         </nav>
       </header>
     </UIContextProvider>

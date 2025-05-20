@@ -8,12 +8,14 @@ import Backdrop from "@/components/Layout/Navigation/SideNav/Backdrop/Backdrop";
 import UIContext from "@/store/uiContext";
 import NavigationItems from "../NavigationItems/NavigationItems";
 import useMobileNav from "@/hooks/useMobileNav";
+import { ListItemData } from "@/types/types";
 
 interface SideNavProps {
   onBackdropClick: () => void;
+  navData: Partial<ListItemData>[];
 }
 
-function SideNav({ onBackdropClick }: SideNavProps) {
+function SideNav({ onBackdropClick, navData }: SideNavProps) {
   const { isMenuOpen, closeSideNavHandler } = useContext(UIContext);
   const closeSideNavRef = useRef(closeSideNavHandler);
   const nodeRef = useRef<HTMLElement | null>(null);
@@ -57,6 +59,7 @@ function SideNav({ onBackdropClick }: SideNavProps) {
             <NavigationItems
               className="h-[50%] flex flex-col justify-around items-center"
               onClick={onClickHandler}
+              navData={navData}
               variant="dark"
             />
           </nav>

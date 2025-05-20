@@ -16,7 +16,7 @@ export default function DropDownMenuItem({
   className,
 }: DropDownMenuItemProps) {
   return (
-    <NavigationMenuItem>
+    <NavigationMenuItem className="relative">
       <NavigationMenuTrigger
         className={`${className} g-transparent focus:!bg-transparent data-[state=open]:!bg-transparent`}
       >
