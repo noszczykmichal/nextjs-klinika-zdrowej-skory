@@ -10,8 +10,13 @@ import SideNav from "./SideNav/SideNav";
 import useScrollDirection from "@/hooks/useScrollDirection";
 import useHandleScroll from "@/hooks/useHandleScroll";
 import Logo from "../Icon/Icons/Logo";
+import { ListItemData } from "@/types/types";
 
-function Navigation() {
+interface NavigationProps {
+  navData: Partial<ListItemData>[];
+}
+
+export default function Navigation({ navData }: NavigationProps) {
   const headerClasses = useMemo(
     () => ({
       toolbar:
@@ -52,12 +57,17 @@ function Navigation() {
   return (
     <UIContextProvider>
       <header className={`px-[10px] md:px-[42px] ${attachedClasses.join(" ")}`}>
-        <nav className="w-full max-w-[1300px] mx-auto py-[20px] flex justify-between">
+        <nav className="w-full max-w-[1300px] mx-auto py-[20px] flex items-center justify-between">
           <Logo
             className="w-full h-[40px] fill-[var(--gray-100)]"
             id="header-logo"
           />
-          <NavigationItems className="hidden lg:flex h-full" variant="dark" />
+          <NavigationItems
+            navData={navData}
+            className="hidden lg:flex h-full"
+            variant="white"
+            classForDropDown="top-full left-0"
+          />
           <div className="ml-[10px] flex items-center justify-between lg:justify-end flex-grow-[0.5] max-w-[250px]">
             <a
               href="tel:+48508832553"
@@ -67,11 +77,9 @@ function Navigation() {
             </a>
             <Hamburger onClick={hamburgerClickHandler} />
           </div>
-          <SideNav onBackdropClick={backdropClickHandler} />
+          <SideNav onBackdropClick={backdropClickHandler} navData={navData} />
         </nav>
       </header>
     </UIContextProvider>
   );
 }
-
-export default Navigation;

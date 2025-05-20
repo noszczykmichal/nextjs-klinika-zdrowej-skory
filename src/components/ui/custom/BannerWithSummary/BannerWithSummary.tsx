@@ -41,7 +41,7 @@ export default function BannerWithSummary({
             fill
             className="object-cover"
             priority
-            sizes="(max-width: 640px) 100vw, 50vw"
+            sizes="(max-width: 640px) 100vw, (min-width: 641px) min(50vw, 650px)"
           />
         )}
       </div>
