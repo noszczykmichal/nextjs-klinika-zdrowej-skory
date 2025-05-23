@@ -32,9 +32,9 @@ export default function ImageCard({ itemData, rootRoute }: ImageCardProps) {
           />
 
           <div className="absolute h-full w-full p-2 top-0 left-0 z-[2] flex flex-col justify-between bg-black/30">
-            <div className="w-fit text-white px-2 m-2 bg-[var(--pink-100)] rounded-[var(--small-border-radius)]">
+            <p className="w-fit whitespace-nowrap text-[14px] xxs:text-[15px] text-white px-2 my-2 bg-[var(--pink-100)] rounded-[var(--small-border-radius)]">
               {categoryTitle}
-            </div>
+            </p>
           </div>
         </CardContent>
       </Card>

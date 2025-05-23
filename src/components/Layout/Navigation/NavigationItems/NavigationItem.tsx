@@ -36,19 +36,19 @@ function NavigationItem({
     pathname === href
       ? "before:w-full text-[var(--magenta-100)]"
       : "before:w-[0px]";
-  const attachedClasses = `relative hover:text-[var(--magenta-100)] before:w-[0px] before:absolute before:bottom-[-10px] before:left-0 before:content-[''] hover:before:w-full active:before:w-full focus:before:w-full before:h-[1px]  before:transition-all before:duration-300 ${isLinkActive} ${textAndBackgroundColors}`;
+  const attachedClasses = `relative whitespace-nowrap  hover:text-[var(--magenta-100)] before:w-[0px] before:absolute before:bottom-[-10px] before:left-0 before:content-[''] hover:before:w-full active:before:w-full focus:before:w-full before:h-[1px]  before:transition-all before:duration-300 ${isLinkActive} ${textAndBackgroundColors}`;
 
   const dropDown = (
     <div className={`collapsibleMenu pt-[30px] ${classForDropDown}`}>
       <ul
-        className={`bg-[var(--black-100)] grid w-[250px] gap-6 p-3 border border-[var(--gray-75)] rounded-[var(--small-border-radius)] ${collapsibleMenuColor}`}
+        className={`bg-[var(--black-100)] grid w-[300px] gap-6 p-3 border border-[var(--gray-75)] rounded-[var(--small-border-radius)] ${collapsibleMenuColor}`}
       >
         {navData.map((link) => (
           <li key={link._id}>
             <Link
               href={`/zabiegi/${link?.slug?.current}`}
               onClick={onLinkClick}
-              className={attachedClasses}
+              className={`${attachedClasses} text-[15px]`}
             >
               {link.title || ""}
             </Link>

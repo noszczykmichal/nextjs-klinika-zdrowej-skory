@@ -16,7 +16,7 @@ function Backdrop({ onClick }: BackdropProps) {
 
   return (
     <div
-      className={`h-[100vh] w-[40vw] sm:w-[60vw] fixed inset-0  bg-transparent z-[10] ${attached}`}
+      className={`h-[100vh] w-[20vw] xxs:w-[40vw] sm:w-[50vw] fixed inset-0  bg-transparent z-[10] ${attached}`}
       onClick={handler}
     />
   );

@@ -1,25 +1,28 @@
-import { RefObject } from "react";
+import { useRef } from "react";
 import Image from "next/image";
 
 import { urlFor } from "@/utils/utilityFunctions";
 import { ListItemData } from "@/types/types";
 import StyledButton from "@/components/ui/custom/StyledButton/StyledButton";
+import useScrollReveal from "@/hooks/useScrollReveal";
 
 interface TreatmentCardProps {
   cardData: ListItemData;
-  ref: RefObject<HTMLLIElement | null>;
 }
 
-export default function TreatmentCard({ cardData, ref }: TreatmentCardProps) {
+export default function TreatmentCard({ cardData }: TreatmentCardProps) {
   const { altForMainImage, mainImage, title, summary, category, slug } =
     cardData;
   const { categorySlug } = category;
   const imageUrl = urlFor(mainImage)!.fit("max").url() || "";
 
+  const revealItem = useRef<HTMLLIElement>(null);
+  useScrollReveal(revealItem);
+
   return (
     <li
       className="p-[25px] border-1 border-[var(--gray-75)] rounded-tl-[var(--medium-border-radius)] rounded-br-[var(--medium-border-radius)] shadow-[var(--navigation-box-shadow)]"
-      ref={ref}
+      ref={revealItem}
     >
       <div className="flex flex-col sm:flex-row md:flex-col lg:flex-row gap-[25px]">
         <div className="h-[200px] xxs:h-[300px] sm:h-[200px] md:h-[250px] lg:h-[200px] aspect-square rounded-tl-[var(--medium-border-radius)] relative overflow-hidden">

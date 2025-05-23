@@ -35,7 +35,7 @@ export default async function AsideNavigation({
         {updatedList.map((group) => (
           <li
             key={group._id}
-            className="w-full py-[10px] px-[10px] border-b-1 border-[var(--gray-100)] pb-1 hover:bg-[var(--magenta-100)] hover:text-white"
+            className="w-full py-[10px] px-[10px] border-b-1 border-[var(--gray-100)] pb-1 hover:bg-[var(--magenta-100)] active:bg-[var(--magenta-100)] hover:text-white active:text-white transition-all duration-150"
           >
             <Link
               href={`/zabiegi/${group.groupSlug.current}`}
