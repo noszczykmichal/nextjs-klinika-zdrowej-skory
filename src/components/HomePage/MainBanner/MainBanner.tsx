@@ -25,7 +25,7 @@ export default function MainBanner({
           priority
           sizes="(max-width: 640px) 100vw, 50vw"
         />
-        <h1 className="absolute w-[80%] font-extralight main-banner-fSize-HomeP">
+        <h1 className="absolute w-full text-center font-extralight text-[30px] whitespace-nowrap xxs:text-(length:--font-big-banner) sm:text-(length:--font-small-banner) lg:text-(length:--font--medium-banner) sm:whitespace-normal">
           {headerText}
         </h1>
       </div>

@@ -52,7 +52,7 @@ function SideNav({ onBackdropClick, navData }: SideNavProps) {
         unmountOnExit
       >
         <aside
-          className="w-[60vw] sm:w-[40vw] h-[100vh] fixed top-0 right-0 flex flex-col  justify-center bg-white z-[12] shadow-[var(--custom-box-shadow)]"
+          className="w-[80vw] xxs:w-[60vw] sm:w-[50vw] h-[100vh] fixed top-0 right-0 flex flex-col  justify-center bg-white z-[12] shadow-[var(--custom-box-shadow)]"
           ref={nodeRef}
         >
           <nav className="h-full w-full flex flex-col justify-center items-center">
