@@ -1,6 +1,13 @@
 "use client";
 
-import { FC, createContext, useState, useMemo, ReactNode } from "react";
+import {
+  FC,
+  createContext,
+  useState,
+  useMemo,
+  useCallback,
+  ReactNode,
+} from "react";
 
 const UIContext = createContext({
   isMenuOpen: false,
@@ -15,13 +22,13 @@ interface UIContextProviderProps {
 export const UIContextProvider: FC<UIContextProviderProps> = ({ children }) => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
-  const menuToggleHandler = () => {
+  const menuToggleHandler = useCallback(() => {
     setIsMenuOpen((prevState) => !prevState);
-  };
+  }, []);
 
-  const closeSideNavHandler = () => {
+  const closeSideNavHandler = useCallback(() => {
     setIsMenuOpen(false);
-  };
+  }, []);
 
   const context = useMemo(
     () => ({
@@ -29,7 +36,7 @@ export const UIContextProvider: FC<UIContextProviderProps> = ({ children }) => {
       menuToggleHandler,
       closeSideNavHandler,
     }),
-    [isMenuOpen]
+    [isMenuOpen, menuToggleHandler, closeSideNavHandler]
   );
 
   return <UIContext.Provider value={context}>{children}</UIContext.Provider>;
