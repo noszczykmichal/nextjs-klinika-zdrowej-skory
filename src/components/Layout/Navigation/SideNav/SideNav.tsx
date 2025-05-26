@@ -17,15 +17,18 @@ interface SideNavProps {
 
 function SideNav({ onBackdropClick, navData }: SideNavProps) {
   const { isMenuOpen, closeSideNavHandler } = useContext(UIContext);
-  const closeSideNavRef = useRef(closeSideNavHandler);
   const nodeRef = useRef<HTMLElement | null>(null);
   const { onClickHandler } = useMobileNav();
 
   useEffect(() => {
     const onResize = (e: UIEvent) => {
-      if ((e.currentTarget as Window).innerWidth > 768) {
-        document.body.classList.remove("blur");
-        closeSideNavRef.current();
+      if ((e.currentTarget as Window).innerWidth >= 1024) {
+        const body = document.body;
+        closeSideNavHandler();
+
+        if (body.classList.contains("overflow-hidden")) {
+          body.classList.remove("overflow-hidden");
+        }
       }
     };
 
@@ -34,7 +37,7 @@ function SideNav({ onBackdropClick, navData }: SideNavProps) {
     return () => {
       window.removeEventListener("resize", onResize);
     };
-  }, []);
+  }, [closeSideNavHandler]);
   return (
     <>
       {isMenuOpen &&
