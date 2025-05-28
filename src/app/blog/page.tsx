@@ -4,6 +4,7 @@ import LayoutWrapper from "@/components/Layout/LayoutWrapper/LayoutWrapper";
 import MainBanner from "@/components/HomePage/MainBanner/MainBanner";
 import ItemsList from "@/components/ui/custom/ItemsList/ItemsList";
 import { ListItemData } from "@/types/types";
+import blogPhoto from "@/assets/blog.jpg";
 
 const POSTS_QUERY = `*[
   _type == "post"
@@ -23,7 +24,11 @@ export default async function BlogPage() {
 
   return (
     <LayoutWrapper breadcrumbData={routesData}>
-      <MainBanner headerText="Blog" />
+      <MainBanner
+        headerText="Blog"
+        customImage={blogPhoto}
+        customAlt="Olga Noszczyk uśmiechnięta, ubrana w czarną, błyszczącą stylizację, pozuje na tle zielonej rośliny w jasnym wnętrzu."
+      />
       <ItemsList listItemsData={posts} />
     </LayoutWrapper>
   );
