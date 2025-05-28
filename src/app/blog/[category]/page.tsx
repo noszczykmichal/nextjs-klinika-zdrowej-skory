@@ -1,6 +1,6 @@
 import { client } from "@/sanity/client";
 
-import { BreadcrumbWrapper } from "@/components/ui/custom/BreadcrumbWrapper/BreadcrumbWrapper";
+import LayoutWrapper from "@/components/Layout/LayoutWrapper/LayoutWrapper";
 import MainBanner from "@/components/HomePage/MainBanner/MainBanner";
 import ItemsList from "@/components/ui/custom/ItemsList/ItemsList";
 import { PostDetails } from "@/types/types";
@@ -33,14 +33,9 @@ export default async function CategoryPage({
   ];
 
   return (
-    <>
-      <BreadcrumbWrapper routesData={routesData} />
-      <main className="w-full flex justify-center px-[25px] md:px-[42px] mx-auto">
-        <section className="w-full flex flex-col gap-y-[70px] lg:gap-y-[100px] pb-[70px] lg:pb-[100px] max-w-[1300px]">
-          <MainBanner headerText={`Kategoria: ${categoryTitle}`} />
-          <ItemsList listItemsData={posts} />
-        </section>
-      </main>
-    </>
+    <LayoutWrapper breadcrumbData={routesData}>
+      <MainBanner headerText={`Kategoria: ${categoryTitle}`} />
+      <ItemsList listItemsData={posts} />
+    </LayoutWrapper>
   );
 }

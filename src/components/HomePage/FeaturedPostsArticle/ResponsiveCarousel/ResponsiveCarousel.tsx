@@ -11,7 +11,7 @@ import {
 } from "@/components/ui/carousel";
 import usePrefersReducedMotion from "@/hooks/usePrefersReducedMotion";
 import { ListItemData } from "@/types/types";
-import FeaturedPostsList from "@/components/HomePage/FeaturedPostsSection/ResponsiveCarousel/FeaturedPostsList/FeaturedPostsList";
+import FeaturedPostsList from "@/components/HomePage/FeaturedPostsArticle/ResponsiveCarousel/FeaturedPostsList/FeaturedPostsList";
 
 interface ResponsiveCarouselProps {
   posts: ListItemData[];

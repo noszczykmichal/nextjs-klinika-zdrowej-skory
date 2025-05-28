@@ -1,6 +1,6 @@
 import { client } from "@/sanity/client";
 
-import { BreadcrumbWrapper } from "@/components/ui/custom/BreadcrumbWrapper/BreadcrumbWrapper";
+import LayoutWrapper from "@/components/Layout/LayoutWrapper/LayoutWrapper";
 import { PostDetails } from "@/types/types";
 import PostContentWrapper from "@/components/BlogPage/Category/PostPage/PostContentWrapper/PostContentWrapper";
 
@@ -35,13 +35,8 @@ export default async function PostPage({
   ];
 
   return (
-    <>
-      <BreadcrumbWrapper routesData={routesData} />
-      <main className="w-full flex justify-center px-[25px] md:px-[42px] mx-auto">
-        <section className="w-full flex flex-col gap-y-[70px] lg:gap-y-[100px] pb-[70px] lg:pb-[100px] max-w-[1300px]">
-          <PostContentWrapper postData={post} />
-        </section>
-      </main>
-    </>
+    <LayoutWrapper breadcrumbData={routesData}>
+      <PostContentWrapper postData={post} />
+    </LayoutWrapper>
   );
 }

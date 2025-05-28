@@ -4,7 +4,7 @@ import dynamic from "next/dynamic";
 const FeaturedPostsHeaderContent = dynamic(
   () =>
     import(
-      "@/components/HomePage/FeaturedPostsSection/FeaturedPostsHeader/FeaturedPostsHeaderContent/FeaturedPostsHeaderContent"
+      "@/components/HomePage/FeaturedPostsArticle/FeaturedPostsHeader/FeaturedPostsHeaderContent/FeaturedPostsHeaderContent"
     ),
   { ssr: false }
 );

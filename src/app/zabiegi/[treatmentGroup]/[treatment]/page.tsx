@@ -1,9 +1,9 @@
 import { client } from "@/sanity/client";
 
 import { TreatmentDetails } from "@/types/types";
+import LayoutWrapper from "@/components/Layout/LayoutWrapper/LayoutWrapper";
 import BannerWithSummary from "@/components/ui/custom/BannerWithSummary/BannerWithSummary";
 import AsideNavigation from "@/components/ui/custom/AsideNavigation/AsideNavigation";
-import { BreadcrumbWrapper } from "@/components/ui/custom/BreadcrumbWrapper/BreadcrumbWrapper";
 import AnimatedArticle from "@/components/ui/custom/AnimatedArticle/AnimatedArticle";
 
 const TREATMENT_QUERY = `*[_type == "treatment" && treatmentSlug.current == $treatment][0]{
@@ -77,17 +77,12 @@ export default async function TreatmentPage({
   };
 
   return (
-    <>
-      <BreadcrumbWrapper routesData={routesData} />
-      <main className="w-full flex justify-center px-[25px] md:px-[42px] mx-auto">
-        <section className="w-full flex flex-col gap-y-[70px] lg:gap-y-[100px] pb-[70px] lg:pb-[100px] max-w-[1300px]">
-          <BannerWithSummary bannerData={bannerData} />
-          <div className="grid grid-cols-1 md:grid-cols-[4fr__6fr] gap-[20px] md:gap-[40px] lg:gap-[60px] xl:gap-[90px] max-w-[1300px]">
-            <AsideNavigation className="order-2 md:order-1" />
-            <AnimatedArticle articleContent={description} />
-          </div>
-        </section>
-      </main>
-    </>
+    <LayoutWrapper breadcrumbData={routesData}>
+      <BannerWithSummary bannerData={bannerData} />
+      <div className="grid grid-cols-1 md:grid-cols-[4fr__6fr] gap-[20px] md:gap-[40px] lg:gap-[60px] xl:gap-[90px] max-w-[1300px]">
+        <AsideNavigation className="order-2 md:order-1" />
+        <AnimatedArticle articleContent={description} />
+      </div>
+    </LayoutWrapper>
   );
 }
