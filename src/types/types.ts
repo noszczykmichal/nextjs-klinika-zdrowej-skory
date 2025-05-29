@@ -68,3 +68,8 @@ export interface RouteData {
   routeName: string;
   url?: string;
 }
+
+export interface HeroArticleData {
+  id: number;
+  paragraphContent: string;
+}

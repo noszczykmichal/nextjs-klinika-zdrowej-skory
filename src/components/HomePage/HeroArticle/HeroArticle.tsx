@@ -2,6 +2,8 @@
 
 import dynamic from "next/dynamic";
 
+import { HeroArticleData } from "@/types/types";
+
 const HeroArticleContent = dynamic(
   () =>
     import(
@@ -10,10 +12,21 @@ const HeroArticleContent = dynamic(
   { ssr: false }
 );
 
-export default function HeroArticle() {
+interface HeroArticleProps {
+  headerText: string;
+  articleContent: HeroArticleData[];
+}
+
+export default function HeroArticle({
+  headerText,
+  articleContent,
+}: HeroArticleProps) {
   return (
     <article>
-      <HeroArticleContent />
+      <HeroArticleContent
+        headerText={headerText}
+        articleData={articleContent}
+      />
     </article>
   );
 }
