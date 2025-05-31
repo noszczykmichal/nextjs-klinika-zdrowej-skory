@@ -1,3 +1,5 @@
+/* eslint-disable jsx-a11y/no-static-element-interactions */
+/* eslint-disable jsx-a11y/click-events-have-key-events */
 import useMobileNav from "@/hooks/useMobileNav";
 
 interface BackdropProps {
@@ -16,7 +18,7 @@ function Backdrop({ onClick }: BackdropProps) {
 
   return (
     <div
-      className={`h-[100vh] w-[20vw] xxs:w-[40vw] sm:w-[50vw] fixed inset-0 bg-transparent z-[10] ${attached}`}
+      className={`xxs:w-[40vw] fixed inset-0 z-[10] h-[100vh] w-[20vw] bg-transparent sm:w-[50vw] ${attached}`}
       onClick={handler}
     />
   );

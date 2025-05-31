@@ -18,7 +18,7 @@ export default function Post({ postDetails }: PostProps) {
 
   return (
     <article className="text-justify text-[15px]" ref={revealItem}>
-      <p className="font-semibold pb-[16px]">{summary}</p>
+      <p className="pb-[16px] font-semibold">{summary}</p>
       <PortableText
         value={postContent}
         components={portableTextComponentConfig}
