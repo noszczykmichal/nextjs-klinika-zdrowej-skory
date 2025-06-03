@@ -26,7 +26,7 @@ export default function Navigation({ navData }: NavigationProps) {
       toolbarHidden:
         "transform -translate-y-full shadow-[var(--navigation-box-shadow)]",
     }),
-    []
+    [],
   );
 
   const scrollDirection = useScrollDirection({ initialDirection: "down" });
@@ -57,21 +57,21 @@ export default function Navigation({ navData }: NavigationProps) {
   return (
     <UIContextProvider>
       <header className={`px-[10px] md:px-[42px] ${attachedClasses.join(" ")}`}>
-        <nav className="w-full max-w-[1300px] mx-auto py-[20px] flex items-center justify-between">
+        <nav className="mx-auto flex w-full max-w-[1300px] items-center justify-between py-[20px]">
           <Logo
-            className="w-full h-[40px] fill-[var(--gray-100)]"
+            className="h-[40px] w-full fill-[var(--gray-100)]"
             id="header-logo"
           />
           <NavigationItems
             navData={navData}
-            className="hidden lg:flex h-full"
+            className="hidden h-full lg:flex"
             variant="white"
             classForDropDown="top-full left-0"
           />
-          <div className="ml-[10px] flex items-center justify-between lg:justify-end flex-grow-[0.5] max-w-[250px]">
+          <div className="ml-[10px] flex max-w-[250px] flex-grow-[0.5] items-center justify-between lg:justify-end">
             <a
               href="tel:+48508832553"
-              className="flex items-center text-nowrap py-2 px-4 font-extralight text-[15px] bg-[var(--gray-25)] rounded-[var(--big-border-radius)] mr-2"
+              className="mr-2 flex items-center rounded-[var(--big-border-radius)] bg-[var(--gray-25)] px-4 py-2 text-[15px] font-extralight text-nowrap"
             >
               <Smartphone className="stroke-1" /> Umów wizytę
             </a>

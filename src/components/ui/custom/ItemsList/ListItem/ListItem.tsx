@@ -19,7 +19,7 @@ export default function ListItem({ itemData }: ListItemProps) {
 
   return (
     <li
-      className="grid gap-[50px] lg:gap-[100px] md:grid-cols-[1fr_2fr] place-items-start border-b-1 border-[var(--gray-75)] py-[50px]"
+      className="grid place-items-start gap-[50px] border-b-1 border-[var(--gray-75)] py-[50px] md:grid-cols-[1fr_2fr] lg:gap-[100px]"
       ref={revealItem}
     >
       <ImageCard itemData={itemData} rootRoute={rootRoute} />

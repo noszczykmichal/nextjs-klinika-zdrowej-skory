@@ -30,7 +30,7 @@ export default async function RootLayout({
   const treatmentGroups = await client.fetch<Partial<ListItemData>[]>(
     TREATMENT_GROUPS_QUERY,
     {},
-    options
+    options,
   );
 
   return (
@@ -39,7 +39,7 @@ export default async function RootLayout({
         <Navigation navData={treatmentGroups} />
         <div id="overlay-root" />
         {children}
-        <Footer className="pb-[50px] mx-auto" navData={treatmentGroups} />
+        <Footer className="mx-auto pb-[50px]" navData={treatmentGroups} />
       </body>
     </html>
   );

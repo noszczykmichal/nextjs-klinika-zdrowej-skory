@@ -43,7 +43,7 @@ function SideNav({ onBackdropClick, navData }: SideNavProps) {
       {isMenuOpen &&
         createPortal(
           <Backdrop onClick={onBackdropClick} />,
-          document.getElementById("overlay-root") as HTMLDivElement
+          document.getElementById("overlay-root") as HTMLDivElement,
         )}
 
       <CSSTransition
@@ -55,12 +55,12 @@ function SideNav({ onBackdropClick, navData }: SideNavProps) {
         unmountOnExit
       >
         <aside
-          className="w-[80vw] xxs:w-[60vw] sm:w-[50vw] h-[100vh] fixed top-0 right-0 flex flex-col  justify-center bg-white z-[12] shadow-[var(--custom-box-shadow)]"
+          className="xxs:w-[60vw] fixed top-0 right-0 z-[12] flex h-[100vh] w-[80vw] flex-col justify-center bg-white shadow-[var(--custom-box-shadow)] sm:w-[50vw]"
           ref={nodeRef}
         >
-          <nav className="h-full w-full flex flex-col justify-center items-center">
+          <nav className="flex h-full w-full flex-col items-center justify-center">
             <NavigationItems
-              className="h-[50%] w-[50%] flex flex-col justify-around"
+              className="flex h-[50%] w-[50%] flex-col justify-around"
               onClick={onClickHandler}
               navData={navData}
               variant="white"

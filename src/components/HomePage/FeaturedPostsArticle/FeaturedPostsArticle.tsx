@@ -12,11 +12,11 @@ export default async function FeaturedPostsSection() {
   const featuredPosts = await client.fetch<ListItemData[]>(
     RECENT_POSTS_QUERY,
     {},
-    options
+    options,
   );
 
   return (
-    <article className="px-[20px] py-[55px] flex flex-col gap-[50px] rounded-[var(--big-border-radius)] bg-[var(--gray-75)]">
+    <article className="flex flex-col gap-[50px] rounded-[var(--big-border-radius)] bg-[var(--gray-75)] px-[20px] py-[55px]">
       <FeaturedPostsHeader />
       <ResponsiveCarousel posts={featuredPosts} />
     </article>

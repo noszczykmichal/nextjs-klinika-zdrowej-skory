@@ -19,12 +19,12 @@ export default async function TreatmentGroupPage({
   const treatmentGroupData = await client.fetch<TreatmentGroup>(
     TREATMENT_GROUP_QUERY,
     await params,
-    options
+    options,
   );
   const featuredTreatments = await client.fetch<ListItemData[]>(
     FEATURED_TREATMENTS_QUERY,
     await params,
-    options
+    options,
   );
 
   const { treatmentGroup } = await params;
@@ -50,7 +50,7 @@ export default async function TreatmentGroupPage({
   return (
     <LayoutWrapper breadcrumbData={routesData}>
       <BannerWithSummary bannerData={bannerData} />
-      <div className="grid grid-cols-1 md:grid-cols-[4fr__6fr] gap-[20px] md:gap-[40px] lg:gap-[60px] xl:gap-[90px] max-w-[1300px]">
+      <div className="grid max-w-[1300px] grid-cols-1 gap-[20px] md:grid-cols-[4fr__6fr] md:gap-[40px] lg:gap-[60px] xl:gap-[90px]">
         <AsideNavigation
           className="order-2 sm:order-1"
           currentGroup={treatmentGroup}

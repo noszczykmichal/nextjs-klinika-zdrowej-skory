@@ -36,7 +36,7 @@ export const UIContextProvider: FC<UIContextProviderProps> = ({ children }) => {
       menuToggleHandler,
       closeSideNavHandler,
     }),
-    [isMenuOpen, menuToggleHandler, closeSideNavHandler]
+    [isMenuOpen, menuToggleHandler, closeSideNavHandler],
   );
 
   return <UIContext.Provider value={context}>{children}</UIContext.Provider>;

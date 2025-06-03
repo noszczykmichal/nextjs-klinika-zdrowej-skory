@@ -56,12 +56,12 @@ export function ResponsiveCarousel({ posts }: ResponsiveCarouselProps) {
 
   const controlButtons = (
     <div
-      className="py-2 flex gap-[10px] lg:invisible"
+      className="flex gap-[10px] py-2 lg:invisible"
       ref={controlButtonsWrapperRef}
     >
       {Array.from({ length: count }).map((_slide, index) => (
         <button
-          className={`w-[10px] h-[10px] hover:cursor-pointer rounded-[50%] ${
+          className={`h-[10px] w-[10px] rounded-[50%] hover:cursor-pointer ${
             current === index + 1
               ? "bg-[var(--black-100)]"
               : "bg-[var(--gray-100)]"
@@ -84,8 +84,8 @@ export function ResponsiveCarousel({ posts }: ResponsiveCarouselProps) {
           className="w-[90%]"
         >
           <FeaturedPostsList posts={posts} />
-          <CarouselPrevious className="lg:hidden ml-[15px] md:ml-[5px] cursor-pointer" />
-          <CarouselNext className="lg:hidden mr-[15px] md:mr-[5px] cursor-pointer" />
+          <CarouselPrevious className="ml-[15px] cursor-pointer md:ml-[5px] lg:hidden" />
+          <CarouselNext className="mr-[15px] cursor-pointer md:mr-[5px] lg:hidden" />
         </Carousel>
       ) : (
         <>

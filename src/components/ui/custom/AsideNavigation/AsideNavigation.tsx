@@ -19,23 +19,23 @@ export default async function AsideNavigation({
   const treatmentGroups = await client.fetch<TreatmentGroup[]>(
     TREATMENT_GROUP_QUERY,
     {},
-    options
+    options,
   );
 
   const updatedList = currentGroup
     ? treatmentGroups.filter(
-        (group) => group.groupSlug.current !== currentGroup
+        (group) => group.groupSlug.current !== currentGroup,
       )
     : treatmentGroups;
 
   return (
-    <aside className={`w-full h-full ${className}`}>
+    <aside className={`h-full w-full ${className}`}>
       <h4 className="text-[24px]">Zobacz również:</h4>
       <ul>
         {updatedList.map((group) => (
           <li
             key={group._id}
-            className="w-full py-[10px] px-[10px] border-b-1 border-[var(--gray-100)] pb-1 hover:bg-[var(--magenta-100)] active:bg-[var(--magenta-100)] hover:text-white active:text-white transition-all duration-150"
+            className="w-full border-b-1 border-[var(--gray-100)] px-[10px] py-[10px] pb-1 transition-all duration-150 hover:bg-[var(--magenta-100)] hover:text-white active:bg-[var(--magenta-100)] active:text-white"
           >
             <Link
               href={`/zabiegi/${group.groupSlug.current}`}

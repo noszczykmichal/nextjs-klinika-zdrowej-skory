@@ -10,7 +10,7 @@ const AnimatedArticleContent = dynamic(
     import(
       "@/components/ui/custom/AnimatedArticle/AnimatedArticleContent/AnimatedArticleContent"
     ),
-  { ssr: false }
+  { ssr: false },
 );
 
 interface AnimatedArticleProps {

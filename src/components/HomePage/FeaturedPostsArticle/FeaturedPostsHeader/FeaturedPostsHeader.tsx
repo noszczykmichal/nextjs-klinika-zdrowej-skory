@@ -6,7 +6,7 @@ const FeaturedPostsHeaderContent = dynamic(
     import(
       "@/components/HomePage/FeaturedPostsArticle/FeaturedPostsHeader/FeaturedPostsHeaderContent/FeaturedPostsHeaderContent"
     ),
-  { ssr: false }
+  { ssr: false },
 );
 
 export default function FeaturedPostsHeader() {

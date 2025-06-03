@@ -42,7 +42,7 @@ export default async function TreatmentPage({
   const treatment = await client.fetch<TreatmentDetails>(
     TREATMENT_QUERY,
     await params,
-    options
+    options,
   );
 
   const {
@@ -79,7 +79,7 @@ export default async function TreatmentPage({
   return (
     <LayoutWrapper breadcrumbData={routesData}>
       <BannerWithSummary bannerData={bannerData} />
-      <div className="grid grid-cols-1 md:grid-cols-[4fr__6fr] gap-[20px] md:gap-[40px] lg:gap-[60px] xl:gap-[90px] max-w-[1300px]">
+      <div className="grid max-w-[1300px] grid-cols-1 gap-[20px] md:grid-cols-[4fr__6fr] md:gap-[40px] lg:gap-[60px] xl:gap-[90px]">
         <AsideNavigation className="order-2 md:order-1" />
         <AnimatedArticle articleContent={description} />
       </div>

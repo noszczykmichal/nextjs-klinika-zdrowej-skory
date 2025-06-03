@@ -20,18 +20,18 @@ export default function FeaturedPostCard({
   return (
     <CarouselItem className="pl-1 sm:basis-1/2 lg:basis-1/3">
       <div className="h-full p-1 sm:p-[17px]">
-        <Card className="h-full p-0 rounded-none bg-transparent border-none shadow-none">
-          <CardContent className="h-full flex flex-col justify-between gap-[40px] p-0 relative">
-            <div className="p-0 border-none aspect-square relative rounded-tl-[var(--big-border-radius)] rounded-br-[var(--big-border-radius)] overflow-hidden">
+        <Card className="h-full rounded-none border-none bg-transparent p-0 shadow-none">
+          <CardContent className="relative flex h-full flex-col justify-between gap-[40px] p-0">
+            <div className="relative aspect-square overflow-hidden rounded-tl-[var(--big-border-radius)] rounded-br-[var(--big-border-radius)] border-none p-0">
               <Image
                 src={imageUrl}
                 alt={altForMainImage}
                 fill
-                className="object-cover w-full h-full"
+                className="h-full w-full object-cover"
                 sizes="(max-width: 640px) 100vw, (max-width: 1024px) 40vw, (min-width: 1025px) min(30vw, 385px)"
               />
             </div>
-            <h3 className="min-h-[100px] text-[17px] lg:text-[22px] break-all xs:break-normal">
+            <h3 className="xs:break-normal min-h-[100px] text-[17px] break-all lg:text-[22px]">
               {title}
             </h3>
             <StyledButton
