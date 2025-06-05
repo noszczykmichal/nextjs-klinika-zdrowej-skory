@@ -41,7 +41,7 @@ function NavigationItem({
   const dropDown = (
     <div className={`collapsibleMenu pt-[30px] ${classForDropDown}`}>
       <ul
-        className={`bg-[var(--black-100)] grid w-[300px] gap-6 p-3 border border-[var(--gray-75)] rounded-[var(--small-border-radius)] ${collapsibleMenuColor}`}
+        className={`grid w-[300px] gap-6 rounded-[var(--small-border-radius)] border border-[var(--gray-75)] bg-[var(--black-100)] p-3 ${collapsibleMenuColor}`}
       >
         {navData.map((link) => (
           <li key={link._id}>
@@ -60,8 +60,8 @@ function NavigationItem({
 
   return (
     <li
-      className={`px-[20px] flex items-center ${
-        id === "zabiegi" ? "relative menuTrigger" : ""
+      className={`flex items-center px-[20px] ${
+        id === "zabiegi" ? "menuTrigger relative" : ""
       }`}
     >
       <Link
@@ -72,7 +72,7 @@ function NavigationItem({
         {label}
       </Link>
       {id === "zabiegi" && (
-        <ChevronDown className="h-[60%] mt-[5px] text-[var(--gray-100)] cursor-pointer chevron--down transition-transform ease-in-out duration-300" />
+        <ChevronDown className="chevron--down mt-[5px] h-[60%] cursor-pointer text-[var(--gray-100)] transition-transform duration-300 ease-in-out" />
       )}
 
       {id === "zabiegi" && dropDown}

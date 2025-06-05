@@ -25,13 +25,13 @@ function Hamburger({ onClick }: HamburgerProps) {
     <button
       type="button"
       className={
-        "lg:hidden z-[15] cursor-pointer ease-linear duration-[0.15s] transition-all"
+        "z-[15] cursor-pointer transition-all duration-[0.15s] ease-linear lg:hidden"
       }
       onClick={onButtonClick}
     >
-      <div className="relative inline-block w-[var(--hamburger-width)] h-[24px]">
+      <div className="relative inline-block h-[24px] w-[var(--hamburger-width)]">
         <div
-          className={`absolute top-[50%] right-0 w-[var(--hamburger-width)] h-[2px] rounded-[var(--small-border-radius)] bg-[var(--gray-100)] duration-[0.22s] transition-transform ${boxInnerClasses}`}
+          className={`absolute top-[50%] right-0 h-[2px] w-[var(--hamburger-width)] rounded-[var(--small-border-radius)] bg-[var(--gray-100)] transition-transform duration-[0.22s] ${boxInnerClasses}`}
         />
       </div>
     </button>

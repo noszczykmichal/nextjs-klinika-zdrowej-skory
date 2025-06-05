@@ -14,7 +14,7 @@ export default async function AllTreatmentsPage() {
   const allTreatments = await client.fetch<ListItemData[]>(
     ALL_TREATMENTS_QUERY,
     {},
-    options
+    options,
   );
 
   const routesData = [{ routeName: "Zabiegi" }];

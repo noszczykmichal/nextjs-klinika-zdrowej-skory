@@ -14,11 +14,11 @@ interface FooterProps {
 function Footer({ className, navData }: FooterProps) {
   return (
     <footer
-      className={`w-full px-[25px] md:px-[42px] text-[var(--white-100)] text-[15px] leading-[26px] ${className}`}
+      className={`w-full px-[25px] text-[15px] leading-[26px] text-[var(--white-100)] md:px-[42px] ${className}`}
       id="contact"
     >
-      <section className="w-full flex flex-col sm:flex-row sm:justify-between md:justify-start gap-[20px] sm:gap-[50px] max-w-[1300px] h-[100%] mx-auto px-[40px] sm:px-[50px] py-[65px] bg-[var(--black-100)] rounded-[var(--big-border-radius)]">
-        <div className="sm:w-[50%] md:w-1/3 max-w-[240px] flex flex-col justify-center gap-[32px]">
+      <section className="mx-auto flex h-[100%] w-full max-w-[1300px] flex-col gap-[20px] rounded-[var(--big-border-radius)] bg-[var(--black-100)] px-[40px] py-[65px] sm:flex-row sm:justify-between sm:gap-[50px] sm:px-[50px] md:justify-start">
+        <div className="flex max-w-[240px] flex-col justify-center gap-[32px] sm:w-[50%] md:w-1/3">
           <Logo className="h-[45px] fill-[var(--white-100)]" />
 
           <div className="flex items-center gap-[33px]">
@@ -32,7 +32,7 @@ function Footer({ className, navData }: FooterProps) {
             ))}
           </div>
         </div>
-        <div className="sm:w-[50%] md:w-1/3 max-w-[300px] h-full flex flex-col justify-between flex-wrap">
+        <div className="flex h-full max-w-[300px] flex-col flex-wrap justify-between sm:w-[50%] md:w-1/3">
           <div>
             <p className="font-semibold">Adres</p>
             <p>ul. Szaserów 31 lok. U2</p>
@@ -48,7 +48,7 @@ function Footer({ className, navData }: FooterProps) {
           </div>
         </div>
         <NavigationItems
-          className="h-full hidden lg:flex flex-col justify-between"
+          className="hidden h-full flex-col justify-between lg:flex"
           navData={navData}
           variant="dark"
           classForDropDown="absolute top-[-100%] right-full xl:left-auto xl:left-full"

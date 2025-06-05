@@ -16,7 +16,7 @@ export default async function PostPage({
   const post = await client.fetch<PostDetails>(
     POST_QUERY,
     await params,
-    options
+    options,
   );
 
   const { title: postTitle, category } = post;

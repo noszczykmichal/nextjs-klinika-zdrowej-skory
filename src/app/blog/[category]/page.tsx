@@ -19,7 +19,7 @@ export default async function CategoryPage({
   const posts = await client.fetch<PostDetails[]>(
     POSTS_BY_CATEGORY_QUERY,
     await params,
-    options
+    options,
   );
 
   const { title: categoryTitle } = posts[0].category;

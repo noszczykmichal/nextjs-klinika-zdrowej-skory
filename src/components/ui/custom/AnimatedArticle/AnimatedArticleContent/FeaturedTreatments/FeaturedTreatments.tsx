@@ -8,10 +8,10 @@ export default function FeaturedTreatments({
 }) {
   return (
     <section>
-      <h3 className="w-fit text-[24px] font-medium border-b-1 border-[var(--orange-100)] mb-[40px] pb-[12px]">
+      <h3 className="mb-[40px] w-fit border-b-1 border-[var(--orange-100)] pb-[12px] text-[24px] font-medium">
         Polecane zabiegi:
       </h3>
-      <ul className="flex flex-col gap-[20px] mb-[30px]">
+      <ul className="mb-[30px] flex flex-col gap-[20px]">
         {treatmentsData.map((treatment) => (
           <TreatmentCard cardData={treatment} key={treatment._id} />
         ))}

@@ -27,16 +27,16 @@ export default function HeroArticleContent({
   ));
 
   return (
-    <div className="flex flex-col lg:flex-row gap-x-[50px]" ref={revealItem}>
+    <div className="flex flex-col gap-x-[50px] lg:flex-row" ref={revealItem}>
       <h2
         style={{
           fontSize: "var(--font-size-heading)",
         }}
-        className="lg:w-[50%] font-extralight text-center lg:text-left"
+        className="text-center font-extralight lg:w-[50%] lg:text-left"
       >
         {headerText}
       </h2>
-      <div className="lg:w-[50%] text-[17px] text-justify pt-[26px] lg:pt-0">
+      <div className="pt-[26px] text-justify text-[17px] lg:w-[50%] lg:pt-0">
         {content}
       </div>
     </div>

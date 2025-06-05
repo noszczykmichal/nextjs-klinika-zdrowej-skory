@@ -9,7 +9,7 @@ const HeroArticleContent = dynamic(
     import(
       "@/components/HomePage/HeroArticle/HeroArticleContent/HeroArticleContent"
     ),
-  { ssr: false }
+  { ssr: false },
 );
 
 interface HeroArticleProps {

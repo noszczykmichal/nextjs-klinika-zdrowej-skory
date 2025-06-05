@@ -144,7 +144,9 @@ footer {
   opacity: 0;
   visibility: hidden;
   transform: translateY(10px) scale(0.9);
-  transition: opacity 0.3s ease-in-out, visibility 0.3s ease-in-out,
+  transition:
+    opacity 0.3s ease-in-out,
+    visibility 0.3s ease-in-out,
     transform 0.3s ease-in-out;
   position: absolute;
   z-index: 50;

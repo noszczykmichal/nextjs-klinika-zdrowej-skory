@@ -19,20 +19,20 @@ export default function ImageCard({ itemData, rootRoute }: ImageCardProps) {
     <Link
       key={itemData._id}
       href={`/${rootRoute}/${categorySlug.current}/${slug.current}`}
-      className="w-full lg:max-w-[300px] rounded-[var(--big-border-radius)] overflow-hidden shadow-[var(--custom-box-shadow)] aspect-square"
+      className="aspect-square w-full overflow-hidden rounded-[var(--big-border-radius)] shadow-[var(--custom-box-shadow)] lg:max-w-[300px]"
     >
-      <Card className="p-0 border-none aspect-square">
-        <CardContent className="flex aspect-square items-center justify-center p-0 relative">
+      <Card className="aspect-square border-none p-0">
+        <CardContent className="relative flex aspect-square items-center justify-center p-0">
           <Image
             src={imageUrl}
             alt={altForMainImage}
             fill
-            className="object-cover w-full h-full"
+            className="h-full w-full object-cover"
             sizes="(max-width: 768px) 100vw, (min-width: 769px) min(30vw, 300px)"
           />
 
-          <div className="absolute h-full w-full p-2 top-0 left-0 z-[2] flex flex-col justify-between bg-black/30">
-            <p className="w-fit whitespace-nowrap text-[14px] xxs:text-[15px] text-white px-2 my-2 bg-[var(--pink-100)] rounded-[var(--small-border-radius)]">
+          <div className="absolute top-0 left-0 z-[2] flex h-full w-full flex-col justify-between bg-black/30 p-2">
+            <p className="xxs:text-[15px] my-2 w-fit rounded-[var(--small-border-radius)] bg-[var(--pink-100)] px-2 text-[14px] whitespace-nowrap text-white">
               {categoryTitle}
             </p>
           </div>

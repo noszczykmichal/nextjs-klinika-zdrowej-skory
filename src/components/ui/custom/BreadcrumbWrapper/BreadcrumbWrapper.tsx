@@ -17,7 +17,7 @@ interface BreadcrumbWrapperProps {
 
 export function BreadcrumbWrapper({ routesData = [] }: BreadcrumbWrapperProps) {
   return (
-    <Breadcrumb className="breadcrumb-wrapper flex justify-start w-full max-w-[1300px] py-[20px] mx-auto">
+    <Breadcrumb className="breadcrumb-wrapper mx-auto flex w-full max-w-[1300px] justify-start py-[20px]">
       <BreadcrumbList className="breadcrumb-list__post-page">
         <BreadcrumbItem>
           <BreadcrumbLink href="/" className="whitespace-nowrap">
@@ -52,12 +52,12 @@ export function BreadcrumbWrapper({ routesData = [] }: BreadcrumbWrapperProps) {
                   <Slash />
                 </BreadcrumbSeparator>
                 <BreadcrumbItem>
-                  <BreadcrumbPage className="breadcrumb__post-page max-w-[300px] text-ellipsis overflow-hidden whitespace-nowrap">
+                  <BreadcrumbPage className="breadcrumb__post-page max-w-[300px] overflow-hidden text-ellipsis whitespace-nowrap">
                     {route.routeName}
                   </BreadcrumbPage>
                 </BreadcrumbItem>
               </Fragment>
-            )
+            ),
           )}
       </BreadcrumbList>
     </Breadcrumb>

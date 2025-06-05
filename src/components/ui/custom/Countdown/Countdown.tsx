@@ -6,8 +6,8 @@ const renderTime = ({ remainingTime }: { remainingTime: number }) => {
     remainingTime === 5
       ? "sekund"
       : remainingTime === 4 || remainingTime === 3 || remainingTime === 2
-      ? "sekundy"
-      : "sekundę";
+        ? "sekundy"
+        : "sekundę";
 
   if (remainingTime === 0) {
     redirect("/");

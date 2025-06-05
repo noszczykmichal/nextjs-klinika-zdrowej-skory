@@ -10,7 +10,7 @@ interface PostContentWrapperProps {
 
 const Post = dynamic(
   () => import("@/components/BlogPage/Category/PostPage/Post/Post"),
-  { ssr: false }
+  { ssr: false },
 );
 
 export default function PostContentWrapper({
