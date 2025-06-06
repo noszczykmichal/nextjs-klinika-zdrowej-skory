@@ -25,18 +25,24 @@ function NavigationItem({
   const pathname = usePathname();
   let textAndBackgroundColors = "before:bg-[var(--magenta-100)]";
   let collapsibleMenuColor = "bg-white";
-  const isDisabled = id === "zabiegi";
+
   if (variant === "dark") {
     textAndBackgroundColors =
       "before:bg-[var(--white-100)] text-[var(--white-100)] hover:text-[var(--white-100)]";
     collapsibleMenuColor = "bg-[var(--black-100)";
   }
 
-  const isLinkActive =
-    pathname === href
+  const isMainLinkActive =
+    `/${pathname.split("/")[1]}` === href
       ? "before:w-full text-[var(--magenta-100)]"
       : "before:w-[0px]";
-  const attachedClasses = `relative whitespace-nowrap  hover:text-[var(--magenta-100)] before:w-[0px] before:absolute before:bottom-[-10px] before:left-0 before:content-[''] hover:before:w-full active:before:w-full focus:before:w-full before:h-[1px]  before:transition-all before:duration-300 ${isLinkActive} ${textAndBackgroundColors}`;
+
+  const isDropDownLinkActive = (link: Partial<ListItemData>) =>
+    pathname.split("/")[2] === link?.slug?.current
+      ? "before:w-full text-[var(--magenta-100)]"
+      : "before:w-[0px]";
+
+  const attachedClasses = `relative whitespace-nowrap hover:text-[var(--magenta-100)] before:w-[0px] before:absolute before:bottom-[-10px] before:left-0 before:content-[''] hover:before:w-full active:before:w-full focus:before:w-full before:h-[1px]  before:transition-all before:duration-300 ${textAndBackgroundColors}`;
 
   const dropDown = (
     <div className={`collapsibleMenu pt-[30px] ${classForDropDown}`}>
@@ -48,7 +54,7 @@ function NavigationItem({
             <Link
               href={`/zabiegi/${link?.slug?.current}`}
               onClick={onLinkClick}
-              className={`${attachedClasses} text-[15px]`}
+              className={`${attachedClasses} ${isDropDownLinkActive(link)} text-[15px]`}
             >
               {link.title || ""}
             </Link>
@@ -66,8 +72,8 @@ function NavigationItem({
     >
       <Link
         href={href}
-        className={attachedClasses}
-        onClick={isDisabled ? (e) => e.preventDefault() : onLinkClick}
+        className={`${attachedClasses} ${isMainLinkActive}`}
+        onClick={onLinkClick}
       >
         {label}
       </Link>
