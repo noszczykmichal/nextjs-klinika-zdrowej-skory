@@ -4,6 +4,10 @@ html {
   scroll-behavior: smooth;
 }
 
+*:focus {
+  outline: 2px dashed var(--magenta-100);
+}
+
 body {
   box-sizing: border-box;
   color: var(--black-100);
