@@ -9,9 +9,8 @@ export default function ContactForm() {
   return (
     <Form
       onSubmit={(v) => console.log(v)}
-      validated={() => console.log("hey")}
       render={({ handleSubmit }) => (
-        <form onSubmit={handleSubmit} className="flex flex-col gap-[10px]">
+        <form onSubmit={handleSubmit} className="flex flex-col">
           <fieldset className="flex flex-col">
             <legend className="font-semibold">Napisz do nas!</legend>
             {formConfig.map((inputEl) => (

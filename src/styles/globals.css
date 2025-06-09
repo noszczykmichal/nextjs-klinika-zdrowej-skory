@@ -167,6 +167,14 @@ footer {
   transform: rotate(180deg);
 }
 
+input:-webkit-autofill {
+  box-shadow: 0 0 0 1000px var(--black-100) inset !important;
+  -webkit-text-fill-color: var(--white-100) !important;
+  font-weight: 500 !important;
+  font-family: inherit !important;
+  transition: background-color 5000s ease-in-out 0s;
+}
+
 @media (min-width: 450px) {
   .postCard-heading {
     font-size: calc(12px + 2vw);
