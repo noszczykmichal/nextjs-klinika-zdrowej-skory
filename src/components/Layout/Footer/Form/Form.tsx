@@ -1,66 +1,22 @@
 "use client";
 
-import { Form, Field } from "react-final-form";
+import { Form } from "react-final-form";
+
+import { formConfig } from "@/utils/config";
+import FormField from "@/components/Layout/Footer/Form/FormField/FormField";
 
 export default function ContactForm() {
   return (
     <Form
-      onSubmit={(e) => e.prevent.Default()}
+      onSubmit={(v) => console.log(v)}
       validated={() => console.log("hey")}
       render={({ handleSubmit }) => (
         <form onSubmit={handleSubmit} className="flex flex-col gap-[10px]">
-          <fieldset className="flex flex-col gap-[10px]">
+          <fieldset className="flex flex-col">
             <legend className="font-semibold">Napisz do nas!</legend>
-            <div>
-              <label htmlFor="full-name" className="sr-only">
-                Imię i Nazwisko:
-              </label>
-              <Field
-                name="full_name"
-                component="input"
-                placeholder="Imię i Nazwisko"
-                className="cursor-pointer border-b border-[var(--magenta-100)]"
-                id="full-name"
-              />
-            </div>
-            <div>
-              <label htmlFor="email" className="sr-only">
-                Email:
-              </label>
-              <Field
-                name="email"
-                component="input"
-                placeholder="E-mail"
-                className="cursor-pointer border-b border-[var(--magenta-100)]"
-                id="email"
-              />
-            </div>
-            <div>
-              <label htmlFor="tel" className="sr-only">
-                Telefon
-              </label>
-              <Field
-                name="telefon"
-                component="input"
-                placeholder="Telefon"
-                className="cursor-pointer border-b border-[var(--magenta-100)]"
-                id="tel"
-              />
-            </div>
-            <div>
-              <label htmlFor="message" className="sr-only">
-                Wiadomość
-              </label>
-              <Field
-                name="message"
-                component="textarea"
-                placeholder="Wiadomość"
-                rows={4}
-                cols={50}
-                className="cursor-pointer resize-none border-b border-[var(--magenta-100)]"
-                id="message"
-              />
-            </div>
+            {formConfig.map((inputEl) => (
+              <FormField fieldData={inputEl} key={inputEl.name} />
+            ))}
           </fieldset>
           <button
             type="submit"

@@ -1,4 +1,6 @@
-import { SocialIcon, HeroArticleData } from "@/types/types";
+import validator from "validator";
+
+import { SocialIcon, HeroArticleData, FormFieldConfig } from "@/types/types";
 
 export const navConfig = [
   { id: "o-nas", label: "O nas", href: "/o-nas" },
@@ -80,5 +82,47 @@ export const aboutUsArticleContent: HeroArticleData[] = [
     id: 4,
     paragraphContent:
       "Olga Noszczyk łączy pasję do piękna z wysokimi standardami pracy, stawiając na jakość, bezpieczeństwo i rozwój – zarówno w pracy z klientami, jak i w edukacji profesjonalistów.",
+  },
+];
+
+export const formConfig: FormFieldConfig[] = [
+  {
+    type: "text",
+    name: "full_name",
+    label: "Imię i Nazwisko",
+    validator: (v: string) =>
+      validator.isEmpty(v || "", { ignore_whitespace: true }) ||
+      !validator.isLength(v.trim() || "", { min: 4 })
+        ? "To pole jest wymagane"
+        : undefined,
+  },
+  {
+    type: "email",
+    name: "email",
+    label: "Email",
+    validator: (v: string) =>
+      !validator.isEmail(v || "")
+        ? "Proszę wprowadzić poprawny email"
+        : undefined,
+  },
+  {
+    type: "tel",
+    name: "tel",
+    label: "Telefon",
+    validator: (v: string) =>
+      !validator.isNumeric(v?.trim() || "", { locale: "pl-PL" }) ||
+      !validator.isLength(v?.trim() || "", { min: 9 })
+        ? "Proszę wprowadzić poprawny numer telefonu"
+        : undefined,
+  },
+  {
+    component: "textarea",
+    name: "message",
+    label: "Wiadomość",
+    validator: (v: string) =>
+      validator.isEmpty(v || "", { ignore_whitespace: true }) ||
+      !validator.isLength(v.trim() || "", { min: 4 })
+        ? "Proszę wpisać wiadomość"
+        : undefined,
   },
 ];
