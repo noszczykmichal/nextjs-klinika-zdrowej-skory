@@ -6,9 +6,29 @@ import { formConfig } from "@/utils/config";
 import FormField from "@/components/Layout/Footer/Form/FormField/FormField";
 
 export default function ContactForm() {
+  const submitHandler = async (formValues: any) => {
+    try {
+      const data = {
+        method: "POST",
+        headers: {
+          Accept: "application/json",
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(formValues),
+      };
+
+      const sendData = await fetch("https://formspree.io/f/mgezwbwj", data);
+      const response = await sendData.json();
+
+      console.log(response);
+    } catch (err) {
+      console.log(err);
+    }
+  };
+
   return (
     <Form
-      onSubmit={(v) => console.log(v)}
+      onSubmit={submitHandler}
       render={({ handleSubmit }) => (
         <form onSubmit={handleSubmit} className="flex flex-col">
           <fieldset className="flex flex-col">
