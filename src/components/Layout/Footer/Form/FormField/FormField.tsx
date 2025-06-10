@@ -13,7 +13,7 @@ export default function FormField({ fieldData }: FormFieldProps) {
   return (
     <Field component={component} name={name} validate={validator}>
       {({ input, meta }) => (
-        <div>
+        <div className="flex flex-col">
           <label htmlFor={name} className="sr-only">
             {label}
           </label>
@@ -33,7 +33,7 @@ export default function FormField({ fieldData }: FormFieldProps) {
               name={name}
               placeholder={label}
               rows={4}
-              cols={50}
+              // cols={50}
               className={`${sharedClasses} resize-none`}
               id={name}
             />
