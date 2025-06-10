@@ -5,8 +5,12 @@ import { Form } from "react-final-form";
 import { formConfig } from "@/utils/config";
 import FormField from "@/components/Layout/Footer/Form/FormField/FormField";
 
+interface InputData {
+  [key: string]: string;
+}
+
 export default function ContactForm() {
-  const submitHandler = async (formValues: any) => {
+  const submitHandler = async (formData: InputData[]) => {
     try {
       const data = {
         method: "POST",
@@ -14,10 +18,10 @@ export default function ContactForm() {
           Accept: "application/json",
           "Content-Type": "application/json",
         },
-        body: JSON.stringify(formValues),
+        body: JSON.stringify(formData),
       };
 
-      const sendData = await fetch("https://formspree.io/f/mgezwbwj", data);
+      const sendData = await fetch("https://formspree.io/f/xvgrklwk", data);
       const response = await sendData.json();
 
       console.log(response);
