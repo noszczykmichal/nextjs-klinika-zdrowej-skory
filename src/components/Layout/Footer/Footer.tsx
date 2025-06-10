@@ -1,17 +1,15 @@
 import Icon from "@/components/Layout/Icon/Icon";
-import NavigationItems from "../Navigation/NavigationItems/NavigationItems";
+// import NavigationItems from "../Navigation/NavigationItems/NavigationItems";
 
 import Logo from "../Icon/Icons/Logo";
 import { socialIconsConfig } from "@/utils/config";
-// import NavigationMenuDemo from "../Navigation/NavigationMenuDemo/NavigationMenuDemo";
-import { ListItemData } from "@/types/types";
+import ContactForm from "./Form/Form";
 
 interface FooterProps {
   className: string;
-  navData: Partial<ListItemData>[];
 }
 
-function Footer({ className, navData }: FooterProps) {
+function Footer({ className }: FooterProps) {
   return (
     <footer
       className={`w-full px-[25px] text-[15px] leading-[26px] text-[var(--white-100)] md:px-[42px] ${className}`}
@@ -42,17 +40,14 @@ function Footer({ className, navData }: FooterProps) {
             <p className="font-semibold">Telefon</p>
             <p>+48 508 832 553</p>
           </div>
-          <div className="">
+          <div>
             <p className="font-semibold">E-mail</p>
             <p>olga.noszczyk@gmail.com</p>
           </div>
         </div>
-        <NavigationItems
-          className="hidden h-full flex-col justify-between lg:flex"
-          navData={navData}
-          variant="dark"
-          classForDropDown="absolute top-[-100%] right-full xl:left-auto xl:left-full"
-        />
+        <div>
+          <ContactForm />
+        </div>
       </section>
     </footer>
   );

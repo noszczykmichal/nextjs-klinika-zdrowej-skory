@@ -4,6 +4,10 @@ html {
   scroll-behavior: smooth;
 }
 
+*:focus {
+  outline: 2px dashed var(--magenta-100);
+}
+
 body {
   box-sizing: border-box;
   color: var(--black-100);
@@ -161,6 +165,14 @@ footer {
 .menuTrigger:hover .chevron--down,
 .menuTrigger:active .chevron--down {
   transform: rotate(180deg);
+}
+
+input:-webkit-autofill {
+  box-shadow: 0 0 0 1000px var(--black-100) inset !important;
+  -webkit-text-fill-color: var(--white-100) !important;
+  font-weight: 500 !important;
+  font-family: inherit !important;
+  transition: background-color 5000s ease-in-out 0s;
 }
 
 @media (min-width: 450px) {

@@ -1,3 +1,4 @@
+import { HTMLInputTypeAttribute } from "react";
 import type { PortableTextBlock } from "@portabletext/types";
 
 export type NavigationColorVariant = "white" | "dark";
@@ -72,4 +73,12 @@ export interface RouteData {
 export interface HeroArticleData {
   id: number;
   paragraphContent: string;
+}
+
+export interface FormFieldConfig {
+  component?: "input" | "textarea";
+  type?: HTMLInputTypeAttribute;
+  name: string;
+  label: string;
+  validator: (v: string) => string | undefined;
 }
