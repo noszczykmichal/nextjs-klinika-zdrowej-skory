@@ -170,6 +170,21 @@ input:-webkit-autofill {
   transition: background-color 5000s ease-in-out 0s;
 }
 
+.fade-enter {
+  opacity: 0;
+}
+.fade-enter-active {
+  opacity: 0.9;
+  transition: opacity 300ms cubic-bezier(0.645, 0.045, 0.355, 1);
+}
+.fade-exit {
+  opacity: 0.9;
+}
+.fade-exit-active {
+  opacity: 0;
+  transition: opacity 300ms cubic-bezier(0.645, 0.045, 0.355, 1);
+}
+
 @media (min-width: 450px) {
   .postCard-heading {
     font-size: calc(12px + 2vw);

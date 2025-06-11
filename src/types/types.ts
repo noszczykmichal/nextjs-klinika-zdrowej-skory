@@ -82,3 +82,8 @@ export interface FormFieldConfig {
   label: string;
   validator: (v: string) => string | undefined;
 }
+
+export interface ErrorState {
+  errorMessage: string;
+  hasError: boolean;
+}
