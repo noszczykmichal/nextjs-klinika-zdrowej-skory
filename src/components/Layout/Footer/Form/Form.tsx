@@ -54,7 +54,7 @@ export default function ContactForm() {
           handleSubmit={handleSubmit}
           submitting={submitting}
           submitSucceeded={submitSucceeded}
-          form={form}
+          formRestartHandler={() => form.restart()}
           errorData={errorState}
           setErrorHandler={setErrorState}
         />

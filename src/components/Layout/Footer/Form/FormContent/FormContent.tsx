@@ -1,12 +1,4 @@
-import {
-  useState,
-  useEffect,
-  useCallback,
-  useRef,
-  Dispatch,
-  SetStateAction,
-} from "react";
-import { FormApi } from "final-form";
+import { useState, useEffect, useRef, Dispatch, SetStateAction } from "react";
 
 import { formConfig } from "@/utils/config";
 import FormField from "@/components/Layout/Footer/Form/FormContent/FormField/FormField";
@@ -23,7 +15,7 @@ interface FormContentProps {
   handleSubmit: () => void;
   submitting: boolean;
   submitSucceeded: boolean;
-  form: FormApi<InputData, Partial<InputData>>;
+  formRestartHandler: (initialValues?: Partial<InputData> | undefined) => void;
   errorData: { errorMessage: string; hasError: boolean };
   setErrorHandler: Dispatch<SetStateAction<ErrorState>>;
 }
@@ -32,20 +24,22 @@ export default function FormContent({
   handleSubmit,
   submitting,
   submitSucceeded,
-  form,
+  formRestartHandler,
   errorData,
   setErrorHandler,
 }: FormContentProps) {
   const [showSuccess, setShowSuccess] = useState(false);
   const successTimerRef = useRef<NodeJS.Timeout>(null);
   const formRestartTimerRef = useRef<NodeJS.Timeout>(null);
-  const formRestart = useCallback(() => form.restart(), [form]);
 
   useEffect(() => {
     if (!errorData.errorMessage && submitSucceeded) {
       setShowSuccess(true);
       successTimerRef.current = setTimeout(() => setShowSuccess(false), 4000);
-      formRestartTimerRef.current = setTimeout(() => formRestart(), 4100);
+      formRestartTimerRef.current = setTimeout(
+        () => formRestartHandler(),
+        4100,
+      );
     }
 
     return () => {
@@ -54,7 +48,7 @@ export default function FormContent({
         clearTimeout(formRestartTimerRef.current);
       }
     };
-  }, [submitSucceeded, formRestart, errorData.errorMessage]);
+  }, [submitSucceeded, errorData.errorMessage, formRestartHandler]);
 
   return (
     <>
