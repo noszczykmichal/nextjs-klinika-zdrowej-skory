@@ -23,9 +23,12 @@ function Hamburger({ onClick }: HamburgerProps) {
 
   return (
     <button
+      aria-controls="main-navigation"
+      aria-expanded={isMenuOpen}
+      aria-label="Open main navigation"
       type="button"
       className={
-        "z-[15] cursor-pointer transition-all duration-[0.15s] ease-linear lg:hidden"
+        "z-[15] cursor-pointer transition-all duration-[0.15s] ease-linear focus:outline-none focus-visible:outline-2 focus-visible:outline-[var(--magenta-100)] focus-visible:outline-dashed lg:hidden"
       }
       onClick={onButtonClick}
     >

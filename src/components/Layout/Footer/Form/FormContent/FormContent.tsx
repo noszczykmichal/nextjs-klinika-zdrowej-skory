@@ -31,9 +31,10 @@ export default function FormContent({
   const [showSuccess, setShowSuccess] = useState(false);
   const successTimerRef = useRef<NodeJS.Timeout>(null);
   const formRestartTimerRef = useRef<NodeJS.Timeout>(null);
+  const { errorMessage } = errorData;
 
   useEffect(() => {
-    if (!errorData.errorMessage && submitSucceeded) {
+    if (!errorMessage && submitSucceeded) {
       setShowSuccess(true);
       successTimerRef.current = setTimeout(() => setShowSuccess(false), 4000);
       formRestartTimerRef.current = setTimeout(
@@ -48,7 +49,7 @@ export default function FormContent({
         clearTimeout(formRestartTimerRef.current);
       }
     };
-  }, [submitSucceeded, errorData.errorMessage, formRestartHandler]);
+  }, [submitSucceeded, errorMessage, formRestartHandler]);
 
   return (
     <>
@@ -61,7 +62,7 @@ export default function FormContent({
         </fieldset>
         <button
           type="submit"
-          className="w-auto self-start rounded-[var(--small-border-radius)] border border-[var(--magenta-100)] px-6 py-2 hover:cursor-pointer hover:bg-[var(--magenta-100)]"
+          className="w-auto self-start rounded-[var(--small-border-radius)] border border-[var(--magenta-100)] px-6 py-2 hover:cursor-pointer hover:bg-[var(--magenta-100)] active:bg-[var(--magenta-100)]"
         >
           Wyślij
         </button>

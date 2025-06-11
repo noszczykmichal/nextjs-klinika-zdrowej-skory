@@ -17,11 +17,10 @@ export default function ContactForm() {
 
   const submitHandler = async (formData: InputData) => {
     try {
-      setErrorState((prevState) => ({
-        ...prevState,
+      setErrorState({
         errorMessage: "",
         hasError: false,
-      }));
+      });
       const data = {
         method: "POST",
         headers: {
@@ -38,11 +37,10 @@ export default function ContactForm() {
         throw new Error(response.error);
       }
     } catch (error) {
-      setErrorState((prevState) => ({
-        ...prevState,
+      setErrorState({
         errorMessage: `${error}`,
         hasError: true,
-      }));
+      });
     }
   };
 

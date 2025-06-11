@@ -3,7 +3,7 @@ import type { PortableTextBlock } from "@portabletext/types";
 
 export type NavigationColorVariant = "white" | "dark";
 
-export type IconVariants = "facebook" | "instagram" | "booksy";
+export type IconVariants = "facebook" | "instagram" | "b-visit";
 
 export interface SocialIcon {
   name: IconVariants;
