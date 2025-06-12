@@ -63,7 +63,6 @@ function SideNav({ onBackdropClick, navData }: SideNavProps) {
               className="flex h-[50%] w-[50%] flex-col justify-around"
               onClick={onClickHandler}
               navData={navData}
-              variant="white"
               classForDropDown="top-[30%] left-[-50%] text-[16px] xxs:text-[18px] "
             />
           </nav>
