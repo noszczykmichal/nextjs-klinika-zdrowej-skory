@@ -36,6 +36,7 @@ export default function FeaturedPostCard({
             </h3>
             <StyledButton
               href={`/blog/${categorySlug.current}/${postSlug.current}`}
+              aria-label={`Przeczytaj o: ${title}`}
             >
               Więcej
             </StyledButton>

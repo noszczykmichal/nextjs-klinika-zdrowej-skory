@@ -1,17 +1,26 @@
 "use client";
 
+import { useState } from "react";
 import { Form } from "react-final-form";
 
-import { formConfig } from "@/utils/config";
-import FormField from "@/components/Layout/Footer/Form/FormField/FormField";
+import FormContent from "@/components/Layout/Footer/Form/FormContent/FormContent";
 
 interface InputData {
   [key: string]: string;
 }
 
 export default function ContactForm() {
-  const submitHandler = async (formData: InputData[]) => {
+  const [errorState, setErrorState] = useState({
+    errorMessage: "",
+    hasError: false,
+  });
+
+  const submitHandler = async (formData: InputData) => {
     try {
+      setErrorState({
+        errorMessage: "",
+        hasError: false,
+      });
       const data = {
         method: "POST",
         headers: {
@@ -24,30 +33,29 @@ export default function ContactForm() {
       const sendData = await fetch("https://formspree.io/f/xvgrklwk", data);
       const response = await sendData.json();
 
-      console.log(response);
-    } catch (err) {
-      console.log(err);
+      if (!response.ok) {
+        throw new Error(response.error);
+      }
+    } catch (error) {
+      setErrorState({
+        errorMessage: `${error}`,
+        hasError: true,
+      });
     }
   };
 
   return (
     <Form
       onSubmit={submitHandler}
-      render={({ handleSubmit }) => (
-        <form onSubmit={handleSubmit} className="flex flex-col">
-          <fieldset className="flex flex-col">
-            <legend className="font-semibold">Napisz do nas!</legend>
-            {formConfig.map((inputEl) => (
-              <FormField fieldData={inputEl} key={inputEl.name} />
-            ))}
-          </fieldset>
-          <button
-            type="submit"
-            className="w-auto self-start rounded-[var(--small-border-radius)] border border-[var(--magenta-100)] px-6 py-2 hover:cursor-pointer hover:bg-[var(--magenta-100)]"
-          >
-            Wyślij
-          </button>
-        </form>
+      render={({ handleSubmit, submitting, submitSucceeded, form }) => (
+        <FormContent
+          handleSubmit={handleSubmit}
+          submitting={submitting}
+          submitSucceeded={submitSucceeded}
+          formRestartHandler={() => form.restart()}
+          errorData={errorState}
+          setErrorHandler={setErrorState}
+        />
       )}
     />
   );

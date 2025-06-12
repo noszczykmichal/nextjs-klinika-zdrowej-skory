@@ -4,7 +4,7 @@ html {
   scroll-behavior: smooth;
 }
 
-*:focus {
+*:focus-visible {
   outline: 2px dashed var(--magenta-100);
 }
 
@@ -125,11 +125,6 @@ footer {
   transition: transform 0.3s var(--easing);
 }
 
-/* .main-banner-fSize-HomeP {
-  font-size: var(--font-big-banner);
-  line-height: var(--leading-big-banner);
-} */
-
 .postCard-heading,
 .postCard-footnotes {
   font-size: calc(10px + 1vw);
@@ -175,14 +170,25 @@ input:-webkit-autofill {
   transition: background-color 5000s ease-in-out 0s;
 }
 
+.fade-enter {
+  opacity: 0;
+}
+.fade-enter-active {
+  opacity: 0.9;
+  transition: opacity 300ms cubic-bezier(0.645, 0.045, 0.355, 1);
+}
+.fade-exit {
+  opacity: 0.9;
+}
+.fade-exit-active {
+  opacity: 0;
+  transition: opacity 300ms cubic-bezier(0.645, 0.045, 0.355, 1);
+}
+
 @media (min-width: 450px) {
   .postCard-heading {
     font-size: calc(12px + 2vw);
   }
-
-  /* .breadcrumb-list__post-page {
-    flex-wrap: nowrap;
-  } */
 
   .breadcrumb__post-page {
     max-width: 35vw;
@@ -190,11 +196,6 @@ input:-webkit-autofill {
 }
 
 @media (min-width: 640px) {
-  /* .main-banner-fSize-HomeP {
-    font-size: var(--font-small-banner);
-    line-height: var(--font-small-banner);
-  } */
-
   .postCard-heading,
   .postCard-footnotes {
     font-size: calc(10px + 1vw);
@@ -220,11 +221,6 @@ input:-webkit-autofill {
 }
 
 @media (min-width: 1024px) {
-  /* .main-banner-fSize-HomeP {
-    font-size: var(--font--medium-banner);
-    line-height: var(--font--medium-banner);
-  } */
-
   .postCard-heading,
   .postCard-footnotes {
     font-size: calc(10px + 1vw);

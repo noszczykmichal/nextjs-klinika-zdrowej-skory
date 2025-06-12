@@ -1,6 +1,6 @@
 import { SiFacebook, SiInstagram } from "@icons-pack/react-simple-icons";
 
-import Booksy from "@/components/Layout/Icon/Icons/Booksy";
+import BVisit from "@/components/Layout/Icon/Icons/BVisit";
 import { IconVariants } from "@/types/types";
 
 interface IconProps {
@@ -16,8 +16,8 @@ function Icon({ name, href, className }: IconProps) {
         return <SiFacebook className={className} color={className} />;
       case "instagram":
         return <SiInstagram className={className} color={className} />;
-      case "booksy":
-        return <Booksy className={className} />;
+      case "b-visit":
+        return <BVisit className={className} />;
       default:
         return;
     }
