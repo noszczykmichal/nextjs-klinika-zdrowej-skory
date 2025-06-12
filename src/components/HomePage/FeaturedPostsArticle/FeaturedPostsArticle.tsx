@@ -16,7 +16,7 @@ export default async function FeaturedPostsSection() {
   );
 
   return (
-    <article className="flex flex-col gap-[50px] rounded-[var(--big-border-radius)] bg-[var(--gray-75)] px-[20px] py-[55px]">
+    <article className="flex w-full flex-col gap-[50px] rounded-[var(--big-border-radius)] bg-[var(--gray-75)] px-[20px] py-[55px]">
       <FeaturedPostsHeader />
       <ResponsiveCarousel posts={featuredPosts} />
     </article>

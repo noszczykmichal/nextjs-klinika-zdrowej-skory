@@ -32,7 +32,7 @@ export default function HeroArticleContent({
         style={{
           fontSize: "var(--font-size-heading)",
         }}
-        className="text-center font-extralight lg:w-[50%] lg:text-left"
+        className="text-center font-extralight whitespace-break-spaces lg:w-[50%] lg:text-left"
       >
         {headerText}
       </h2>

@@ -7,7 +7,7 @@ interface LogoProps {
 
 function Logo({ id, className }: LogoProps) {
   return (
-    <Link href="/" id={id}>
+    <Link href="/" id={id} aria-label="Przejdź do strony głównej">
       <svg
         viewBox="0 0 139.48305 42.309521"
         version="1.1"

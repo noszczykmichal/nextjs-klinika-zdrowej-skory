@@ -61,6 +61,7 @@ export function ResponsiveCarousel({ posts }: ResponsiveCarouselProps) {
     >
       {Array.from({ length: count }).map((_slide, index) => (
         <button
+          aria-label={`Przejdź do slajdu ${index + 1}`}
           className={`h-[10px] w-[10px] rounded-[50%] hover:cursor-pointer ${
             current === index + 1
               ? "bg-[var(--black-100)]"

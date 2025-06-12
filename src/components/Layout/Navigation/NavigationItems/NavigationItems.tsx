@@ -1,11 +1,10 @@
 import { navConfig } from "@/utils/config";
 import NavigationItem from "@/components/Layout/Navigation/NavigationItems/NavigationItem";
-import { ListItemData, NavigationColorVariant } from "@/types/types";
+import { ListItemData } from "@/types/types";
 
 interface NavigationItemsProps {
   className: string;
   onClick?: () => void;
-  variant: NavigationColorVariant;
   navData: Partial<ListItemData>[];
   classForDropDown: string;
 }
@@ -13,7 +12,6 @@ interface NavigationItemsProps {
 function NavigationItems({
   className,
   onClick,
-  variant,
   navData,
   classForDropDown,
 }: NavigationItemsProps) {
@@ -25,7 +23,6 @@ function NavigationItems({
             key={link.id}
             linkData={link}
             onLinkClick={onClick}
-            variant={variant}
             navData={navData}
             classForDropDown={classForDropDown}
           />
