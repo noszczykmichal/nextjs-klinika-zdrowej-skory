@@ -1,8 +1,6 @@
 import { HTMLInputTypeAttribute } from "react";
 import type { PortableTextBlock } from "@portabletext/types";
 
-export type NavigationColorVariant = "white" | "dark";
-
 export type IconVariants = "facebook" | "instagram" | "b-visit";
 
 export interface SocialIcon {

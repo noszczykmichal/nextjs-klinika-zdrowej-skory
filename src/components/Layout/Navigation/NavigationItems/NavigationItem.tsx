@@ -4,11 +4,10 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { ChevronDown } from "lucide-react";
 
-import { ListItemData, NavigationColorVariant } from "@/types/types";
+import { ListItemData } from "@/types/types";
 
 interface NavigationItemProps {
   linkData: { id: string; label: string; href: string };
-  variant: NavigationColorVariant;
   onLinkClick?: () => void;
   navData: Partial<ListItemData>[];
   classForDropDown: string;
@@ -16,21 +15,12 @@ interface NavigationItemProps {
 
 function NavigationItem({
   linkData,
-  variant,
   onLinkClick,
   navData,
   classForDropDown,
 }: NavigationItemProps) {
   const { id, label, href } = linkData;
   const pathname = usePathname();
-  let textAndBackgroundColors = "before:bg-[var(--magenta-100)]";
-  let collapsibleMenuColor = "bg-white";
-
-  if (variant === "dark") {
-    textAndBackgroundColors =
-      "before:bg-[var(--white-100)] text-[var(--white-100)] hover:text-[var(--white-100)]";
-    collapsibleMenuColor = "bg-[var(--black-100)";
-  }
 
   const isMainLinkActive =
     `/${pathname.split("/")[1]}` === href
@@ -42,12 +32,12 @@ function NavigationItem({
       ? "before:w-full text-[var(--magenta-100)]"
       : "before:w-[0px]";
 
-  const attachedClasses = `relative whitespace-nowrap hover:text-[var(--magenta-100)] before:w-[0px] before:absolute before:bottom-[-10px] before:left-0 before:content-[''] hover:before:w-full active:before:w-full focus:before:w-full before:h-[1px]  before:transition-all before:duration-300 ${textAndBackgroundColors}`;
+  const attachedClasses = `relative whitespace-nowrap hover:text-[var(--magenta-100)] before:w-[0px] before:absolute before:bottom-[-10px] before:left-0 before:content-[''] hover:before:w-full active:before:w-full focus:before:w-full before:h-[1px] before:transition-all before:duration-300 before:bg-[var(--magenta-100)]`;
 
   const dropDown = (
     <div className={`collapsibleMenu pt-[30px] ${classForDropDown}`}>
       <ul
-        className={`grid w-[300px] gap-6 rounded-[var(--small-border-radius)] border border-[var(--gray-75)] bg-[var(--black-100)] p-3 ${collapsibleMenuColor}`}
+        className={`grid w-[300px] gap-6 rounded-[var(--small-border-radius)] border border-[var(--gray-75)] bg-white p-3`}
       >
         {navData.map((link) => (
           <li key={link._id}>
@@ -73,7 +63,7 @@ function NavigationItem({
       <Link
         href={href}
         className={`${attachedClasses} ${isMainLinkActive}`}
-        onClick={onLinkClick}
+        onClick={id !== "zabiegi" ? onLinkClick : (e) => e.preventDefault()}
       >
         {label}
       </Link>
