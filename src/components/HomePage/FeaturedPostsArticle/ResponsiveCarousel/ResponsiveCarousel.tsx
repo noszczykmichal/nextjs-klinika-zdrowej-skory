@@ -23,42 +23,43 @@ export function ResponsiveCarousel({ posts }: ResponsiveCarouselProps) {
   const [count, setCount] = useState(0);
   const plugin = useRef(Autoplay({ delay: 5000, stopOnInteraction: true }));
   const prefersReducedMotion = usePrefersReducedMotion();
-  const controlButtonsWrapperRef = useRef<HTMLDivElement>(null);
+
+  const resumeAutoplayHandler = () => {
+    setTimeout(() => {
+      plugin.current?.play();
+    }, 3000);
+  };
 
   useEffect(() => {
     if (!api) {
       return;
     }
 
+    const resizeHandler = () => {
+      setCount(api.scrollSnapList().length);
+    };
+
     setCount(api.scrollSnapList().length);
     setCurrent(api.selectedScrollSnap() + 1);
+    window.addEventListener("resize", resizeHandler);
 
     api.on("select", () => {
       setCurrent(api.selectedScrollSnap() + 1);
     });
+
+    api.on("pointerUp", resumeAutoplayHandler);
+
+    return () => window.removeEventListener("resize", resizeHandler);
   }, [api]);
-
-  const resumeAutoplayHandler = (event: MouseEvent) => {
-    const wrapper = controlButtonsWrapperRef.current;
-
-    if (wrapper && !wrapper.contains(event.target as Node)) {
-      plugin.current.play();
-      document.removeEventListener("click", resumeAutoplayHandler);
-    }
-  };
 
   const onControlButtonClick = (index: number) => () => {
     api?.scrollTo(index);
     plugin.current.stop();
-
-    document.addEventListener("click", resumeAutoplayHandler);
+    resumeAutoplayHandler();
   };
 
   const controlButtons = (
-    <div
-      className="flex gap-[10px] py-2 lg:invisible"
-      ref={controlButtonsWrapperRef}
-    >
+    <div className="flex gap-[10px] py-2 lg:invisible">
       {Array.from({ length: count }).map((_slide, index) => (
         <button
           aria-label={`Przejdź do slajdu ${index + 1}`}
