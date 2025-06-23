@@ -3,12 +3,11 @@
 import { useEffect, useContext, useRef } from "react";
 import { createPortal } from "react-dom";
 import { CSSTransition } from "react-transition-group";
-import Link from "next/link";
 
 import Backdrop from "@/components/Layout/Navigation/SideNav/Backdrop/Backdrop";
 import UIContext from "@/store/uiContext";
-// import NavigationItems from "../NavigationItems/NavigationItems";
-// import useMobileNav from "@/hooks/useMobileNav";
+import NavigationItems from "../NavigationItems/NavigationItems";
+import useMobileNav from "@/hooks/useMobileNav";
 import { ListItemData } from "@/types/types";
 import {
   Accordion,
@@ -25,7 +24,7 @@ interface SideNavProps {
 function SideNav({ onBackdropClick }: SideNavProps) {
   const { isMenuOpen, closeSideNavHandler } = useContext(UIContext);
   const nodeRef = useRef<HTMLElement | null>(null);
-  // const { onClickHandler } = useMobileNav();
+  const { onClickHandler } = useMobileNav();
 
   useEffect(() => {
     const onResize = (e: UIEvent) => {
@@ -66,56 +65,12 @@ function SideNav({ onBackdropClick }: SideNavProps) {
           ref={nodeRef}
         >
           <nav className="flex-start flex h-1/2 w-full flex-col items-center">
-            {/* <NavigationItems
+            <NavigationItems
               className="flex h-[50%] w-[50%] flex-col justify-around"
               onClick={onClickHandler}
               navData={navData}
               classForDropDown="top-[30%] left-[-50%] text-[16px] xxs:text-[18px] "
-            /> */}
-
-            <Accordion type="multiple" className="top-0 left-0 w-1/2">
-              <AccordionItem value="about">
-                <Link href="/0-nas" className="block py-1 pl-4 text-sm">
-                  O nas
-                </Link>
-              </AccordionItem>
-
-              <AccordionItem value="treatments">
-                <AccordionTrigger>Zabiegi</AccordionTrigger>
-                <AccordionContent>
-                  <Link
-                    href="/zabiegi/skora"
-                    className="block py-1 pl-4 text-sm"
-                  >
-                    Na twarz
-                  </Link>
-                  <Link
-                    href="/zabiegi/cialo"
-                    className="block py-1 pl-4 text-sm"
-                  >
-                    Na ciało
-                  </Link>
-                </AccordionContent>
-              </AccordionItem>
-
-              <AccordionItem value="blog">
-                <AccordionTrigger>Blog</AccordionTrigger>
-                <AccordionContent>
-                  <Link href="/blog" className="block py-1 pl-4 text-sm">
-                    Wszystkie wpisy
-                  </Link>
-                </AccordionContent>
-              </AccordionItem>
-
-              <AccordionItem value="contact">
-                <AccordionTrigger>Kontakt</AccordionTrigger>
-                <AccordionContent>
-                  <Link href="/kontakt" className="block py-1 pl-4 text-sm">
-                    Formularz
-                  </Link>
-                </AccordionContent>
-              </AccordionItem>
-            </Accordion>
+            />
           </nav>
         </aside>
       </CSSTransition>

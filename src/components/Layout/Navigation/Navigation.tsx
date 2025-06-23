@@ -4,9 +4,9 @@ import { useState, useEffect, useMemo } from "react";
 import { Smartphone } from "lucide-react";
 
 import { UIContextProvider } from "@/store/uiContext";
-import NavigationItems from "./NavigationItems/NavigationItems";
+import { NavigationItems } from "./NavigationItems/NavigationItems";
 import Hamburger from "./Hamburger/Hamburger";
-import SideNav from "./SideNav/SideNav";
+// import SideNav from "./SideNav/SideNav";
 import useScrollDirection from "@/hooks/useScrollDirection";
 import useHandleScroll from "@/hooks/useHandleScroll";
 import Logo from "../Icon/Icons/Logo";
@@ -76,7 +76,7 @@ export default function Navigation({ navData }: NavigationProps) {
             </a>
             <Hamburger onClick={hamburgerClickHandler} />
           </div>
-          <SideNav onBackdropClick={backdropClickHandler} navData={navData} />
+          {/* <SideNav onBackdropClick={backdropClickHandler} navData={navData} /> */}
         </nav>
       </header>
     </UIContextProvider>
