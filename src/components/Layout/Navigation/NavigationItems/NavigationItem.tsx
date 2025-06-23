@@ -1,29 +1,37 @@
 import Link from "next/link";
 
-import { NavigationMenuLink } from "@/components/ui/navigation-menu";
-import { ReactNode } from "react";
+import {
+  NavigationMenuItem,
+  NavigationMenuLink,
+  navigationMenuTriggerStyle,
+} from "@/components/ui/navigation-menu";
+import { ListItemData } from "@/types/types";
+import NavigationItemWithDropDown from "./NavigationItemWithDropDown";
 
 interface NavigationItemProps {
-  title: string;
-  children: ReactNode;
-  href: string;
+  linkData: { id: string; label: string; href: string };
+  navData: Partial<ListItemData>[];
 }
 
 export default function NavigationItem({
-  title,
-  children,
-  href,
+  linkData,
+  navData,
 }: NavigationItemProps) {
-  return (
-    <li>
-      <NavigationMenuLink asChild>
-        <Link href={href}>
-          <div className="text-sm leading-none font-medium">{title}</div>
-          <p className="text-muted-foreground line-clamp-2 text-sm leading-snug">
-            {children}
-          </p>
-        </Link>
+  const { id, label, href } = linkData;
+
+  let content = (
+    <NavigationMenuItem>
+      <NavigationMenuLink asChild className={navigationMenuTriggerStyle()}>
+        <Link href={href}>{label}</Link>
       </NavigationMenuLink>
-    </li>
+    </NavigationMenuItem>
   );
+
+  if (id === "zabiegi") {
+    content = (
+      <NavigationItemWithDropDown linkData={linkData} navData={navData} />
+    );
+  }
+
+  return <>{content}</>;
 }
