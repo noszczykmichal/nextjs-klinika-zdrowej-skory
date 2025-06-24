@@ -139,7 +139,7 @@ footer {
   line-height: 1.2;
 }
 
-.menuTrigger .collapsibleMenu {
+/* .menuTrigger .collapsibleMenu {
   opacity: 0;
   visibility: hidden;
   transform: translateY(10px) scale(0.9);
@@ -160,7 +160,7 @@ footer {
 .menuTrigger:hover .chevron--down,
 .menuTrigger:active .chevron--down {
   transform: rotate(180deg);
-}
+} */
 
 input:-webkit-autofill {
   box-shadow: 0 0 0 1000px var(--black-100) inset !important;
@@ -233,4 +233,11 @@ input:-webkit-autofill {
   .breadcrumb__post-page {
     max-width: 80vw;
   }
+}
+
+button[data-slot="navigation-menu-trigger"] > svg.lucide-chevron-down {
+  width: 24px;
+  height: 17.4px;
+  margin: 2px 0px 0px 0px;
+  color: var(--gray-100);
 }

@@ -50,9 +50,9 @@ export default function Navigation({ navData }: NavigationProps) {
     setAttachedClasses([headerClasses.toolbar]);
   };
 
-  const backdropClickHandler = () => {
-    setAttachedClasses([headerClasses.toolbar, headerClasses.toolbarBoxShadow]);
-  };
+  // const backdropClickHandler = () => {
+  //   setAttachedClasses([headerClasses.toolbar, headerClasses.toolbarBoxShadow]);
+  // };
 
   return (
     <UIContextProvider>

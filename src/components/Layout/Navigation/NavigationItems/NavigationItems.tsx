@@ -14,8 +14,8 @@ interface NavigationItemsProps {
 
 export function NavigationItems({ navData }: NavigationItemsProps) {
   return (
-    <NavigationMenu viewport={false} className="hidden h-full lg:flex">
-      <NavigationMenuList>
+    <NavigationMenu viewport={false}>
+      <NavigationMenuList className="hidden h-full gap-0 lg:flex">
         {navConfig.map((link) => (
           <NavigationItem key={link.id} navData={navData} linkData={link} />
         ))}
