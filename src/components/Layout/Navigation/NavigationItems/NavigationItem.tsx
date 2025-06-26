@@ -9,21 +9,24 @@ import {
 } from "@/components/ui/navigation-menu";
 import { ListItemData } from "@/types/types";
 import NavigationItemWithDropDown from "./NavigationItemWithDropDown";
+import NavigationItemWithAccordion from "./NavigationItemWithAccordion";
 
 interface NavigationItemProps {
   linkData: { id: string; label: string; href: string };
   navData: Partial<ListItemData>[];
+  isMobileNav: boolean;
 }
 
 export default function NavigationItem({
   linkData,
   navData,
+  isMobileNav,
 }: NavigationItemProps) {
   const { id, label, href } = linkData;
   const pathname = usePathname();
 
   const linkClasses =
-    "px-[20px] hover:!bg-transparent focus:!bg-transparent active:!bg-transparent font-normal py-0";
+    "lg:px-[20px] hover:!bg-transparent focus:!bg-transparent active:!bg-transparent font-normal py-0";
   const contentClasses = `relative whitespace-nowrap before:absolute before:bottom-[-10px] before:left-0 before:h-[1px] before:w-[0px] before:bg-[var(--magenta-100)] before:transition-all before:duration-300 before:content-[''] hover:text-[var(--magenta-100)] hover:before:w-full active:before:w-full focus:before:w-full`;
 
   const activeLinkClasses =
@@ -45,7 +48,7 @@ export default function NavigationItem({
     </NavigationMenuItem>
   );
 
-  if (id === "zabiegi") {
+  if (id === "zabiegi" && !isMobileNav) {
     content = (
       <NavigationItemWithDropDown
         linkData={linkData}
@@ -53,6 +56,12 @@ export default function NavigationItem({
         linkClasses={linkClasses}
         contentClasses={contentClasses}
       />
+    );
+  } else if (id === "zabiegi" && isMobileNav) {
+    content = (
+      <li className="relative">
+        <NavigationItemWithAccordion linkData={linkData} navData={navData} />
+      </li>
     );
   }
 

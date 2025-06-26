@@ -58,14 +58,14 @@ function SideNav({ onBackdropClick, navData }: SideNavProps) {
           className="xs:w-[60vw] fixed top-0 right-0 z-[12] flex h-[100vh] w-[80vw] flex-col justify-center bg-white shadow-[var(--custom-box-shadow)] sm:w-[50vw]"
           ref={nodeRef}
         >
-          <nav className="flex-start flex h-1/2 w-full flex-col items-center">
-            <NavigationItems
-              // className="flex h-[50%] w-[50%] flex-col justify-around"
-              // onClick={onClickHandler}
-              navData={navData}
-              // classForDropDown="top-[30%] left-[-50%] text-[16px] xxs:text-[18px] "
-            />
-          </nav>
+          <NavigationItems
+            navWrapperClasses="flex-start flex h-full w-full flex-col items-center max-w-none [&>div]:bg-black/20 [&>div]:h-1/2 [&>div]:w-full [&>div]:flex [&>div]:flex-col [&>div]:gap-[40px] border border-red-500"
+            listClasses="flex flex-col h-full p-4 justify-start items-start"
+            // onClick={onClickHandler}
+            navData={navData}
+            // classForDropDown="top-[30%] left-[-50%] text-[16px] xxs:text-[18px] "
+            isMobileNav
+          />
         </aside>
       </CSSTransition>
     </>

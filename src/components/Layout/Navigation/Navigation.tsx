@@ -6,7 +6,7 @@ import { Smartphone } from "lucide-react";
 import { UIContextProvider } from "@/store/uiContext";
 import { NavigationItems } from "./NavigationItems/NavigationItems";
 import Hamburger from "./Hamburger/Hamburger";
-// import SideNav from "./SideNav/SideNav";
+import SideNav from "./SideNav/SideNav";
 import useScrollDirection from "@/hooks/useScrollDirection";
 import useHandleScroll from "@/hooks/useHandleScroll";
 import Logo from "../Icon/Icons/Logo";
@@ -50,9 +50,9 @@ export default function Navigation({ navData }: NavigationProps) {
     setAttachedClasses([headerClasses.toolbar]);
   };
 
-  // const backdropClickHandler = () => {
-  //   setAttachedClasses([headerClasses.toolbar, headerClasses.toolbarBoxShadow]);
-  // };
+  const backdropClickHandler = () => {
+    setAttachedClasses([headerClasses.toolbar, headerClasses.toolbarBoxShadow]);
+  };
 
   return (
     <UIContextProvider>
@@ -64,7 +64,7 @@ export default function Navigation({ navData }: NavigationProps) {
           />
           <NavigationItems
             navData={navData}
-            // classForDropDown="top-full left-0"
+            listClasses="hidden h-full gap-0 lg:flex"
           />
           <div className="ml-[10px] flex max-w-[250px] flex-grow-[0.5] items-center justify-between lg:justify-end">
             <a
@@ -75,7 +75,7 @@ export default function Navigation({ navData }: NavigationProps) {
             </a>
             <Hamburger onClick={hamburgerClickHandler} />
           </div>
-          {/* <SideNav onBackdropClick={backdropClickHandler} navData={navData} /> */}
+          <SideNav onBackdropClick={backdropClickHandler} navData={navData} />
         </nav>
       </header>
     </UIContextProvider>

@@ -20,15 +20,17 @@ export default function NavigationItemWithAccordion({
   const { label } = linkData;
 
   return (
-    <Accordion type="multiple" className="top-0 left-0 w-full">
+    <Accordion type="multiple" className="w-full pl-[8px]">
       <AccordionItem value="treatments">
-        <AccordionTrigger>{label}</AccordionTrigger>
-        <AccordionContent>
+        <AccordionTrigger className="w-auto flex-grow-0 py-0 text-[18px] font-normal">
+          {label}
+        </AccordionTrigger>
+        <AccordionContent className="flex w-[90%] flex-col">
           {navData.map((link) => (
             <Link
-              key={link._id}
               href={`/zabiegi/${link?.slug?.current}`}
-              className="block py-1 pl-4 text-sm"
+              className="overflow-hidden py-1 text-ellipsis whitespace-nowrap"
+              key={link._id}
             >
               {link.title}
             </Link>
