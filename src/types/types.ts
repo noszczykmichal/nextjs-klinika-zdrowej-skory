@@ -1,5 +1,6 @@
 import { HTMLInputTypeAttribute } from "react";
 import type { PortableTextBlock } from "@portabletext/types";
+import { navConfig } from "@/utils/config";
 
 export type IconVariants = "facebook" | "instagram" | "b-visit";
 
@@ -85,3 +86,5 @@ export interface ErrorState {
   errorMessage: string;
   hasError: boolean;
 }
+
+export type NavId = (typeof navConfig)[number]["id"] | "";
