@@ -13,6 +13,7 @@ interface NavigationItemsProps {
   navData: Partial<ListItemData>[];
   listClasses: string;
   isMobileNav?: boolean;
+  onClick?: () => void;
 }
 
 export function NavigationItems({
@@ -20,6 +21,7 @@ export function NavigationItems({
   navData,
   listClasses,
   isMobileNav = false,
+  onClick,
 }: NavigationItemsProps) {
   return (
     <NavigationMenu viewport={false} className={navWrapperClasses}>
@@ -30,6 +32,7 @@ export function NavigationItems({
             navData={navData}
             linkData={link}
             isMobileNav={isMobileNav}
+            onLinkClick={onClick}
           />
         ))}
       </NavigationMenuList>

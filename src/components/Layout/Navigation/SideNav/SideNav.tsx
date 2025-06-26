@@ -7,7 +7,7 @@ import { CSSTransition } from "react-transition-group";
 import Backdrop from "@/components/Layout/Navigation/SideNav/Backdrop/Backdrop";
 import UIContext from "@/store/uiContext";
 import { NavigationItems } from "../NavigationItems/NavigationItems";
-// import useMobileNav from "@/hooks/useMobileNav";
+import useMobileNav from "@/hooks/useMobileNav";
 import { ListItemData } from "@/types/types";
 
 interface SideNavProps {
@@ -18,7 +18,7 @@ interface SideNavProps {
 function SideNav({ onBackdropClick, navData }: SideNavProps) {
   const { isMenuOpen, closeSideNavHandler } = useContext(UIContext);
   const nodeRef = useRef<HTMLElement | null>(null);
-  // const { onClickHandler } = useMobileNav();
+  const { onClickHandler } = useMobileNav();
 
   useEffect(() => {
     const onResize = (e: UIEvent) => {
@@ -59,12 +59,11 @@ function SideNav({ onBackdropClick, navData }: SideNavProps) {
           ref={nodeRef}
         >
           <NavigationItems
-            navWrapperClasses="flex-start flex h-full w-full flex-col items-center max-w-none [&>div]:bg-black/20 [&>div]:h-1/2 [&>div]:w-full [&>div]:flex [&>div]:flex-col [&>div]:gap-[40px] border border-red-500"
-            listClasses="flex flex-col h-full p-4 justify-start items-start"
-            // onClick={onClickHandler}
+            navWrapperClasses="flex-start flex h-full w-full flex-col items-center max-w-none [&>div]:h-1/2 [&>div]:w-full [&>div]:flex [&>div]:flex-col [&>div]:gap-[40px]"
+            listClasses="flex flex-col h-full p-4 justify-start items-start gap-[40px]"
             navData={navData}
-            // classForDropDown="top-[30%] left-[-50%] text-[16px] xxs:text-[18px] "
             isMobileNav
+            onClick={onClickHandler}
           />
         </aside>
       </CSSTransition>

@@ -39,23 +39,23 @@ export default function NavigationItemWithDropDown({
   return (
     <NavigationMenuItem>
       <NavigationMenuTrigger
-        className={`${linkClasses} !bg-transparent text-[18px] leading-[28px] data-[state=open]:!bg-transparent`}
+        className={`${linkClasses} !bg-transparent text-[18px] leading-[1] data-[state=open]:!bg-transparent`}
       >
         <span className={`${contentClasses} ${mainLinkActiveIndicator} `}>
           {label}
         </span>
       </NavigationMenuTrigger>
-      <NavigationMenuContent className="!mt-[20px]">
-        <ul className="grid w-[300px] justify-center gap-6 p-3">
+      <NavigationMenuContent className="!mt-[10px]">
+        <ul className="flex w-[300px] flex-col justify-center gap-4 py-4">
           {navData.map((link) => (
             <li key={link._id}>
               <NavigationMenuLink asChild>
                 <Link
                   href={`/zabiegi/${link?.slug?.current}`}
-                  className={`${linkClasses} ${isDropDownLinkActive(link)} w-fit leading-[20px]`}
+                  className={`${linkClasses} w-fit leading-[1]`}
                 >
                   <span
-                    className={`${contentClasses} ${isDropDownLinkActive(link)} text-[15px]`}
+                    className={`inline-block ${contentClasses} ${isDropDownLinkActive(link)} text-[15px] leading-[1]`}
                   >
                     {link.title}
                   </span>
