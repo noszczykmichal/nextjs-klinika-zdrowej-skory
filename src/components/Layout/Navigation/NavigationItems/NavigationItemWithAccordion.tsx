@@ -39,11 +39,15 @@ export default function NavigationItemWithAccordion({
     <Accordion type="multiple" className="w-full pl-[8px]">
       <AccordionItem value="treatments">
         <AccordionTrigger
-          className={`w-auto flex-grow-0 py-0 text-[18px] font-normal ${contentClasses} ${activeLinkClasses}`}
+          className={`w-auto flex-grow-0 py-0 text-[18px] font-normal [&>svg]:self-center`}
         >
-          {label}
+          <span
+            className={`inline-block ${contentClasses} ${activeLinkClasses}`}
+          >
+            {label}
+          </span>
         </AccordionTrigger>
-        <AccordionContent className="flex w-[90%] flex-col gap-4 py-4 leading-0">
+        <AccordionContent className="flex w-[90%] flex-col gap-6 py-5">
           {navData.map((link) => (
             <Link
               href={`/zabiegi/${link?.slug?.current}`}

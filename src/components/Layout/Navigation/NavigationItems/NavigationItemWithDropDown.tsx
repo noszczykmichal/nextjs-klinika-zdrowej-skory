@@ -52,10 +52,10 @@ export default function NavigationItemWithDropDown({
               <NavigationMenuLink asChild>
                 <Link
                   href={`/zabiegi/${link?.slug?.current}`}
-                  className={`${linkClasses} w-fit leading-[1]`}
+                  className={`${linkClasses} w-fit`}
                 >
                   <span
-                    className={`inline-block ${contentClasses} ${isDropDownLinkActive(link)} text-[15px] leading-[1]`}
+                    className={`inline-block ${contentClasses} ${isDropDownLinkActive(link)} text-[15px] leading-0`}
                   >
                     {link.title}
                   </span>
