@@ -6,25 +6,19 @@ import { CSSTransition } from "react-transition-group";
 
 import Backdrop from "@/components/Layout/Navigation/SideNav/Backdrop/Backdrop";
 import UIContext from "@/store/uiContext";
-import NavigationItems from "../NavigationItems/NavigationItems";
-import useMobileNav from "@/hooks/useMobileNav";
+import { NavigationItems } from "../NavigationItems/NavigationItems";
+// import useMobileNav from "@/hooks/useMobileNav";
 import { ListItemData } from "@/types/types";
-import {
-  Accordion,
-  AccordionContent,
-  AccordionItem,
-  AccordionTrigger,
-} from "@/components/ui/accordion";
 
 interface SideNavProps {
   onBackdropClick: () => void;
   navData: Partial<ListItemData>[];
 }
 
-function SideNav({ onBackdropClick }: SideNavProps) {
+function SideNav({ onBackdropClick, navData }: SideNavProps) {
   const { isMenuOpen, closeSideNavHandler } = useContext(UIContext);
   const nodeRef = useRef<HTMLElement | null>(null);
-  const { onClickHandler } = useMobileNav();
+  // const { onClickHandler } = useMobileNav();
 
   useEffect(() => {
     const onResize = (e: UIEvent) => {
@@ -66,10 +60,10 @@ function SideNav({ onBackdropClick }: SideNavProps) {
         >
           <nav className="flex-start flex h-1/2 w-full flex-col items-center">
             <NavigationItems
-              className="flex h-[50%] w-[50%] flex-col justify-around"
-              onClick={onClickHandler}
+              // className="flex h-[50%] w-[50%] flex-col justify-around"
+              // onClick={onClickHandler}
               navData={navData}
-              classForDropDown="top-[30%] left-[-50%] text-[16px] xxs:text-[18px] "
+              // classForDropDown="top-[30%] left-[-50%] text-[16px] xxs:text-[18px] "
             />
           </nav>
         </aside>

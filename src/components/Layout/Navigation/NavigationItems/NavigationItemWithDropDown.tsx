@@ -1,4 +1,3 @@
-import { useContext } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 
@@ -9,11 +8,9 @@ import {
   NavigationMenuLink,
   NavigationMenuTrigger,
 } from "@/components/ui/navigation-menu";
-import { NavId } from "@/types/types";
-import UIContext from "@/store/uiContext";
 
 interface NavigationItemWithDropDownProps {
-  linkData: { id: NavId; label: string; href: string };
+  linkData: { id: string; label: string; href: string };
   navData: Partial<ListItemData>[];
   linkClasses: string;
   contentClasses: string;
@@ -25,12 +22,12 @@ export default function NavigationItemWithDropDown({
   linkClasses,
   contentClasses,
 }: NavigationItemWithDropDownProps) {
-  const { id, label } = linkData;
-  const { idActiveLink, setIdActiveLink } = useContext(UIContext);
+  const { label, href } = linkData;
+
   const pathname = usePathname();
 
   const mainLinkActiveIndicator =
-    idActiveLink === "zabiegi"
+    `/${pathname.split("/")[1]}` === href
       ? "before:w-full text-[var(--magenta-100)]"
       : "before:w-[0px]";
 
@@ -38,8 +35,6 @@ export default function NavigationItemWithDropDown({
     pathname.split("/")[2] === link?.slug?.current
       ? "before:w-full text-[var(--magenta-100)]"
       : "before:w-[0px]";
-
-  const activeLinkHandler = () => setIdActiveLink(id);
 
   return (
     <NavigationMenuItem>
@@ -58,7 +53,6 @@ export default function NavigationItemWithDropDown({
                 <Link
                   href={`/zabiegi/${link?.slug?.current}`}
                   className={`${linkClasses} ${isDropDownLinkActive(link)} w-fit leading-[20px]`}
-                  onClick={activeLinkHandler}
                 >
                   <span
                     className={`${contentClasses} ${isDropDownLinkActive(link)} text-[15px]`}
