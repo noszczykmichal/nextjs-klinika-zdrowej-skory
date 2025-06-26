@@ -33,7 +33,6 @@ export const UIContextProvider: FC<UIContextProviderProps> = ({ children }) => {
   const context = useMemo(
     () => ({
       isMenuOpen,
-
       menuToggleHandler,
       closeSideNavHandler,
     }),
