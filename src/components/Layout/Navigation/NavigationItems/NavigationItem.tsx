@@ -15,15 +15,11 @@ import { NavId } from "@/types/types";
 interface NavigationItemProps {
   linkData: { id: NavId; label: string; href: string };
   navData: Partial<ListItemData>[];
-  //   idActiveLink: string;
-  //   setIdActiveLink: (id: string) => void;
 }
 
 export default function NavigationItem({
   linkData,
   navData,
-  // idActiveLink,
-  // setIdActiveLink,
 }: NavigationItemProps) {
   const { id, label, href } = linkData;
   const { idActiveLink, setIdActiveLink } = useContext(UIContext);
@@ -60,7 +56,6 @@ export default function NavigationItem({
         navData={navData}
         linkClasses={linkClasses}
         contentClasses={contentClasses}
-        setIdActiveLink={setIdActiveLink}
       />
     );
   }

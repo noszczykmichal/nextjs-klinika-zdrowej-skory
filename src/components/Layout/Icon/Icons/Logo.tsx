@@ -1,13 +1,27 @@
+"use client";
+
+import { useContext } from "react";
 import Link from "next/link";
+
+import UIContext from "@/store/uiContext";
 
 interface LogoProps {
   id?: string;
   className: string;
 }
 
-function Logo({ id, className }: LogoProps) {
+export default function Logo({ id, className }: LogoProps) {
+  const { setIdActiveLink } = useContext(UIContext);
+
+  const activeLinkHandler = () => setIdActiveLink("");
+
   return (
-    <Link href="/" id={id} aria-label="Przejdź do strony głównej">
+    <Link
+      href="/"
+      id={id}
+      aria-label="Przejdź do strony głównej"
+      onClick={activeLinkHandler}
+    >
       <svg
         viewBox="0 0 139.48305 42.309521"
         version="1.1"
@@ -67,5 +81,3 @@ function Logo({ id, className }: LogoProps) {
     </Link>
   );
 }
-
-export default Logo;

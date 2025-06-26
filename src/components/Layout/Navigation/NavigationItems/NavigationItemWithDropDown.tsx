@@ -1,3 +1,4 @@
+import { useContext } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 
@@ -9,13 +10,13 @@ import {
   NavigationMenuTrigger,
 } from "@/components/ui/navigation-menu";
 import { NavId } from "@/types/types";
+import UIContext from "@/store/uiContext";
 
 interface NavigationItemWithDropDownProps {
-  linkData: { id: string; label: string; href: string };
+  linkData: { id: NavId; label: string; href: string };
   navData: Partial<ListItemData>[];
   linkClasses: string;
   contentClasses: string;
-  setIdActiveLink: (id: NavId) => void;
 }
 
 export default function NavigationItemWithDropDown({
@@ -23,17 +24,22 @@ export default function NavigationItemWithDropDown({
   navData,
   linkClasses,
   contentClasses,
-  setIdActiveLink,
 }: NavigationItemWithDropDownProps) {
-  const { label } = linkData;
+  const { id, label } = linkData;
+  const { idActiveLink, setIdActiveLink } = useContext(UIContext);
   const pathname = usePathname();
 
   const mainLinkActiveIndicator =
-    pathname.split("/")[1] === "zabiegi"
+    idActiveLink === "zabiegi"
       ? "before:w-full text-[var(--magenta-100)]"
       : "before:w-[0px]";
 
-  const activeLinkHandler = () => setIdActiveLink("");
+  const isDropDownLinkActive = (link: Partial<ListItemData>) =>
+    pathname.split("/")[2] === link?.slug?.current
+      ? "before:w-full text-[var(--magenta-100)]"
+      : "before:w-[0px]";
+
+  const activeLinkHandler = () => setIdActiveLink(id);
 
   return (
     <NavigationMenuItem>
@@ -51,10 +57,12 @@ export default function NavigationItemWithDropDown({
               <NavigationMenuLink asChild>
                 <Link
                   href={`/zabiegi/${link?.slug?.current}`}
-                  className={`${linkClasses} w-fit leading-[20px]`}
+                  className={`${linkClasses} ${isDropDownLinkActive(link)} w-fit leading-[20px]`}
                   onClick={activeLinkHandler}
                 >
-                  <span className={`${contentClasses} text-[15px]`}>
+                  <span
+                    className={`${contentClasses} ${isDropDownLinkActive(link)} text-[15px]`}
+                  >
                     {link.title}
                   </span>
                 </Link>
