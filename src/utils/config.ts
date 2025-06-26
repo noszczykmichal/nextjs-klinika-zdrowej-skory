@@ -8,7 +8,7 @@ export const navConfig = [
   // { id: "cennik", label: "Cennik", href: "/cennik" },
   { id: "blog", label: "Blog", href: "/blog" },
   { id: "kontakt", label: "Kontakt", href: "#contact" },
-] as const;
+];
 
 export const socialIconsConfig: SocialIcon[] = [
   {
