@@ -1,79 +1,76 @@
 "use client";
 
-import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { ChevronDown } from "lucide-react";
+import Link from "next/link";
 
+import {
+  NavigationMenuItem,
+  NavigationMenuLink,
+} from "@/components/ui/navigation-menu";
 import { ListItemData } from "@/types/types";
+import NavigationItemWithDropDown from "./NavigationItemWithDropDown";
+import NavigationItemWithAccordion from "./NavigationItemWithAccordion";
 
 interface NavigationItemProps {
   linkData: { id: string; label: string; href: string };
-  onLinkClick?: () => void;
   navData: Partial<ListItemData>[];
-  classForDropDown: string;
+  isMobileNav: boolean;
+  onLinkClick?: () => void;
 }
 
-function NavigationItem({
+export default function NavigationItem({
   linkData,
-  onLinkClick,
   navData,
-  classForDropDown,
+  isMobileNav,
+  onLinkClick,
 }: NavigationItemProps) {
   const { id, label, href } = linkData;
   const pathname = usePathname();
 
-  const isMainLinkActive =
+  const linkClasses =
+    "lg:px-[20px] hover:!bg-transparent focus:!bg-transparent active:!bg-transparent font-normal py-0";
+  const contentClasses = `relative whitespace-nowrap before:absolute before:bottom-[-5px] py-[10px] before:left-0 before:h-[1px] before:w-[0px] before:bg-[var(--magenta-100)] before:transition-all before:duration-300 before:content-[''] hover:text-[var(--magenta-100)] hover:before:w-full active:before:w-full focus:before:w-full`;
+
+  const activeLinkClasses =
     `/${pathname.split("/")[1]}` === href
       ? "before:w-full text-[var(--magenta-100)]"
       : "before:w-[0px]";
 
-  const isDropDownLinkActive = (link: Partial<ListItemData>) =>
-    pathname.split("/")[2] === link?.slug?.current
-      ? "before:w-full text-[var(--magenta-100)]"
-      : "before:w-[0px]";
-
-  const attachedClasses = `relative whitespace-nowrap hover:text-[var(--magenta-100)] before:w-[0px] before:absolute before:bottom-[-10px] before:left-0 before:content-[''] hover:before:w-full active:before:w-full focus:before:w-full before:h-[1px] before:transition-all before:duration-300 before:bg-[var(--magenta-100)]`;
-
-  const dropDown = (
-    <div className={`collapsibleMenu pt-[30px] ${classForDropDown}`}>
-      <ul
-        className={`grid w-[300px] gap-6 rounded-[var(--small-border-radius)] border border-[var(--gray-75)] bg-white p-3`}
-      >
-        {navData.map((link) => (
-          <li key={link._id}>
-            <Link
-              href={`/zabiegi/${link?.slug?.current}`}
-              onClick={onLinkClick}
-              className={`${attachedClasses} ${isDropDownLinkActive(link)} text-[15px]`}
-            >
-              {link.title || ""}
-            </Link>
-          </li>
-        ))}
-      </ul>
-    </div>
+  let content = (
+    <NavigationMenuItem>
+      <NavigationMenuLink asChild>
+        <Link href={href} className={linkClasses} onClick={onLinkClick}>
+          <span
+            className={`inline-block ${contentClasses} ${activeLinkClasses} text-[18px] leading-[1]`}
+          >
+            {label}
+          </span>
+        </Link>
+      </NavigationMenuLink>
+    </NavigationMenuItem>
   );
 
-  return (
-    <li
-      className={`flex items-center px-[20px] ${
-        id === "zabiegi" ? "menuTrigger relative" : ""
-      }`}
-    >
-      <Link
-        href={href}
-        className={`${attachedClasses} ${isMainLinkActive}`}
-        onClick={id !== "zabiegi" ? onLinkClick : (e) => e.preventDefault()}
-      >
-        {label}
-      </Link>
-      {id === "zabiegi" && (
-        <ChevronDown className="chevron--down mt-[5px] h-[60%] cursor-pointer text-[var(--gray-100)] transition-transform duration-300 ease-in-out" />
-      )}
+  if (id === "zabiegi" && !isMobileNav) {
+    content = (
+      <NavigationItemWithDropDown
+        linkData={linkData}
+        navData={navData}
+        linkClasses={linkClasses}
+        contentClasses={contentClasses}
+      />
+    );
+  } else if (id === "zabiegi" && isMobileNav) {
+    content = (
+      <li className="relative">
+        <NavigationItemWithAccordion
+          linkData={linkData}
+          navData={navData}
+          onLinkClick={onLinkClick}
+          contentClasses={contentClasses}
+        />
+      </li>
+    );
+  }
 
-      {id === "zabiegi" && dropDown}
-    </li>
-  );
+  return <>{content}</>;
 }
-
-export default NavigationItem;

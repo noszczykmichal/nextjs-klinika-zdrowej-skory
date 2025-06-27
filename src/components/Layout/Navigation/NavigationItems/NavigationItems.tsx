@@ -1,35 +1,41 @@
-import { navConfig } from "@/utils/config";
-import NavigationItem from "@/components/Layout/Navigation/NavigationItems/NavigationItem";
+"use client";
+
+import {
+  NavigationMenu,
+  NavigationMenuList,
+} from "@/components/ui/navigation-menu";
+import NavigationItem from "./NavigationItem";
 import { ListItemData } from "@/types/types";
+import { navConfig } from "@/utils/config";
 
 interface NavigationItemsProps {
-  className: string;
-  onClick?: () => void;
+  navWrapperClasses?: string;
   navData: Partial<ListItemData>[];
-  classForDropDown: string;
+  listClasses: string;
+  isMobileNav?: boolean;
+  onClick?: () => void;
 }
 
-function NavigationItems({
-  className,
-  onClick,
+export function NavigationItems({
+  navWrapperClasses,
   navData,
-  classForDropDown,
+  listClasses,
+  isMobileNav = false,
+  onClick,
 }: NavigationItemsProps) {
   return (
-    <>
-      <ul className={className}>
+    <NavigationMenu viewport={false} className={navWrapperClasses}>
+      <NavigationMenuList className={listClasses}>
         {navConfig.map((link) => (
           <NavigationItem
             key={link.id}
-            linkData={link}
-            onLinkClick={onClick}
             navData={navData}
-            classForDropDown={classForDropDown}
+            linkData={link}
+            isMobileNav={isMobileNav}
+            onLinkClick={onClick}
           />
         ))}
-      </ul>
-    </>
+      </NavigationMenuList>
+    </NavigationMenu>
   );
 }
-
-export default NavigationItems;

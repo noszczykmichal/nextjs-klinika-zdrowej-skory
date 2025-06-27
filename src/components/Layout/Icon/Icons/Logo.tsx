@@ -5,7 +5,7 @@ interface LogoProps {
   className: string;
 }
 
-function Logo({ id, className }: LogoProps) {
+export default function Logo({ id, className }: LogoProps) {
   return (
     <Link href="/" id={id} aria-label="Przejdź do strony głównej">
       <svg
@@ -67,5 +67,3 @@ function Logo({ id, className }: LogoProps) {
     </Link>
   );
 }
-
-export default Logo;

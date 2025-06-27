@@ -4,7 +4,7 @@ import { useState, useEffect, useMemo } from "react";
 import { Smartphone } from "lucide-react";
 
 import { UIContextProvider } from "@/store/uiContext";
-import NavigationItems from "./NavigationItems/NavigationItems";
+import { NavigationItems } from "./NavigationItems/NavigationItems";
 import Hamburger from "./Hamburger/Hamburger";
 import SideNav from "./SideNav/SideNav";
 import useScrollDirection from "@/hooks/useScrollDirection";
@@ -64,8 +64,7 @@ export default function Navigation({ navData }: NavigationProps) {
           />
           <NavigationItems
             navData={navData}
-            className="hidden h-full lg:flex"
-            classForDropDown="top-full left-0"
+            listClasses="hidden h-full gap-0 lg:flex"
           />
           <div className="ml-[10px] flex max-w-[250px] flex-grow-[0.5] items-center justify-between lg:justify-end">
             <a
