@@ -63,7 +63,7 @@ export default function PostPageBanner({ postDetails }: PostPageBannerProps) {
                 wrapperClasses={wrapperClasses}
                 contentClasses={contentClasses}
               >
-                Pejdź do zabiegu
+                Przejdź do zabiegu
               </StyledButton>
             )}
             {group && (
@@ -72,7 +72,7 @@ export default function PostPageBanner({ postDetails }: PostPageBannerProps) {
                 wrapperClasses={wrapperClasses}
                 contentClasses={contentClasses}
               >
-                Pejdź do zabiegu
+                Przejdź do zabiegu
               </StyledButton>
             )}
           </div>
