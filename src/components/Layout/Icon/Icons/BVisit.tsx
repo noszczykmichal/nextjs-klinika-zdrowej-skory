@@ -1,13 +1,9 @@
-import Image from "next/image";
-
-import bVisitIcon from "@/assets/bvisit_logo_white.png";
+import BVisitLogo from "@/assets/icons/bvisit-logo.svg";
 
 interface BVisitProps {
   className?: string;
 }
 
 export default function BVisit({ className }: BVisitProps) {
-  return (
-    <Image src={bVisitIcon} className={className} alt="the bvisit icon." />
-  );
+  return <BVisitLogo className={className} />;
 }

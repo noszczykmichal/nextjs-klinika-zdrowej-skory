@@ -39,6 +39,7 @@
     "validator": "^13.15.15"
   },
   "devDependencies": {
+    "@svgr/webpack": "^8.1.0",
     "@tailwindcss/postcss": "^4",
     "@types/eslint-plugin-jsx-a11y": "6.10.0",
     "@types/node": "^20",

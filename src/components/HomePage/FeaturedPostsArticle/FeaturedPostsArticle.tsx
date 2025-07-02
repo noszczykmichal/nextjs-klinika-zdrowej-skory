@@ -2,7 +2,7 @@ import { client } from "@/sanity/client";
 
 import { ListItemData } from "@/types/types";
 import { ResponsiveCarousel } from "@/components/HomePage/FeaturedPostsArticle/ResponsiveCarousel/ResponsiveCarousel";
-import FeaturedPostsHeader from "./FeaturedPostsHeader/FeaturedPostsHeader";
+import FeaturedPostsHeader from "@/components/HomePage/FeaturedPostsArticle/FeaturedPostsHeader/FeaturedPostsHeader";
 
 const RECENT_POSTS_QUERY = `*[_type=='post']|order(publishedAt desc)[0...3]{_id, title, mainImage, altForMainImage, slug, category->{categorySlug}}`;
 

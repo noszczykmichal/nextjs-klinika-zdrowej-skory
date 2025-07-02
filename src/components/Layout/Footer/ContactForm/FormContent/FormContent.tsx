@@ -1,10 +1,10 @@
 import { useState, useEffect, useRef, Dispatch, SetStateAction } from "react";
 
 import { formConfig } from "@/utils/config";
-import FormField from "@/components/Layout/Footer/Form/FormContent/FormField/FormField";
-import SuccessMessage from "@/components/Layout/Footer/Form/FormContent/SuccessMessage/SuccessMessage";
-import LoaderMessage from "@/components/Layout/Footer/Form/FormContent/LoaderMessage/LoaderMessage";
-import ErrorMessage from "@/components/Layout/Footer/Form/FormContent/ErrorMessage/ErrorMessage";
+import FormField from "@/components/Layout/Footer/ContactForm/FormContent/FormField/FormField";
+import SuccessMessage from "@/components/Layout/Footer/ContactForm/FormContent/SuccessMessage/SuccessMessage";
+import LoaderMessage from "@/components/Layout/Footer/ContactForm/FormContent/LoaderMessage/LoaderMessage";
+import ErrorMessage from "@/components/Layout/Footer/ContactForm/FormContent/ErrorMessage/ErrorMessage";
 import { ErrorState } from "@/types/types";
 
 interface InputData {

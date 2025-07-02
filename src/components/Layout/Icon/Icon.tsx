@@ -13,9 +13,9 @@ function Icon({ name, href, className }: IconProps) {
   const renderSwitch = (name: IconVariants) => {
     switch (name) {
       case "facebook":
-        return <SiFacebook className={className} color={className} />;
+        return <SiFacebook color={className} />;
       case "instagram":
-        return <SiInstagram className={className} color={className} />;
+        return <SiInstagram color={className} />;
       case "b-visit":
         return <BVisit className={className} />;
       default:

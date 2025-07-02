@@ -4,12 +4,12 @@ import { useState, useEffect, useMemo } from "react";
 import { Smartphone } from "lucide-react";
 
 import { UIContextProvider } from "@/store/uiContext";
-import { NavigationItems } from "./NavigationItems/NavigationItems";
-import Hamburger from "./Hamburger/Hamburger";
-import SideNav from "./SideNav/SideNav";
+import { NavigationItems } from "@/components/Layout/Navigation/NavigationItems/NavigationItems";
+import Hamburger from "@/components/Layout/Navigation/Hamburger/Hamburger";
+import SideNav from "@/components/Layout/Navigation/SideNav/SideNav";
 import useScrollDirection from "@/hooks/useScrollDirection";
 import useHandleScroll from "@/hooks/useHandleScroll";
-import Logo from "../Icon/Icons/Logo";
+import Logo from "@/components/Layout/Icon/Icons/Logo";
 import { ListItemData } from "@/types/types";
 
 interface NavigationProps {

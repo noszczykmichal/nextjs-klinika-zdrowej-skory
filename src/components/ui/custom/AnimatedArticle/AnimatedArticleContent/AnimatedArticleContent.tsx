@@ -1,7 +1,7 @@
 import { useRef } from "react";
 import { PortableText, PortableTextBlock } from "next-sanity";
 
-import FeaturedTreatments from "./FeaturedTreatments/FeaturedTreatments";
+import FeaturedTreatments from "@/components/ui/custom/AnimatedArticle/AnimatedArticleContent/FeaturedTreatments/FeaturedTreatments";
 import { portableTextComponentConfig } from "@/utils/portableTextComponentConfig";
 import { ListItemData } from "@/types/types";
 import useScrollReveal from "@/hooks/useScrollReveal";
