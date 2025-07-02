@@ -25,7 +25,9 @@ const nextConfig: NextConfig = {
                 { name: "removeStyleElement" },
                 {
                   name: "removeAttrs",
-                  params: { attrs: ["xmlns:*", "xmlns:xlink", "xlink:*"] },
+                  params: {
+                    attrs: ["xmlns:*", "xmlns:svg", "xmlns:xlink", "xlink:*"],
+                  },
                 },
               ],
             },
