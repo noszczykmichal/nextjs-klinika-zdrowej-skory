@@ -12,7 +12,26 @@ const nextConfig: NextConfig = {
   webpack: (config) => {
     config.module.rules.push({
       test: /\.svg$/,
-      use: ["@svgr/webpack"],
+      use: [
+        {
+          loader: "@svgr/webpack",
+          options: {
+            svgo: true,
+            svgoConfig: {
+              plugins: [
+                { name: "removeXMLNS" },
+                { name: "removeDoctype" },
+                { name: "removeEditorsNSData" },
+                { name: "removeStyleElement" },
+                {
+                  name: "removeAttrs",
+                  params: { attrs: ["xmlns:*", "xmlns:xlink", "xlink:*"] },
+                },
+              ],
+            },
+          },
+        },
+      ],
     });
 
     return config;
