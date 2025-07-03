@@ -1,11 +1,3 @@
-"use client";
-// import dynamic from "next/dynamic";
-
-// const Countdown = dynamic(
-//   () => import("@/components/ui/custom/Countdown/Countdown"),
-//   { ssr: false },
-// );
-
 export default function NotFound() {
   return (
     <main className="mx-auto flex w-full justify-center px-[25px] md:px-[42px]">
@@ -13,7 +5,6 @@ export default function NotFound() {
         <h1 className="text-(length:--font-size-h2)">Przykro nam...</h1>
         <p>Strona nie został znaleziona.</p>
         <p>Przekierowanie do strony głównej za:</p>
-        {/* <Countdown /> */}
       </section>
     </main>
   );
