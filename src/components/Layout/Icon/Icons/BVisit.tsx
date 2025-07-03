@@ -5,5 +5,5 @@ interface BVisitProps {
 }
 
 export default function BVisit({ className }: BVisitProps) {
-  return <BVisitLogo className={className} />;
+  return <BVisitLogo className={className} title="BVisit" />;
 }
