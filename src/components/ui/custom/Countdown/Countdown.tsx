@@ -1,5 +1,3 @@
-"use client";
-
 import { CountdownCircleTimer } from "react-countdown-circle-timer";
 import { redirect } from "next/navigation";
 

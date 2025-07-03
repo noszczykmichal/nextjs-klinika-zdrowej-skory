@@ -1,7 +1,10 @@
 "use client";
-// import dynamic from "next/dynamic";
+import dynamic from "next/dynamic";
 
-import Countdown from "@/components/ui/custom/Countdown/Countdown";
+const Countdown = dynamic(
+  () => import("@/components/ui/custom/Countdown/Countdown"),
+  { ssr: false },
+);
 
 export default function NotFound() {
   return (
