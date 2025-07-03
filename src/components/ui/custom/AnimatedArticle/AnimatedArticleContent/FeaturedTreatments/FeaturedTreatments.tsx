@@ -1,11 +1,13 @@
 import { ListItemData } from "@/types/types";
 import TreatmentCard from "@/components/ui/custom/AnimatedArticle/AnimatedArticleContent/FeaturedTreatments/TreatmentCard/TreatmentCard";
 
+interface FeaturedTreatmentsProps {
+  treatmentsData: ListItemData[];
+}
+
 export default function FeaturedTreatments({
   treatmentsData,
-}: {
-  treatmentsData: ListItemData[];
-}) {
+}: FeaturedTreatmentsProps) {
   return (
     <section>
       <h3 className="mb-[40px] w-fit border-b-1 border-[var(--orange-100)] pb-[12px] text-[24px] font-medium">

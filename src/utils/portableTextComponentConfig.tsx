@@ -1,7 +1,7 @@
 import { PortableTextComponents } from "next-sanity";
 import Image from "next/image";
 
-import { urlFor } from "./utilityFunctions";
+import { urlFor } from "@/utils/utilityFunctions";
 
 export const portableTextComponentConfig: PortableTextComponents = {
   marks: {

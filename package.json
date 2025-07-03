@@ -3,7 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "next dev --turbopack",
+    "dev": "next dev",
     "build": "next build",
     "start": "next start",
     "lint": "next lint"
@@ -36,9 +36,11 @@
     "styled-components": "^6.1.18",
     "tailwind-merge": "^3.0.2",
     "tw-animate-css": "^1.2.4",
-    "validator": "^13.15.15"
+    "validator": "^13.15.15",
+    "webpack": "^5.99.9"
   },
   "devDependencies": {
+    "@svgr/webpack": "^8.1.0",
     "@tailwindcss/postcss": "^4",
     "@types/eslint-plugin-jsx-a11y": "6.10.0",
     "@types/node": "^20",

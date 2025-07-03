@@ -3,7 +3,7 @@
 import { useState } from "react";
 import { Form } from "react-final-form";
 
-import FormContent from "@/components/Layout/Footer/Form/FormContent/FormContent";
+import FormContent from "@/components/Layout/Footer/ContactForm/FormContent/FormContent";
 
 interface InputData {
   [key: string]: string;

@@ -1,9 +1,8 @@
 import Icon from "@/components/Layout/Icon/Icon";
-// import NavigationItems from "../Navigation/NavigationItems/NavigationItems";
 
-import Logo from "../Icon/Icons/Logo";
+import Logo from "@/components/Layout/Icon/Icons/Logo";
 import { socialIconsConfig } from "@/utils/config";
-import ContactForm from "./Form/Form";
+import ContactForm from "@/components/Layout/Footer/ContactForm/ContactForm";
 
 interface FooterProps {
   className: string;

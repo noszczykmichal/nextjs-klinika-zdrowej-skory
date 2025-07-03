@@ -24,7 +24,7 @@ export const socialIconsConfig: SocialIcon[] = [
   {
     name: "b-visit",
     href: "https://www.appointo.pl/64681bdf-ffc7-4db4-8875-f598177086ae",
-    className: "block h-[24px] w-[24px]",
+    className: "h-[40px] w-[40px]",
   },
 ];
 

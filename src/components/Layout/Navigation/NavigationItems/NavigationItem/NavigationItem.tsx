@@ -8,8 +8,8 @@ import {
   NavigationMenuLink,
 } from "@/components/ui/navigation-menu";
 import { ListItemData } from "@/types/types";
-import NavigationItemWithDropDown from "./NavigationItemWithDropDown";
-import NavigationItemWithAccordion from "./NavigationItemWithAccordion";
+import NavigationItemWithDropDown from "@/components/Layout/Navigation/NavigationItems/NavigationItem/NavigationItemWithDropDown/NavigationItemWithDropDown";
+import NavigationItemWithAccordion from "@/components/Layout/Navigation/NavigationItems/NavigationItem/NavigationItemWithAccordion/NavigationItemWithAccordion";
 
 interface NavigationItemProps {
   linkData: { id: string; label: string; href: string };

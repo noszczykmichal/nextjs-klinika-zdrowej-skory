@@ -1,7 +1,7 @@
 import { CarouselContent } from "@/components/ui/carousel";
 
 import { ListItemData } from "@/types/types";
-import FeaturedPostCard from "./FeaturedPostCard/FeaturedPostCard";
+import FeaturedPostCard from "@/components/HomePage/FeaturedPostsArticle/ResponsiveCarousel/FeaturedPostsList/FeaturedPostCard/FeaturedPostCard";
 
 interface FeaturedPostsListProps {
   posts: ListItemData[];
