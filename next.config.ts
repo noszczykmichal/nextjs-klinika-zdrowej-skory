@@ -5,7 +5,7 @@ const nextConfig: NextConfig = {
     rules: {
       "*.svg": {
         loaders: ["@svgr/webpack"],
-        as: "*.js",
+        as: "*.tsx",
       },
     },
   },
@@ -19,7 +19,6 @@ const nextConfig: NextConfig = {
       },
     ],
   },
-  reactStrictMode: true,
 };
 
 export default nextConfig;
