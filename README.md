@@ -1,36 +1,67 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+<div align="center">
+  <img alt="Logo" src="https://raw.githubusercontent.com/noszczykmichal/nextjs-klinika-zdrowej-skory/src/app/icon0.svg" width="100" />
+</div>
+<h1 align="center">
+Healthy Skin Clinic (Klinika Zdrowej Skóry)
+</h1>
+<p align="center">
+A fully functional website for a small business in the wellness industry, developed with <a href="https://react.dev/" target="_blank">React</a> and <a href="https://nextjs.org" target="_blank">Next.js</a>, and hosted on <a href="https://firebase.google.com/" target="_blank">Firebase</a>.
+</p>
+<p align="center">
+  <a href="https://www.olganoszczyk.pl/" target="_blank">Live demo</a>
+</p>
 
-## Getting Started
+![demo](https://raw.githubusercontent.com/noszczykmichal/nextjs-klinika-zdrowej-skory/src/assets/demo-healthy-skin-clinic.png)
 
-First, run the development server:
+## Table of Contents
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+- [General Info](#general-information)
+- [Technologies Used](#technologies-used)
+- [Setup](#setup)
+- [Contact](#contact)
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## General Information
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+This is a fully functional website built for a small business in the wellness industry. The project leverages a modern frontend stack and integrates with a headless CMS
+(Sanity) to enable dynamic content updates. Selected routes are statically generated, while others are rendered on the fly based on live CMS data. The site is optimized for
+performance and SEO, and will be further developed to include features such as service pricing page, course enrollment, and integrated payment functionality.
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## Technologies Used
 
-## Learn More
+- [Next.js](https://nextjs.org/), [React](https://react.dev/), [TypeScript](https://www.typescriptlang.org/)
+- Styling: [Tailwind CSS](https://tailwindcss.com/), [ShadCN UI](https://ui.shadcn.com/)
+- Forms: [React Final Form](https://final-form.org/react)
+- Animations: [React Transition Group](https://reactcommunity.org/react-transition-group/), [ScrollReveal](https://scrollrevealjs.org/)
+- SVGs: [SVGR](https://react-svgr.com/)
+- Code Quality: [ESLint](https://eslint.org/), [Prettier](https://prettier.io/)
+- CI/CD: [Vercel](https://vercel.com/docs) for automated deployments via GitHub integration (zero-config setup)
 
-To learn more about Next.js, take a look at the following resources:
+## Setup
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+1. Clone this repository
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+   ```sh
+   $git clone https://github.com/noszczykmichal/nextjs-klinika-zdrowej-skory
+   ```
 
-## Deploy on Vercel
+2. Go into the repository
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+   ```sh
+   $cd nextjs-klinika-zdrowej-skory
+   ```
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+3. Install dependencies
+
+   ```sh
+   $npm install
+   ```
+
+4. Start the development server
+
+   ```sh
+   $npm run start
+   ```
+
+## Contact
+
+Designed and created by [@noszczykmichal](https://michalnoszczyk.com/) - feel free to contact me!
