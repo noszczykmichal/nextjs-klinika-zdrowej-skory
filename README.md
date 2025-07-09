@@ -1,17 +1,18 @@
 <div align="center">
-  <img alt="Logo" src="https://raw.githubusercontent.com/noszczykmichal/nextjs-klinika-zdrowej-skory/src/app/icon0.svg" width="100" />
+  <img alt="Logo" src="https://raw.githubusercontent.com/noszczykmichal/nextjs-klinika-zdrowej-skory/main/src/app/icon0.svg" width="100" />
 </div>
 <h1 align="center">
 Healthy Skin Clinic (Klinika Zdrowej Skóry)
 </h1>
 <p align="center">
-A fully functional website for a small business in the wellness industry, developed with <a href="https://react.dev/" target="_blank">React</a> and <a href="https://nextjs.org" target="_blank">Next.js</a>, and hosted on <a href="https://firebase.google.com/" target="_blank">Firebase</a>.
+A fully functional website for a small business in the wellness industry, developed with <a href="https://react.dev/" target="_blank">React</a> and <a href="https://nextjs.org" target="_blank">Next.js</a>, powered by a headless CMS (<a href="https://www.sanity.io/" target="_blank">Sanity</a>), and hosted on <a href="https://vercel.com/" target="_blank">Vercel</a>.
 </p>
+
 <p align="center">
   <a href="https://www.olganoszczyk.pl/" target="_blank">Live demo</a>
 </p>
 
-![demo](https://raw.githubusercontent.com/noszczykmichal/nextjs-klinika-zdrowej-skory/src/assets/demo-healthy-skin-clinic.png)
+![demo](https://raw.githubusercontent.com/noszczykmichal/nextjs-klinika-zdrowej-skory/main/src/assets/demo-healthy-skin-clinic.png)
 
 ## Table of Contents
 
@@ -33,6 +34,7 @@ performance and SEO, and will be further developed to include features such as s
 - Forms: [React Final Form](https://final-form.org/react)
 - Animations: [React Transition Group](https://reactcommunity.org/react-transition-group/), [ScrollReveal](https://scrollrevealjs.org/)
 - SVGs: [SVGR](https://react-svgr.com/)
+- CMS: [Sanity](https://www.sanity.io/)
 - Code Quality: [ESLint](https://eslint.org/), [Prettier](https://prettier.io/)
 - CI/CD: [Vercel](https://vercel.com/docs) for automated deployments via GitHub integration (zero-config setup)
 
