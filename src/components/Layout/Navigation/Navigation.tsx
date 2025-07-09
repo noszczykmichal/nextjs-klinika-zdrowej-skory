@@ -46,11 +46,7 @@ export default function Navigation({ navData }: NavigationProps) {
     }
   }, [scrollDirection, isTop, headerClasses]);
 
-  const hamburgerClickHandler = () => {
-    setAttachedClasses([headerClasses.toolbar]);
-  };
-
-  const backdropClickHandler = () => {
+  const clickHandler = () => {
     setAttachedClasses([headerClasses.toolbar, headerClasses.toolbarBoxShadow]);
   };
 
@@ -73,9 +69,9 @@ export default function Navigation({ navData }: NavigationProps) {
             >
               <Smartphone className="stroke-1" /> Umów wizytę
             </a>
-            <Hamburger onClick={hamburgerClickHandler} />
+            <Hamburger onClick={clickHandler} />
           </div>
-          <SideNav onBackdropClick={backdropClickHandler} navData={navData} />
+          <SideNav onBackdropClick={clickHandler} navData={navData} />
         </nav>
       </header>
     </UIContextProvider>
