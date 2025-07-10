@@ -39,7 +39,7 @@ export default function NavigationItemWithAccordion({
     <Accordion type="multiple" className="w-full pl-[8px]">
       <AccordionItem value="treatments">
         <AccordionTrigger
-          className={`w-auto flex-grow-0 py-0 text-[18px] font-normal [&>svg]:self-center`}
+          className={`w-auto flex-grow-0 py-0 text-[18px] font-normal focus:no-underline focus:outline-none active:no-underline [&>svg]:self-center`}
         >
           <span
             className={`inline-block ${contentClasses} ${activeLinkClasses}`}

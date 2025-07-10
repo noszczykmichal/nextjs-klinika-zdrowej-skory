@@ -8,7 +8,7 @@ interface FooterProps {
   className: string;
 }
 
-function Footer({ className }: FooterProps) {
+export default function Footer({ className }: FooterProps) {
   return (
     <footer
       className={`w-full px-[25px] text-[15px] leading-[26px] text-[var(--white-100)] md:px-[42px] ${className}`}
@@ -74,4 +74,4 @@ function Footer({ className }: FooterProps) {
   );
 }
 
-export default Footer;
+
