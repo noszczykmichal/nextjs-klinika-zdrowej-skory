@@ -15,7 +15,7 @@ interface SideNavProps {
   navData: Partial<ListItemData>[];
 }
 
-function SideNav({ onBackdropClick, navData }: SideNavProps) {
+export default function SideNav({ onBackdropClick, navData }: SideNavProps) {
   const { isMenuOpen, closeSideNavHandler } = useContext(UIContext);
   const nodeRef = useRef<HTMLElement | null>(null);
   const { onClickHandler } = useMobileNav();
@@ -70,5 +70,3 @@ function SideNav({ onBackdropClick, navData }: SideNavProps) {
     </>
   );
 }
-
-export default SideNav;

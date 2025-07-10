@@ -6,7 +6,7 @@ interface BackdropProps {
   onClick: () => void;
 }
 
-function Backdrop({ onClick }: BackdropProps) {
+export default function Backdrop({ onClick }: BackdropProps) {
   const { onClickHandler: onBackdropClick, isMenuOpen } = useMobileNav();
 
   const handler = () => {
@@ -23,5 +23,3 @@ function Backdrop({ onClick }: BackdropProps) {
     />
   );
 }
-
-export default Backdrop;

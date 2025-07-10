@@ -7,7 +7,7 @@ interface HamburgerProps {
   onClick: () => void;
 }
 
-function Hamburger({ onClick }: HamburgerProps) {
+export default function Hamburger({ onClick }: HamburgerProps) {
   const { isMenuOpen, onClickHandler } = useMobileNav();
 
   let boxInnerClasses = "box__inner box__inner--side-nav-closed";
@@ -40,5 +40,3 @@ function Hamburger({ onClick }: HamburgerProps) {
     </button>
   );
 }
-
-export default Hamburger;
