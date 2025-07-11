@@ -64,11 +64,10 @@ jobs:
         run: npm install --legacy-peer-deps
 
       - name: Wait for Vercel Deployment
-        id: vercel_deployment
-        uses: vercel/actions/wait-for-deployment@v1
+        id: await_vercel
+        uses: UnlyEd/github-action-await-vercel@v1
         with:
-          token: ${{ secrets.VERCEL_TOKEN }}
-          project-id: ${{ secrets.VERCEL_PROJECT_ID }}
+          vercel_token: ${{ secrets.VERCEL_TOKEN }}
 
       - name: Print Vercel Deployment URL
         run: |
