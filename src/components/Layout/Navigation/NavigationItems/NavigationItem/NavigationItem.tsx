@@ -39,7 +39,12 @@ export default function NavigationItem({
   let content = (
     <NavigationMenuItem>
       <NavigationMenuLink asChild>
-        <Link href={href} className={linkClasses} onClick={onLinkClick}>
+        <Link
+          href={href}
+          className={linkClasses}
+          onClick={onLinkClick}
+          data-testid={id}
+        >
           <span
             className={`inline-block ${contentClasses} ${activeLinkClasses} text-[18px] leading-[1]`}
           >
