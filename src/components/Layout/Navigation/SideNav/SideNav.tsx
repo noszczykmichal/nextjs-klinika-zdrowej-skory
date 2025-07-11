@@ -56,6 +56,8 @@ export default function SideNav({ onBackdropClick, navData }: SideNavProps) {
       >
         <aside
           className="xs:w-[60vw] fixed top-0 right-0 z-[12] flex h-[100vh] w-[80vw] flex-col justify-center bg-white shadow-[var(--custom-box-shadow)] sm:w-[50vw]"
+          aria-label="Main mobile navigation"
+          aria-hidden={!isMenuOpen}
           ref={nodeRef}
         >
           <NavigationItems
