@@ -1,0 +1,88 @@
+name: CI/CD Pipeline
+
+on:
+  push:
+    branches:
+      - dev
+      - main
+
+jobs:
+  # Job for linting the codebase.
+  lint:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+          cache: "npm"
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Run Lint
+        run: npm run lint
+
+  # Job for running Cypress component tests.
+  component-tests:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+          cache: "npm"
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Install Cypress
+        run: npm install cypress
+
+      - name: Run Cypress Component Tests
+        run: npm run cypress:run-component
+
+  e2e-tests:
+    runs-on: ubuntu-latest
+    needs: [lint, component-tests]
+    environment:
+      name: Vercel
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+          cache: "npm"
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Install Cypress
+        run: npm install cypress
+
+      - name: Wait for Vercel Deployment
+        id: vercel_deployment
+        uses: vercel/actions/wait-for-deployment@v1
+        with:
+          token: ${{ secrets.VERCEL_TOKEN }}
+          project-id: ${{ secrets.VERCEL_PROJECT_ID }}
+
+      - name: Print Vercel Deployment URL
+        run: |
+          echo "Vercel Deployment URL: ${{ steps.vercel_deployment.outputs.url }}"
+
+      - name: Run Cypress E2E Tests # Executes Cypress E2E tests.
+        uses: cypress-io/github-action@v6 # Official Cypress GitHub Action.
+        with:
+          wait-on: ${{ steps.vercel_deployment.outputs.url }}
+          env: |
+            CYPRESS_BASE_URL: ${{ steps.vercel_deployment.outputs.url }}
