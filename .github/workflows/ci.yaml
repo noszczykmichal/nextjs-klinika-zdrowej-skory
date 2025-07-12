@@ -63,7 +63,7 @@ jobs:
         uses: patrickedqvist/wait-for-vercel-preview@v1.3.1
         id: waitFor200
         with:
-          token: ${{ secrets.GITHUB_TOKEN }}
+          token: ${{ secrets.VERCEL_TOKEN }}
           max_timeout: 60
 
       - name: Print Vercel Preview URL
