@@ -60,7 +60,7 @@ jobs:
         run: npm install --legacy-peer-deps
 
       - name: Waiting for 200 from the Vercel Preview
-        uses: amerfarooq/wait-for-vercel-preview@v1.0.0
+        uses: amerfarooq/wait-for-vercel-preview@v1.0.1
         id: waitFor200
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
