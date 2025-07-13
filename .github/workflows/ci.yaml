@@ -59,17 +59,16 @@ jobs:
       - name: Install dependencies
         run: npm install --legacy-peer-deps
 
-      - name: Waiting for 200 from the Vercel Preview
-        uses: amerfarooq/wait-for-vercel-preview@v1.0.1
-        id: waitFor200
+      - run: sleep 30
+      - name: vercel-preview-url
+        uses: zentered/vercel-preview-url@v1.1.9
+        id: vercel_preview_url
+        env:
+          VERCEL_TOKEN: ${{ secrets.VERCEL_TOKEN }}
         with:
-          token: ${{ secrets.GITHUB_TOKEN }}
-          max_timeout: 60
-          vercel_protection_bypass_header: ${{ secrets.VERCEL_AUTOMATION_BYPASS_SECRET }}
-
-      - name: Print Vercel Preview URL
-        run: |
-          echo "Vercel Preview URL: ${{ steps.waitFor200.outputs.url }}"
+          vercel_project_id: ${{ secrets.VERCEL_PROJECT_ID_ }}
+      - name: Get URL
+        run: echo "https://${{ steps.vercel_preview_url.outputs.preview_url }}"
 
       - name: Run Cypress E2E Tests
         uses: cypress-io/github-action@v6
