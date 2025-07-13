@@ -26,7 +26,7 @@
     "clsx": "^2.1.1",
     "embla-carousel-autoplay": "^8.6.0",
     "embla-carousel-react": "^8.6.0",
-    "final-form": "^4.20.10",
+    "final-form": "^5.0.0",
     "lucide-react": "^0.483.0",
     "next": "^15.3.2",
     "next-sanity": "^9.9.5",
