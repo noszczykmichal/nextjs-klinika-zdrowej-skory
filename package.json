@@ -7,7 +7,10 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
-    "cypress:open": "cypress open"
+    "cypress:open": "cypress open",
+    "cypress:run": "cypress run",
+    "cypress:run-e2e": "cypress run --e2e",
+    "cypress:run-component": "cypress run --component"
   },
   "dependencies": {
     "@icons-pack/react-simple-icons": "^12.3.0",
@@ -23,14 +26,14 @@
     "clsx": "^2.1.1",
     "embla-carousel-autoplay": "^8.6.0",
     "embla-carousel-react": "^8.6.0",
-    "final-form": "^4.20.10",
+    "final-form": "^5.0.0",
     "lucide-react": "^0.483.0",
     "next": "^15.3.2",
     "next-sanity": "^9.9.5",
     "react": "^19.1.0",
     "react-countdown-circle-timer": "^3.2.1",
     "react-dom": "^19.1.0",
-    "react-final-form": "^6.5.9",
+    "react-final-form": "^7.0.0",
     "react-remove-scroll": "^2.7.1",
     "react-transition-group": "^4.4.5",
     "scrollreveal": "^4.0.9",
