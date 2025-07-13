@@ -4,7 +4,7 @@ import { CSSTransition } from "react-transition-group";
 import Loader from "@/components/ui/custom/Loader/Loader";
 
 interface LoaderMessageProps {
-  submitting: boolean;
+  submitting: boolean | undefined;
 }
 
 export default function LoaderMessage({ submitting }: LoaderMessageProps) {

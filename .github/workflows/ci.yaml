@@ -73,6 +73,7 @@ jobs:
       - name: Run Cypress E2E Tests
         uses: cypress-io/github-action@v6
         with:
+          install-command: npm install --legacy-peer-deps
           wait-on: ${{ steps.waitFor200.outputs.url }}
         env:
           CYPRESS_BASE_URL: ${{ steps.waitFor200.outputs.url }}
