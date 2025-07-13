@@ -74,6 +74,6 @@ jobs:
         uses: cypress-io/github-action@v6
         with:
           install-command: npm install --legacy-peer-deps
-          wait-on: ${{ steps.waitFor200.outputs.url }}
+          wait-on: "https://${{ steps.vercel_preview_url.outputs.preview_url }}"
         env:
-          CYPRESS_BASE_URL: ${{ steps.waitFor200.outputs.url }}
+          CYPRESS_BASE_URL: "https://${{ steps.vercel_preview_url.outputs.preview_url }}"
