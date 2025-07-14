@@ -83,29 +83,29 @@ describe("Navigation", () => {
       );
     });
 
-    // it("should navigate to the correct page when clicking a link inside an expanded accordion in mobile navigation", () => {
-    //   const holisticTreatmentsLink = `${accordionItemElement} a:contains('Holistyczne zabiegi na twarz')`;
-    //   const laserTherapyLink = `${accordionItemElement} a:contains('Laseroterapia')`;
+    it("should navigate to the correct page when clicking a link inside an expanded accordion in mobile navigation", () => {
+      const holisticTreatmentsLink = `${accordionItemElement} a:contains('Holistyczne zabiegi na twarz')`;
+      const laserTherapyLink = `${accordionItemElement} a:contains('Laseroterapia')`;
 
-    //   cy.get(hamburgerElement).click();
-    //   cy.get(accordionTriggerElement).click();
+      cy.get(hamburgerElement).click();
+      cy.get(accordionTriggerElement).click();
 
-    //   cy.get(holisticTreatmentsLink).should("be.visible");
-    //   cy.get(holisticTreatmentsLink).click();
-    //   cy.url({ timeout: 8000 }).should(
-    //     "include",
-    //     "/zabiegi/holistyczne-zabiegi-na-twarz",
-    //   );
-    //   cy.contains("h1", "Holistyczne zabiegi na twarz").should("be.visible");
+      cy.get(holisticTreatmentsLink).should("be.visible");
+      cy.get(holisticTreatmentsLink).click();
+      cy.url({ timeout: 8000 }).should(
+        "include",
+        "/zabiegi/holistyczne-zabiegi-na-twarz",
+      );
+      cy.contains("h1", "Holistyczne zabiegi na twarz").should("be.visible");
 
-    //   cy.visit("/");
-    //   cy.get(hamburgerElement).click();
-    //   cy.get(accordionTriggerElement).click();
+      cy.visit("/");
+      cy.get(hamburgerElement).click();
+      cy.get(accordionTriggerElement).click();
 
-    //   cy.get(laserTherapyLink).should("be.visible");
-    //   cy.get(laserTherapyLink).click();
-    //   cy.url({ timeout: 8000 }).should("include", "/zabiegi/laseroterapia");
-    //   cy.contains("h1", "Laseroterapia").should("be.visible");
-    // });
+      cy.get(laserTherapyLink).should("be.visible");
+      cy.get(laserTherapyLink).click();
+      cy.url({ timeout: 8000 }).should("include", "/zabiegi/laseroterapia");
+      cy.contains("h1", "Laseroterapia").should("be.visible");
+    });
   });
 });
