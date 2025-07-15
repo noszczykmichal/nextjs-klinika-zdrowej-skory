@@ -34,7 +34,7 @@ export default async function RootLayout({
   );
 
   return (
-    <html lang="pl">
+    <html lang="pl" style={{ scrollBehavior: "auto" }}>
       <body className={`${montserrat.className} antialiased`}>
         <Navigation navData={treatmentGroups} />
         <div id="overlay-root" />

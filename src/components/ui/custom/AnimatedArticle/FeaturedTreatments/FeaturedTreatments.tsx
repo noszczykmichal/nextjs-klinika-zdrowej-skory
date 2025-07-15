@@ -1,5 +1,5 @@
 import { ListItemData } from "@/types/types";
-import TreatmentCard from "@/components/ui/custom/AnimatedArticle/AnimatedArticleContent/FeaturedTreatments/TreatmentCard/TreatmentCard";
+import TreatmentCard from "@/components/ui/custom/AnimatedArticle/FeaturedTreatments/TreatmentCard/TreatmentCard";
 
 interface FeaturedTreatmentsProps {
   treatmentsData: ListItemData[];
