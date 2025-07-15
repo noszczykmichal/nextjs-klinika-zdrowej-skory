@@ -2,7 +2,7 @@ import { client } from "@/sanity/client";
 
 import LayoutWrapper from "@/components/Layout/LayoutWrapper/LayoutWrapper";
 import { PostDetails } from "@/types/types";
-import PostContentWrapper from "@/components/BlogPage/Category/PostPage/PostContentWrapper/PostContentWrapper";
+import Post from "@/components/BlogPage/Category/PostPage/Post/Post";
 
 const POST_QUERY = `*[_type == "post" && slug.current == $slug]{altForMainImage, publishedAt, mainImage, title, summary, postContent, category->{title, categorySlug}, treatment->{treatmentSlug, treatmentGroup->{groupSlug}}, treatmentGroup->{groupSlug}}[0]`;
 
@@ -36,7 +36,7 @@ export default async function PostPage({
 
   return (
     <LayoutWrapper breadcrumbData={routesData}>
-      <PostContentWrapper postData={post} />
+      <Post postData={post} />
     </LayoutWrapper>
   );
 }
