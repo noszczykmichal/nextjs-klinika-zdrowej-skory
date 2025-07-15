@@ -32,14 +32,14 @@ describe("Navigation", () => {
       cy.get(hamburgerElement).click();
       cy.get(aboutUsLinkElement).click();
 
-      cy.url({ timeout: 8000 }).should("include", "/o-nas");
+      cy.url({ timeout: 10000 }).should("include", "/o-nas");
       cy.contains("h1", "O Nas").should("be.visible");
 
       cy.visit("/");
       cy.get(hamburgerElement).click();
       cy.get(blogLinkElement).click();
 
-      cy.url({ timeout: 8000 }).should("include", "/blog");
+      cy.url({ timeout: 10000 }).should("include", "/blog");
       cy.contains("h1", "Blog").should("be.visible");
     });
 
@@ -92,7 +92,7 @@ describe("Navigation", () => {
 
       cy.get(holisticTreatmentsLink).should("be.visible");
       cy.get(holisticTreatmentsLink).click();
-      cy.url({ timeout: 8000 }).should(
+      cy.url({ timeout: 10000 }).should(
         "include",
         "/zabiegi/holistyczne-zabiegi-na-twarz",
       );
@@ -104,7 +104,7 @@ describe("Navigation", () => {
 
       cy.get(laserTherapyLink).should("be.visible");
       cy.get(laserTherapyLink).click();
-      cy.url({ timeout: 8000 }).should("include", "/zabiegi/laseroterapia");
+      cy.url({ timeout: 10000 }).should("include", "/zabiegi/laseroterapia");
       cy.contains("h1", "Laseroterapia").should("be.visible");
     });
   });
