@@ -1,9 +1,5 @@
 @import url("./variables.css");
 
-html {
-  scroll-behavior: smooth !important;
-}
-
 *:focus-visible {
   outline: 2px dashed var(--magenta-100);
 }
