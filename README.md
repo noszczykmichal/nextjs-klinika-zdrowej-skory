@@ -32,10 +32,11 @@ performance and SEO, and will be further developed to include features such as s
 - [Next.js](https://nextjs.org/), [React](https://react.dev/), [TypeScript](https://www.typescriptlang.org/)
 - Styling: [Tailwind CSS](https://tailwindcss.com/), [ShadCN UI](https://ui.shadcn.com/)
 - Forms: [React Final Form](https://final-form.org/react)
-- Animations: [React Transition Group](https://reactcommunity.org/react-transition-group/), [ScrollReveal](https://scrollrevealjs.org/)
+- Animations: [React Transition Group](https://reactcommunity.org/react-transition-group/), [NextReveal](https://github.com/ritmillio/next-reveal)
 - SVGs: [SVGR](https://react-svgr.com/)
 - CMS: [Sanity](https://www.sanity.io/)
 - Code Quality: [ESLint](https://eslint.org/), [Prettier](https://prettier.io/)
+- Testing: [Cypress](https://www.cypress.io/)
 - CI/CD: [Vercel](https://vercel.com/docs) for automated deployments via GitHub integration (zero-config setup)
 
 ## Setup
