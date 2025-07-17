@@ -53,7 +53,7 @@ export default function Navigation({ navData }: NavigationProps) {
   return (
     <UIContextProvider>
       <header className={`px-[10px] md:px-[42px] ${attachedClasses.join(" ")}`}>
-        <nav className="mx-auto flex w-full max-w-[1300px] items-center justify-between py-[20px]">
+        <div className="mx-auto flex w-full max-w-[1300px] items-center justify-between py-[20px]">
           <Logo
             className="h-[40px] w-full fill-[var(--gray-100)]"
             id="header-logo"
@@ -72,7 +72,7 @@ export default function Navigation({ navData }: NavigationProps) {
             <Hamburger onClick={clickHandler} />
           </div>
           <SideNav onBackdropClick={clickHandler} navData={navData} />
-        </nav>
+        </div>
       </header>
     </UIContextProvider>
   );
