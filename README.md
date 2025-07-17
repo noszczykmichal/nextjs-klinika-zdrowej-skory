@@ -12,6 +12,12 @@ A fully functional website for a small business in the wellness industry, develo
   <a href="https://www.olganoszczyk.pl/" target="_blank">Live demo</a>
 </p>
 
+<p align="center">
+  <a href="https://github.com/noszczykmichal/nextjs-klinika-zdrowej-skory/actions/workflows/ci.yaml">
+    <img alt="CI status" src="https://github.com/noszczykmichal/nextjs-klinika-zdrowej-skory/actions/workflows/ci.yaml/badge.svg" />
+  </a>
+</p>
+
 ![demo](https://raw.githubusercontent.com/noszczykmichal/nextjs-klinika-zdrowej-skory/main/src/assets/demo-healthy-skin-clinic.png)
 
 ## Table of Contents
@@ -37,7 +43,7 @@ performance and SEO, and will be further developed to include features such as s
 - CMS: [Sanity](https://www.sanity.io/)
 - Code Quality: [ESLint](https://eslint.org/), [Prettier](https://prettier.io/)
 - Testing: [Cypress](https://www.cypress.io/)
-- CI/CD: [Vercel](https://vercel.com/docs) for automated deployments via GitHub integration (zero-config setup)
+- CI/CD: Custom GitHub Actions pipeline (linting, component testing, e2e testing) → [Vercel](https://vercel.com/) handles final build & deployment
 
 ## Setup
 
