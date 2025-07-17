@@ -1,4 +1,69 @@
 describe("Navigation", () => {
+  describe("on Desktop Viewport", () => {
+    const mainNavigationElement = 'nav[aria-label="Main"]';
+    const aboutUsLinkDesktop = `${mainNavigationElement} a[data-testid="o-nas"]`;
+    const blogLinkDesktop = `${mainNavigationElement} a[data-testid="blog"]`;
+    const dropDownTrigger = `${mainNavigationElement} button[data-slot="navigation-menu-trigger"]`;
+    const dropDownElement = 'div[data-slot="navigation-menu-content"]';
+
+    beforeEach(() => {
+      cy.viewport(1920, 1080);
+      cy.visit("/");
+    });
+
+    it("should correctly display desktop navigation and allow to navigate to correct page when a link is clicked", () => {
+      cy.get(mainNavigationElement).should("be.visible");
+
+      cy.get(aboutUsLinkDesktop).click();
+      cy.url({ timeout: 10000 }).should("include", "/o-nas");
+      cy.contains("h1", "O Nas").should("be.visible");
+
+      cy.visit("/");
+      cy.get(blogLinkDesktop).click();
+      cy.url({ timeout: 10000 }).should("include", "/blog");
+      cy.contains("h1", "Blog").should("be.visible");
+    });
+
+    it("should display dropdown menu when dropdown trigger is clicked and correctly update aria and data attributes", () => {
+      cy.get(dropDownElement).should("not.be.exist");
+      cy.get(dropDownTrigger).should("have.attr", "data-state", "closed");
+      cy.get(dropDownTrigger).should("have.attr", "aria-expanded", "false");
+
+      cy.get(dropDownTrigger).click();
+      cy.get(dropDownTrigger).should("have.attr", "data-state", "open");
+      cy.get(dropDownTrigger).should("have.attr", "aria-expanded", "true");
+
+      cy.get(dropDownElement).should("be.visible");
+      cy.get(dropDownElement).should("have.attr", "data-state", "open");
+    });
+
+    it("should allow to navigate to correct page when link inside dropdown is clicked", () => {
+      const aestheticCosmetologyDropdownLink = `${dropDownElement} a:contains('Kosmetologia i medycyna estetyczna')`;
+      const bodyShapingDropdownLink = `${dropDownElement} a:contains('Modelowanie sylwetki')`;
+
+      cy.get(dropDownTrigger).click();
+      cy.get(aestheticCosmetologyDropdownLink).should("be.visible");
+      cy.get(aestheticCosmetologyDropdownLink).click();
+      cy.url({ timeout: 10000 }).should(
+        "include",
+        "/zabiegi/kosmetologia-i-medycyna-estetyczna",
+      );
+      cy.contains("h1", "Kosmetologia i medycyna estetyczna").should(
+        "be.visible",
+      );
+
+      cy.visit("/");
+      cy.get(dropDownTrigger).click();
+      cy.get(bodyShapingDropdownLink).should("be.visible");
+      cy.get(bodyShapingDropdownLink).click();
+      cy.url({ timeout: 10000 }).should(
+        "include",
+        "/zabiegi/modelowanie-sylwetki",
+      );
+      cy.contains("h1", "Modelowanie sylwetki").should("be.visible");
+    });
+  });
+
   describe("on Mobile Viewport", () => {
     const hamburgerElement = 'button[aria-label="Open main navigation"]';
     const mobileNavElement = 'aside[aria-label="Main mobile navigation"]';
