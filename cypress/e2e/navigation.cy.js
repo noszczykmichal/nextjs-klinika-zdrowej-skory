@@ -7,7 +7,7 @@ describe("Navigation", () => {
     const dropDownElement = 'div[data-slot="navigation-menu-content"]';
 
     beforeEach(() => {
-      cy.viewport(1920, 1080);
+      cy.viewport("macbook-11");
       cy.visit("/");
     });
 
@@ -80,8 +80,7 @@ describe("Navigation", () => {
     const accordionTriggerElement = `${accordionItemElement} button[data-slot="accordion-trigger"]`;
 
     beforeEach(() => {
-      // Iphone HR viewport dimensions
-      cy.viewport(414, 896);
+      cy.viewport("iphone-xr");
       cy.visit("/");
     });
 
