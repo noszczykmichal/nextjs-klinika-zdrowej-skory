@@ -7,7 +7,7 @@ describe("Navigation", () => {
     const dropDownElement = 'div[data-slot="navigation-menu-content"]';
 
     beforeEach(() => {
-      cy.viewport(1920, 1080);
+      cy.viewport("macbook-11");
       cy.visit("/");
     });
 
@@ -35,6 +35,11 @@ describe("Navigation", () => {
 
       cy.get(dropDownElement).should("be.visible");
       cy.get(dropDownElement).should("have.attr", "data-state", "open");
+
+      cy.get(dropDownTrigger).click();
+      cy.get(dropDownElement).should("not.be.visible");
+      cy.get(dropDownTrigger).should("have.attr", "data-state", "closed");
+      cy.get(dropDownTrigger).should("have.attr", "aria-expanded", "false");
     });
 
     it("should allow to navigate to correct page when link inside dropdown is clicked", () => {
@@ -44,6 +49,7 @@ describe("Navigation", () => {
       cy.get(dropDownTrigger).click();
       cy.get(aestheticCosmetologyDropdownLink).should("be.visible");
       cy.get(aestheticCosmetologyDropdownLink).click();
+      cy.get(dropDownElement).should("not.be.visible");
       cy.url({ timeout: 10000 }).should(
         "include",
         "/zabiegi/kosmetologia-i-medycyna-estetyczna",
@@ -56,6 +62,7 @@ describe("Navigation", () => {
       cy.get(dropDownTrigger).click();
       cy.get(bodyShapingDropdownLink).should("be.visible");
       cy.get(bodyShapingDropdownLink).click();
+      cy.get(dropDownElement).should("not.be.visible");
       cy.url({ timeout: 10000 }).should(
         "include",
         "/zabiegi/modelowanie-sylwetki",
@@ -73,8 +80,7 @@ describe("Navigation", () => {
     const accordionTriggerElement = `${accordionItemElement} button[data-slot="accordion-trigger"]`;
 
     beforeEach(() => {
-      // Iphone HR viewport dimensions
-      cy.viewport(414, 896);
+      cy.viewport("iphone-xr");
       cy.visit("/");
     });
 
@@ -90,13 +96,14 @@ describe("Navigation", () => {
 
       cy.get(hamburgerElement).click();
       cy.get(hamburgerElement).should("have.attr", "aria-expanded", "false");
-      cy.get(mobileNavElement).should("not.be.exist");
+      cy.get(mobileNavElement).should("not.be.visible");
     });
 
     it("should navigate to the correct page when clicking a link in the mobile navigation", () => {
       cy.get(hamburgerElement).click();
       cy.get(aboutUsLinkElement).click();
 
+      cy.get(mobileNavElement).should("not.be.visible");
       cy.url({ timeout: 10000 }).should("include", "/o-nas");
       cy.contains("h1", "O Nas").should("be.visible");
 
@@ -104,11 +111,12 @@ describe("Navigation", () => {
       cy.get(hamburgerElement).click();
       cy.get(blogLinkElement).click();
 
+      cy.get(mobileNavElement).should("not.be.visible");
       cy.url({ timeout: 10000 }).should("include", "/blog");
       cy.contains("h1", "Blog").should("be.visible");
     });
 
-    it("should open mobile nav, update data and aria attribute values", () => {
+    it("should toggle accordion state in mobile navigation and correctly update data-state and aria-expanded attributes", () => {
       cy.get(hamburgerElement).click();
 
       cy.get(accordionItemElement).should("be.visible");
@@ -157,6 +165,8 @@ describe("Navigation", () => {
 
       cy.get(holisticTreatmentsLink).should("be.visible");
       cy.get(holisticTreatmentsLink).click();
+
+      cy.get(mobileNavElement).should("not.be.visible");
       cy.url({ timeout: 10000 }).should(
         "include",
         "/zabiegi/holistyczne-zabiegi-na-twarz",
@@ -169,6 +179,8 @@ describe("Navigation", () => {
 
       cy.get(laserTherapyLink).should("be.visible");
       cy.get(laserTherapyLink).click();
+
+      cy.get(mobileNavElement).should("not.be.visible");
       cy.url({ timeout: 10000 }).should("include", "/zabiegi/laseroterapia");
       cy.contains("h1", "Laseroterapia").should("be.visible");
     });
