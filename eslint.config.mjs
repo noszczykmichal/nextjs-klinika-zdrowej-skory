@@ -12,6 +12,18 @@ const eslintConfig = [
       "plugin:jsx-a11y/recommended",
       "prettier",
     ],
+
+    rules: {
+      "no-unused-vars": ["error", { argsIgnorePattern: "^_" }],
+      "@typescript-eslint/no-unused-vars": [
+        "error",
+        { argsIgnorePattern: "^_" },
+      ],
+    },
+    ignorePatterns: [
+      "src/components/ui/sidebar.tsx",
+      "src/components/ui/carousel.tsx",
+    ],
   }),
 ];
 
