@@ -87,7 +87,7 @@ describe("Navigation", () => {
     it("should display mobile navigation, allow clicking the hamburger to toggle the mobile navigation, and update ARIA attributes correctly on small screens", () => {
       cy.get(hamburgerElement).should("be.visible");
       cy.get(hamburgerElement).should("have.attr", "aria-expanded", "false");
-      cy.get(mobileNavElement).should("not.be.visible");
+      cy.get(mobileNavElement).should("not.be.exist");
 
       cy.get(hamburgerElement).click();
       cy.get(hamburgerElement).should("have.attr", "aria-expanded", "true");
