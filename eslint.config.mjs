@@ -20,6 +20,10 @@ const eslintConfig = [
         { argsIgnorePattern: "^_" },
       ],
     },
+    ignorePatterns: [
+      "src/components/ui/sidebar.tsx",
+      "src/components/ui/carousel.tsx",
+    ],
   }),
 ];
 

@@ -15,7 +15,7 @@ interface FormContentProps {
   handleSubmit: () => void;
   submitting: boolean | undefined;
   submitSucceeded: boolean | undefined;
-  formRestartHandler: (initialValues?: Partial<InputData> | undefined) => void;
+  formRestartHandler: (_initialValues?: Partial<InputData> | undefined) => void;
   errorData: { errorMessage: string; hasError: boolean };
   setErrorHandler: Dispatch<SetStateAction<ErrorState>>;
 }
