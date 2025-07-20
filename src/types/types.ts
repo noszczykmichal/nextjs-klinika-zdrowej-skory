@@ -78,7 +78,7 @@ export interface FormFieldConfig {
   type?: HTMLInputTypeAttribute;
   name: string;
   label: string;
-  validator: (v: string) => string | undefined;
+  validator: (_v: string) => string | undefined;
 }
 
 export interface ErrorState {
