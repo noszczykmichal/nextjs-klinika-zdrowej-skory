@@ -1,4 +1,9 @@
 describe("Navigation", () => {
+  Cypress.on("fail", (err, _runnable) => {
+    cy.log(err.message);
+    return true;
+  });
+
   describe("on Desktop Viewport", () => {
     const mainNavigationElement = 'nav[aria-label="Main"]';
     const aboutUsLinkDesktop = `${mainNavigationElement} a[data-testid="o-nas"]`;

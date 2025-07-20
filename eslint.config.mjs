@@ -12,6 +12,14 @@ const eslintConfig = [
       "plugin:jsx-a11y/recommended",
       "prettier",
     ],
+
+    rules: {
+      "no-unused-vars": ["error", { argsIgnorePattern: "^_" }],
+      "@typescript-eslint/no-unused-vars": [
+        "error",
+        { argsIgnorePattern: "^_" },
+      ],
+    },
   }),
 ];
 
