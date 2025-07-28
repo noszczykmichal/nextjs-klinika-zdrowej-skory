@@ -25,7 +25,7 @@ describe("Navigation", () => {
     });
 
     it("should display dropdown menu when dropdown trigger is clicked and correctly update aria and data attributes", () => {
-      cy.get(dropDownElement).should("not.be.exist");
+      cy.get(dropDownElement).should("not.exist");
       cy.get(dropDownTrigger).should("have.attr", "data-state", "closed");
       cy.get(dropDownTrigger).should("have.attr", "aria-expanded", "false");
 
@@ -87,7 +87,7 @@ describe("Navigation", () => {
     it("should display mobile navigation, allow clicking the hamburger to toggle the mobile navigation, and update ARIA attributes correctly on small screens", () => {
       cy.get(hamburgerElement).should("be.visible");
       cy.get(hamburgerElement).should("have.attr", "aria-expanded", "false");
-      cy.get(mobileNavElement).should("not.be.exist");
+      cy.get(mobileNavElement).should("not.exist");
 
       cy.get(hamburgerElement).click();
       cy.get(hamburgerElement).should("have.attr", "aria-expanded", "true");
