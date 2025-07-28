@@ -1,12 +1,19 @@
 /* eslint-disable jsx-a11y/no-static-element-interactions */
 /* eslint-disable jsx-a11y/click-events-have-key-events */
-import useMobileNav from "@/hooks/useMobileNav";
+import {
+  useMobileNav as _useMobileNav,
+  UseMobileNavType,
+} from "@/hooks/useMobileNav";
 
 interface BackdropProps {
   onClick: () => void;
+  useMobileNav?: UseMobileNavType;
 }
 
-export default function Backdrop({ onClick }: BackdropProps) {
+export default function Backdrop({
+  onClick,
+  useMobileNav = _useMobileNav,
+}: BackdropProps) {
   const { onClickHandler: onBackdropClick, isMenuOpen } = useMobileNav();
 
   const handler = () => {

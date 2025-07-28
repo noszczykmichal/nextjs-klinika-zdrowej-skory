@@ -1,13 +1,20 @@
 "use client";
 
-import useMobileNav from "@/hooks/useMobileNav";
+import {
+  useMobileNav as _useMobileNav,
+  UseMobileNavType,
+} from "@/hooks/useMobileNav";
 import "@/styles/globals.css";
 
 interface HamburgerProps {
   onClick: () => void;
+  useMobileNav?: UseMobileNavType;
 }
 
-export default function Hamburger({ onClick }: HamburgerProps) {
+export default function Hamburger({
+  onClick,
+  useMobileNav = _useMobileNav,
+}: HamburgerProps) {
   const { isMenuOpen, onClickHandler } = useMobileNav();
 
   let boxInnerClasses = "box__inner box__inner--side-nav-closed";

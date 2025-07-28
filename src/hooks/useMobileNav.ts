@@ -2,7 +2,9 @@ import { useContext, useCallback } from "react";
 
 import UIContext from "@/store/uiContext";
 
-export default function useMobileNav() {
+export type UseMobileNavType = typeof useMobileNav;
+
+export function useMobileNav() {
   const { isMenuOpen, menuToggleHandler } = useContext(UIContext);
   const onClickHandler = useCallback(() => {
     const body = document.body;
