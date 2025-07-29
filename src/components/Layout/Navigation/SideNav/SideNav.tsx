@@ -7,15 +7,23 @@ import { CSSTransition } from "react-transition-group";
 import Backdrop from "@/components/Layout/Navigation/SideNav/Backdrop/Backdrop";
 import UIContext from "@/store/uiContext";
 import { NavigationItems } from "../NavigationItems/NavigationItems";
-import useMobileNav from "@/hooks/useMobileNav";
+import {
+  useMobileNav as _useMobileNav,
+  UseMobileNavType,
+} from "@/hooks/useMobileNav";
 import { ListItemData } from "@/types/types";
 
 interface SideNavProps {
   onBackdropClick: () => void;
   navData: Partial<ListItemData>[];
+  useMobileNav?: UseMobileNavType;
 }
 
-export default function SideNav({ onBackdropClick, navData }: SideNavProps) {
+export default function SideNav({
+  onBackdropClick,
+  navData,
+  useMobileNav = _useMobileNav,
+}: SideNavProps) {
   const { isMenuOpen, closeSideNavHandler } = useContext(UIContext);
   const nodeRef = useRef<HTMLElement | null>(null);
   const { onClickHandler } = useMobileNav();

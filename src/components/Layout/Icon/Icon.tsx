@@ -9,7 +9,7 @@ interface IconProps {
   className: string;
 }
 
-function Icon({ name, href, className }: IconProps) {
+export default function Icon({ name, href, className }: IconProps) {
   const renderSwitch = (name: IconVariants) => {
     switch (name) {
       case "facebook":
@@ -31,5 +31,3 @@ function Icon({ name, href, className }: IconProps) {
     </a>
   );
 }
-
-export default Icon;
