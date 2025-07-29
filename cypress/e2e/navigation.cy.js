@@ -1,5 +1,5 @@
 Cypress.on("uncaught:exception", (err, _runnable) => {
-  console.error("Uncaught exception in this spec:", err.message);
+  console.error("Uncaught exception in this spec:", err);
   return true;
 });
 
