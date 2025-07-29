@@ -46,10 +46,10 @@ describe("Navigation", () => {
       const dropdownLink = `${dropDownElement} a`;
 
       cy.get(dropDownTrigger).click();
-      cy.get(dropDownLink)
+      cy.get(dropdownLink)
         .contains("Kosmetologia i medycyna estetyczna")
         .should("be.visible");
-      cy.get(dropDownLink)
+      cy.get(dropdownLink)
         .contains("Kosmetologia i medycyna estetyczna")
         .click();
       cy.get(dropDownElement).should("not.be.visible");
