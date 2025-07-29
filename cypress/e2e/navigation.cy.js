@@ -43,12 +43,15 @@ describe("Navigation", () => {
     });
 
     it("should allow to navigate to correct page when link inside dropdown is clicked", () => {
-      const aestheticCosmetologyDropdownLink = `${dropDownElement} a:contains('Kosmetologia i medycyna estetyczna')`;
-      const bodyShapingDropdownLink = `${dropDownElement} a:contains('Modelowanie sylwetki')`;
+      const dropdownLink = `${dropDownElement} a`;
 
       cy.get(dropDownTrigger).click();
-      cy.get(aestheticCosmetologyDropdownLink).should("be.visible");
-      cy.get(aestheticCosmetologyDropdownLink).click();
+      cy.get(dropDownLink)
+        .contains("Kosmetologia i medycyna estetyczna")
+        .should("be.visible");
+      cy.get(dropDownLink)
+        .contains("Kosmetologia i medycyna estetyczna")
+        .click();
       cy.get(dropDownElement).should("not.be.visible");
       cy.url({ timeout: 10000 }).should(
         "include",
@@ -60,8 +63,10 @@ describe("Navigation", () => {
 
       cy.visit("/");
       cy.get(dropDownTrigger).click();
-      cy.get(bodyShapingDropdownLink).should("be.visible");
-      cy.get(bodyShapingDropdownLink).click();
+      cy.get(dropdownLink)
+        .contains("Modelowanie sylwetki")
+        .should("be.visible");
+      cy.get(dropdownLink).contains("Modelowanie sylwetki").click();
       cy.get(dropDownElement).should("not.be.visible");
       cy.url({ timeout: 10000 }).should(
         "include",
@@ -157,14 +162,15 @@ describe("Navigation", () => {
     });
 
     it("should navigate to the correct page when clicking a link inside an expanded accordion in mobile navigation", () => {
-      const holisticTreatmentsLink = `${accordionItemElement} a:contains('Holistyczne zabiegi na twarz')`;
-      const laserTherapyLink = `${accordionItemElement} a:contains('Laseroterapia')`;
+      const accordionLink = `${accordionItemElement} a`;
 
       cy.get(hamburgerElement).click();
       cy.get(accordionTriggerElement).click();
 
-      cy.get(holisticTreatmentsLink).should("be.visible");
-      cy.get(holisticTreatmentsLink).click();
+      cy.get(accordionLink)
+        .contains("Holistyczne zabiegi na twarz")
+        .should("be.visible");
+      cy.get(accordionLink).contains("Holistyczne zabiegi na twarz").click();
 
       cy.get(mobileNavElement).should("not.be.visible");
       cy.url({ timeout: 10000 }).should(
@@ -177,8 +183,8 @@ describe("Navigation", () => {
       cy.get(hamburgerElement).click();
       cy.get(accordionTriggerElement).click();
 
-      cy.get(laserTherapyLink).should("be.visible");
-      cy.get(laserTherapyLink).click();
+      cy.get(accordionLink).contains("Laseroterapia").should("be.visible");
+      cy.get(accordionLink).contains("Laseroterapia").click();
 
       cy.get(mobileNavElement).should("not.be.visible");
       cy.url({ timeout: 10000 }).should("include", "/zabiegi/laseroterapia");
