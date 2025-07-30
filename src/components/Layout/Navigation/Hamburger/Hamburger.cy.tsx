@@ -1,12 +1,12 @@
 import { mount } from "cypress/react";
 
 import Hamburger from "@/components/Layout/Navigation/Hamburger/Hamburger";
-import createUseMobileNavMock from "../../../../../cypress/mock/createUseMobileNavMock.ts";
+import mockUseMobileNav from "@cypress/mock/mockUseMobileNav";
 
 describe("Hamburger Component", () => {
   const hamburgerElement = 'button[aria-label="Open main navigation"]';
   const boxInnerElement = ".box__inner";
-  let onClickSpy;
+  let onClickSpy: () => void;
 
   beforeEach(() => {
     onClickSpy = cy.stub().as("onClickSpy");
@@ -36,7 +36,7 @@ describe("Hamburger Component", () => {
   });
 
   it("applies correct styles when the mobile menu is CLOSED", () => {
-    const useMobileNavMock = createUseMobileNavMock(false);
+    const useMobileNavMock = mockUseMobileNav(false);
 
     cy.mount(
       <Hamburger onClick={onClickSpy} useMobileNav={useMobileNavMock} />,
@@ -50,7 +50,7 @@ describe("Hamburger Component", () => {
   });
 
   it("applies correct styles when the mobile menu is OPEN", () => {
-    const useMobileNavMock = createUseMobileNavMock(true);
+    const useMobileNavMock = mockUseMobileNav(true);
 
     cy.mount(
       <Hamburger onClick={onClickSpy} useMobileNav={useMobileNavMock} />,
@@ -61,5 +61,15 @@ describe("Hamburger Component", () => {
       "not.have.class",
       "box__inner--side-nav-closed",
     );
+  });
+
+  it("calls both onClickSpy and useMobileNavClickHandler when clicked", () => {
+    const useMobileNavMock = mockUseMobileNav(false);
+
+    mount(<Hamburger onClick={onClickSpy} useMobileNav={useMobileNavMock} />);
+
+    cy.get(hamburgerElement).click();
+    cy.get("@onClickSpy").should("have.been.calledOnce");
+    cy.get("@useMobileNavClickHandler").should("have.been.calledOnce");
   });
 });

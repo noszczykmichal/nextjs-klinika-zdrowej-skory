@@ -26,6 +26,8 @@
     "clsx": "^2.1.1",
     "embla-carousel-autoplay": "^8.6.0",
     "embla-carousel-react": "^8.6.0",
+    "eslint-import-resolver-typescript": "^4.4.4",
+    "eslint-plugin-import": "^2.32.0",
     "final-form": "^5.0.0",
     "lucide-react": "^0.483.0",
     "next": "^15.3.2",

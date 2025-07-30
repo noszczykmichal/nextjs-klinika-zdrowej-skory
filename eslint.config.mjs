@@ -14,6 +14,14 @@ const eslintConfig = [
     ],
 
     rules: {
+      "import/extensions": [
+        "error",
+        "ignorePackages",
+        {
+          ts: "never",
+          tsx: "never",
+        },
+      ],
       "no-unused-vars": ["error", { argsIgnorePattern: "^_" }],
       "@typescript-eslint/no-unused-vars": [
         "error",
@@ -24,6 +32,11 @@ const eslintConfig = [
       "src/components/ui/sidebar.tsx",
       "src/components/ui/carousel.tsx",
     ],
+    settings: {
+      "import/resolver": {
+        typescript: {},
+      },
+    },
   }),
 ];
 
