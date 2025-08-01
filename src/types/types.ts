@@ -22,36 +22,6 @@ export interface CategoryDetails {
   categorySlug: { current: string };
 }
 
-export interface ListItemData {
-  _id: string;
-  altForMainImage: string;
-  category: CategoryDetails;
-  mainImage: ImageDetails;
-  slug: { current: string };
-  summary: string;
-  title: string;
-}
-
-export interface PostDetails extends ListItemData {
-  publishedAt: string;
-  postContent: PortableTextBlock[];
-  treatmentGroup: {
-    groupSlug: { current: string };
-  };
-  treatment: {
-    treatmentGroup: { groupSlug: { current: string } };
-    treatmentSlug: { current: string };
-  };
-}
-
-export interface TreatmentProcedure {
-  altForMainImage: string;
-  description: PortableTextBlock[];
-  mainImage: ImageDetails;
-  summary: string;
-  title: string;
-}
-
 export interface PlaiceholderResult {
   img: {
     src: string;
@@ -73,6 +43,33 @@ export interface BannerData {
   imageData: PlaiceholderResult | null;
   altForMainImage: string;
   summary: string;
+}
+
+export interface ListItemData extends BannerData {
+  _id: string;
+  category: CategoryDetails;
+  slug: { current: string };
+  mainImage: ImageDetails;
+}
+
+export interface PostDetails extends ListItemData {
+  publishedAt: string;
+  postContent: PortableTextBlock[];
+  treatmentGroup: {
+    groupSlug: { current: string };
+  };
+  treatment: {
+    treatmentGroup: { groupSlug: { current: string } };
+    treatmentSlug: { current: string };
+  };
+}
+
+export interface TreatmentProcedure {
+  altForMainImage: string;
+  description: PortableTextBlock[];
+  mainImage: ImageDetails;
+  summary: string;
+  title: string;
 }
 
 export interface TreatmentDetails extends TreatmentProcedure {
