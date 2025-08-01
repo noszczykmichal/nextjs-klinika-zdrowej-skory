@@ -33,6 +33,7 @@
     "next": "^15.3.2",
     "next-reveal": "^1.0.6",
     "next-sanity": "^9.9.5",
+    "plaiceholder": "^3.0.0",
     "react": "^19.1.0",
     "react-countdown-circle-timer": "^3.2.1",
     "react-dom": "^19.1.0",

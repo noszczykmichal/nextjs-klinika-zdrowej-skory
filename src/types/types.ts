@@ -52,6 +52,29 @@ export interface TreatmentProcedure {
   title: string;
 }
 
+export interface PlaiceholderResult {
+  img: {
+    src: string;
+    height: number;
+    width: number;
+  };
+
+  base64: string;
+  pixels: {
+    a?: number;
+    r: number;
+    g: number;
+    b: number;
+  }[][];
+}
+
+export interface BannerData {
+  title: string;
+  imageData: PlaiceholderResult | null;
+  altForMainImage: string;
+  summary: string;
+}
+
 export interface TreatmentDetails extends TreatmentProcedure {
   treatmentGroup: { groupSlug: { current: string }; title: string };
 }

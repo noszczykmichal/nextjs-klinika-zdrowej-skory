@@ -14,6 +14,10 @@ export default function MainBanner({
   customImage,
   customAlt,
 }: MainBannerProps) {
+  const blurData = customImage
+    ? customImage.blurDataURL
+    : bannerRightImage.blurDataURL;
+
   return (
     <div className="mt-[20px] h-[625px] rounded-[var(--big-border-radius)] sm:mt-0 sm:flex sm:h-[70vh] sm:max-h-[500px]">
       <div className="relative flex h-[40%] items-center justify-center sm:h-full sm:w-[50%]">
@@ -22,6 +26,8 @@ export default function MainBanner({
           src={pkBannerLeft}
           alt=""
           fill
+          placeholder="blur"
+          blurDataURL={pkBannerLeft.blurDataURL}
           priority
           sizes="(max-width: 640px) 100vw, 50vw"
         />
@@ -32,6 +38,8 @@ export default function MainBanner({
       <div className="relative h-[60%] sm:h-full sm:w-[50%]">
         <Image
           src={customImage || bannerRightImage}
+          placeholder="blur"
+          blurDataURL={blurData}
           alt={
             customAlt ||
             "Olga Noszczyk trzymająca ampułko strzykawkę z preparatem do stymulacji skóry."
