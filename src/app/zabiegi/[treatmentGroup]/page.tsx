@@ -5,6 +5,8 @@ import { ListItemData, TreatmentGroup } from "@/types/types";
 import BannerWithSummary from "@/components/ui/custom/BannerWithSummary/BannerWithSummary";
 import AsideNavigation from "@/components/ui/custom/AsideNavigation/AsideNavigation";
 import AnimatedArticle from "@/components/ui/custom/AnimatedArticle/AnimatedArticle";
+import { urlFor } from "@/utils/clientSideUtils";
+import { getImage } from "@/utils/serverSideUtils";
 
 const TREATMENT_GROUP_QUERY = `*[_type== 'treatmentGroup' && groupSlug.current==$treatmentGroup][0]{_id, altForMainImage, description, groupSlug, mainImage, title, summary}`;
 const FEATURED_TREATMENTS_QUERY = `*[_type=='treatment' && treatmentGroup->groupSlug.current==$treatmentGroup]{_id, altForMainImage, mainImage, title, summary, "slug": treatmentSlug, "category": treatmentGroup->{title, "categorySlug": groupSlug} }`;
@@ -31,11 +33,13 @@ export default async function TreatmentGroupPage({
   const { title, description, altForMainImage, mainImage, summary } =
     treatmentGroupData;
 
+  const mainImageUrl = urlFor(mainImage)!.fit("max").url();
+  const imageData = await getImage(mainImageUrl);
+
   const bannerData = {
     title,
-    description,
     altForMainImage,
-    mainImage,
+    imageData,
     summary,
   };
 

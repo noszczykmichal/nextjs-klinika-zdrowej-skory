@@ -1,6 +1,3 @@
-import imageUrlBuilder from "@sanity/image-url";
-import type { SanityImageSource } from "@sanity/image-url/lib/types/types";
-import { client } from "@/sanity/client";
 import Image from "next/image";
 
 import { PostDetails } from "@/types/types";
@@ -11,22 +8,15 @@ interface PostPageBannerProps {
   postDetails: PostDetails;
 }
 
-const { projectId, dataset } = client.config();
-
-const urlFor = (source: SanityImageSource) =>
-  projectId && dataset
-    ? imageUrlBuilder({ projectId, dataset }).image(source)
-    : null;
-
 export default function PostPageBanner({ postDetails }: PostPageBannerProps) {
   const {
-    mainImage,
+    imageData,
     title: headerText,
     treatment,
     treatmentGroup: group,
     altForMainImage,
   } = postDetails;
-  const imageUrl = mainImage ? urlFor(mainImage)!.fit("max").url() : null;
+
   const treatmentGroup = treatment?.treatmentGroup.groupSlug.current;
 
   const wrapperClasses = "min-w-[130px] h-[36px] xs:min-w-[180px]";
@@ -41,6 +31,8 @@ export default function PostPageBanner({ postDetails }: PostPageBannerProps) {
           src={pkBannerLeft}
           alt=""
           fill
+          placeholder="blur"
+          blurDataURL={pkBannerLeft.blurDataURL}
           priority
           sizes="(max-width: 640px) 100vw, 50vw"
         />
@@ -79,10 +71,12 @@ export default function PostPageBanner({ postDetails }: PostPageBannerProps) {
         </div>
       </div>
       <div className="relative h-[60%] sm:h-full sm:w-[50%]">
-        {imageUrl && (
+        {imageData && (
           <Image
-            src={imageUrl}
+            src={imageData.img.src}
             alt={altForMainImage}
+            placeholder={imageData?.base64 ? "blur" : "empty"}
+            blurDataURL={imageData.base64}
             fill
             className="rounded-br-[var(--big-border-radius)] rounded-bl-[var(--big-border-radius)] object-cover sm:rounded-tr-[var(--big-border-radius)] sm:rounded-bl-none"
             priority

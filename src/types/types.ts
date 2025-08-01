@@ -22,14 +22,34 @@ export interface CategoryDetails {
   categorySlug: { current: string };
 }
 
-export interface ListItemData {
-  _id: string;
-  altForMainImage: string;
-  category: CategoryDetails;
-  mainImage: ImageDetails;
-  slug: { current: string };
-  summary: string;
+export interface PlaiceholderResult {
+  img: {
+    src: string;
+    height: number;
+    width: number;
+  };
+
+  base64: string;
+  pixels: {
+    a?: number;
+    r: number;
+    g: number;
+    b: number;
+  }[][];
+}
+
+export interface BannerData {
   title: string;
+  imageData: PlaiceholderResult | null;
+  altForMainImage: string;
+  summary: string;
+}
+
+export interface ListItemData extends BannerData {
+  _id: string;
+  category: CategoryDetails;
+  slug: { current: string };
+  mainImage: ImageDetails;
 }
 
 export interface PostDetails extends ListItemData {

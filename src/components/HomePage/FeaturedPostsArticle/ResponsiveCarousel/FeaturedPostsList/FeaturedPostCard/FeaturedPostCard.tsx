@@ -3,7 +3,7 @@ import { Card, CardContent } from "@/components/ui/card";
 import Image from "next/image";
 
 import { ListItemData } from "@/types/types";
-import { urlFor } from "@/utils/utilityFunctions";
+import { urlFor } from "@/utils/clientSideUtils";
 import StyledButton from "@/components/ui/custom/StyledButton/StyledButton";
 
 interface FeaturedPostCardProps {

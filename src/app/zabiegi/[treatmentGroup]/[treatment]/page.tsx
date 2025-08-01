@@ -5,6 +5,8 @@ import LayoutWrapper from "@/components/Layout/LayoutWrapper/LayoutWrapper";
 import BannerWithSummary from "@/components/ui/custom/BannerWithSummary/BannerWithSummary";
 import AsideNavigation from "@/components/ui/custom/AsideNavigation/AsideNavigation";
 import AnimatedArticle from "@/components/ui/custom/AnimatedArticle/AnimatedArticle";
+import { urlFor } from "@/utils/clientSideUtils";
+import { getImage } from "@/utils/serverSideUtils";
 
 const TREATMENT_QUERY = `*[_type == "treatment" && treatmentSlug.current == $treatment][0]{
   mainImage,
@@ -54,6 +56,16 @@ export default async function TreatmentPage({
     altForMainImage,
   } = treatment;
 
+  const mainImageUrl = urlFor(mainImage)!.fit("max").url();
+  const imageData = await getImage(mainImageUrl);
+
+  const bannerData = {
+    title: treatmentName,
+    altForMainImage,
+    imageData,
+    summary,
+  };
+
   const routesData = [
     {
       routeName: "Zabiegi",
@@ -67,14 +79,6 @@ export default async function TreatmentPage({
       routeName: `${treatmentName}`,
     },
   ];
-
-  const bannerData = {
-    mainImage,
-    title: treatmentName,
-    summary,
-    altForMainImage,
-    description,
-  };
 
   return (
     <LayoutWrapper breadcrumbData={routesData}>

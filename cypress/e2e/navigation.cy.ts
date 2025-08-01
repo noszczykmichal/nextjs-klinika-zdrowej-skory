@@ -11,6 +11,7 @@ describe("Navigation", () => {
     beforeEach(() => {
       cy.viewport("macbook-11");
       cy.visit("/");
+      cy.wait(1000);
     });
 
     it("should correctly display desktop navigation and allow to navigate to correct page when a link is clicked", () => {
@@ -38,7 +39,7 @@ describe("Navigation", () => {
       cy.get(dropDownElement).should("be.visible");
       cy.get(dropDownElement).should("have.attr", "data-state", "open");
 
-      cy.get(dropDownTrigger).click();
+      cy.get(`h1:contains('Poznaj Nas bliżej')`).click();
       cy.get(dropDownElement).should("not.be.visible");
       cy.get(dropDownTrigger).should("have.attr", "data-state", "closed");
       cy.get(dropDownTrigger).should("have.attr", "aria-expanded", "false");
