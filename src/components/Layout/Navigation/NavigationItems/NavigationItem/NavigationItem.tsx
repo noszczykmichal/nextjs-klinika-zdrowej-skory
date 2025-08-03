@@ -1,6 +1,6 @@
 "use client";
 
-import { usePathname } from "next/navigation";
+import { usePathname as _usePathname } from "next/navigation";
 import Link from "next/link";
 
 import {
@@ -11,11 +11,14 @@ import { ListItemData } from "@/types/types";
 import NavigationItemWithDropDown from "@/components/Layout/Navigation/NavigationItems/NavigationItem/NavigationItemWithDropDown/NavigationItemWithDropDown";
 import NavigationItemWithAccordion from "@/components/Layout/Navigation/NavigationItems/NavigationItem/NavigationItemWithAccordion/NavigationItemWithAccordion";
 
+type UsePathnameType = typeof _usePathname;
+
 interface NavigationItemProps {
   linkData: { id: string; label: string; href: string };
   navData: Partial<ListItemData>[];
   isMobileNav: boolean;
   onLinkClick?: () => void;
+  usePathname?: UsePathnameType;
 }
 
 export default function NavigationItem({
@@ -23,6 +26,7 @@ export default function NavigationItem({
   navData,
   isMobileNav,
   onLinkClick,
+  usePathname = _usePathname,
 }: NavigationItemProps) {
   const { id, label, href } = linkData;
   const pathname = usePathname();

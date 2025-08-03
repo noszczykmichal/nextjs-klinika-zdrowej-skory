@@ -4,6 +4,16 @@ import type { NextConfig } from "next";
 /* webpack config from https://react-svgr.com/docs/next/ */
 
 const nextConfig: NextConfig = {
+  images: {
+    remotePatterns: [
+      {
+        protocol: "https",
+        hostname: "cdn.sanity.io",
+        port: "",
+        pathname: "/images/ddh0mvo4/**",
+      },
+    ],
+  },
   webpack(config) {
     // Grab the existing rule that handles SVG imports
     const fileLoaderRule = config.module.rules.find(
@@ -40,15 +50,18 @@ const nextConfig: NextConfig = {
 
     return config;
   },
-  images: {
-    remotePatterns: [
-      {
-        protocol: "https",
-        hostname: "cdn.sanity.io",
-        port: "",
-        pathname: "/images/ddh0mvo4/**",
+  turbopack: {
+    rules: {
+      "*.svg": {
+        loaders: [
+          {
+            loader: "@svgr/webpack",
+            options: {},
+          },
+        ],
+        as: "*.ts",
       },
-    ],
+    },
   },
 };
 

@@ -1,13 +1,5 @@
-"use client";
-
-import dynamic from "next/dynamic";
-
+import ListItem from "./ListItem/ListItem";
 import { ListItemData } from "@/types/types";
-
-const ListItem = dynamic(
-  () => import("@/components/ui/custom/ItemsList/ListItem/ListItem"),
-  { ssr: false },
-);
 
 interface ItemsListProps {
   listItemsData: ListItemData[];

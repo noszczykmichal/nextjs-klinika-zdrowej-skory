@@ -1,19 +1,16 @@
 import Image from "next/image";
 
-import { TreatmentProcedure } from "@/types/types";
+import { BannerData } from "@/types/types";
 import pkBannerLeft from "@/assets/pk-banner-left.jpg";
-import { urlFor } from "@/utils/utilityFunctions";
 
 interface BannerWithSummaryProps {
-  bannerData: TreatmentProcedure;
+  bannerData: BannerData;
 }
 
 export default function BannerWithSummary({
   bannerData,
 }: BannerWithSummaryProps) {
-  const { mainImage, title: headerText, summary, altForMainImage } = bannerData;
-
-  const imageUrl = mainImage ? urlFor(mainImage)!.fit("max").url() : null;
+  const { title: headerText, summary, imageData, altForMainImage } = bannerData;
 
   return (
     <div className="mt-[20px] h-[625px] rounded-[var(--big-border-radius)] sm:mt-0 sm:flex sm:h-[70vh] sm:max-h-[500px]">
@@ -23,6 +20,8 @@ export default function BannerWithSummary({
           src={pkBannerLeft}
           alt=""
           fill
+          placeholder="blur"
+          blurDataURL={pkBannerLeft.blurDataURL}
           priority
           sizes="(max-width: 640px) 100vw, 50vw"
         />
@@ -34,10 +33,12 @@ export default function BannerWithSummary({
         </div>
       </div>
       <div className="relative h-[60%] sm:h-full sm:w-[50%]">
-        {imageUrl && (
+        {imageData && (
           <Image
-            src={imageUrl}
+            src={imageData.img.src}
             alt={altForMainImage}
+            placeholder={imageData?.base64 ? "blur" : "empty"}
+            blurDataURL={imageData.base64}
             fill
             className="rounded-br-[var(--big-border-radius)] rounded-bl-[var(--big-border-radius)] object-cover sm:rounded-tr-[var(--big-border-radius)] sm:rounded-bl-none"
             priority

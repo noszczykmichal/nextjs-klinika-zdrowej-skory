@@ -3,7 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "next dev",
+    "dev": "next dev --turbopack",
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
@@ -26,11 +26,14 @@
     "clsx": "^2.1.1",
     "embla-carousel-autoplay": "^8.6.0",
     "embla-carousel-react": "^8.6.0",
+    "eslint-import-resolver-typescript": "^4.4.4",
+    "eslint-plugin-import": "^2.32.0",
     "final-form": "^5.0.0",
     "lucide-react": "^0.483.0",
     "next": "^15.3.2",
     "next-reveal": "^1.0.6",
     "next-sanity": "^9.9.5",
+    "plaiceholder": "^3.0.0",
     "react": "^19.1.0",
     "react-countdown-circle-timer": "^3.2.1",
     "react-dom": "^19.1.0",
@@ -41,7 +44,7 @@
     "tailwind-merge": "^3.0.2",
     "tw-animate-css": "^1.2.4",
     "validator": "^13.15.15",
-    "webpack": "^5.99.9"
+    "webpack": "^5.101.0"
   },
   "devDependencies": {
     "@svgr/webpack": "^8.1.0",

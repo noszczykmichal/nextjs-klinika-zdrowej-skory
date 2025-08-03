@@ -1,7 +1,7 @@
 import Image from "next/image";
 import { RevealWrapper } from "next-reveal";
 
-import { urlFor } from "@/utils/utilityFunctions";
+import { urlFor } from "@/utils/clientSideUtils";
 import { ListItemData } from "@/types/types";
 import StyledButton from "@/components/ui/custom/StyledButton/StyledButton";
 
