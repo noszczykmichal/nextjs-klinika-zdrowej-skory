@@ -11,8 +11,6 @@ import { ListItemData } from "@/types/types";
 import NavigationItemWithDropDown from "@/components/Layout/Navigation/NavigationItems/NavigationItem/NavigationItemWithDropDown/NavigationItemWithDropDown";
 import NavigationItemWithAccordion from "@/components/Layout/Navigation/NavigationItems/NavigationItem/NavigationItemWithAccordion/NavigationItemWithAccordion";
 
-type UsePathnameType = typeof _usePathname;
-
 interface NavigationItemProps {
   linkData: { id: string; label: string; href: string };
   navData: Partial<ListItemData>[];
@@ -20,6 +18,8 @@ interface NavigationItemProps {
   onLinkClick?: () => void;
   usePathname?: UsePathnameType;
 }
+
+type UsePathnameType = typeof _usePathname;
 
 export default function NavigationItem({
   linkData,
@@ -66,6 +66,7 @@ export default function NavigationItem({
         navData={navData}
         linkClasses={linkClasses}
         contentClasses={contentClasses}
+        pathname={pathname}
       />
     );
   } else if (id === "zabiegi" && isMobileNav) {
@@ -76,6 +77,7 @@ export default function NavigationItem({
           navData={navData}
           onLinkClick={onLinkClick}
           contentClasses={contentClasses}
+          pathname={pathname}
         />
       </li>
     );

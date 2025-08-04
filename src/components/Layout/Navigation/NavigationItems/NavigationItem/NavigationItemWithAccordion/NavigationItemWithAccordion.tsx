@@ -1,4 +1,3 @@
-import { usePathname } from "next/navigation";
 import Link from "next/link";
 
 import { ListItemData } from "@/types/types";
@@ -14,6 +13,7 @@ interface NavigationItemWithAccordionProps {
   navData: Partial<ListItemData>[];
   onLinkClick?: () => void;
   contentClasses: string;
+  pathname: string;
 }
 
 export default function NavigationItemWithAccordion({
@@ -21,9 +21,11 @@ export default function NavigationItemWithAccordion({
   navData,
   onLinkClick,
   contentClasses,
+  pathname,
 }: NavigationItemWithAccordionProps) {
   const { label, href } = linkData;
-  const pathname = usePathname();
+  console.log("linkData:", linkData);
+  console.log("navData:", navData);
 
   const activeLinkClasses =
     `/${pathname.split("/")[1]}` === href
