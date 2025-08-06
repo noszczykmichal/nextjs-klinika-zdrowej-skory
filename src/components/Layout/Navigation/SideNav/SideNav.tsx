@@ -6,7 +6,7 @@ import { CSSTransition } from "react-transition-group";
 
 import Backdrop from "@/components/Layout/Navigation/SideNav/Backdrop/Backdrop";
 import UIContext from "@/store/uiContext";
-import { NavigationItems } from "../NavigationItems/NavigationItems";
+import NavigationItems from "../NavigationItems/NavigationItems";
 import {
   useMobileNav as _useMobileNav,
   UseMobileNavType,

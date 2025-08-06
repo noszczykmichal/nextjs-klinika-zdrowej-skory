@@ -1,11 +1,12 @@
 "use client";
 
+import { usePathname as _usePathname } from "next/navigation";
 import {
   NavigationMenu,
   NavigationMenuList,
 } from "@/components/ui/navigation-menu";
 import NavigationItem from "@/components/Layout/Navigation/NavigationItems/NavigationItem/NavigationItem";
-import { ListItemData } from "@/types/types";
+import { ListItemData, UsePathnameType } from "@/types/types";
 import { navConfig } from "@/utils/config";
 
 interface NavigationItemsProps {
@@ -14,15 +15,19 @@ interface NavigationItemsProps {
   listClasses: string;
   isMobileNav?: boolean;
   onClick?: () => void;
+  usePathname?: UsePathnameType;
 }
 
-export function NavigationItems({
+export default function NavigationItems({
   navWrapperClasses,
   navData,
   listClasses,
   isMobileNav = false,
   onClick,
+  usePathname = _usePathname,
 }: NavigationItemsProps) {
+  const pathname = usePathname();
+
   return (
     <NavigationMenu viewport={false} className={navWrapperClasses}>
       <NavigationMenuList className={listClasses}>
@@ -33,6 +38,7 @@ export function NavigationItems({
             linkData={link}
             isMobileNav={isMobileNav}
             onLinkClick={onClick}
+            pathname={pathname}
           />
         ))}
       </NavigationMenuList>

@@ -24,8 +24,6 @@ export default function NavigationItemWithAccordion({
   pathname,
 }: NavigationItemWithAccordionProps) {
   const { label, href } = linkData;
-  console.log("linkData:", linkData);
-  console.log("navData:", navData);
 
   const activeLinkClasses =
     `/${pathname.split("/")[1]}` === href

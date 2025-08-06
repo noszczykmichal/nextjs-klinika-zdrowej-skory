@@ -1,5 +1,6 @@
 import { HTMLInputTypeAttribute } from "react";
 import type { PortableTextBlock } from "@portabletext/types";
+import { usePathname } from "next/navigation";
 
 export type IconVariants = "facebook" | "instagram" | "b-visit";
 
@@ -105,3 +106,5 @@ export interface ErrorState {
   errorMessage: string;
   hasError: boolean;
 }
+
+export type UsePathnameType = typeof usePathname;

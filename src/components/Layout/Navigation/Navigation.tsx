@@ -4,7 +4,7 @@ import { useState, useEffect, useMemo } from "react";
 import { Smartphone } from "lucide-react";
 
 import { UIContextProvider } from "@/store/uiContext";
-import { NavigationItems } from "@/components/Layout/Navigation/NavigationItems/NavigationItems";
+import NavigationItems from "@/components/Layout/Navigation/NavigationItems/NavigationItems";
 import Hamburger from "@/components/Layout/Navigation/Hamburger/Hamburger";
 import SideNav from "@/components/Layout/Navigation/SideNav/SideNav";
 import useScrollDirection from "@/hooks/useScrollDirection";
