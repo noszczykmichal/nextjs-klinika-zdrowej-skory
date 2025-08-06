@@ -2,9 +2,10 @@ import { mount } from "cypress/react";
 
 import NavigationItems from "./NavigationItems";
 import { mockNavData } from "@cypress/mock/navigation";
+import { navConfig } from "@/utils/config";
 
 describe("NavigationItems component", () => {
-  it("render", () => {
+  it("renders an unordered list with the same number of child elements as navConfig items", () => {
     cy.viewport("macbook-11");
     const mockPathname = () => "/";
 
@@ -19,6 +20,6 @@ describe("NavigationItems component", () => {
     cy.get('ul[data-slot="navigation-menu-list"]').should("exist");
     cy.get('ul[data-slot="navigation-menu-list"]')
       .children("li")
-      .should("have.length", 4);
+      .should("have.length", navConfig.length);
   });
 });
