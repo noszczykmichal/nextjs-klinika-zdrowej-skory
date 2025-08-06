@@ -9,7 +9,7 @@ describe("NavigationItem Component", () => {
   const mainNavigationElement = 'nav[aria-label="Main"]';
 
   it("applies active link styling when pathname matches href", () => {
-    const mockUsePathname = () => "/blog";
+    const mockPathname = "/blog";
     const mockLinkData = {
       id: "blog",
       label: "Blog",
@@ -22,7 +22,7 @@ describe("NavigationItem Component", () => {
           linkData={mockLinkData}
           navData={mockNavData}
           isMobileNav={true}
-          usePathname={mockUsePathname}
+          pathname={mockPathname}
         />
       </NavigationMenu>,
     );
@@ -33,7 +33,7 @@ describe("NavigationItem Component", () => {
   });
 
   it("does not apply active styling when pathname does not match href", () => {
-    const mockUsePathname = () => "/zabiegi";
+    const mockPathname = "/zabiegi";
     const mockLinkData = {
       id: "blog",
       label: "Blog",
@@ -46,7 +46,7 @@ describe("NavigationItem Component", () => {
           linkData={mockLinkData}
           navData={mockNavData}
           isMobileNav={true}
-          usePathname={mockUsePathname}
+          pathname={mockPathname}
         />
       </NavigationMenu>,
     );
@@ -61,7 +61,7 @@ describe("NavigationItem Component", () => {
     const dropDownTrigger = `${mainNavigationElement} button[data-slot="navigation-menu-trigger"]`;
     const dropDownElement = 'div[data-slot="navigation-menu-content"]';
 
-    const mockUsePathname = () => "/zabiegi";
+    const mockPathname = "/zabiegi";
 
     const mockLinkData = {
       id: "zabiegi",
@@ -75,7 +75,7 @@ describe("NavigationItem Component", () => {
           linkData={mockLinkData}
           navData={mockNavData}
           isMobileNav={false}
-          usePathname={mockUsePathname}
+          pathname={mockPathname}
         />
       </NavigationMenu>,
     );
@@ -88,7 +88,7 @@ describe("NavigationItem Component", () => {
   it("renders the accordion navigation for 'zabiegi' when isMobileNav is true", () => {
     const accordionContentElement = 'div[data-slot="accordion-content"]';
     const accordionTriggerElement = 'button[data-slot="accordion-trigger"]';
-    const mockUsePathname = () => "/zabiegi";
+    const mockPathname = "/zabiegi";
 
     const mockLinkData = {
       id: "zabiegi",
@@ -102,7 +102,7 @@ describe("NavigationItem Component", () => {
           linkData={mockLinkData}
           navData={mockNavData}
           isMobileNav={true}
-          usePathname={mockUsePathname}
+          pathname={mockPathname}
         />
       </NavigationMenu>,
     );
@@ -118,7 +118,7 @@ describe("NavigationItem Component", () => {
     const mockLinkData = { id: "o-nas", label: "O nas", href: "/o-nas" };
     const aboutUsLink = `${mainNavigationElement} a:contains(${mockLinkData.label})`;
     const onClickSpy = cy.stub().as("onClickSpy");
-    const mockUsePathname = () => "/";
+    const mockPathname = "/";
 
     const onClickHandler = (e?: MouseEvent) => {
       e?.preventDefault();
@@ -131,7 +131,7 @@ describe("NavigationItem Component", () => {
           linkData={mockLinkData}
           navData={mockNavData}
           isMobileNav={false}
-          usePathname={mockUsePathname}
+          pathname={mockPathname}
           onLinkClick={onClickHandler}
         />
       </NavigationMenu>,
