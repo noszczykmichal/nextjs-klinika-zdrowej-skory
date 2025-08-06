@@ -6,8 +6,10 @@ import {
   NavigationMenuList,
 } from "@/components/ui/navigation-menu";
 import NavigationItem from "@/components/Layout/Navigation/NavigationItems/NavigationItem/NavigationItem";
-import { ListItemData, UsePathnameType } from "@/types/types";
+import { ListItemData } from "@/types/types";
 import { navConfig } from "@/utils/config";
+
+export type UsePathnameType = typeof _usePathname;
 
 interface NavigationItemsProps {
   navWrapperClasses?: string;

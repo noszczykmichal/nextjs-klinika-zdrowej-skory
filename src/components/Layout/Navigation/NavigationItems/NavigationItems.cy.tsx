@@ -6,12 +6,13 @@ import { mockNavData } from "@cypress/mock/navigation";
 describe("NavigationItems component", () => {
   it("render", () => {
     cy.viewport("macbook-11");
+    const mockPathname = () => "/";
 
     mount(
       <NavigationItems
         navData={mockNavData}
         listClasses="hidden h-full gap-0 lg:flex"
-        usePathname={() => "/"}
+        usePathname={mockPathname}
       />,
     );
 
