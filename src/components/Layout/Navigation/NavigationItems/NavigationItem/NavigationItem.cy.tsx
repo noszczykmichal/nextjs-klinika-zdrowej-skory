@@ -1,3 +1,4 @@
+import { MouseEvent } from "react";
 import { mount } from "cypress/react";
 
 import { mockNavData } from "@cypress/mock/navigation";
@@ -5,8 +6,10 @@ import { NavigationMenu } from "@/components/ui/navigation-menu";
 import NavigationItem from "@/components/Layout/Navigation/NavigationItems/NavigationItem/NavigationItem";
 
 describe("NavigationItem Component", () => {
+  const mainNavigationElement = 'nav[aria-label="Main"]';
+
   it("applies active link styling when pathname matches href", () => {
-    const mockUsePathname = () => "/blog";
+    const mockPathname = "/blog";
     const mockLinkData = {
       id: "blog",
       label: "Blog",
@@ -19,7 +22,7 @@ describe("NavigationItem Component", () => {
           linkData={mockLinkData}
           navData={mockNavData}
           isMobileNav={true}
-          usePathname={mockUsePathname}
+          pathname={mockPathname}
         />
       </NavigationMenu>,
     );
@@ -30,7 +33,7 @@ describe("NavigationItem Component", () => {
   });
 
   it("does not apply active styling when pathname does not match href", () => {
-    const mockUsePathname = () => "/zabiegi";
+    const mockPathname = "/zabiegi";
     const mockLinkData = {
       id: "blog",
       label: "Blog",
@@ -43,7 +46,7 @@ describe("NavigationItem Component", () => {
           linkData={mockLinkData}
           navData={mockNavData}
           isMobileNav={true}
-          usePathname={mockUsePathname}
+          pathname={mockPathname}
         />
       </NavigationMenu>,
     );
@@ -54,12 +57,11 @@ describe("NavigationItem Component", () => {
     );
   });
 
-  it("renders dropdown navigation structure for 'zabiegi' on desktop", () => {
-    const mainNavigationElement = 'nav[aria-label="Main"]';
+  it("renders the dropdown navigation for 'zabiegi' when isMobileNav is false", () => {
     const dropDownTrigger = `${mainNavigationElement} button[data-slot="navigation-menu-trigger"]`;
     const dropDownElement = 'div[data-slot="navigation-menu-content"]';
 
-    const mockUsePathname = () => "/zabiegi";
+    const mockPathname = "/zabiegi";
 
     const mockLinkData = {
       id: "zabiegi",
@@ -73,7 +75,7 @@ describe("NavigationItem Component", () => {
           linkData={mockLinkData}
           navData={mockNavData}
           isMobileNav={false}
-          usePathname={mockUsePathname}
+          pathname={mockPathname}
         />
       </NavigationMenu>,
     );
@@ -83,9 +85,10 @@ describe("NavigationItem Component", () => {
     cy.get(dropDownElement).should("exist");
   });
 
-  it("shows the accordion navigation structure for 'zabiegi' on mobile", () => {
-    const accordionItemElement = 'div[data-slot="accordion-item"]';
-    const mockUsePathname = () => "/zabiegi";
+  it("renders the accordion navigation for 'zabiegi' when isMobileNav is true", () => {
+    const accordionContentElement = 'div[data-slot="accordion-content"]';
+    const accordionTriggerElement = 'button[data-slot="accordion-trigger"]';
+    const mockPathname = "/zabiegi";
 
     const mockLinkData = {
       id: "zabiegi",
@@ -99,12 +102,43 @@ describe("NavigationItem Component", () => {
           linkData={mockLinkData}
           navData={mockNavData}
           isMobileNav={true}
-          usePathname={mockUsePathname}
+          pathname={mockPathname}
         />
       </NavigationMenu>,
     );
 
-    cy.get(accordionItemElement).should("exist");
-    cy.get(accordionItemElement).should("have.attr", "data-state", "closed");
+    cy.get(accordionContentElement).should("not.be.visible");
+    cy.get(accordionContentElement).should("have.attr", "data-state", "closed");
+    cy.get(accordionTriggerElement).click();
+    cy.get(accordionContentElement).should("be.visible");
+    cy.get(accordionContentElement).should("have.attr", "data-state", "open");
+  });
+
+  it("correctly invokes onClick handler when the link is clicked", () => {
+    const mockLinkData = { id: "o-nas", label: "O nas", href: "/o-nas" };
+    const aboutUsLink = `${mainNavigationElement} a:contains(${mockLinkData.label})`;
+    const onClickSpy = cy.stub().as("onClickSpy");
+    const mockPathname = "/";
+
+    const onClickHandler = (e?: MouseEvent) => {
+      e?.preventDefault();
+      onClickSpy();
+    };
+
+    mount(
+      <NavigationMenu>
+        <NavigationItem
+          linkData={mockLinkData}
+          navData={mockNavData}
+          isMobileNav={false}
+          pathname={mockPathname}
+          onLinkClick={onClickHandler}
+        />
+      </NavigationMenu>,
+    );
+
+    cy.get(aboutUsLink).should("exist");
+    cy.get(aboutUsLink).click();
+    cy.get("@onClickSpy").should("have.been.calledOnce");
   });
 });
