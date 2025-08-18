@@ -1,6 +1,5 @@
-const mockUseMobileNav = (isMenuOpen: boolean) => () => {
+const mockUseMobileNav = () => () => {
   return {
-    isMenuOpen: isMenuOpen,
     onClickHandler: cy.stub().as("useMobileNavClickHandler"),
   };
 };

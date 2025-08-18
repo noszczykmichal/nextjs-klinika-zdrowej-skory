@@ -1,9 +1,13 @@
 /* eslint-disable jsx-a11y/no-static-element-interactions */
 /* eslint-disable jsx-a11y/click-events-have-key-events */
+
+import { useContext } from "react";
+
 import {
   useMobileNav as _useMobileNav,
   UseMobileNavType,
 } from "@/hooks/useMobileNav";
+import UIContext from "@/store/uiContext";
 
 interface BackdropProps {
   onClick: () => void;
@@ -14,7 +18,8 @@ export default function Backdrop({
   onClick,
   useMobileNav = _useMobileNav,
 }: BackdropProps) {
-  const { onClickHandler: onBackdropClick, isMenuOpen } = useMobileNav();
+  const { isMenuOpen } = useContext(UIContext);
+  const { onClickHandler: onBackdropClick } = useMobileNav();
 
   const handler = () => {
     onClick();
