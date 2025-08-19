@@ -53,6 +53,7 @@ describe("Hamburger Component", () => {
   });
 
   it("applies correct styles when the mobile menu is CLOSED", () => {
+    cy.viewport("iphone-xr");
     const useMobileNavMock = mockUseMobileNav();
 
     cy.mount(
@@ -69,16 +70,17 @@ describe("Hamburger Component", () => {
   });
 
   it("applies correct styles when the mobile menu is OPEN", () => {
+    cy.viewport("iphone-xr");
     const useMobileNavMock = mockUseMobileNav();
 
-    const customValue = {
+    const customProviderValue = {
       isMenuOpen: true,
       menuToggleHandler: () => {},
       closeSideNavHandler: () => {},
     };
 
     cy.mount(
-      <MockProvider value={customValue}>
+      <MockProvider value={customProviderValue}>
         <Hamburger onClick={onClickSpy} useMobileNav={useMobileNavMock} />
       </MockProvider>,
     );
@@ -91,6 +93,7 @@ describe("Hamburger Component", () => {
   });
 
   it("calls both onClickSpy and useMobileNavClickHandler when clicked", () => {
+    cy.viewport("iphone-xr");
     const useMobileNavMock = mockUseMobileNav();
 
     mount(<Hamburger onClick={onClickSpy} useMobileNav={useMobileNavMock} />);

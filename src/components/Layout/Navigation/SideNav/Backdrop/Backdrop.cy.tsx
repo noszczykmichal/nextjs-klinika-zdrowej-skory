@@ -13,6 +13,7 @@ describe("Backdrop component", () => {
   };
 
   beforeEach(() => {
+    cy.viewport("iphone-xr");
     onClickSpy = cy.stub().as("onClickSpy");
   });
 
