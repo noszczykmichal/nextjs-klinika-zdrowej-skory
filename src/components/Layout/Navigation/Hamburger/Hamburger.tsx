@@ -1,5 +1,7 @@
 "use client";
+import { useContext } from "react";
 
+import UIContext from "@/store/uiContext";
 import {
   useMobileNav as _useMobileNav,
   UseMobileNavType,
@@ -15,7 +17,8 @@ export default function Hamburger({
   onClick,
   useMobileNav = _useMobileNav,
 }: HamburgerProps) {
-  const { isMenuOpen, onClickHandler } = useMobileNav();
+  const { onClickHandler } = useMobileNav();
+  const { isMenuOpen } = useContext(UIContext);
 
   let boxInnerClasses = "box__inner box__inner--side-nav-closed";
 

@@ -9,7 +9,13 @@ import {
   ReactNode,
 } from "react";
 
-const UIContext = createContext({
+export interface UIContextValueInterface {
+  isMenuOpen: boolean;
+  menuToggleHandler: () => void;
+  closeSideNavHandler: () => void;
+}
+
+const UIContext = createContext<UIContextValueInterface>({
   isMenuOpen: false,
   menuToggleHandler: () => {},
   closeSideNavHandler: () => {},
