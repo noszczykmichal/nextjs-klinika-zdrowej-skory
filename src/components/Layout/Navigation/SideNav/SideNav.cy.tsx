@@ -27,7 +27,7 @@ describe("SideNav component", () => {
     useMobileNavMock = mockUseMobileNav();
   });
 
-  it("renders overlay when isMenuOpen is TRUE", () => {
+  it("renders an overlay when isMenuOpen is TRUE", () => {
     const customProviderValue = {
       isMenuOpen: true,
       menuToggleHandler: () => {},
@@ -48,7 +48,7 @@ describe("SideNav component", () => {
     cy.get(backdrop).should("exist");
   });
 
-  it("renders overlay when isMenuOpen is FALSE", () => {
+  it("does not render an overlay when isMenuOpen is FALSE", () => {
     mount(
       <MockProvider>
         <SideNav
@@ -63,7 +63,7 @@ describe("SideNav component", () => {
     cy.get(backdrop).should("not.exist");
   });
 
-  it("renders mobile nav  and sets aria-hidden to false when isMenuOpen is TRUE", () => {
+  it("renders mobile nav and sets aria-hidden to false when isMenuOpen is TRUE", () => {
     const customProviderValue = {
       isMenuOpen: true,
       menuToggleHandler: () => {},
