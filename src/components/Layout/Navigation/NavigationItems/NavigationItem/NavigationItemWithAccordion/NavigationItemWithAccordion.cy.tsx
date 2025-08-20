@@ -16,6 +16,10 @@ describe("NavigationItemWithAccordion Component", () => {
   };
   const pathname = "/zabiegi/holistyczne-zabiegi-na-twarz";
 
+  beforeEach(() => {
+    cy.viewport("iphone-xr");
+  });
+
   it("applies active link styling when pathname matches href", () => {
     mount(
       <NavigationMenu>

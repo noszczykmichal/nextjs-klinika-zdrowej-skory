@@ -7,13 +7,13 @@ import { navConfig } from "@/utils/config";
 describe("NavigationItems component", () => {
   it("renders an unordered list with the same number of child elements as navConfig items", () => {
     cy.viewport("macbook-11");
-    const mockPathname = () => "/";
+    const mockPathname = "/";
 
     mount(
       <NavigationItems
         navData={mockNavData}
         listClasses="hidden h-full gap-0 lg:flex"
-        usePathname={mockPathname}
+        pathname={mockPathname}
       />,
     );
 

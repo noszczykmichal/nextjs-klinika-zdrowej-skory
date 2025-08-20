@@ -3,6 +3,7 @@
 import { useEffect, useContext, useRef } from "react";
 import { createPortal } from "react-dom";
 import { CSSTransition } from "react-transition-group";
+import { usePathname as _usePathname } from "next/navigation";
 
 import Backdrop from "@/components/Layout/Navigation/SideNav/Backdrop/Backdrop";
 import UIContext from "@/store/uiContext";
@@ -13,20 +14,25 @@ import {
 } from "@/hooks/useMobileNav";
 import { ListItemData } from "@/types/types";
 
+export type UsePathnameType = typeof _usePathname;
+
 interface SideNavProps {
   onBackdropClick: () => void;
   navData: Partial<ListItemData>[];
   useMobileNav?: UseMobileNavType;
+  usePathname?: UsePathnameType;
 }
 
 export default function SideNav({
   onBackdropClick,
   navData,
   useMobileNav = _useMobileNav,
+  usePathname = _usePathname,
 }: SideNavProps) {
   const { isMenuOpen, closeSideNavHandler } = useContext(UIContext);
   const nodeRef = useRef<HTMLElement | null>(null);
   const { onClickHandler } = useMobileNav();
+  const pathname = usePathname();
 
   useEffect(() => {
     const onResize = (e: UIEvent) => {
@@ -72,6 +78,7 @@ export default function SideNav({
             navWrapperClasses="flex-start flex h-full w-full flex-col items-center max-w-none [&>div]:h-1/2 [&>div]:w-full [&>div]:flex [&>div]:flex-col [&>div]:gap-[40px]"
             listClasses="flex flex-col h-full p-4 justify-start items-start gap-[40px]"
             navData={navData}
+            pathname={pathname}
             isMobileNav
             onClick={onClickHandler}
           />

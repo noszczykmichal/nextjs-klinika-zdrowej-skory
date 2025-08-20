@@ -29,9 +29,7 @@ A fully functional website for a small business in the wellness industry, develo
 
 ## General Information
 
-This is a fully functional website built for a small business in the wellness industry. The project leverages a modern frontend stack and integrates with a headless CMS
-(Sanity) to enable dynamic content updates. Selected routes are statically generated, while others are rendered on the fly based on live CMS data. The site is optimized for
-performance and SEO, and will be further developed to include features such as service pricing page, course enrollment, and integrated payment functionality.
+This is a fully functional website that I built and continue to maintain and develop for a small business in the wellness industry. The project leverages a modern frontend stack and integrates with a headless CMS (Sanity) to enable dynamic content updates. Selected routes are statically generated, while others are rendered on the fly based on live CMS data. The site is optimized for performance and SEO, and will be further developed to include features such as service pricing page, course enrolment, and integrated payment functionality.
 
 ## Technologies Used
 

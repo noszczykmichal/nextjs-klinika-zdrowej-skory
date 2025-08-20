@@ -17,6 +17,10 @@ describe("NavigationItemWithDropDown", () => {
     href: "/zabiegi",
   };
 
+  beforeEach(() => {
+    cy.viewport("macbook-11");
+  });
+
   it("applies active link styling when pathname matches href", () => {
     mount(
       <NavigationMenu>
