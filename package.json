@@ -11,7 +11,8 @@
     "cypress:run": "cypress run",
     "cypress:run-e2e": "cypress run --e2e",
     "test": "jest",
-    "coverage": "npm test -- --coverage --watchAll --collectCoverageFrom='src/components/**/*.{ts,tsx}'"
+    "coverage": "npm test -- --coverage --watchAll --collectCoverageFrom='src/components/**/*.{ts,tsx}'",
+    "coverage:ci": "npm test -- --coverage --collectCoverageFrom='src/components/**/*.{ts,tsx}'"
   },
   "dependencies": {
     "@icons-pack/react-simple-icons": "^12.3.0",
