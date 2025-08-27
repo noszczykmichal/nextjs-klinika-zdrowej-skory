@@ -41,7 +41,7 @@ jobs:
         run: npm install --legacy-peer-deps
 
       - name: Run Jest Component Tests
-        run: npm run coverage -- --forceExit --detectOpenHandles --maxWorkers=2
+        run: npm run coverage -- --detectOpenHandles --verbose
         timeout-minutes: 5
 
   e2e-tests:
