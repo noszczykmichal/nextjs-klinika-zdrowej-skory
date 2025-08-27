@@ -12,7 +12,6 @@ const eslintConfig = [
       "plugin:jsx-a11y/recommended",
       "prettier",
     ],
-
     rules: {
       "import/extensions": [
         "error",
@@ -37,6 +36,14 @@ const eslintConfig = [
         typescript: {},
       },
     },
+    overrides: [
+      {
+        files: ["*.d.ts"],
+        rules: {
+          "no-unused-vars": "off",
+        },
+      },
+    ],
   }),
 ];
 

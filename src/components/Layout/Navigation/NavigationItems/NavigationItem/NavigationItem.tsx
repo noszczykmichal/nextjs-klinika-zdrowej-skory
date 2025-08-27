@@ -1,5 +1,5 @@
 "use client";
-
+import { usePathname } from "next/navigation";
 import Link from "next/link";
 
 import {
@@ -14,7 +14,6 @@ interface NavigationItemProps {
   linkData: { id: string; label: string; href: string };
   navData: Partial<ListItemData>[];
   isMobileNav: boolean;
-  pathname: string;
   onLinkClick?: () => void;
 }
 
@@ -23,9 +22,9 @@ export default function NavigationItem({
   navData,
   isMobileNav,
   onLinkClick,
-  pathname,
 }: NavigationItemProps) {
   const { id, label, href } = linkData;
+  const pathname = usePathname();
 
   const linkClasses =
     "lg:px-[20px] hover:!bg-transparent focus:!bg-transparent active:!bg-transparent font-normal py-0";
@@ -62,7 +61,6 @@ export default function NavigationItem({
         navData={navData}
         linkClasses={linkClasses}
         contentClasses={contentClasses}
-        pathname={pathname}
       />
     );
   } else if (id === "zabiegi" && isMobileNav) {
@@ -73,7 +71,6 @@ export default function NavigationItem({
           navData={navData}
           onLinkClick={onLinkClick}
           contentClasses={contentClasses}
-          pathname={pathname}
         />
       </li>
     );
