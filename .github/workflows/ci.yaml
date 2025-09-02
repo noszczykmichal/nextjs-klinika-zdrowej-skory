@@ -40,8 +40,8 @@ jobs:
       - name: Install dependencies
         run: npm install --legacy-peer-deps
 
-      - name: Run Cypress Component Tests
-        run: npm run cypress:run-component
+      - name: Run Jest Component Tests
+        run: npm run coverage:ci
 
   e2e-tests:
     runs-on: ubuntu-latest

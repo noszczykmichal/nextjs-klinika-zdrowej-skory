@@ -22,7 +22,8 @@
     "paths": {
       "@/*": ["./src/*"],
       "@cypress/*": ["cypress/*"]
-    }
+    },
+    "types": ["jest", "@testing-library/jest-dom"]
   },
   "include": [
     "next-env.d.ts",
@@ -31,5 +32,5 @@
     ".next/types/**/*.ts",
     "eslint.config.mjs"
   ],
-  "exclude": ["node_modules"]
+  "exclude": ["node_modules", "cypress", "cypress.config.ts"]
 }

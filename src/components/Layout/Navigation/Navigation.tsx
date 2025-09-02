@@ -2,7 +2,6 @@
 
 import { useState, useEffect, useMemo } from "react";
 import { Smartphone } from "lucide-react";
-import { usePathname } from "next/navigation";
 
 import { UIContextProvider } from "@/store/uiContext";
 import NavigationItems from "@/components/Layout/Navigation/NavigationItems/NavigationItems";
@@ -18,7 +17,6 @@ interface NavigationProps {
 }
 
 export default function Navigation({ navData }: NavigationProps) {
-  const pathname = usePathname();
   const headerClasses = useMemo(
     () => ({
       toolbar:
@@ -62,7 +60,6 @@ export default function Navigation({ navData }: NavigationProps) {
           />
           <NavigationItems
             navData={navData}
-            pathname={pathname}
             listClasses="hidden h-full gap-0 lg:flex"
           />
           <div className="ml-[10px] flex max-w-[250px] flex-grow-[0.5] items-center justify-between lg:justify-end">

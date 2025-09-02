@@ -2,21 +2,14 @@
 import { useContext } from "react";
 
 import UIContext from "@/store/uiContext";
-import {
-  useMobileNav as _useMobileNav,
-  UseMobileNavType,
-} from "@/hooks/useMobileNav";
+import { useMobileNav } from "@/hooks/useMobileNav";
 import "@/styles/globals.css";
 
 interface HamburgerProps {
   onClick: () => void;
-  useMobileNav?: UseMobileNavType;
 }
 
-export default function Hamburger({
-  onClick,
-  useMobileNav = _useMobileNav,
-}: HamburgerProps) {
+export default function Hamburger({ onClick }: HamburgerProps) {
   const { onClickHandler } = useMobileNav();
   const { isMenuOpen } = useContext(UIContext);
 

@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 
 import { ListItemData } from "@/types/types";
 import {
@@ -13,7 +14,6 @@ interface NavigationItemWithDropDownProps {
   navData: Partial<ListItemData>[];
   linkClasses: string;
   contentClasses: string;
-  pathname: string;
 }
 
 export default function NavigationItemWithDropDown({
@@ -21,9 +21,9 @@ export default function NavigationItemWithDropDown({
   navData,
   linkClasses,
   contentClasses,
-  pathname,
 }: NavigationItemWithDropDownProps) {
   const { label, href } = linkData;
+  const pathname = usePathname();
 
   const mainLinkActiveIndicator =
     `/${pathname.split("/")[1]}` === href

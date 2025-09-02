@@ -12,7 +12,6 @@ interface NavigationItemsProps {
   navWrapperClasses?: string;
   navData: Partial<ListItemData>[];
   listClasses: string;
-  pathname: string;
   isMobileNav?: boolean;
   onClick?: () => void;
 }
@@ -21,7 +20,6 @@ export default function NavigationItems({
   navWrapperClasses,
   navData,
   listClasses,
-  pathname,
   isMobileNav = false,
   onClick,
 }: NavigationItemsProps) {
@@ -35,7 +33,6 @@ export default function NavigationItems({
             linkData={link}
             isMobileNav={isMobileNav}
             onLinkClick={onClick}
-            pathname={pathname}
           />
         ))}
       </NavigationMenuList>

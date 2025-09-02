@@ -29,7 +29,10 @@ export default async function AsideNavigation({
     : treatmentGroups;
 
   return (
-    <aside className={`h-full w-full ${className}`}>
+    <aside
+      className={`h-full w-full ${className}`}
+      data-testid="aside-navigation"
+    >
       <h4 className="text-[24px]">Zobacz również:</h4>
       <ul>
         {updatedList.map((group) => (
