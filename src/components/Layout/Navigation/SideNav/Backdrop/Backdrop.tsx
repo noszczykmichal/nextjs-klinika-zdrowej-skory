@@ -3,21 +3,14 @@
 
 import { useContext } from "react";
 
-import {
-  useMobileNav as _useMobileNav,
-  UseMobileNavType,
-} from "@/hooks/useMobileNav";
+import { useMobileNav } from "@/hooks/useMobileNav";
 import UIContext from "@/store/uiContext";
 
 interface BackdropProps {
   onClick: () => void;
-  useMobileNav?: UseMobileNavType;
 }
 
-export default function Backdrop({
-  onClick,
-  useMobileNav = _useMobileNav,
-}: BackdropProps) {
+export default function Backdrop({ onClick }: BackdropProps) {
   const { isMenuOpen } = useContext(UIContext);
   const { onClickHandler: onBackdropClick } = useMobileNav();
 

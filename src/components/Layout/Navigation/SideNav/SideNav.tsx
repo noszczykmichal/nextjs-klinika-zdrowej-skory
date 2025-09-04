@@ -3,15 +3,12 @@
 import { useEffect, useContext, useRef } from "react";
 import { createPortal } from "react-dom";
 import { CSSTransition } from "react-transition-group";
-import { usePathname as _usePathname } from "next/navigation";
 
 import Backdrop from "@/components/Layout/Navigation/SideNav/Backdrop/Backdrop";
 import UIContext from "@/store/uiContext";
 import NavigationItems from "@/components/Layout/Navigation/NavigationItems/NavigationItems";
 import { useMobileNav } from "@/hooks/useMobileNav";
 import { ListItemData } from "@/types/types";
-
-export type UsePathnameType = typeof _usePathname;
 
 interface SideNavProps {
   onBackdropClick: () => void;
