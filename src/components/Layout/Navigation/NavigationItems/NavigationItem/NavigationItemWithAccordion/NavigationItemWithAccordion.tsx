@@ -47,7 +47,10 @@ export default function NavigationItemWithAccordion({
             {label}
           </span>
         </AccordionTrigger>
-        <AccordionContent className="flex w-[90%] flex-col gap-6 py-5">
+        <AccordionContent
+          className="flex w-[90%] flex-col gap-6 py-5"
+          data-testid="accordionContent"
+        >
           {navData.map((link) => (
             <Link
               href={`/zabiegi/${link?.slug?.current}`}

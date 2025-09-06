@@ -44,7 +44,7 @@ export default function NavigationItemWithDropDown({
           {label}
         </span>
       </NavigationMenuTrigger>
-      <NavigationMenuContent className="!mt-[10px]">
+      <NavigationMenuContent className="!mt-[10px]" data-testid="dropDown">
         <ul className="flex w-[300px] flex-col justify-center gap-4 py-4">
           {navData.map((link) => (
             <li key={link._id}>
