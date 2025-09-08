@@ -13,7 +13,7 @@ describe("MainBanner component", () => {
     expect(h1Element).toHaveTextContent(headerText);
   });
 
-  it("uses default alt when customAlt is not provided", () => {
+  it("uses default alt for the right image when customAlt is not provided", () => {
     render(<MainBanner headerText={headerText} />);
 
     const imgElement = screen.getByAltText(/Olga Noszczyk/i);
@@ -21,12 +21,12 @@ describe("MainBanner component", () => {
     expect(imgElement).toBeInTheDocument();
   });
 
-  it("uses customAlt when provided", () => {
+  it("uses customAlt for the right image when provided", () => {
     const customAlt = "Custom alt text";
 
     render(<MainBanner headerText={headerText} customAlt={customAlt} />);
 
-    const imgElement = screen.getByAltText(customAlt);
-    expect(imgElement).toBeInTheDocument();
+    const images = screen.getAllByRole("img");
+    expect(images[0]).toHaveAttribute("alt", customAlt);
   });
 });
