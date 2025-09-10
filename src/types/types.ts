@@ -43,13 +43,13 @@ export interface BannerData extends BaseContentData {
 }
 
 export interface ListItemData extends BannerData {
-  _id: string;
+  _id?: string;
   category: CategoryDetails;
-  slug: { current: string };
+  slug?: { current: string };
   mainImage: ImageDetails;
 }
 
-export interface PostDetails extends Omit<ListItemData, "_id" | "slug"> {
+export interface PostDetails extends ListItemData {
   publishedAt: string;
   postContent: PortableTextBlock[];
   treatmentGroup: {
