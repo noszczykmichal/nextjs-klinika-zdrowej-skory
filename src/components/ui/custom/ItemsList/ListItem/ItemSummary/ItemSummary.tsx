@@ -15,7 +15,7 @@ export default function ItemSummary({ itemData, rootRoute }: ItemSummaryProps) {
       <h3 className="text-[17px] font-medium lg:text-[22px]">{title}</h3>
       <p className="text-justify text-[15px]">{summary}</p>
       <StyledButton
-        href={`/${rootRoute}/${categorySlug.current}/${slug.current}`}
+        href={`/${rootRoute}/${categorySlug.current}/${slug?.current}`}
       >
         Więcej
       </StyledButton>

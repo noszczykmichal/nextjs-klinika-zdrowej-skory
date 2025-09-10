@@ -18,7 +18,7 @@ export default function ImageCard({ itemData, rootRoute }: ImageCardProps) {
   return (
     <Link
       key={itemData._id}
-      href={`/${rootRoute}/${categorySlug.current}/${slug.current}`}
+      href={`/${rootRoute}/${categorySlug.current}/${slug?.current}`}
       className="aspect-square w-full overflow-hidden rounded-[var(--big-border-radius)] shadow-[var(--custom-box-shadow)] lg:max-w-[300px]"
     >
       <Card className="aspect-square border-none p-0">
