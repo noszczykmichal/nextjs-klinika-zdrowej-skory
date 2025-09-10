@@ -21,7 +21,12 @@ export default function PostPageBanner({ postDetails }: PostPageBannerProps) {
 
   const wrapperClasses = "min-w-[130px] h-[36px] xs:min-w-[180px]";
   const contentClasses =
-    "whitespace-nowrap text-[14px] before:hidden xs:before:block xs:text-[16px]";
+    "whitespace-nowrap text-[14px] before:hidden xs:before:block xs:text-[16px] px-1";
+
+  const buttonHref = treatment
+    ? `/zabiegi/${treatmentGroup}/${treatment.treatmentSlug.current}`
+    : `/zabiegi/${group?.groupSlug.current}`;
+  const buttonCaption = treatment ? "Przejdź do zabiegu" : "Poznaj ofertę";
 
   return (
     <div className="mt-[20px] h-[625px] rounded-[var(--big-border-radius)] sm:mt-0 sm:flex sm:h-[70vh] sm:max-h-[500px]">
@@ -49,24 +54,14 @@ export default function PostPageBanner({ postDetails }: PostPageBannerProps) {
             >
               Powrót
             </StyledButton>
-            {treatment && (
-              <StyledButton
-                href={`/zabiegi/${treatmentGroup}/${treatment.treatmentSlug.current}`}
-                wrapperClasses={wrapperClasses}
-                contentClasses={contentClasses}
-              >
-                Przejdź do zabiegu
-              </StyledButton>
-            )}
-            {group && (
-              <StyledButton
-                href={`/zabiegi/${group.groupSlug.current}`}
-                wrapperClasses={wrapperClasses}
-                contentClasses={contentClasses}
-              >
-                Przejdź do zabiegu
-              </StyledButton>
-            )}
+
+            <StyledButton
+              href={buttonHref}
+              wrapperClasses={wrapperClasses}
+              contentClasses={contentClasses}
+            >
+              {buttonCaption}
+            </StyledButton>
           </div>
         </div>
       </div>

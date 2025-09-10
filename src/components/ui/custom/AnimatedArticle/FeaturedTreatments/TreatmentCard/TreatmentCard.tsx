@@ -41,7 +41,7 @@ export default function TreatmentCard({ cardData }: TreatmentCardProps) {
             </h5>
             <p className="text-justify text-[14px]">{summary}</p>
             <StyledButton
-              href={`/zabiegi/${categorySlug.current}/${slug.current}`}
+              href={`/zabiegi/${categorySlug.current}/${slug?.current}`}
             >
               Więcej
             </StyledButton>
