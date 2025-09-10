@@ -30,19 +30,16 @@ export interface PlaiceholderResult {
   };
 
   base64: string;
-  pixels: {
-    a?: number;
-    r: number;
-    g: number;
-    b: number;
-  }[][];
 }
 
-export interface BannerData {
+interface BaseContentData {
   title: string;
-  imageData: PlaiceholderResult | null;
   altForMainImage: string;
   summary: string;
+}
+
+export interface BannerData extends BaseContentData {
+  imageData: PlaiceholderResult | null;
 }
 
 export interface ListItemData extends BannerData {
@@ -52,24 +49,21 @@ export interface ListItemData extends BannerData {
   mainImage: ImageDetails;
 }
 
-export interface PostDetails extends ListItemData {
+export interface PostDetails extends Omit<ListItemData, "_id" | "slug"> {
   publishedAt: string;
   postContent: PortableTextBlock[];
   treatmentGroup: {
     groupSlug: { current: string };
-  };
+  } | null;
   treatment: {
     treatmentGroup: { groupSlug: { current: string } };
     treatmentSlug: { current: string };
-  };
+  } | null;
 }
 
-export interface TreatmentProcedure {
-  altForMainImage: string;
+export interface TreatmentProcedure extends BaseContentData {
   description: PortableTextBlock[];
   mainImage: ImageDetails;
-  summary: string;
-  title: string;
 }
 
 export interface TreatmentDetails extends TreatmentProcedure {

@@ -12,12 +12,12 @@ export const getImage = async (src: string) => {
     const buffer = Buffer.from(arrayBuffer);
     const {
       metadata: { height, width },
-      ...plaiceholder
+      base64,
     } = await getPlaiceholder(buffer, { size: 10 });
 
     return {
-      ...plaiceholder,
       img: { src, height, width },
+      base64,
     };
   } catch (err) {
     console.error("Failed to get image placeholder:", err);
