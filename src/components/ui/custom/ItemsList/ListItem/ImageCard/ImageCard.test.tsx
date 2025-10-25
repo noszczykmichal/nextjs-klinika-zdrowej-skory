@@ -43,7 +43,7 @@ describe("ImageCard component", () => {
     const link = screen.getByRole("link");
     expect(link).toHaveAttribute(
       "href",
-      `/${rootRoute}/${categorySlug.current}/${slug.current}`,
+      `/${rootRoute}/${categorySlug.current}/${slug?.current}`,
     );
   });
 

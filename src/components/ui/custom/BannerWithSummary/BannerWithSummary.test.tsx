@@ -1,9 +1,10 @@
 import { render, screen } from "@testing-library/react";
 
 import BannerWithSummary from "@/components/ui/custom/BannerWithSummary/BannerWithSummary";
+import { BannerData } from "@/types/types";
 
 describe("BannerWithSummary component", () => {
-  const mockBannerData = {
+  const mockBannerData: BannerData = {
     title: "Test Header",
     summary: "Test summary text",
     imageData: {
@@ -14,16 +15,6 @@ describe("BannerWithSummary component", () => {
       },
       base64:
         "data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAYEBQYFBAYGBQYHBwYIChAKCgkJChQODwwQFxQYGBcUFhYaHSUfGhsjHBYWICwgIyYnKSopGR8tMC0oMCUoKSj/2wBDAQcHBwoIChMKChMoGhYaKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCj/wAARCAABAAEDASIAAhEBAxEB/8QAFQABAQAAAAAAAAAAAAAAAAAAAAv/xAAUEAEAAAAAAAAAAAAAAAAAAAAA/8QAFQEBAQAAAAAAAAAAAAAAAAAAAAX/xAAUEQEAAAAAAAAAAAAAAAAAAAAA/9oADAMBAAIRAxEAPwCdABmX/9k=",
-      pixels: [
-        [
-          { r: 255, g: 0, b: 0, a: 255 },
-          { r: 0, g: 255, b: 0, a: 255 },
-        ],
-        [
-          { r: 0, g: 0, b: 255, a: 255 },
-          { r: 128, g: 128, b: 128, a: 255 },
-        ],
-      ],
     },
     altForMainImage: "Test alt text",
   };

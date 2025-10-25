@@ -8,7 +8,8 @@ interface FormFieldProps {
 export default function FormField({ fieldData }: FormFieldProps) {
   const { component = "input", type, name, label, validator } = fieldData;
 
-  const sharedClasses = "cursor-pointer border-b border-[var(--magenta-100)]";
+  const sharedClasses =
+    "cursor-pointer border-b border-[var(--magenta-100)] text-[var(--white-100)] [--webkit-text-fill-color:#f00]";
 
   return (
     <Field component={component} name={name} validate={validator}>
@@ -26,6 +27,7 @@ export default function FormField({ fieldData }: FormFieldProps) {
               className={`${sharedClasses}`}
               id={name}
               autoComplete="true"
+              spellCheck="false"
             />
           ) : (
             <textarea
@@ -33,7 +35,6 @@ export default function FormField({ fieldData }: FormFieldProps) {
               name={name}
               placeholder={label}
               rows={4}
-              // cols={50}
               className={`${sharedClasses} resize-none`}
               id={name}
             />
