@@ -22,6 +22,7 @@ export default function LoaderMessage({ submitting }: LoaderMessageProps) {
       <div
         className="absolute inset-0 flex flex-col items-center justify-center bg-[var(--black-100)] opacity-90"
         ref={nodeRef}
+        data-testid="loader-message"
       >
         <Loader />
         <p>Wysyłanie...</p>

@@ -16,10 +16,9 @@ export default function Footer({ className }: FooterProps) {
     >
       <section className="mx-auto flex h-[100%] w-full max-w-[1300px] flex-col gap-[40px] rounded-[var(--big-border-radius)] bg-[var(--black-100)] px-[40px] py-[65px] sm:justify-between sm:px-[50px] lg:justify-start">
         <div className="flex w-full flex-col gap-[40px] sm:flex-row sm:gap-[50px] lg:gap-[80px]">
-          <div className="flex max-w-[490px] flex-col gap-[40px] sm:w-1/2 lg:flex-row">
-            <div className="flex max-w-[240px] flex-col justify-center gap-[32px] lg:w-1/2">
+          <div className="flex max-w-[530px] flex-col gap-[40px] sm:w-1/2 lg:flex-row">
+            <div className="flex max-w-[280px] flex-col justify-center gap-[32px] lg:w-1/2">
               <Logo className="h-[45px] fill-[var(--white-100)]" />
-
               <div className="flex items-center gap-[33px]">
                 {socialIconsConfig.map((element) => (
                   <Icon
@@ -30,20 +29,40 @@ export default function Footer({ className }: FooterProps) {
                   />
                 ))}
               </div>
+              <div>
+                <p className="text-[12px] font-bold">
+                  Olga Noszczyk Klinika Zdrowej Skóry
+                </p>
+                <p className="text-[12px]">
+                  Radiofrekwencja Mikroigłowa | Icoone | Mezoterapia Igłowa |
+                  Warszawa Praga Południe
+                </p>
+              </div>
             </div>
             <div className="flex max-w-[300px] flex-col flex-wrap justify-between lg:w-1/2">
               <div>
                 <p className="font-semibold">Adres</p>
-                <p>ul. Szaserów 31 lok. U2</p>
-                <p>04-306 Warszawa</p>
+                <a
+                  href="https://maps.app.goo.gl/GBaDRtSft9FWCSuW8"
+                  target="_blank"
+                >
+                  ul. Szaserów 31/LU. 2,
+                  <br /> 04-306 Warszawa
+                </a>
               </div>
               <div className="py-[10px]">
                 <p className="font-semibold">Telefon</p>
-                <p>+48 508 832 553</p>
+                <a href="tel:+48508832553">508 832 553</a>
+              </div>
+              <div className="py-[10px]">
+                <p className="font-semibold">E-mail</p>
+                <a href="mailto:olga.noszczyk@gmail.com">
+                  olga.noszczyk@gmail.com
+                </a>
               </div>
               <div>
-                <p className="font-semibold">E-mail</p>
-                <p>olga.noszczyk@gmail.com</p>
+                <p>pon. - czw. 10:00 - 21:00</p>
+                <p>pt. 10:00 - 15:00</p>
               </div>
             </div>
           </div>
@@ -73,5 +92,3 @@ export default function Footer({ className }: FooterProps) {
     </footer>
   );
 }
-
-
