@@ -15,7 +15,33 @@ const montserrat = Montserrat({
 export const metadata: Metadata = {
   title: "Klinika Zdrowej Skóry",
   description:
-    "Klinika Zdrowej Skóry to wyjątkowe miejsce stworzone z pasji do piękna",
+    "Klinika Zdrowej Skóry to wyjątkowe miejsce stworzone z pasji do piękna.",
+
+  openGraph: {
+    title: "Klinika Zdrowej Skóry",
+    description:
+      "Klinika Zdrowej Skóry to wyjątkowe miejsce stworzone z pasji do piękna.",
+    url: "https://www.olganoszczyk.pl/",
+    siteName: "Klinika Zdrowej Skóry",
+    images: [
+      {
+        url: "/public/social_card.jpg",
+        width: 1280,
+        height: 1023,
+        alt: "Klinika Zdrowej Skóry – Twoje miejsce piękna",
+      },
+    ],
+    locale: "pl_PL",
+    type: "website",
+  },
+
+  twitter: {
+    card: "summary_large_image",
+    title: "Klinika Zdrowej Skóry",
+    description:
+      "Klinika Zdrowej Skóry to wyjątkowe miejsce stworzone z pasji do piękna.",
+    images: ["/public/social_card.jpg"],
+  },
 };
 
 const TREATMENT_GROUPS_QUERY = `*[_type=='treatmentGroup']{_id, title, "slug":groupSlug}`;
