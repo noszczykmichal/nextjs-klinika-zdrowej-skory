@@ -25,7 +25,7 @@ export const metadata: Metadata = {
     siteName: "Klinika Zdrowej Skóry",
     images: [
       {
-        url: "/public/social_card.jpg",
+        url: "/social_card.jpg",
         width: 1280,
         height: 1023,
         alt: "Klinika Zdrowej Skóry – Twoje miejsce piękna",
@@ -40,7 +40,7 @@ export const metadata: Metadata = {
     title: "Klinika Zdrowej Skóry",
     description:
       "Klinika Zdrowej Skóry to wyjątkowe miejsce stworzone z pasji do piękna.",
-    images: ["/public/social_card.jpg"],
+    images: ["/social_card.jpg"],
   },
 };
 
