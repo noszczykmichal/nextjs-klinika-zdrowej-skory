@@ -43,6 +43,7 @@ export default function ErrorMessage({
       <div
         className="absolute inset-0 flex flex-col items-center justify-center gap-[20px] bg-[var(--black-100)] opacity-90"
         ref={nodeRef}
+        data-testid="error-overlay"
       >
         <h3 className="text-center text-[20px] font-semibold">
           Coś poszło nie tak...
