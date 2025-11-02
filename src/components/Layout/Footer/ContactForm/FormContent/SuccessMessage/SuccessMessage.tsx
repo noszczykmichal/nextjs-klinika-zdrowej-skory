@@ -20,6 +20,7 @@ export default function SuccessMessage({ showSuccess }: SuccessMessageProps) {
       <div
         className="absolute inset-0 flex flex-col items-center justify-center gap-[20px] bg-[var(--black-100)] opacity-90"
         ref={nodeRef}
+        data-testid="success-message"
       >
         <h3 className="text-center text-[20px] font-semibold">
           Wiadomość wysłana!
