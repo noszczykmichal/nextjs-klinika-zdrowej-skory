@@ -22,9 +22,9 @@ export const socialIconsConfig: SocialIcon[] = [
     className: "var(--white-100)",
   },
   {
-    name: "b-visit",
-    href: "https://www.appointo.pl/64681bdf-ffc7-4db4-8875-f598177086ae",
-    className: "h-[40px] w-[40px]",
+    name: "booksy",
+    href: "https://booksy.com/pl-pl/13989_olga-noszczyk-klinika-zdrowej-skory_medycyna-estetyczna_3_warszawa?do=invite#ba_s=dl_1",
+    className: "h-[30px] w-[30px] fill-[var(--white-100)]",
   },
 ];
 

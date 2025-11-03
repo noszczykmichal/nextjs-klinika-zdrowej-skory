@@ -1,7 +1,7 @@
 import { HTMLInputTypeAttribute } from "react";
 import type { PortableTextBlock } from "@portabletext/types";
 
-export type IconVariants = "facebook" | "instagram" | "b-visit";
+export type IconVariants = "facebook" | "instagram" | "booksy";
 
 export interface SocialIcon {
   name: IconVariants;

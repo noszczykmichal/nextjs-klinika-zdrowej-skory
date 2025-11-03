@@ -8,7 +8,7 @@ export default function Head() {
       />
       <link
         rel="me"
-        href="https://www.appointo.pl/64681bdf-ffc7-4db4-8875-f598177086ae"
+        href="https://booksy.com/pl-pl/13989_olga-noszczyk-klinika-zdrowej-skory_medycyna-estetyczna_3_warszawa?do=invite#ba_s=dl_1"
       />
     </>
   );
