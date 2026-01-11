@@ -1,7 +1,6 @@
 import { client } from "@/sanity/client";
 
-import imageUrlBuilder from "@sanity/image-url";
-import type { SanityImageSource } from "@sanity/image-url/lib/types/types";
+import { createImageUrlBuilder, SanityImageSource } from "@sanity/image-url";
 
 export const formatDate = (isoString: string, locale: string = "pl-PL") => {
   const date = new Date(isoString);
@@ -16,5 +15,5 @@ const { projectId, dataset } = client.config();
 
 export const urlFor = (source: SanityImageSource) =>
   projectId && dataset
-    ? imageUrlBuilder({ projectId, dataset }).image(source)
+    ? createImageUrlBuilder({ projectId, dataset }).image(source)
     : null;

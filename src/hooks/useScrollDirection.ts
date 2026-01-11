@@ -3,8 +3,8 @@ import { useState, useEffect } from "react";
 type ScrollDirections = "down" | "up";
 
 export default function useScrollDirection({
-  initialDirection,
-  thresholdPixels,
+  initialDirection = "down",
+  thresholdPixels = 0,
   off,
 }: {
   initialDirection?: ScrollDirections;
@@ -14,15 +14,17 @@ export default function useScrollDirection({
   const [scrollDir, setScrollDir] = useState(initialDirection);
 
   useEffect(() => {
-    const threshold = thresholdPixels || 0;
+    if (off) {
+      return;
+    }
+
     let lastScrollY = window.pageYOffset;
     let ticking = false;
 
     const updateScrollDir = () => {
       const scrollY = window.pageYOffset;
 
-      if (Math.abs(scrollY - lastScrollY) < threshold) {
-        // We haven't exceeded the threshold
+      if (Math.abs(scrollY - lastScrollY) < thresholdPixels) {
         ticking = false;
         return;
       }
@@ -43,14 +45,10 @@ export default function useScrollDirection({
      * Bind the scroll handler if `off` is set to false.
      * If `off` is set to true reset the scroll direction.
      */
-    if (!off) {
-      window.addEventListener("scroll", onScroll);
-    } else {
-      setScrollDir(initialDirection);
-    }
 
+    window.addEventListener("scroll", onScroll);
     return () => window.removeEventListener("scroll", onScroll);
-  }, [initialDirection, thresholdPixels, off]);
+  }, [thresholdPixels, off]);
 
-  return scrollDir;
+  return off ? initialDirection : scrollDir;
 }
