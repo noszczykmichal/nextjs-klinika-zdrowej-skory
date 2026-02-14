@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import { Form } from "react-final-form";
+import { FormApi } from "final-form";
 
 import FormContent from "@/components/Layout/Footer/ContactForm/FormContent/FormContent";
 
@@ -15,7 +16,10 @@ export default function ContactForm() {
     hasError: false,
   });
 
-  const submitHandler = async (formData: InputData) => {
+  const submitHandler = async (
+    formData: InputData,
+    form: FormApi<InputData, Partial<InputData>>,
+  ) => {
     try {
       setErrorState({
         errorMessage: "",
@@ -36,6 +40,9 @@ export default function ContactForm() {
       if (!response.ok) {
         throw new Error(response.error);
       }
+      setTimeout(() => {
+        form.restart();
+      }, 4100);
     } catch (error) {
       setErrorState({
         errorMessage: `${error}`,
@@ -47,12 +54,11 @@ export default function ContactForm() {
   return (
     <Form
       onSubmit={submitHandler}
-      render={({ handleSubmit, submitting, submitSucceeded, form }) => (
+      render={({ handleSubmit, submitting, submitSucceeded }) => (
         <FormContent
           handleSubmit={handleSubmit}
           submitting={submitting}
           submitSucceeded={submitSucceeded}
-          formRestartHandler={() => form.restart()}
           errorData={errorState}
           setErrorHandler={setErrorState}
         />
