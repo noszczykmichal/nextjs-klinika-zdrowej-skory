@@ -2,7 +2,7 @@ import { defineConfig, globalIgnores } from "eslint/config";
 import { FlatCompat } from "@eslint/eslintrc";
 import js from "@eslint/js";
 import nextPlugin from "@next/eslint-plugin-next";
-import tsPlugin from "@typescript-eslint/eslint-plugin"; // Add this
+import tsPlugin from "@typescript-eslint/eslint-plugin";
 import tsParser from "@typescript-eslint/parser";
 
 const compat = new FlatCompat({
@@ -48,7 +48,6 @@ const eslintConfig = defineConfig([
         sourceType: "module",
       },
     },
-    // This is what was missing!
     plugins: {
       "@typescript-eslint": tsPlugin,
     },
