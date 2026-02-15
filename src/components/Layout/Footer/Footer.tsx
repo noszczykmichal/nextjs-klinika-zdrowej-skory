@@ -74,7 +74,7 @@ export default function Footer({ className }: FooterProps) {
         <div className="w-full border-t border-[var(--white-100)]/50">
           <p className="xs:flex-row flex flex-col items-center p-4 text-[12px] text-[var(--white-100)]/50">
             <span>
-              © 2025 Copyright by{" "}
+              © 2026 Copyright by{" "}
               <a
                 href="https://michalnoszczyk.com/"
                 target="_blank"
