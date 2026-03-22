@@ -35,7 +35,7 @@ const eslintConfig = defineConfig([
 
   // 2. Legacy Plugins via FlatCompat
   ...compat.config({
-    extends: ["plugin:jsx-a11y/recommended", "prettier"],
+    extends: ["next/typescript", "plugin:jsx-a11y/recommended", "prettier"],
   }),
 
   // 3. TypeScript Rules & Plugin Definition
