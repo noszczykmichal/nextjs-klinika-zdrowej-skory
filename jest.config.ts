@@ -6,7 +6,9 @@
 import type { Config } from "@jest/types";
 import nextJest from "next/jest.js";
 import { pathsToModuleNameMapper } from "ts-jest";
-import { compilerOptions } from "./tsconfig.json";
+import fs from "fs";
+
+const tsconfig = JSON.parse(fs.readFileSync("./tsconfig.json", "utf-8"));
 
 const createJestConfig = nextJest({
   // Provide the path to your Next.js app to load next.config.js and .env files in your test environment
@@ -105,7 +107,7 @@ const config: Config.InitialOptions = {
   // ],
 
   // A map from regular expressions to module names or to arrays of module names that allow to stub out resources with a single module
-  moduleNameMapper: pathsToModuleNameMapper(compilerOptions.paths, {
+  moduleNameMapper: pathsToModuleNameMapper(tsconfig.compilerOptions.paths, {
     prefix: "<rootDir>/",
   }),
 
