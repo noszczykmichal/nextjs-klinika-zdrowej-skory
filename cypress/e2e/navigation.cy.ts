@@ -89,17 +89,19 @@ describe("Navigation", () => {
       cy.get(mobileNavElement).should("not.exist");
 
       cy.get(hamburgerElement).click();
+      cy.get(mobileNavElement).should("have.class", "sideNav-enter-done");
       cy.get(hamburgerElement).should("have.attr", "aria-expanded", "true");
       cy.get(mobileNavElement).should("be.visible");
       cy.get(mobileNavElement).should("have.attr", "aria-hidden", "false");
 
       cy.get(hamburgerElement).click();
       cy.get(hamburgerElement).should("have.attr", "aria-expanded", "false");
-      cy.get(mobileNavElement).should("not.be.visible");
+      cy.get(mobileNavElement).should("not.exist");
     });
 
     it("should navigate to the correct page when clicking a link in the mobile navigation", () => {
       cy.get(hamburgerElement).click();
+      cy.get(mobileNavElement).should("have.class", "sideNav-enter-done");
       cy.get(aboutUsLinkElement).click();
 
       cy.get(mobileNavElement).should("not.be.visible");
@@ -108,6 +110,7 @@ describe("Navigation", () => {
 
       cy.visit("/");
       cy.get(hamburgerElement).click();
+      cy.get(mobileNavElement).should("have.class", "sideNav-enter-done");
       cy.get(blogLinkElement).click();
 
       cy.get(mobileNavElement).should("not.be.visible");
@@ -117,6 +120,7 @@ describe("Navigation", () => {
 
     it("should toggle accordion state in mobile navigation and correctly update data-state and aria-expanded attributes", () => {
       cy.get(hamburgerElement).click();
+      cy.get(mobileNavElement).should("have.class", "sideNav-enter-done");
 
       cy.get(accordionItemElement).should("be.visible");
       cy.get(accordionItemElement).should("have.attr", "data-state", "closed");
@@ -133,6 +137,7 @@ describe("Navigation", () => {
       );
 
       cy.get(accordionTriggerElement).click();
+      cy.get(mobileNavElement).should("have.class", "sideNav-enter-done");
       cy.get(accordionItemElement).should("have.attr", "data-state", "open");
       cy.get(accordionTriggerElement).should("have.attr", "data-state", "open");
       cy.get(accordionTriggerElement).should(
@@ -160,6 +165,7 @@ describe("Navigation", () => {
       const laserTherapyLink = `${accordionItemElement} a:contains('Laseroterapia')`;
 
       cy.get(hamburgerElement).click();
+      cy.get(mobileNavElement).should("have.class", "sideNav-enter-done");
       cy.get(accordionTriggerElement).click();
 
       cy.get(holisticTreatmentsLink).should("be.visible");
@@ -171,6 +177,7 @@ describe("Navigation", () => {
 
       cy.visit("/");
       cy.get(hamburgerElement).click();
+      cy.get(mobileNavElement).should("have.class", "sideNav-enter-done");
       cy.get(accordionTriggerElement).click();
 
       cy.get(laserTherapyLink).should("be.visible");
