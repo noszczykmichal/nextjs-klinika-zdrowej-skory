@@ -6,7 +6,7 @@ import Post from "@/components/BlogPage/Category/PostPage/Post/Post";
 import { urlFor } from "@/utils/clientSideUtils";
 import { getImage } from "@/utils/serverSideUtils";
 
-const POST_QUERY = `*[_type == "post" && slug.current == $slug]{altForMainImage, publishedAt, mainImage, title, summary, postContent, category->{title, categorySlug}, treatment->{treatmentSlug, treatmentGroup->{groupSlug}}, treatmentGroup->{groupSlug}}[0]`;
+const POST_QUERY = `*[_type == "post" && slug.current == $slug]{altForMainImage, publishedAt, mainImage, title, summary, postContent, category->{title, categorySlug}, treatment->{treatmentSlug, treatmentCategory->{categorySlug}}, treatmentCategory->{categorySlug}}[0]`;
 
 const options = { next: { revalidate: 30 } };
 

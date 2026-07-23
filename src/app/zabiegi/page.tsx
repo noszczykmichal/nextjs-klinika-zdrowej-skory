@@ -6,7 +6,7 @@ import ItemsList from "@/components/ui/custom/ItemsList/ItemsList";
 import { ListItemData } from "@/types/types";
 import icoone from "@/assets/icoone.jpg";
 
-const ALL_TREATMENTS_QUERY = `*[_type == "treatment"]{_id, altForMainImage, "category": treatmentGroup->{title, "categorySlug": groupSlug}, mainImage, "slug": treatmentSlug, summary, title}`;
+const ALL_TREATMENTS_QUERY = `*[_type == "treatment"]{_id, altForMainImage, "category": treatmentCategory->{title, categorySlug}, mainImage, "slug": treatmentSlug, summary, title}`;
 
 const options = { next: { revalidate: 30 } };
 

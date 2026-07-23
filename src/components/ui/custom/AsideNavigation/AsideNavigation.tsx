@@ -1,32 +1,32 @@
 import { client } from "@/sanity/client";
 import Link from "next/link";
 
-import { TreatmentGroup } from "@/types/types";
+import { TreatmentCategory } from "@/types/types";
 
-const TREATMENT_GROUP_QUERY = `*[_type == "treatmentGroup"]{groupSlug, title, _id}`;
+const TREATMENT_CATEGORY_QUERY = `*[_type == "treatmentCategory"]{categorySlug, title, _id}`;
 
 const options = { next: { revalidate: 30 } };
 
 interface AsideNavigationProps {
   className: string;
-  currentGroup?: string;
+  currentCategory?: string;
 }
 
 export default async function AsideNavigation({
   className,
-  currentGroup,
+  currentCategory,
 }: AsideNavigationProps) {
-  const treatmentGroups = await client.fetch<TreatmentGroup[]>(
-    TREATMENT_GROUP_QUERY,
+  const treatmentCategories = await client.fetch<TreatmentCategory[]>(
+    TREATMENT_CATEGORY_QUERY,
     {},
     options,
   );
 
-  const updatedList = currentGroup
-    ? treatmentGroups.filter(
-        (group) => group.groupSlug.current !== currentGroup,
+  const updatedList = currentCategory
+    ? treatmentCategories.filter(
+        (category) => category.categorySlug.current !== currentCategory,
       )
-    : treatmentGroups;
+    : treatmentCategories;
 
   return (
     <aside
@@ -35,16 +35,16 @@ export default async function AsideNavigation({
     >
       <h4 className="text-[24px]">Zobacz również:</h4>
       <ul>
-        {updatedList.map((group) => (
+        {updatedList.map((category) => (
           <li
-            key={group._id}
+            key={category._id}
             className="w-full border-b-1 border-[var(--gray-100)] px-[10px] py-[10px] pb-1 transition-all duration-150 hover:bg-[var(--magenta-100)] hover:text-white active:bg-[var(--magenta-100)] active:text-white"
           >
             <Link
-              href={`/zabiegi/${group.groupSlug.current}`}
+              href={`/zabiegi/${category.categorySlug.current}`}
               className="block w-full"
             >
-              {group.title}
+              {category.title}
             </Link>
           </li>
         ))}
