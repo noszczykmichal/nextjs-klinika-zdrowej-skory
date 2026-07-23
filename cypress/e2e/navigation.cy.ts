@@ -11,6 +11,7 @@ describe("Navigation", () => {
     beforeEach(() => {
       cy.viewport("macbook-11");
       cy.visit("/");
+      cy.waitForHydration();
     });
 
     it("should correctly display desktop navigation and allow to navigate to correct page when a link is clicked", () => {
@@ -61,6 +62,7 @@ describe("Navigation", () => {
       );
 
       cy.visit("/");
+      cy.waitForHydration();
       cy.get(dropDownTrigger).click();
       cy.get(bodyShapingDropdownLink).should("be.visible");
       cy.get(bodyShapingDropdownLink).click();
@@ -81,6 +83,7 @@ describe("Navigation", () => {
     beforeEach(() => {
       cy.viewport("iphone-xr");
       cy.visit("/");
+      cy.waitForHydration();
     });
 
     it("should display mobile navigation, allow clicking the hamburger to toggle the mobile navigation, and update ARIA attributes correctly on small screens", () => {
@@ -89,17 +92,19 @@ describe("Navigation", () => {
       cy.get(mobileNavElement).should("not.exist");
 
       cy.get(hamburgerElement).click();
+      cy.get(mobileNavElement).should("have.class", "sideNav-enter-done");
       cy.get(hamburgerElement).should("have.attr", "aria-expanded", "true");
       cy.get(mobileNavElement).should("be.visible");
       cy.get(mobileNavElement).should("have.attr", "aria-hidden", "false");
 
       cy.get(hamburgerElement).click();
       cy.get(hamburgerElement).should("have.attr", "aria-expanded", "false");
-      cy.get(mobileNavElement).should("not.be.visible");
+      cy.get(mobileNavElement).should("not.exist");
     });
 
     it("should navigate to the correct page when clicking a link in the mobile navigation", () => {
       cy.get(hamburgerElement).click();
+      cy.get(mobileNavElement).should("have.class", "sideNav-enter-done");
       cy.get(aboutUsLinkElement).click();
 
       cy.get(mobileNavElement).should("not.be.visible");
@@ -107,7 +112,9 @@ describe("Navigation", () => {
       cy.contains("h1", "O Nas").should("be.visible");
 
       cy.visit("/");
+      cy.waitForHydration();
       cy.get(hamburgerElement).click();
+      cy.get(mobileNavElement).should("have.class", "sideNav-enter-done");
       cy.get(blogLinkElement).click();
 
       cy.get(mobileNavElement).should("not.be.visible");
@@ -117,6 +124,7 @@ describe("Navigation", () => {
 
     it("should toggle accordion state in mobile navigation and correctly update data-state and aria-expanded attributes", () => {
       cy.get(hamburgerElement).click();
+      cy.get(mobileNavElement).should("have.class", "sideNav-enter-done");
 
       cy.get(accordionItemElement).should("be.visible");
       cy.get(accordionItemElement).should("have.attr", "data-state", "closed");
@@ -133,6 +141,7 @@ describe("Navigation", () => {
       );
 
       cy.get(accordionTriggerElement).click();
+      cy.get(mobileNavElement).should("have.class", "sideNav-enter-done");
       cy.get(accordionItemElement).should("have.attr", "data-state", "open");
       cy.get(accordionTriggerElement).should("have.attr", "data-state", "open");
       cy.get(accordionTriggerElement).should(
@@ -160,7 +169,8 @@ describe("Navigation", () => {
       const laserTherapyLink = `${accordionItemElement} a:contains('Laseroterapia')`;
 
       cy.get(hamburgerElement).click();
-      cy.get(accordionTriggerElement).click();
+      cy.get(mobileNavElement).should("have.class", "sideNav-enter-done");
+      cy.clickAccordionTrigger(accordionTriggerElement);
 
       cy.get(holisticTreatmentsLink).should("be.visible");
       cy.get(holisticTreatmentsLink).click();
@@ -170,8 +180,10 @@ describe("Navigation", () => {
       cy.contains("h1", "Holistyczne zabiegi na twarz").should("be.visible");
 
       cy.visit("/");
+      cy.waitForHydration();
       cy.get(hamburgerElement).click();
-      cy.get(accordionTriggerElement).click();
+      cy.get(mobileNavElement).should("have.class", "sideNav-enter-done");
+      cy.clickAccordionTrigger(accordionTriggerElement);
 
       cy.get(laserTherapyLink).should("be.visible");
       cy.get(laserTherapyLink).click();

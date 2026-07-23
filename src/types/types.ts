@@ -99,3 +99,12 @@ export interface ErrorState {
   errorMessage: string;
   hasError: boolean;
 }
+
+export interface GalleryImage {
+  _key: string;
+  alt?: string;
+  asset: {
+    url: string;
+    metadata: { dimensions: { width: number; height: number }; lqip?: string };
+  };
+}

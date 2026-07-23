@@ -2,6 +2,7 @@ import { PortableTextComponents } from "next-sanity";
 import Image from "next/image";
 
 import { urlFor } from "@/utils/clientSideUtils";
+import PortableTextGallery from "@/components/BlogPage/Category/PostPage/PortableTextGallery/PortableTextGallery";
 
 export const portableTextComponentConfig: PortableTextComponents = {
   marks: {
@@ -10,12 +11,17 @@ export const portableTextComponentConfig: PortableTextComponents = {
     ),
   },
   types: {
-    image: ({ value }) => {
-      const width = value.asset?.metadata?.dimensions?.width;
-      const height = value.asset?.metadata?.dimensions?.height;
+    blockContentImage: ({ value }) => {
+      const { height, width } = value.asset?.metadata?.dimensions ?? {};
+      const sizeClass =
+        value.size === "small"
+          ? "w-1/2 mx-auto"
+          : value.size === "medium"
+            ? "w-3/4 mx-auto"
+            : "w-full";
 
       return (
-        <div className="relative py-3">
+        <div className={`relative py-3 ${sizeClass}`}>
           <Image
             src={urlFor(value.asset)?.fit("max").url() || ""}
             alt={value.alt}
@@ -26,6 +32,7 @@ export const portableTextComponentConfig: PortableTextComponents = {
         </div>
       );
     },
+    gallery: PortableTextGallery,
   },
   block: {
     normal: ({ children }) => <p className="mb-[16px]">{children}</p>,
