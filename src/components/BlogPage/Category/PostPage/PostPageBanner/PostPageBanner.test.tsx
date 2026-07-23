@@ -3,7 +3,7 @@ import { render, screen } from "@testing-library/react";
 import PostPageBanner from "@/components/BlogPage/Category/PostPage/PostPageBanner/PostPageBanner";
 import {
   mockPostDetailsWithTreatment,
-  mockPostDetailsWithGroup,
+  mockPostDetailsWithCategory,
 } from "@/test-utils/mockData";
 
 describe("PostPageBanner component", () => {
@@ -26,8 +26,8 @@ describe("PostPageBanner component", () => {
     render(<PostPageBanner postDetails={mockPostDetailsWithTreatment} />);
 
     const { treatment } = mockPostDetailsWithTreatment;
-    const treatmentGroup = treatment?.treatmentGroup.groupSlug.current;
-    const hrefValue = `/zabiegi/${treatmentGroup}/${treatment?.treatmentSlug.current}`;
+    const treatmentCategory = treatment?.treatmentCategory.categorySlug.current;
+    const hrefValue = `/zabiegi/${treatmentCategory}/${treatment?.treatmentSlug.current}`;
     const testedButton = screen.getByRole("link", {
       name: /Przejdź do zabiegu/i,
     });
@@ -35,11 +35,11 @@ describe("PostPageBanner component", () => {
     expect(testedButton).toHaveAttribute("href", hrefValue);
   });
 
-  it("links the group button to the correct group page", () => {
-    render(<PostPageBanner postDetails={mockPostDetailsWithGroup} />);
+  it("links the category button to the correct category page", () => {
+    render(<PostPageBanner postDetails={mockPostDetailsWithCategory} />);
 
-    const { treatmentGroup: group } = mockPostDetailsWithGroup;
-    const hrefValue = `/zabiegi/${group?.groupSlug.current}`;
+    const { treatmentCategory: category } = mockPostDetailsWithCategory;
+    const hrefValue = `/zabiegi/${category?.categorySlug.current}`;
     const testedButton = screen.getByRole("link", {
       name: /Poznaj ofertę/i,
     });
@@ -48,8 +48,10 @@ describe("PostPageBanner component", () => {
   });
 
   it("renders main image with correct alt text when imageData is provided", () => {
-    render(<PostPageBanner postDetails={mockPostDetailsWithGroup} />);
-    const image = screen.getByAltText(mockPostDetailsWithGroup.altForMainImage);
+    render(<PostPageBanner postDetails={mockPostDetailsWithCategory} />);
+    const image = screen.getByAltText(
+      mockPostDetailsWithCategory.altForMainImage,
+    );
 
     expect(image).toBeInTheDocument();
   });
@@ -57,7 +59,7 @@ describe("PostPageBanner component", () => {
   it("does not render main image when imageData is missing", () => {
     render(
       <PostPageBanner
-        postDetails={{ ...mockPostDetailsWithGroup, imageData: null }}
+        postDetails={{ ...mockPostDetailsWithCategory, imageData: null }}
       />,
     );
 

@@ -336,8 +336,8 @@ export const mockPostDetailsWithTreatment: PostDetails = {
     "ICOONE to innowacyjny zabieg, który skutecznie modeluje sylwetkę, redukuje cellulit i ujędrnia skórę już od pierwszych sesji – wszystko bez bólu i bezinwazyjnie. Dzięki unikalnej technologii mikrostymulacji, skóra odzyskuje jędrność, a ciało lekkość i smukłość. To idealne rozwiązanie dla osób, które chcą szybko zobaczyć efekty, nie rezygnując z relaksu i komfortu. Zabieg ICOONE to luksusowa pielęgnacja, która działa głęboko, a jednocześnie jest przyjemna jak masaż.",
   title: "Luksusowy zabieg na ciało, na który Cię stać",
   treatment: {
-    treatmentGroup: {
-      groupSlug: {
+    treatmentCategory: {
+      categorySlug: {
         current: "modelowanie-sylwetki",
       },
     },
@@ -345,7 +345,7 @@ export const mockPostDetailsWithTreatment: PostDetails = {
       current: "icoone",
     },
   },
-  treatmentGroup: null,
+  treatmentCategory: null,
   imageData: {
     base64:
       "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAoAAAAHCAIAAAC+zks0AAAACXBIWXMAAAsTAAALEwEAmpwYAAAA5ElEQVR4nAHZACb/AH9nWIRhS6etspabnmpnaICAgKWnp3p5eYqNksLEyQCDaFhuSjW1ur6oqaqRj46Pjo6Mh4ePjItwYlW2trYAV0Y6Xks4lIuGgn19ZWVpbV5coJWOamJccmVcycvQAHVkWy8NAKOXlMXEx6OmqKOnp2ZOQoqNj9ff5tXa3wDLvr5IKhpDKh4sIx7QwLtcUEtfTEGPkZTDx8rR1tsAy8XG9vb7a2BcIAEAw6+qzsjJwcLFo6WnyM3RztPXAMLAxdPO0Ozs7sW9vKKZm8O+v9LOztPS09TX2MvQ1GuCebud9WbLAAAAAElFTkSuQmCC",
@@ -357,7 +357,7 @@ export const mockPostDetailsWithTreatment: PostDetails = {
   },
 };
 
-export const mockPostDetailsWithGroup: PostDetails = {
+export const mockPostDetailsWithCategory: PostDetails = {
   altForMainImage: "Olga Noszczyk wykonująca zabieg wyszczuplający na brzuch.",
   category: {
     categorySlug: {
@@ -603,8 +603,8 @@ export const mockPostDetailsWithGroup: PostDetails = {
     "Lato to czas, kiedy szczególnie zależy nam na lekkiej sylwetce, gładkiej skórze i pewności siebie w stroju kąpielowym. Jeśli mimo diety i aktywności fizycznej nie możesz pozbyć się uporczywego tłuszczyku czy cellulitu, nowoczesne zabiegi wyszczuplające mogą być skutecznym wsparciem. Technologie takie jak fale elektromagnetyczne, lipoliza ultradźwiękowa czy endermologia potrafią zdziałać cuda – szybko, bezboleśnie i bez okresu rekonwalescencji. Sprawdź, które z nich warto wykonać właśnie teraz, by latem czuć się lekko i pięknie!",
   title: "Jak skutecznie schudnąć na lato?",
   treatment: null,
-  treatmentGroup: {
-    groupSlug: {
+  treatmentCategory: {
+    categorySlug: {
       current: "modelowanie-sylwetki",
     },
   },
