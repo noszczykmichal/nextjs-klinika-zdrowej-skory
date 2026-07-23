@@ -25,13 +25,23 @@
 // -- This will overwrite an existing command --
 // Cypress.Commands.overwrite('visit', (originalFn, url, options) => { ... })
 //
-// declare global {
-//   namespace Cypress {
-//     interface Chainable {
-//       login(email: string, password: string): Chainable<void>
-//       drag(subject: string, options?: Partial<TypeOptions>): Chainable<Element>
-//       dismiss(subject: string, options?: Partial<TypeOptions>): Chainable<Element>
-//       visit(originalFn: CommandOriginalFn, url: string, options: Partial<VisitOptions>): Chainable<Element>
-//     }
-//   }
-// }
+Cypress.Commands.add("waitForHydration", () => {
+  cy.get('html[data-hydrated="true"]', { timeout: 10000 }).should("exist");
+});
+
+Cypress.Commands.add("clickAccordionTrigger", (selector: string) => {
+  cy.get(selector).click();
+  cy.wait(300);
+});
+
+declare global {
+  // eslint-disable-next-line @typescript-eslint/no-namespace
+  namespace Cypress {
+    interface Chainable {
+      waitForHydration(): Chainable<JQuery<HTMLElement>>;
+      clickAccordionTrigger(selector: string): Chainable<void>;
+    }
+  }
+}
+
+export {};

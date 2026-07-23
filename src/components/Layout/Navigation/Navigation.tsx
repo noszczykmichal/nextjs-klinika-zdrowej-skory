@@ -46,6 +46,10 @@ export default function Navigation({ navData }: NavigationProps) {
     }
   }, [scrollDirection, isTop, headerClasses]);
 
+  useEffect(() => {
+    document.documentElement.setAttribute("data-hydrated", "true");
+  }, []);
+
   const clickHandler = () => {
     setAttachedClasses([headerClasses.toolbar, headerClasses.toolbarBoxShadow]);
   };
