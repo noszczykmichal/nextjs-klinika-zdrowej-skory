@@ -13,6 +13,9 @@ const montserrat = Montserrat({
 });
 
 export const metadata: Metadata = {
+  metadataBase: new URL(
+    process.env.NEXT_PUBLIC_SITE_URL || "http://localhost:3000",
+  ),
   title: "Klinika Zdrowej Skóry",
   description:
     "Klinika Zdrowej Skóry to wyjątkowe miejsce stworzone z pasji do piękna.",

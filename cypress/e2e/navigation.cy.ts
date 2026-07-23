@@ -11,6 +11,7 @@ describe("Navigation", () => {
     beforeEach(() => {
       cy.viewport("macbook-11");
       cy.visit("/");
+      cy.waitForHydration();
     });
 
     it("should correctly display desktop navigation and allow to navigate to correct page when a link is clicked", () => {
@@ -61,6 +62,7 @@ describe("Navigation", () => {
       );
 
       cy.visit("/");
+      cy.waitForHydration();
       cy.get(dropDownTrigger).click();
       cy.get(bodyShapingDropdownLink).should("be.visible");
       cy.get(bodyShapingDropdownLink).click();
@@ -81,6 +83,7 @@ describe("Navigation", () => {
     beforeEach(() => {
       cy.viewport("iphone-xr");
       cy.visit("/");
+      cy.waitForHydration();
     });
 
     it("should display mobile navigation, allow clicking the hamburger to toggle the mobile navigation, and update ARIA attributes correctly on small screens", () => {
@@ -109,6 +112,7 @@ describe("Navigation", () => {
       cy.contains("h1", "O Nas").should("be.visible");
 
       cy.visit("/");
+      cy.waitForHydration();
       cy.get(hamburgerElement).click();
       cy.get(mobileNavElement).should("have.class", "sideNav-enter-done");
       cy.get(blogLinkElement).click();
@@ -166,7 +170,7 @@ describe("Navigation", () => {
 
       cy.get(hamburgerElement).click();
       cy.get(mobileNavElement).should("have.class", "sideNav-enter-done");
-      cy.get(accordionTriggerElement).click();
+      cy.clickAccordionTrigger(accordionTriggerElement);
 
       cy.get(holisticTreatmentsLink).should("be.visible");
       cy.get(holisticTreatmentsLink).click();
@@ -176,9 +180,10 @@ describe("Navigation", () => {
       cy.contains("h1", "Holistyczne zabiegi na twarz").should("be.visible");
 
       cy.visit("/");
+      cy.waitForHydration();
       cy.get(hamburgerElement).click();
       cy.get(mobileNavElement).should("have.class", "sideNav-enter-done");
-      cy.get(accordionTriggerElement).click();
+      cy.clickAccordionTrigger(accordionTriggerElement);
 
       cy.get(laserTherapyLink).should("be.visible");
       cy.get(laserTherapyLink).click();
