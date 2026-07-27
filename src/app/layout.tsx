@@ -47,7 +47,7 @@ export const metadata: Metadata = {
   },
 };
 
-const TREATMENT_GROUPS_QUERY = `*[_type=='treatmentGroup']{_id, title, "slug":groupSlug}`;
+const TREATMENT_CATEGORIES_QUERY = `*[_type=='treatmentCategory']{_id, title, "slug":categorySlug}`;
 
 const options = { next: { revalidate: 30 } };
 
@@ -56,8 +56,8 @@ export default async function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-  const treatmentGroups = await client.fetch<Partial<ListItemData>[]>(
-    TREATMENT_GROUPS_QUERY,
+  const treatmentCategories = await client.fetch<Partial<ListItemData>[]>(
+    TREATMENT_CATEGORIES_QUERY,
     {},
     options,
   );
@@ -65,7 +65,7 @@ export default async function RootLayout({
   return (
     <html lang="pl" style={{ scrollBehavior: "auto" }}>
       <body className={`${montserrat.className} antialiased`}>
-        <Navigation navData={treatmentGroups} />
+        <Navigation navData={treatmentCategories} />
         <div id="overlay-root" />
         {children}
         <Footer className="mx-auto pb-[50px]" />
