@@ -13,19 +13,19 @@ export default function PostPageBanner({ postDetails }: PostPageBannerProps) {
     imageData,
     title: headerText,
     treatment,
-    treatmentGroup: group,
+    treatmentCategory: category,
     altForMainImage,
   } = postDetails;
 
-  const treatmentGroup = treatment?.treatmentGroup.groupSlug.current;
+  const treatmentCategory = treatment?.treatmentCategory.categorySlug.current;
 
   const wrapperClasses = "min-w-[130px] h-[36px] xs:min-w-[180px]";
   const contentClasses =
     "whitespace-nowrap text-[14px] before:hidden xs:before:block xs:text-[16px] px-1";
 
   const buttonHref = treatment
-    ? `/zabiegi/${treatmentGroup}/${treatment.treatmentSlug.current}`
-    : `/zabiegi/${group?.groupSlug.current}`;
+    ? `/zabiegi/${treatmentCategory}/${treatment.treatmentSlug.current}`
+    : `/zabiegi/${category?.categorySlug.current}`;
   const buttonCaption = treatment ? "Przejdź do zabiegu" : "Poznaj ofertę";
 
   return (

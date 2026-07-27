@@ -27,8 +27,8 @@ const POST_QUERY = `*[_type == "post" && slug.current == $slug]{
     }
   },
   category->{title, categorySlug},
-  treatment->{treatmentSlug, treatmentGroup->{groupSlug}},
-  treatmentGroup->{groupSlug}
+  treatment->{treatmentSlug, treatmentCategory->{categorySlug}},
+  treatmentCategory->{categorySlug}
 }[0]`;
 
 const options = { next: { revalidate: 30 } };

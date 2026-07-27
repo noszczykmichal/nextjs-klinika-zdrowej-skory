@@ -52,11 +52,11 @@ export interface ListItemData extends BannerData {
 export interface PostDetails extends ListItemData {
   publishedAt: string;
   postContent: PortableTextBlock[];
-  treatmentGroup: {
-    groupSlug: { current: string };
+  treatmentCategory: {
+    categorySlug: { current: string };
   } | null;
   treatment: {
-    treatmentGroup: { groupSlug: { current: string } };
+    treatmentCategory: { categorySlug: { current: string } };
     treatmentSlug: { current: string };
   } | null;
 }
@@ -67,12 +67,12 @@ export interface TreatmentProcedure extends BaseContentData {
 }
 
 export interface TreatmentDetails extends TreatmentProcedure {
-  treatmentGroup: { groupSlug: { current: string }; title: string };
+  treatmentCategory: { categorySlug: { current: string }; title: string };
 }
 
-export interface TreatmentGroup extends TreatmentProcedure {
+export interface TreatmentCategory extends TreatmentProcedure {
   _id: string;
-  groupSlug: { current: string };
+  categorySlug: { current: string };
 }
 
 export type TopLevelRoute = "blog" | "zabiegi";

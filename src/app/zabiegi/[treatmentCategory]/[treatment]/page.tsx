@@ -13,7 +13,7 @@ const TREATMENT_QUERY = `*[_type == "treatment" && treatmentSlug.current == $tre
   title,
   summary,
   altForMainImage,
-  treatmentGroup->{title, groupSlug},
+  treatmentCategory->{title, categorySlug},
   description[]{
     ...,
     _type == "image" => {
@@ -39,7 +39,7 @@ const options = { next: { revalidate: 30 } };
 export default async function TreatmentPage({
   params,
 }: {
-  params: Promise<{ treatmentGroup: string; treatment: string }>;
+  params: Promise<{ treatmentCategory: string; treatment: string }>;
 }) {
   const treatment = await client.fetch<TreatmentDetails>(
     TREATMENT_QUERY,
@@ -49,7 +49,7 @@ export default async function TreatmentPage({
 
   const {
     title: treatmentName,
-    treatmentGroup,
+    treatmentCategory,
     description,
     mainImage,
     summary,
@@ -72,8 +72,8 @@ export default async function TreatmentPage({
       url: "/zabiegi",
     },
     {
-      routeName: `${treatmentGroup.title}`,
-      url: `/zabiegi/${treatmentGroup.groupSlug.current}`,
+      routeName: `${treatmentCategory.title}`,
+      url: `/zabiegi/${treatmentCategory.categorySlug.current}`,
     },
     {
       routeName: `${treatmentName}`,

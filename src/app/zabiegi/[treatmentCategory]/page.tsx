@@ -1,25 +1,25 @@
 import { client } from "@/sanity/client";
 
 import LayoutWrapper from "@/components/Layout/LayoutWrapper/LayoutWrapper";
-import { ListItemData, TreatmentGroup } from "@/types/types";
+import { ListItemData, TreatmentCategory } from "@/types/types";
 import BannerWithSummary from "@/components/ui/custom/BannerWithSummary/BannerWithSummary";
 import AsideNavigation from "@/components/ui/custom/AsideNavigation/AsideNavigation";
 import AnimatedArticle from "@/components/ui/custom/AnimatedArticle/AnimatedArticle";
 import { urlFor } from "@/utils/clientSideUtils";
 import { getImage } from "@/utils/serverSideUtils";
 
-const TREATMENT_GROUP_QUERY = `*[_type== 'treatmentGroup' && groupSlug.current==$treatmentGroup][0]{_id, altForMainImage, description, groupSlug, mainImage, title, summary}`;
-const FEATURED_TREATMENTS_QUERY = `*[_type=='treatment' && treatmentGroup->groupSlug.current==$treatmentGroup]{_id, altForMainImage, mainImage, title, summary, "slug": treatmentSlug, "category": treatmentGroup->{title, "categorySlug": groupSlug} }`;
+const TREATMENT_CATEGORY_QUERY = `*[_type== 'treatmentCategory' && categorySlug.current==$treatmentCategory][0]{_id, altForMainImage, description, categorySlug, mainImage, title, summary}`;
+const FEATURED_TREATMENTS_QUERY = `*[_type=='treatment' && treatmentCategory->categorySlug.current==$treatmentCategory]{_id, altForMainImage, mainImage, title, summary, "slug": treatmentSlug, "category": treatmentCategory->{title, categorySlug} }`;
 
 const options = { next: { revalidate: 30 } };
 
-export default async function TreatmentGroupPage({
+export default async function TreatmentCategoryPage({
   params,
 }: {
-  params: Promise<{ treatmentGroup: string }>;
+  params: Promise<{ treatmentCategory: string }>;
 }) {
-  const treatmentGroupData = await client.fetch<TreatmentGroup>(
-    TREATMENT_GROUP_QUERY,
+  const treatmentCategoryData = await client.fetch<TreatmentCategory>(
+    TREATMENT_CATEGORY_QUERY,
     await params,
     options,
   );
@@ -29,9 +29,9 @@ export default async function TreatmentGroupPage({
     options,
   );
 
-  const { treatmentGroup } = await params;
+  const { treatmentCategory } = await params;
   const { title, description, altForMainImage, mainImage, summary } =
-    treatmentGroupData;
+    treatmentCategoryData;
 
   const mainImageUrl = urlFor(mainImage)!.fit("max").url();
   const imageData = await getImage(mainImageUrl);
@@ -57,7 +57,7 @@ export default async function TreatmentGroupPage({
       <div className="grid max-w-[1300px] grid-cols-1 gap-[20px] md:grid-cols-[4fr__6fr] md:gap-[40px] lg:gap-[60px] xl:gap-[90px]">
         <AsideNavigation
           className="order-2 sm:order-1"
-          currentGroup={treatmentGroup}
+          currentCategory={treatmentCategory}
         />
         <AnimatedArticle
           articleContent={description}
