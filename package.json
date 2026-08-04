@@ -80,8 +80,6 @@
   "overrides": {
     "next": "$next",
     "postcss": "^8.4.31",
-    "prismjs": "^1.30.0",
-    "react": "19.2.7",
-    "react-dom": "19.2.7"
+    "prismjs": "^1.30.0"
   }
 }
