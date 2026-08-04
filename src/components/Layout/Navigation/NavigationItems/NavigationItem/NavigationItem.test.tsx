@@ -8,9 +8,10 @@ import { mockNavData } from "@/test-utils/mockData";
 import { NavigationMenu } from "@/components/ui/navigation-menu";
 import NavigationItem from "@/components/Layout/Navigation/NavigationItems/NavigationItem/NavigationItem";
 import nextNavigation from "next/navigation";
+import { NavConfigItem } from "@/types/types";
 
 describe("NavigationItem Component", () => {
-  let mockLinkData = {
+  let mockLinkData: NavConfigItem = {
     id: "blog",
     label: "Blog",
     href: "/blog",
@@ -69,6 +70,7 @@ describe("NavigationItem Component", () => {
       id: "zabiegi",
       label: "Zabiegi",
       href: "/zabiegi",
+      resourceType: "treatment",
     };
 
     render(
@@ -94,6 +96,7 @@ describe("NavigationItem Component", () => {
       id: "zabiegi",
       label: "Zabiegi",
       href: "/zabiegi",
+      resourceType: "treatment",
     };
 
     render(

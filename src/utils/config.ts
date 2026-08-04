@@ -125,3 +125,45 @@ export const formConfig: FormFieldConfig[] = [
         : undefined,
   },
 ];
+
+export const enrollmentFormConfig: FormFieldConfig[] = [
+  {
+    type: "text",
+    name: "name",
+    label: "Imię",
+    validator: (v: string) =>
+      validator.isEmpty(v || "", { ignore_whitespace: true }) ||
+      !validator.isLength(v.trim() || "", { min: 4 })
+        ? "To pole jest wymagane"
+        : undefined,
+  },
+  {
+    type: "text",
+    name: "surname",
+    label: "Nazwisko",
+    validator: (v: string) =>
+      validator.isEmpty(v || "", { ignore_whitespace: true }) ||
+      !validator.isLength(v.trim() || "", { min: 4 })
+        ? "To pole jest wymagane"
+        : undefined,
+  },
+  {
+    type: "email",
+    name: "email",
+    label: "Email",
+    validator: (v: string) =>
+      !validator.isEmail(v || "")
+        ? "Proszę wprowadzić poprawny email"
+        : undefined,
+  },
+  {
+    type: "tel",
+    name: "tel",
+    label: "Telefon",
+    validator: (v: string) =>
+      !validator.isNumeric(v?.trim() || "", { locale: "pl-PL" }) ||
+      !validator.isLength(v?.trim() || "", { min: 9 })
+        ? "Proszę wprowadzić poprawny numer telefonu"
+        : undefined,
+  },
+];
