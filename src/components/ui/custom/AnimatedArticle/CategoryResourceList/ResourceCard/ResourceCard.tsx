@@ -2,18 +2,23 @@ import Image from "next/image";
 import { RevealWrapper } from "next-reveal";
 
 import { urlFor } from "@/utils/clientSideUtils";
-import { ListItemData } from "@/types/types";
+import { ListItemData, ResourceType } from "@/types/types";
 import StyledButton from "@/components/ui/custom/StyledButton/StyledButton";
 
-interface TreatmentCardProps {
+interface ResourceCardProps {
   cardData: ListItemData;
+  resourceType: ResourceType;
 }
 
-export default function TreatmentCard({ cardData }: TreatmentCardProps) {
+export default function ResourceCard({
+  cardData,
+  resourceType,
+}: ResourceCardProps) {
   const { altForMainImage, mainImage, title, summary, category, slug } =
     cardData;
   const { categorySlug } = category;
   const imageUrl = urlFor(mainImage)!.fit("max").url() || "";
+  const mainRoute = resourceType === "treatment" ? "zabiegi" : "szkolenia";
 
   return (
     <RevealWrapper
@@ -41,7 +46,7 @@ export default function TreatmentCard({ cardData }: TreatmentCardProps) {
             </h5>
             <p className="text-justify text-[14px]">{summary}</p>
             <StyledButton
-              href={`/zabiegi/${categorySlug.current}/${slug?.current}`}
+              href={`/${mainRoute}/${categorySlug.current}/${slug?.current}`}
             >
               Więcej
             </StyledButton>

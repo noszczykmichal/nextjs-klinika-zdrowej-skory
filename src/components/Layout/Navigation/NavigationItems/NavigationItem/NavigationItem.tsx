@@ -6,13 +6,14 @@ import {
   NavigationMenuItem,
   NavigationMenuLink,
 } from "@/components/ui/navigation-menu";
-import { ListItemData } from "@/types/types";
+import { NavigationDataInterface } from "@/types/types";
 import NavigationItemWithDropDown from "@/components/Layout/Navigation/NavigationItems/NavigationItem/NavigationItemWithDropDown/NavigationItemWithDropDown";
 import NavigationItemWithAccordion from "@/components/Layout/Navigation/NavigationItems/NavigationItem/NavigationItemWithAccordion/NavigationItemWithAccordion";
+import { NavConfigItem } from "@/types/types";
 
 interface NavigationItemProps {
-  linkData: { id: string; label: string; href: string };
-  navData: Partial<ListItemData>[];
+  linkData: NavConfigItem;
+  navData: NavigationDataInterface;
   isMobileNav: boolean;
   onLinkClick?: () => void;
 }
@@ -23,7 +24,7 @@ export default function NavigationItem({
   isMobileNav,
   onLinkClick,
 }: NavigationItemProps) {
-  const { id, label, href } = linkData;
+  const { id, label, href, resourceType } = linkData;
   const pathname = usePathname();
 
   const linkClasses =
@@ -54,7 +55,10 @@ export default function NavigationItem({
     </NavigationMenuItem>
   );
 
-  if (id === "zabiegi" && !isMobileNav) {
+  if (
+    (resourceType === "treatment" || resourceType === "training") &&
+    !isMobileNav
+  ) {
     content = (
       <NavigationItemWithDropDown
         linkData={linkData}
@@ -63,7 +67,10 @@ export default function NavigationItem({
         contentClasses={contentClasses}
       />
     );
-  } else if (id === "zabiegi" && isMobileNav) {
+  } else if (
+    (resourceType === "treatment" || resourceType === "training") &&
+    isMobileNav
+  ) {
     content = (
       <li className="relative">
         <NavigationItemWithAccordion

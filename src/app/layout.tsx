@@ -1,11 +1,10 @@
-import { client } from "@/sanity/client";
 import type { Metadata } from "next";
 import { Montserrat } from "next/font/google";
 
 import Footer from "@/components/Layout/Footer/Footer";
 import Navigation from "@/components/Layout/Navigation/Navigation";
+import { getNavData } from "@/utils/sanityPageData";
 import "@/styles/globals.css";
-import { ListItemData } from "@/types/types";
 
 const montserrat = Montserrat({
   variable: "--font-montserrat",
@@ -47,25 +46,17 @@ export const metadata: Metadata = {
   },
 };
 
-const TREATMENT_CATEGORIES_QUERY = `*[_type=='treatmentCategory']{_id, title, "slug":categorySlug}`;
-
-const options = { next: { revalidate: 30 } };
-
 export default async function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-  const treatmentCategories = await client.fetch<Partial<ListItemData>[]>(
-    TREATMENT_CATEGORIES_QUERY,
-    {},
-    options,
-  );
+  const navData = await getNavData();
 
   return (
     <html lang="pl" style={{ scrollBehavior: "auto" }}>
       <body className={`${montserrat.className} antialiased`}>
-        <Navigation navData={treatmentCategories} />
+        <Navigation navData={navData} />
         <div id="overlay-root" />
         {children}
         <Footer className="mx-auto pb-[50px]" />

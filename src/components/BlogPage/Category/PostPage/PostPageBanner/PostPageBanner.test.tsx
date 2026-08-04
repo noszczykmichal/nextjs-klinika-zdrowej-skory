@@ -26,7 +26,7 @@ describe("PostPageBanner component", () => {
     render(<PostPageBanner postDetails={mockPostDetailsWithTreatment} />);
 
     const { treatment } = mockPostDetailsWithTreatment;
-    const treatmentCategory = treatment?.treatmentCategory.categorySlug.current;
+    const treatmentCategory = treatment?.treatmentCategory.current;
     const hrefValue = `/zabiegi/${treatmentCategory}/${treatment?.treatmentSlug.current}`;
     const testedButton = screen.getByRole("link", {
       name: /Przejdź do zabiegu/i,

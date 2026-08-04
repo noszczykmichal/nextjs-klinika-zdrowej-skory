@@ -5,8 +5,8 @@ export default function Loader() {
       data-testid="loader"
     >
       <div className="relative inline-block h-40 w-40">
-        <div className="animate-lds-ripple absolute rounded-full border-[4px] border-white bg-[var(--magenta-100)] opacity-100" />
-        <div className="animate-lds-ripple absolute rounded-full border-[4px] border-white bg-[var(--magenta-100)] opacity-100 delay-[-500ms]" />
+        <div className="animate-lds-ripple absolute rounded-full border-[4px] border-[var(--black-100)] bg-[var(--magenta-100)] opacity-100" />
+        <div className="animate-lds-ripple absolute rounded-full border-[4px] border-[var(--black-100)] bg-[var(--magenta-100)] opacity-100 delay-[-500ms]" />
       </div>
     </div>
   );

@@ -9,12 +9,12 @@ import { urlFor } from "@/utils/clientSideUtils";
 import { getImage } from "@/utils/serverSideUtils";
 
 // to-do: refactor and move query to the dedicated handler
-const TREATMENT_QUERY = `*[_type == "treatment" && treatmentSlug.current == $treatment][0]{
+const TRAINING_QUERY = `*[_type == "training" && trainingSlug.current == $training][0]{
   mainImage,
   title,
   summary,
   altForMainImage,
-   "category": treatmentCategory->{title, categorySlug},
+  "category": trainingCategory->{title, categorySlug},
   description[]{
     ...,
     _type == "image" => {
@@ -37,31 +37,31 @@ const TREATMENT_QUERY = `*[_type == "treatment" && treatmentSlug.current == $tre
 
 const options = { next: { revalidate: 30 } };
 
-export default async function TreatmentPage({
+export default async function TrainingPage({
   params,
 }: {
-  params: Promise<{ treatmentCategory: string; treatment: string }>;
+  params: Promise<{ trainingCategory: string; training: string }>;
 }) {
-  const treatment = await client.fetch<ResourceDetails>(
-    TREATMENT_QUERY,
+  const training = await client.fetch<ResourceDetails>(
+    TRAINING_QUERY,
     await params,
     options,
   );
 
   const {
-    title: treatmentName,
-    category: treatmentCategory,
+    title: trainingName,
+    category: trainingCategory,
     description,
     mainImage,
     summary,
     altForMainImage,
-  } = treatment;
+  } = training;
 
   const mainImageUrl = urlFor(mainImage)!.fit("max").url();
   const imageData = await getImage(mainImageUrl);
 
   const bannerData = {
-    title: treatmentName,
+    title: trainingName,
     altForMainImage,
     imageData,
     summary,
@@ -69,15 +69,15 @@ export default async function TreatmentPage({
 
   const routesData = [
     {
-      routeName: "Zabiegi",
-      url: "/zabiegi",
+      routeName: "Szkolenia",
+      url: "/szkolenia",
     },
     {
-      routeName: `${treatmentCategory.title}`,
-      url: `/zabiegi/${treatmentCategory.categorySlug.current}`,
+      routeName: `${trainingCategory.title}`,
+      url: `/szkolenia/${trainingCategory.categorySlug.current}`,
     },
     {
-      routeName: `${treatmentName}`,
+      routeName: `${trainingName}`,
     },
   ];
 
@@ -87,11 +87,12 @@ export default async function TreatmentPage({
       <div className="grid max-w-[1300px] grid-cols-1 gap-[20px] md:grid-cols-[4fr__6fr] md:gap-[40px] lg:gap-[60px] xl:gap-[90px]">
         <AsideNavigation
           className="order-2 md:order-1"
-          resourceType="treatment"
+          resourceType="training"
         />
         <AnimatedArticle
           articleContent={description}
-          resourceType="treatment"
+          resourceType="training"
+          isDetailPage={true}
         />
       </div>
     </LayoutWrapper>

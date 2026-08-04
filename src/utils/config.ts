@@ -1,11 +1,26 @@
 import validator from "validator";
 
-import { SocialIcon, HeroArticleData, FormFieldConfig } from "@/types/types";
+import {
+  SocialIcon,
+  HeroArticleData,
+  FormFieldConfig,
+  NavConfigItem,
+} from "@/types/types";
 
-export const navConfig = [
+export const navConfig: NavConfigItem[] = [
   { id: "o-nas", label: "O nas", href: "/o-nas" },
-  { id: "zabiegi", label: "Zabiegi", href: "/zabiegi" },
-  // { id: "cennik", label: "Cennik", href: "/cennik" },
+  {
+    id: "zabiegi",
+    label: "Zabiegi",
+    href: "/zabiegi",
+    resourceType: "treatment",
+  },
+  {
+    id: "szkolenia",
+    label: "Szkolenia",
+    href: "/szkolenia",
+    resourceType: "training",
+  },
   { id: "blog", label: "Blog", href: "/blog" },
   { id: "kontakt", label: "Kontakt", href: "#contact" },
 ];

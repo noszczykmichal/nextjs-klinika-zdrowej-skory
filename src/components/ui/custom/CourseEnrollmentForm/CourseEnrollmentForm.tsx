@@ -12,7 +12,7 @@ interface InputData {
   [key: string]: string;
 }
 
-interface FormContentProps {
+interface CourseEnrollmentFormProps {
   handleSubmit: () => void;
   submitting: boolean | undefined;
   submitSucceeded: boolean | undefined;
@@ -21,14 +21,14 @@ interface FormContentProps {
   setErrorHandler: Dispatch<SetStateAction<ErrorState>>;
 }
 
-export default function FormContent({
+export default function CourseEnrollmentForm({
   handleSubmit,
   submitting,
   submitSucceeded,
   formRestartHandler,
   errorData,
   setErrorHandler,
-}: FormContentProps) {
+}: CourseEnrollmentFormProps) {
   const [showSuccess, setShowSuccess] = useState(false);
   const successTimerRef = useRef<NodeJS.Timeout>(null);
   const formRestartTimerRef = useRef<NodeJS.Timeout>(null);

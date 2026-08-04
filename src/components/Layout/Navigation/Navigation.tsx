@@ -10,10 +10,10 @@ import SideNav from "@/components/Layout/Navigation/SideNav/SideNav";
 import useScrollDirection from "@/hooks/useScrollDirection";
 import useHandleScroll from "@/hooks/useHandleScroll";
 import Logo from "@/components/Layout/Icon/Icons/Logo";
-import { ListItemData } from "@/types/types";
+import { NavigationDataInterface } from "@/types/types";
 
 interface NavigationProps {
-  navData: Partial<ListItemData>[];
+  navData: NavigationDataInterface;
 }
 
 export default function Navigation({ navData }: NavigationProps) {

@@ -4,15 +4,14 @@ import AsideNavigation from "@/components/ui/custom/AsideNavigation/AsideNavigat
 import AnimatedArticle from "@/components/ui/custom/AnimatedArticle/AnimatedArticle";
 import { getCategoryPageData } from "@/utils/sanityPageData";
 
-export default async function TreatmentCategoryPage({
+export default async function TrainingCategoryPage({
   params,
 }: {
-  params: Promise<{ treatmentCategory: string }>;
+  params: Promise<{ trainingCategory: string }>;
 }) {
-  const { treatmentCategory } = await params;
+  const { trainingCategory } = await params;
   const { categoryData, categoryResources, imageData } =
-    await getCategoryPageData("treatment", treatmentCategory);
-
+    await getCategoryPageData("training", trainingCategory);
   const { title, description, altForMainImage, summary } = categoryData;
 
   const bannerData = {
@@ -24,8 +23,8 @@ export default async function TreatmentCategoryPage({
 
   const routesData = [
     {
-      routeName: "Zabiegi",
-      url: "/zabiegi",
+      routeName: "Szkolenia",
+      url: "/szkolenia",
     },
     { routeName: `${title}` },
   ];
@@ -36,13 +35,13 @@ export default async function TreatmentCategoryPage({
       <div className="grid max-w-[1300px] grid-cols-1 gap-[20px] md:grid-cols-[4fr__6fr] md:gap-[40px] lg:gap-[60px] xl:gap-[90px]">
         <AsideNavigation
           className="order-2 sm:order-1"
-          currentCategory={treatmentCategory}
-          resourceType="treatment"
+          currentCategory={trainingCategory}
+          resourceType="training"
         />
         <AnimatedArticle
           articleContent={description}
           categoryResources={categoryResources}
-          resourceType="treatment"
+          resourceType="training"
         />
       </div>
     </LayoutWrapper>

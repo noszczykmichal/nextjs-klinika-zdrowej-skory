@@ -1,17 +1,18 @@
 import { usePathname } from "next/navigation";
 import Link from "next/link";
 
-import { ListItemData } from "@/types/types";
+import { ListItemData, NavigationDataInterface } from "@/types/types";
 import {
   Accordion,
   AccordionContent,
   AccordionItem,
   AccordionTrigger,
 } from "@/components/ui/accordion";
+import { NavConfigItem } from "@/types/types";
 
 interface NavigationItemWithAccordionProps {
-  linkData: { id: string; label: string; href: string };
-  navData: Partial<ListItemData>[];
+  linkData: NavConfigItem;
+  navData: NavigationDataInterface;
   onLinkClick?: () => void;
   contentClasses: string;
 }
@@ -22,7 +23,9 @@ export default function NavigationItemWithAccordion({
   onLinkClick,
   contentClasses,
 }: NavigationItemWithAccordionProps) {
-  const { label, href } = linkData;
+  const { label, href, resourceType } = linkData;
+  const mainRoute = resourceType === "training" ? "szkolenia" : "zabiegi";
+  const filteredNavItems = navData[resourceType!];
   const pathname = usePathname();
 
   const activeLinkClasses =
@@ -51,9 +54,9 @@ export default function NavigationItemWithAccordion({
           className="flex w-[90%] flex-col gap-6 py-5"
           data-testid="accordionContent"
         >
-          {navData.map((link) => (
+          {filteredNavItems.map((link) => (
             <Link
-              href={`/zabiegi/${link?.slug?.current}`}
+              href={`/${mainRoute}/${link?.slug?.current}`}
               className={`xxs:text-[15px] inline-block w-fit leading-0 whitespace-nowrap ${contentClasses} ${isDropDownLinkActive(link)} `}
               key={link._id}
               onClick={onLinkClick}

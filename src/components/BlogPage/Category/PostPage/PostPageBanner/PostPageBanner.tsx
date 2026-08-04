@@ -17,7 +17,7 @@ export default function PostPageBanner({ postDetails }: PostPageBannerProps) {
     altForMainImage,
   } = postDetails;
 
-  const treatmentCategory = treatment?.treatmentCategory.categorySlug.current;
+  const treatmentCategory = treatment?.treatmentCategory.current;
 
   const wrapperClasses = "min-w-[130px] h-[36px] xs:min-w-[180px]";
   const contentClasses =
