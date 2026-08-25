@@ -3,6 +3,7 @@ import BannerWithSummary from "@/components/ui/custom/BannerWithSummary/BannerWi
 import AsideNavigation from "@/components/ui/custom/AsideNavigation/AsideNavigation";
 import AnimatedArticle from "@/components/ui/custom/AnimatedArticle/AnimatedArticle";
 import { getCategoryPageData } from "@/utils/sanityPageData";
+import { notFound } from "next/navigation";
 
 export default async function TrainingCategoryPage({
   params,
@@ -10,8 +11,13 @@ export default async function TrainingCategoryPage({
   params: Promise<{ trainingCategory: string }>;
 }) {
   const { trainingCategory } = await params;
-  const { categoryData, categoryResources, imageData } =
-    await getCategoryPageData("training", trainingCategory);
+  const pageData = await getCategoryPageData("training", trainingCategory);
+
+  if (!pageData) {
+    notFound();
+  }
+
+  const { categoryData, categoryResources, imageData } = pageData;
   const { title, description, altForMainImage, summary } = categoryData;
 
   const bannerData = {

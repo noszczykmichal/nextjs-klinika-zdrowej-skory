@@ -85,11 +85,12 @@ export interface HeroArticleData {
 }
 
 export interface FormFieldConfig {
-  component?: "input" | "textarea";
+  component?: "input" | "textarea" | "select";
   type?: HTMLInputTypeAttribute;
-  name: string;
+  name: keyof FormValues;
   label: string;
-  validator: (_v: string) => string | undefined;
+  validator: (v: unknown) => string | undefined;
+  wrapperClassName?: string;
 }
 
 export interface ErrorState {
@@ -117,4 +118,20 @@ export interface NavConfigItem {
   label: string;
   href: string;
   resourceType?: ResourceType;
+}
+
+export interface BasicEntityReference {
+  _id: string;
+  title: string;
+}
+
+export interface FormValues {
+  full_name: string;
+  email: string;
+  tel: number;
+  message: string;
+  name: string;
+  surname: string;
+  selected_training: string;
+  privacy_policy: boolean;
 }

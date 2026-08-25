@@ -1,69 +1,72 @@
-import { useState, useEffect, useRef, Dispatch, SetStateAction } from "react";
+import { useState } from "react";
+import { Form } from "react-final-form";
 
-import { formConfig } from "@/utils/config";
-import FormField from "@/components/Layout/Footer/ContactForm/FormContent/FormField/FormField";
-import SuccessMessage from "@/components/Layout/Footer/ContactForm/FormContent/SuccessMessage/SuccessMessage";
-import LoaderMessage from "@/components/Layout/Footer/ContactForm/FormContent/LoaderMessage/LoaderMessage";
-import ErrorMessage from "@/components/Layout/Footer/ContactForm/FormContent/ErrorMessage/ErrorMessage";
-import OutlineButton from "@/components/ui/custom/OutlineButton/OutlineButton";
-import { ErrorState } from "@/types/types";
+import EnrollmentFormContent from "@/components/ui/custom/CourseEnrollmentForm/EnrollmentFormContent/EnrollmentFormContent";
+import { BasicEntityReference, FormValues } from "@/types/types";
 
-interface InputData {
-  [key: string]: string;
-}
+type CourseEnrollmentFormValues = Pick<
+  FormValues,
+  "name" | "surname" | "email" | "tel" | "selected_training" | "privacy_policy"
+>;
 
 interface CourseEnrollmentFormProps {
-  handleSubmit: () => void;
-  submitting: boolean | undefined;
-  submitSucceeded: boolean | undefined;
-  formRestartHandler: (_initialValues?: Partial<InputData> | undefined) => void;
-  errorData: { errorMessage: string; hasError: boolean };
-  setErrorHandler: Dispatch<SetStateAction<ErrorState>>;
+  availableTrainings: BasicEntityReference[];
+  onSubmit: () => void;
 }
 
 export default function CourseEnrollmentForm({
-  handleSubmit,
-  submitting,
-  submitSucceeded,
-  formRestartHandler,
-  errorData,
-  setErrorHandler,
+  availableTrainings,
+  onSubmit,
 }: CourseEnrollmentFormProps) {
-  const [showSuccess, setShowSuccess] = useState(false);
-  const successTimerRef = useRef<NodeJS.Timeout>(null);
-  const formRestartTimerRef = useRef<NodeJS.Timeout>(null);
-  const { errorMessage } = errorData;
+  const [errorState, setErrorState] = useState({
+    errorMessage: "",
+    hasError: false,
+  });
 
-  useEffect(() => {
-    if (!errorMessage && submitSucceeded) {
-      setShowSuccess(true);
-      successTimerRef.current = setTimeout(() => setShowSuccess(false), 4000);
-      formRestartTimerRef.current = setTimeout(
-        () => formRestartHandler(),
-        4100,
-      );
-    }
+  const submitHandler = async (formData: CourseEnrollmentFormValues) => {
+    try {
+      setErrorState({
+        errorMessage: "",
+        hasError: false,
+      });
+      const data = {
+        method: "POST",
+        headers: {
+          Accept: "application/json",
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(formData),
+      };
 
-    return () => {
-      if (successTimerRef.current && formRestartTimerRef.current) {
-        clearTimeout(successTimerRef.current);
-        clearTimeout(formRestartTimerRef.current);
+      const sendData = await fetch("https://formspree.io/f/xnpaknye", data);
+      const response = await sendData.json();
+
+      if (!response.ok) {
+        throw new Error(response.error);
       }
-    };
-  }, [submitSucceeded, errorMessage, formRestartHandler]);
+    } catch (error) {
+      setErrorState({
+        errorMessage: `${error}`,
+        hasError: true,
+      });
+    }
+  };
 
   return (
-    <form onSubmit={handleSubmit} className="relative flex flex-col">
-      <fieldset className="flex flex-col">
-        <legend className="font-semibold">Napisz do nas!</legend>
-        {formConfig.map((inputEl) => (
-          <FormField fieldData={inputEl} key={inputEl.name} />
-        ))}
-      </fieldset>
-      <OutlineButton type="submit">Wyślij</OutlineButton>
-      <LoaderMessage submitting={submitting} />
-      <SuccessMessage showSuccess={!errorData.errorMessage && showSuccess} />
-      <ErrorMessage errorData={errorData} setErrorHandler={setErrorHandler} />
-    </form>
+    <Form
+      onSubmit={submitHandler}
+      render={({ handleSubmit, submitting, submitSucceeded, form }) => (
+        <EnrollmentFormContent
+          handleSubmit={handleSubmit}
+          submitting={submitting}
+          submitSucceeded={submitSucceeded}
+          formRestartHandler={() => form.restart()}
+          errorData={errorState}
+          setErrorHandler={setErrorState}
+          availableTrainings={availableTrainings}
+          onCloseDialog={onSubmit}
+        />
+      )}
+    />
   );
 }

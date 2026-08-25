@@ -7,6 +7,7 @@ import AsideNavigation from "@/components/ui/custom/AsideNavigation/AsideNavigat
 import AnimatedArticle from "@/components/ui/custom/AnimatedArticle/AnimatedArticle";
 import { urlFor } from "@/utils/clientSideUtils";
 import { getImage } from "@/utils/serverSideUtils";
+import { getAllTrainings } from "@/utils/sanityPageData";
 
 // to-do: refactor and move query to the dedicated handler
 const TRAINING_QUERY = `*[_type == "training" && trainingSlug.current == $training][0]{
@@ -67,6 +68,8 @@ export default async function TrainingPage({
     summary,
   };
 
+  const availableTrainings = await getAllTrainings();
+
   const routesData = [
     {
       routeName: "Szkolenia",
@@ -93,6 +96,7 @@ export default async function TrainingPage({
           articleContent={description}
           resourceType="training"
           isDetailPage={true}
+          availableTrainings={availableTrainings}
         />
       </div>
     </LayoutWrapper>

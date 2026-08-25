@@ -3,6 +3,7 @@ import BannerWithSummary from "@/components/ui/custom/BannerWithSummary/BannerWi
 import AsideNavigation from "@/components/ui/custom/AsideNavigation/AsideNavigation";
 import AnimatedArticle from "@/components/ui/custom/AnimatedArticle/AnimatedArticle";
 import { getCategoryPageData } from "@/utils/sanityPageData";
+import { notFound } from "next/navigation";
 
 export default async function TreatmentCategoryPage({
   params,
@@ -10,9 +11,12 @@ export default async function TreatmentCategoryPage({
   params: Promise<{ treatmentCategory: string }>;
 }) {
   const { treatmentCategory } = await params;
-  const { categoryData, categoryResources, imageData } =
-    await getCategoryPageData("treatment", treatmentCategory);
+  const pageData = await getCategoryPageData("treatment", treatmentCategory);
+  if (!pageData) {
+    notFound();
+  }
 
+  const { categoryData, categoryResources, imageData } = pageData;
   const { title, description, altForMainImage, summary } = categoryData;
 
   const bannerData = {

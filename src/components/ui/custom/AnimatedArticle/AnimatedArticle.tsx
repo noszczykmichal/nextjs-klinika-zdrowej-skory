@@ -1,15 +1,17 @@
 "use client";
 
 import { useState } from "react";
-import { createPortal } from "react-dom";
 import { PortableText, PortableTextBlock } from "next-sanity";
 import { RevealWrapper } from "next-reveal";
 
 import CategoryResourceList from "@/components/ui/custom/AnimatedArticle/CategoryResourceList/CategoryResourceList";
 import { portableTextComponentConfig } from "@/utils/portableTextComponentConfig";
-import { ListItemData, ResourceType } from "@/types/types";
-import OutlineButton from "@/components/ui/custom/OutlineButton/OutlineButton";
-import { Form } from "react-final-form";
+import {
+  BasicEntityReference,
+  ListItemData,
+  ResourceType,
+} from "@/types/types";
+import AppDialog from "@/components/ui/custom/AppDialog/AppDialog";
 import CourseEnrollmentForm from "@/components/ui/custom/CourseEnrollmentForm/CourseEnrollmentForm";
 
 interface AnimatedArticleProps {
@@ -17,6 +19,7 @@ interface AnimatedArticleProps {
   categoryResources?: ListItemData[];
   resourceType?: ResourceType;
   isDetailPage?: boolean;
+  availableTrainings?: BasicEntityReference[];
 }
 
 export default function AnimatedArticle({
@@ -24,24 +27,15 @@ export default function AnimatedArticle({
   categoryResources,
   resourceType,
   isDetailPage = false,
+  availableTrainings = [],
 }: AnimatedArticleProps) {
   const isResourceListVisible = categoryResources && resourceType;
   const isActionButtonVisible = isDetailPage && resourceType === "training";
-  const [isFormOpen, setIsFormOpen] = useState(false);
+  const [isDialogOpen, setIsDialogOpen] = useState(false);
 
-  const formOpenHander = () => {
-    setIsFormOpen(true);
-    const body = document.body;
-    body.classList.toggle("overflow-hidden");
-  };
-
-  const formCloseHandler = () => {
-    setIsFormOpen(false);
-    const body = document.body;
-    body.classList.toggle("overflow-hidden");
-  };
-
-  const submitHandler = () => {};
+  function dialogCloseHandler() {
+    setIsDialogOpen(false);
+  }
 
   return (
     <RevealWrapper
@@ -58,45 +52,23 @@ export default function AnimatedArticle({
           value={articleContent}
           components={portableTextComponentConfig}
         />
-        {isFormOpen &&
-          createPortal(
-            // eslint-disable-next-line jsx-a11y/click-events-have-key-events, jsx-a11y/no-static-element-interactions
-            <div
-              className="fixed top-0 left-0 z-10 flex h-[100vh] w-[100vw] justify-center backdrop-blur-sm"
-              onClick={formCloseHandler}
-            >
-              <Form
-                onSubmit={submitHandler}
-                render={({
-                  handleSubmit,
-                  submitting,
-                  submitSucceeded,
-                  form,
-                }) => (
-                  <CourseEnrollmentForm
-                    handleSubmit={handleSubmit}
-                    submitting={submitting}
-                    submitSucceeded={submitSucceeded}
-                    formRestartHandler={() => form.restart()}
-                    errorData={{ errorMessage: "", hasError: false }}
-                    setErrorHandler={null}
-                  />
-                )}
-              />
-            </div>,
-            document.getElementById("overlay-root") as HTMLDivElement,
-          )}
+
+        <AppDialog
+          isTriggerVisible={isActionButtonVisible}
+          open={isDialogOpen}
+          onOpenChange={setIsDialogOpen}
+        >
+          <CourseEnrollmentForm
+            availableTrainings={availableTrainings}
+            onSubmit={dialogCloseHandler}
+          />
+        </AppDialog>
 
         {isResourceListVisible && (
           <CategoryResourceList
             resources={categoryResources}
             resourceType={resourceType}
           />
-        )}
-        {isActionButtonVisible && (
-          <OutlineButton onClick={formOpenHander}>
-            Zapisz się na szkolenie
-          </OutlineButton>
         )}
       </article>
     </RevealWrapper>

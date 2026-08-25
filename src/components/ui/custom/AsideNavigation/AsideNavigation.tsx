@@ -15,7 +15,6 @@ export default async function AsideNavigation({
   resourceType,
 }: AsideNavigationProps) {
   const resourceCategories = await getCategoriesNavData(resourceType);
-  console.log("currentCategory", currentCategory);
 
   const filteredList = currentCategory
     ? resourceCategories.filter(

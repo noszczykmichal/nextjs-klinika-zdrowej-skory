@@ -3,6 +3,7 @@ import Icon from "@/components/Layout/Icon/Icon";
 import Logo from "@/components/Layout/Icon/Icons/Logo";
 import { socialIconsConfig } from "@/utils/config";
 import ContactForm from "@/components/Layout/Footer/ContactForm/ContactForm";
+import clsx from "clsx";
 
 interface FooterProps {
   className: string;
@@ -11,14 +12,17 @@ interface FooterProps {
 export default function Footer({ className }: FooterProps) {
   return (
     <footer
-      className={`w-full px-[25px] text-[15px] leading-[26px] text-[var(--white-100)] md:px-[42px] ${className}`}
+      className={clsx(
+        "text-white-100 w-full px-[25px] text-[15px] leading-[26px] md:px-11",
+        className,
+      )}
       id="contact"
     >
-      <section className="mx-auto flex h-[100%] w-full max-w-[1300px] flex-col gap-[40px] rounded-[var(--big-border-radius)] bg-[var(--black-100)] px-[40px] py-[65px] sm:justify-between sm:px-[50px] lg:justify-start">
-        <div className="flex w-full flex-col gap-[40px] sm:flex-row sm:gap-[50px] lg:gap-[80px]">
-          <div className="flex max-w-[530px] flex-col gap-[40px] sm:w-1/2 lg:flex-row">
-            <div className="flex max-w-[280px] flex-col justify-center gap-[32px] lg:w-1/2">
-              <Logo className="h-[45px] fill-[var(--white-100)]" />
+      <section className="rounded-big bg-black-100 mx-auto flex h-[100%] w-full max-w-[1300px] flex-col gap-10 px-10 py-[65px] sm:justify-between sm:px-[50px] lg:justify-start">
+        <div className="flex w-full flex-col gap-10 sm:flex-row sm:gap-[50px] lg:gap-20">
+          <div className="flex max-w-[530px] flex-col gap-10 sm:w-1/2 lg:flex-row">
+            <div className="flex max-w-[280px] flex-col justify-center gap-8 lg:w-1/2">
+              <Logo className="fill-white-100 h-[45px]" />
               <div className="flex items-center gap-[33px]">
                 {socialIconsConfig.map((element) => (
                   <Icon
@@ -50,11 +54,11 @@ export default function Footer({ className }: FooterProps) {
                   <br /> 04-306 Warszawa
                 </a>
               </div>
-              <div className="py-[10px]">
+              <div className="py-2.5">
                 <p className="font-semibold">Telefon</p>
                 <a href="tel:+48508832553">508 832 553</a>
               </div>
-              <div className="py-[10px]">
+              <div className="py-2.5">
                 <p className="font-semibold">E-mail</p>
                 <a href="mailto:olga.noszczyk@gmail.com">
                   olga.noszczyk@gmail.com
@@ -71,15 +75,15 @@ export default function Footer({ className }: FooterProps) {
             <ContactForm />
           </div>
         </div>
-        <div className="w-full border-t border-[var(--white-100)]/50">
-          <p className="xs:flex-row flex flex-col items-center p-4 text-[12px] text-[var(--white-100)]/50">
+        <div className="border-white-100/50 w-full border-t">
+          <p className="xs:flex-row text-white-100/50 flex flex-col items-center p-4 text-[12px]">
             <span>
               © 2026 Copyright by{" "}
               <a
                 href="https://michalnoszczyk.com/"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="transition-colors duration-150 hover:text-[var(--magenta-100)] active:text-[var(--magenta-100)]"
+                className="hover:text-magenta-100 active:text-magenta-100 transition-colors duration-150"
               >
                 MNSS
               </a>

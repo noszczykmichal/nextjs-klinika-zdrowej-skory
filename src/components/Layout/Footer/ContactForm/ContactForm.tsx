@@ -3,11 +3,13 @@
 import { useState } from "react";
 import { Form } from "react-final-form";
 
-import FormContent from "@/components/Layout/Footer/ContactForm/FormContent/FormContent";
+import ContactFormContent from "@/components/Layout/Footer/ContactForm/ContactFormContent/ContactFormContent";
+import { FormValues } from "@/types/types";
 
-interface InputData {
-  [key: string]: string;
-}
+type ContactFormValues = Pick<
+  FormValues,
+  "full_name" | "email" | "tel" | "message"
+>;
 
 export default function ContactForm() {
   const [errorState, setErrorState] = useState({
@@ -15,7 +17,7 @@ export default function ContactForm() {
     hasError: false,
   });
 
-  const submitHandler = async (formData: InputData) => {
+  const submitHandler = async (formData: ContactFormValues) => {
     try {
       setErrorState({
         errorMessage: "",
@@ -48,7 +50,7 @@ export default function ContactForm() {
     <Form
       onSubmit={submitHandler}
       render={({ handleSubmit, submitting, submitSucceeded, form }) => (
-        <FormContent
+        <ContactFormContent
           handleSubmit={handleSubmit}
           submitting={submitting}
           submitSucceeded={submitSucceeded}

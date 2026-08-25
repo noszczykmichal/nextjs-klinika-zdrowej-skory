@@ -1,5 +1,7 @@
 import validator from "validator";
 
+import { FormValues } from "@/types/types";
+
 import {
   SocialIcon,
   HeroArticleData,
@@ -84,86 +86,136 @@ export const aboutUsArticleContent: HeroArticleData[] = [
   },
 ];
 
-export const formConfig: FormFieldConfig[] = [
+const fieldRegistry: FormFieldConfig[] = [
   {
     type: "text",
     name: "full_name",
     label: "Imię i Nazwisko",
-    validator: (v: string) =>
-      validator.isEmpty(v || "", { ignore_whitespace: true }) ||
-      !validator.isLength(v.trim() || "", { min: 4 })
+    validator: (v: unknown) => {
+      const val = typeof v === "string" ? v.trim() : "";
+      return validator.isEmpty(val, { ignore_whitespace: true }) ||
+        !validator.isLength(val, { min: 4 })
         ? "To pole jest wymagane"
-        : undefined,
-  },
-  {
-    type: "email",
-    name: "email",
-    label: "Email",
-    validator: (v: string) =>
-      !validator.isEmail(v || "")
-        ? "Proszę wprowadzić poprawny email"
-        : undefined,
-  },
-  {
-    type: "tel",
-    name: "tel",
-    label: "Telefon",
-    validator: (v: string) =>
-      !validator.isNumeric(v?.trim() || "", { locale: "pl-PL" }) ||
-      !validator.isLength(v?.trim() || "", { min: 9 })
-        ? "Proszę wprowadzić poprawny numer telefonu"
-        : undefined,
+        : undefined;
+    },
   },
   {
     component: "textarea",
     name: "message",
     label: "Wiadomość",
-    validator: (v: string) =>
-      validator.isEmpty(v || "", { ignore_whitespace: true }) ||
-      !validator.isLength(v.trim() || "", { min: 4 })
+    validator: (v: unknown) => {
+      const val = typeof v === "string" ? v.trim() : "";
+      return validator.isEmpty(val) || !validator.isLength(val, { min: 4 })
         ? "Proszę wpisać wiadomość"
-        : undefined,
+        : undefined;
+    },
   },
-];
-
-export const enrollmentFormConfig: FormFieldConfig[] = [
   {
     type: "text",
     name: "name",
     label: "Imię",
-    validator: (v: string) =>
-      validator.isEmpty(v || "", { ignore_whitespace: true }) ||
-      !validator.isLength(v.trim() || "", { min: 4 })
+    validator: (v: unknown) => {
+      const val = typeof v === "string" ? v.trim() : "";
+
+      return validator.isEmpty(val) || !validator.isLength(val, { min: 4 })
         ? "To pole jest wymagane"
-        : undefined,
+        : undefined;
+    },
   },
   {
     type: "text",
     name: "surname",
     label: "Nazwisko",
-    validator: (v: string) =>
-      validator.isEmpty(v || "", { ignore_whitespace: true }) ||
-      !validator.isLength(v.trim() || "", { min: 4 })
+    validator: (v: unknown) => {
+      const val = typeof v === "string" ? v.trim() : "";
+
+      return validator.isEmpty(val) || !validator.isLength(val, { min: 4 })
         ? "To pole jest wymagane"
-        : undefined,
+        : undefined;
+    },
   },
   {
     type: "email",
     name: "email",
     label: "Email",
-    validator: (v: string) =>
-      !validator.isEmail(v || "")
-        ? "Proszę wprowadzić poprawny email"
-        : undefined,
+    validator: (v: unknown) => {
+      const val = typeof v === "string" ? v.trim() : "";
+      if (validator.isEmpty(val)) {
+        return "To pole jest wymagane";
+      }
+
+      if (!validator.isEmail(val)) {
+        return "Proszę wprowadzić poprawny email";
+      }
+      return undefined;
+    },
   },
   {
     type: "tel",
     name: "tel",
     label: "Telefon",
-    validator: (v: string) =>
-      !validator.isNumeric(v?.trim() || "", { locale: "pl-PL" }) ||
-      !validator.isLength(v?.trim() || "", { min: 9 })
-        ? "Proszę wprowadzić poprawny numer telefonu"
-        : undefined,
+    validator: (v: unknown) => {
+      const val = typeof v === "string" ? v.trim() : "";
+
+      if (validator.isEmpty(val)) {
+        return "To pole jest wymagane";
+      }
+      if (
+        !validator.isNumeric(val, { locale: "pl-PL" }) ||
+        !validator.isLength(val, { min: 9, max: 9 })
+      ) {
+        return "Podaj 9 cyfr bez spacji, np. 123456789";
+      }
+      return undefined;
+    },
+  },
+  {
+    component: "select",
+    name: "selected_training",
+    label: "Wybierz interesujące Cię szkolenie",
+    validator: (v: unknown) => {
+      const val = typeof v === "string" ? v.trim() : "";
+      return validator.isEmpty(val, { ignore_whitespace: true })
+        ? "To pole jest wymagane"
+        : undefined;
+    },
+  },
+  {
+    type: "checkbox",
+    name: "privacy_policy",
+    label: "Zapoznałem/am się z polityką prywatności.",
+    validator: (v: unknown) =>
+      v !== true ? "To pole jest wymagane" : undefined,
+    wrapperClassName: "md:col-span-2",
   },
 ];
+
+function filterFormFields(arrayOfFields: Array<keyof FormValues>) {
+  return arrayOfFields.map((requestedField) => {
+    const foundField = fieldRegistry.find(
+      (field) => field.name === requestedField,
+    );
+
+    if (!foundField) {
+      throw new Error(`Field ${requestedField} not found in registry!`);
+    }
+
+    return foundField;
+  });
+}
+
+export const contactFormConfig: FormFieldConfig[] = filterFormFields([
+  "full_name",
+  "email",
+  "tel",
+  "message",
+]);
+
+export const enrollmentFormConfig: FormFieldConfig[] = filterFormFields([
+  "name",
+  "surname",
+  "email",
+  "tel",
+  "selected_training",
+  "privacy_policy",
+]);

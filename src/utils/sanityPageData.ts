@@ -5,6 +5,7 @@ import {
   ResourceCategory,
   ResourceType,
   NavigationDataInterface,
+  BasicEntityReference,
 } from "@/types/types";
 import { urlFor } from "@/utils/clientSideUtils";
 import { getImage } from "@/utils/serverSideUtils";
@@ -26,6 +27,11 @@ async function getCategoryPageData(
     { categorySlug },
     options,
   );
+
+  if (!categoryData) {
+    return null;
+  }
+
   const categoryResources = await client.fetch<ListItemData[]>(
     CATEGORY_RESOURCES_QUERY,
     { categorySlug },
@@ -61,7 +67,7 @@ async function getNavData(): Promise<NavigationDataInterface> {
   >;
 }
 
-/** fetches data used for building in page navigation*/
+/** fetches data used for building aside navigation*/
 async function getCategoriesNavData(resourceType: ResourceType) {
   const CATEGORIES_QUERY = `*[_type == "${resourceType}Category"]{categorySlug, title, _id}`;
 
@@ -86,9 +92,30 @@ async function getAllResources(resourceType: ResourceType) {
   return allResources;
 }
 
+async function getAllTrainings() {
+  const ALL_TRAININGS_QUERY = `*[_type=="training" ]{_id, title}`;
+
+  try {
+    const allTrainingsNames = await client.fetch<BasicEntityReference[]>(
+      ALL_TRAININGS_QUERY,
+      {},
+      options,
+    );
+
+    if (!allTrainingsNames) {
+      return [];
+    }
+
+    return allTrainingsNames;
+  } catch (error) {
+    console.warn(`Error fetching items. Error: ${error}`);
+  }
+}
+
 export {
   getCategoryPageData,
   getNavData,
   getCategoriesNavData,
   getAllResources,
+  getAllTrainings,
 };

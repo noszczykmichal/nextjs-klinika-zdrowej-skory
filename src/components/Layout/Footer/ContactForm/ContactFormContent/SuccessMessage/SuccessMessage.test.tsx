@@ -1,6 +1,6 @@
 import { render, screen } from "@testing-library/react";
 
-import SuccessMessage from "@/components/Layout/Footer/ContactForm/FormContent/SuccessMessage/SuccessMessage";
+import SuccessMessage from "@/components/Layout/Footer/ContactForm/ContactFormContent/SuccessMessage/SuccessMessage";
 
 describe("SuccessMessage component", () => {
   it("renders SuccessMessage component when show success is true", () => {
