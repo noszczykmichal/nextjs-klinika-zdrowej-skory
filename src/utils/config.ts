@@ -35,7 +35,7 @@ export const socialIconsConfig: SocialIcon[] = [
   },
   {
     name: "instagram",
-    href: "https://www.instagram.com/olganoszczyk.klinikaskory/?igsh=MWxzY2h2endpNGxlNQ%3D%3D#",
+    href: "https://www.instagram.com/klinikazdrowejskory.warszawa",
     className: "var(--white-100)",
   },
   {
