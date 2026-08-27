@@ -72,7 +72,7 @@ export interface ResourceCategory extends Resource {
   categorySlug: SlugField;
 }
 
-export type TopLevelRoute = "blog" | "zabiegi";
+export type TopLevelRoute = "blog" | "zabiegi" | "szkolenia";
 
 export interface RouteData {
   routeName: string;

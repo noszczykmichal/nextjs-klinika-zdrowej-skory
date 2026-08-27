@@ -17,7 +17,7 @@ export default function CategoryResourceList({
 
   return (
     <section>
-      <h3 className="mb-[40px] w-fit border-b-1 border-[var(--orange-100)] pb-[12px] text-[24px] font-medium">
+      <h3 className="border-golden-100 mb-[40px] w-fit border-b-1 pb-[12px] text-[24px] font-medium">
         {header}
       </h3>
       <ul className="mb-[30px] flex flex-col gap-[20px]">

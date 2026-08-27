@@ -22,6 +22,8 @@ export default async function AsideNavigation({
       )
     : resourceCategories;
 
+  const mainRoute = resourceType === "treatment" ? "zabiegi" : "szkolenia";
+
   return (
     <aside
       className={`h-full w-full ${className}`}
@@ -35,7 +37,7 @@ export default async function AsideNavigation({
             className="w-full border-b-1 border-[var(--gray-100)] px-[10px] py-[10px] pb-1 transition-all duration-150 hover:bg-[var(--magenta-100)] hover:text-white active:bg-[var(--magenta-100)] active:text-white"
           >
             <Link
-              href={`/zabiegi/${category.categorySlug.current}`}
+              href={`/${mainRoute}/${category.categorySlug.current}`}
               className="block w-full"
             >
               {category.title}
