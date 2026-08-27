@@ -37,7 +37,6 @@
     "next-reveal": "^1.0.6",
     "next-sanity": "^12.1.0",
     "plaiceholder": "^3.0.0",
-    "radix-ui": "^1.6.7",
     "react": "^19.2.4",
     "react-countdown-circle-timer": "^3.2.1",
     "react-dom": "^19.2.4",
