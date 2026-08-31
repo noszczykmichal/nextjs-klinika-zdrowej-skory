@@ -38,10 +38,7 @@ describe("NavigationItemWithDropDown", () => {
     fireEvent.click(dropDownTrigger);
     const testedLink = screen.getByText(mockNavData.treatment[0].title);
 
-    expect(testedLink).toHaveClass(
-      "before:w-full",
-      "text-[var(--magenta-100)]",
-    );
+    expect(testedLink).toHaveClass("before:w-full", "text-magenta-100");
     expect(testedLink).not.toHaveClass("before:w-[0px]");
   });
 

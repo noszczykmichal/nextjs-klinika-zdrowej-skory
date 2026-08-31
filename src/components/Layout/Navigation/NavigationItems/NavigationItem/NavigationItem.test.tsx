@@ -86,7 +86,7 @@ describe("NavigationItem Component", () => {
     const dropDownTrigger = screen.getByRole("button");
 
     fireEvent.click(dropDownTrigger);
-    const dropDownElement = screen.getByTestId("dropDown");
+    const dropDownElement = screen.getByTestId("dropDown-zabiegi");
 
     expect(dropDownElement).toBeVisible();
   });
@@ -109,8 +109,12 @@ describe("NavigationItem Component", () => {
       </NavigationMenu>,
     );
 
-    const accordionTriggerElement = screen.getByRole("button");
-    const accordionContentElement = screen.getByTestId("accordionContent");
+    const accordionTriggerElement = screen.getByTestId(
+      "accordionTrigger-zabiegi",
+    );
+    const accordionContentElement = screen.getByTestId(
+      "accordionContent-zabiegi",
+    );
 
     expect(accordionContentElement).not.toBeVisible();
     expect(accordionContentElement).toHaveAttribute("data-state", "closed");
