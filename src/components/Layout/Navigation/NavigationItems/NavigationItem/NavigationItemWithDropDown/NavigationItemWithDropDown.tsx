@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
+import clsx from "clsx";
 
 import { ListItemData, NavigationDataInterface } from "@/types/types";
 import {
@@ -30,31 +31,38 @@ export default function NavigationItemWithDropDown({
 
   const mainLinkActiveIndicator =
     `/${pathname.split("/")[1]}` === href
-      ? "before:w-full text-[var(--magenta-100)]"
+      ? "before:w-full text-magenta-100"
       : "before:w-[0px]";
 
   const isDropDownLinkActive = (link: Partial<ListItemData>) =>
     pathname.split("/")[2] === link?.slug?.current
-      ? "before:w-full text-[var(--magenta-100)]"
+      ? "before:w-full text-magenta-100"
       : "before:w-[0px]";
 
   return (
     <NavigationMenuItem>
       <NavigationMenuTrigger
-        className={`${linkClasses} !bg-transparent text-[18px] leading-[1] data-[state=open]:!bg-transparent`}
+        className={clsx(
+          "bg-transparent! text-lg leading-none data-[state=open]:bg-transparent!",
+          linkClasses,
+        )}
+        data-testid={`dropDownTrigger-${mainRoute}`}
       >
         <span className={`${contentClasses} ${mainLinkActiveIndicator} `}>
           {label}
         </span>
       </NavigationMenuTrigger>
-      <NavigationMenuContent className="!mt-[10px]" data-testid="dropDown">
-        <ul className="flex w-[300px] flex-col justify-center gap-4 py-4">
+      <NavigationMenuContent
+        className="mt-2.5!"
+        data-testid={`dropDown-${mainRoute}`}
+      >
+        <ul className="flex w-75 flex-col justify-center gap-4 py-4">
           {filteredNavItems.map((link) => (
             <li key={link._id}>
               <NavigationMenuLink asChild>
                 <Link
                   href={`/${mainRoute}/${link?.slug?.current}`}
-                  className={`${linkClasses} w-fit`}
+                  className={clsx("w-fit", linkClasses)}
                 >
                   <span
                     className={`inline-block ${contentClasses} ${isDropDownLinkActive(link)} text-[15px] leading-0`}

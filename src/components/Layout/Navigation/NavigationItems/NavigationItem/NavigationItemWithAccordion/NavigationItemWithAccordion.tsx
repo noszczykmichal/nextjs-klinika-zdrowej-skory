@@ -39,10 +39,14 @@ export default function NavigationItemWithAccordion({
       : "before:w-[0px]";
 
   return (
-    <Accordion type="multiple" className="w-full pl-[8px]">
-      <AccordionItem value="treatments">
+    <Accordion type="multiple" className="w-full pl-2">
+      <AccordionItem
+        value="treatments"
+        data-testid={`accordionItem-${mainRoute}`}
+      >
         <AccordionTrigger
-          className={`w-auto flex-grow-0 py-0 text-[18px] font-normal focus:no-underline focus:outline-none active:no-underline [&>svg]:self-center`}
+          className={`w-auto grow-0 py-0 text-[18px] font-normal focus:no-underline focus:outline-none active:no-underline [&>svg]:self-center`}
+          data-testid={`accordionTrigger-${mainRoute}`}
         >
           <span
             className={`inline-block ${contentClasses} ${activeLinkClasses}`}
@@ -52,7 +56,7 @@ export default function NavigationItemWithAccordion({
         </AccordionTrigger>
         <AccordionContent
           className="flex w-[90%] flex-col gap-6 py-5"
-          data-testid="accordionContent"
+          data-testid={`accordionContent-${mainRoute}`}
         >
           {filteredNavItems.map((link) => (
             <Link
