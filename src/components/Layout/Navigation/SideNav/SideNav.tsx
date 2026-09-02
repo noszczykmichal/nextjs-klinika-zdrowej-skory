@@ -8,11 +8,11 @@ import Backdrop from "@/components/Layout/Navigation/SideNav/Backdrop/Backdrop";
 import UIContext from "@/store/uiContext";
 import NavigationItems from "@/components/Layout/Navigation/NavigationItems/NavigationItems";
 import { useMobileNav } from "@/hooks/useMobileNav";
-import { ListItemData } from "@/types/types";
+import { NavigationDataInterface } from "@/types/types";
 
 interface SideNavProps {
   onBackdropClick: () => void;
-  navData: Partial<ListItemData>[];
+  navData: NavigationDataInterface;
 }
 
 export default function SideNav({ onBackdropClick, navData }: SideNavProps) {

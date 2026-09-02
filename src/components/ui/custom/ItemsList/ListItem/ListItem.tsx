@@ -13,7 +13,16 @@ interface ListItemProps {
 
 export default function ListItem({ itemData }: ListItemProps) {
   const pathname = usePathname();
-  const rootRoute = pathname.startsWith("/blog") ? "blog" : "zabiegi";
+  function calculateRoute() {
+    if (pathname.startsWith("/blog")) {
+      return "blog";
+    } else if (pathname.startsWith("/zabiegi")) {
+      return "zabiegi";
+    } else {
+      return "szkolenia";
+    }
+  }
+  const rootRoute = calculateRoute();
 
   return (
     <RevealWrapper

@@ -1,6 +1,6 @@
 import { render, screen } from "@testing-library/react";
 
-import LoaderMessage from "@/components/Layout/Footer/ContactForm/FormContent/LoaderMessage/LoaderMessage";
+import LoaderMessage from "@/components/Layout/Footer/ContactForm/ContactFormContent/LoaderMessage/LoaderMessage";
 
 describe("LoaderMessage component", () => {
   it("displays the loader and message when submitting is true", () => {

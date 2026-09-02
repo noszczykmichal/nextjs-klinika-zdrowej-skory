@@ -3,12 +3,12 @@ import {
   NavigationMenuList,
 } from "@/components/ui/navigation-menu";
 import NavigationItem from "@/components/Layout/Navigation/NavigationItems/NavigationItem/NavigationItem";
-import { ListItemData } from "@/types/types";
+import { NavigationDataInterface } from "@/types/types";
 import { navConfig } from "@/utils/config";
 
 interface NavigationItemsProps {
   navWrapperClasses?: string;
-  navData: Partial<ListItemData>[];
+  navData: NavigationDataInterface;
   listClasses: string;
   isMobileNav?: boolean;
   onClick?: () => void;

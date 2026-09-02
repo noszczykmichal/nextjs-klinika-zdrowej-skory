@@ -1,21 +1,11 @@
-import { client } from "@/sanity/client";
-
 import LayoutWrapper from "@/components/Layout/LayoutWrapper/LayoutWrapper";
 import MainBanner from "@/components/HomePage/MainBanner/MainBanner";
 import ItemsList from "@/components/ui/custom/ItemsList/ItemsList";
-import { ListItemData } from "@/types/types";
 import icoone from "@/assets/icoone.jpg";
-
-const ALL_TREATMENTS_QUERY = `*[_type == "treatment"]{_id, altForMainImage, "category": treatmentCategory->{title, categorySlug}, mainImage, "slug": treatmentSlug, summary, title}`;
-
-const options = { next: { revalidate: 30 } };
+import { getAllResources } from "@/utils/sanityPageData";
 
 export default async function AllTreatmentsPage() {
-  const allTreatments = await client.fetch<ListItemData[]>(
-    ALL_TREATMENTS_QUERY,
-    {},
-    options,
-  );
+  const allTreatments = await getAllResources("treatment");
 
   const routesData = [{ routeName: "Zabiegi" }];
 

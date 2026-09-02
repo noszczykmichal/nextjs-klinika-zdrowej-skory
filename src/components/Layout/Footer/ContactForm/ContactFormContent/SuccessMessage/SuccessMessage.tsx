@@ -18,14 +18,14 @@ export default function SuccessMessage({ showSuccess }: SuccessMessageProps) {
       nodeRef={nodeRef}
     >
       <div
-        className="absolute inset-0 flex flex-col items-center justify-center gap-[20px] bg-[var(--black-100)] opacity-90"
+        className="bg-black-100/90 absolute inset-0 flex flex-col items-center justify-center gap-5 rounded-lg"
         ref={nodeRef}
         data-testid="success-message"
       >
-        <h3 className="text-center text-[20px] font-semibold">
+        <h3 className="text-white-100 text-center text-xl font-semibold">
           Wiadomość wysłana!
         </h3>
-        <p className="text-center">Dziękujemy za kontakt.</p>
+        <p className="text-white-100 text-center">Dziękujemy za kontakt.</p>
       </div>
     </CSSTransition>
   );

@@ -6,8 +6,14 @@ import PortableTextGallery from "@/components/BlogPage/Category/PostPage/Portabl
 
 export const portableTextComponentConfig: PortableTextComponents = {
   marks: {
+    strong: ({ children }) => (
+      <strong className="font-semibold">{children}</strong>
+    ),
     underline: ({ children }) => (
-      <span className="border-b border-amber-800 pb-1">{children}</span>
+      <span className="border-golden-100 border-b pb-1">{children}</span>
+    ),
+    textColor: ({ value, children }) => (
+      <span style={{ color: value?.color?.hex }}>{children}</span>
     ),
   },
   types: {
@@ -35,18 +41,18 @@ export const portableTextComponentConfig: PortableTextComponents = {
     gallery: PortableTextGallery,
   },
   block: {
-    normal: ({ children }) => <p className="mb-[16px]">{children}</p>,
-    h3: ({ children }) => (
-      <h3 className="mt-[40px] mb-[8px] text-[25px] leading-normal">
-        {children}
-      </h3>
+    normal: ({ children }) => <p className="mb-4">{children}</p>,
+    h1: ({ children }) => <h1>{children}</h1>,
+    h2: ({ children }) => (
+      <h2 className="text-2xl leading-normal">{children}</h2>
     ),
+    h3: ({ children }) => <h3 className="text-xl">{children}</h3>,
+    h4: ({ children }) => <h4>{children}</h4>,
+    blockquote: ({ children }) => <blockquote>{children}</blockquote>,
   },
   list: {
     bullet: ({ children }) => (
-      <ul className="my-[16px] list-disc space-y-[6px] pl-[20px]">
-        {children}
-      </ul>
+      <ul className="my-2 list-disc space-y-1.5 pl-5">{children}</ul>
     ),
   },
 };

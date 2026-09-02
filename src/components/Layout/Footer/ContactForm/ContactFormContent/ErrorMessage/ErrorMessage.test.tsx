@@ -1,6 +1,6 @@
 import { render, screen } from "@testing-library/react";
 
-import ErrorMessage from "@/components/Layout/Footer/ContactForm/FormContent/ErrorMessage/ErrorMessage";
+import ErrorMessage from "@/components/Layout/Footer/ContactForm/ContactFormContent/ErrorMessage/ErrorMessage";
 
 describe("ErrorMessage component", () => {
   const setErrorMock = jest.fn();

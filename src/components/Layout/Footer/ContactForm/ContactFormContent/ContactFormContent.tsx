@@ -1,10 +1,11 @@
 import { useState, useEffect, useRef, Dispatch, SetStateAction } from "react";
 
-import { formConfig } from "@/utils/config";
-import FormField from "@/components/Layout/Footer/ContactForm/FormContent/FormField/FormField";
-import SuccessMessage from "@/components/Layout/Footer/ContactForm/FormContent/SuccessMessage/SuccessMessage";
-import LoaderMessage from "@/components/Layout/Footer/ContactForm/FormContent/LoaderMessage/LoaderMessage";
-import ErrorMessage from "@/components/Layout/Footer/ContactForm/FormContent/ErrorMessage/ErrorMessage";
+import { contactFormConfig } from "@/utils/config";
+import ContactFormField from "@/components/Layout/Footer/ContactForm/ContactFormContent/ContactFormField/ContactFormField";
+import SuccessMessage from "@/components/Layout/Footer/ContactForm/ContactFormContent/SuccessMessage/SuccessMessage";
+import LoaderMessage from "@/components/Layout/Footer/ContactForm/ContactFormContent/LoaderMessage/LoaderMessage";
+import ErrorMessage from "@/components/Layout/Footer/ContactForm/ContactFormContent/ErrorMessage/ErrorMessage";
+import OutlineButton from "@/components/ui/custom/OutlineButton/OutlineButton";
 import { ErrorState } from "@/types/types";
 
 interface InputData {
@@ -52,24 +53,17 @@ export default function FormContent({
   }, [submitSucceeded, errorMessage, formRestartHandler]);
 
   return (
-    <>
-      <form onSubmit={handleSubmit} className="relative flex flex-col">
-        <fieldset className="flex flex-col">
-          <legend className="font-semibold">Napisz do nas!</legend>
-          {formConfig.map((inputEl) => (
-            <FormField fieldData={inputEl} key={inputEl.name} />
-          ))}
-        </fieldset>
-        <button
-          type="submit"
-          className="w-auto self-start rounded-[var(--small-border-radius)] border border-[var(--magenta-100)] px-6 py-2 hover:cursor-pointer hover:bg-[var(--magenta-100)] active:bg-[var(--magenta-100)]"
-        >
-          Wyślij
-        </button>
-        <LoaderMessage submitting={submitting} />
-        <SuccessMessage showSuccess={!errorData.errorMessage && showSuccess} />
-        <ErrorMessage errorData={errorData} setErrorHandler={setErrorHandler} />
-      </form>
-    </>
+    <form onSubmit={handleSubmit} className="relative flex flex-col">
+      <fieldset className="flex flex-col">
+        <legend className="font-semibold">Napisz do nas!</legend>
+        {contactFormConfig.map((inputEl) => (
+          <ContactFormField fieldData={inputEl} key={inputEl.name} />
+        ))}
+      </fieldset>
+      <OutlineButton type="submit">Wyślij</OutlineButton>
+      <LoaderMessage submitting={submitting} />
+      <SuccessMessage showSuccess={!errorData.errorMessage && showSuccess} />
+      <ErrorMessage errorData={errorData} setErrorHandler={setErrorHandler} />
+    </form>
   );
 }

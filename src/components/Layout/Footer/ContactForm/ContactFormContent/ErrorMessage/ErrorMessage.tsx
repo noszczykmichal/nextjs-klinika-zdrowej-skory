@@ -41,15 +41,15 @@ export default function ErrorMessage({
       nodeRef={nodeRef}
     >
       <div
-        className="absolute inset-0 flex flex-col items-center justify-center gap-[20px] bg-[var(--black-100)] opacity-90"
+        className="bg-black-100 absolute inset-0 flex flex-col items-center justify-center gap-5 rounded-lg opacity-90"
         ref={nodeRef}
         data-testid="error-overlay"
       >
-        <h3 className="text-center text-[20px] font-semibold">
+        <h3 className="text-white-100 text-center text-xl font-semibold">
           Coś poszło nie tak...
         </h3>
-        <p>{`Błąd: ${errorMessage}`}</p>
-        <p className="text-center">
+        <p className="text-white-100">{`Błąd: ${errorMessage}`}</p>
+        <p className="text-white-100 text-center">
           Spróbuj ponownie później lub skontaktuj się z nami telefonicznie.
         </p>
       </div>

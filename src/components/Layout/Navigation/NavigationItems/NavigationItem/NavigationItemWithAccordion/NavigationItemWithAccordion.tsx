@@ -1,17 +1,18 @@
 import { usePathname } from "next/navigation";
 import Link from "next/link";
 
-import { ListItemData } from "@/types/types";
+import { ListItemData, NavigationDataInterface } from "@/types/types";
 import {
   Accordion,
   AccordionContent,
   AccordionItem,
   AccordionTrigger,
 } from "@/components/ui/accordion";
+import { NavConfigItem } from "@/types/types";
 
 interface NavigationItemWithAccordionProps {
-  linkData: { id: string; label: string; href: string };
-  navData: Partial<ListItemData>[];
+  linkData: NavConfigItem;
+  navData: NavigationDataInterface;
   onLinkClick?: () => void;
   contentClasses: string;
 }
@@ -22,7 +23,9 @@ export default function NavigationItemWithAccordion({
   onLinkClick,
   contentClasses,
 }: NavigationItemWithAccordionProps) {
-  const { label, href } = linkData;
+  const { label, href, resourceType } = linkData;
+  const mainRoute = resourceType === "training" ? "szkolenia" : "zabiegi";
+  const filteredNavItems = navData[resourceType!];
   const pathname = usePathname();
 
   const activeLinkClasses =
@@ -36,10 +39,14 @@ export default function NavigationItemWithAccordion({
       : "before:w-[0px]";
 
   return (
-    <Accordion type="multiple" className="w-full pl-[8px]">
-      <AccordionItem value="treatments">
+    <Accordion type="multiple" className="w-full pl-2">
+      <AccordionItem
+        value="treatments"
+        data-testid={`accordionItem-${mainRoute}`}
+      >
         <AccordionTrigger
-          className={`w-auto flex-grow-0 py-0 text-[18px] font-normal focus:no-underline focus:outline-none active:no-underline [&>svg]:self-center`}
+          className={`w-auto grow-0 py-0 text-[18px] font-normal focus:no-underline focus:outline-none active:no-underline [&>svg]:self-center`}
+          data-testid={`accordionTrigger-${mainRoute}`}
         >
           <span
             className={`inline-block ${contentClasses} ${activeLinkClasses}`}
@@ -49,11 +56,11 @@ export default function NavigationItemWithAccordion({
         </AccordionTrigger>
         <AccordionContent
           className="flex w-[90%] flex-col gap-6 py-5"
-          data-testid="accordionContent"
+          data-testid={`accordionContent-${mainRoute}`}
         >
-          {navData.map((link) => (
+          {filteredNavItems.map((link) => (
             <Link
-              href={`/zabiegi/${link?.slug?.current}`}
+              href={`/${mainRoute}/${link?.slug?.current}`}
               className={`xxs:text-[15px] inline-block w-fit leading-0 whitespace-nowrap ${contentClasses} ${isDropDownLinkActive(link)} `}
               key={link._id}
               onClick={onLinkClick}

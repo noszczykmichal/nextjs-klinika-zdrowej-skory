@@ -1,21 +1,42 @@
 "use client";
 
+import { useState } from "react";
 import { PortableText, PortableTextBlock } from "next-sanity";
 import { RevealWrapper } from "next-reveal";
 
-import FeaturedTreatments from "@/components/ui/custom/AnimatedArticle/FeaturedTreatments/FeaturedTreatments";
+import CategoryResourceList from "@/components/ui/custom/AnimatedArticle/CategoryResourceList/CategoryResourceList";
 import { portableTextComponentConfig } from "@/utils/portableTextComponentConfig";
-import { ListItemData } from "@/types/types";
+import {
+  BasicEntityReference,
+  ListItemData,
+  ResourceType,
+} from "@/types/types";
+import AppDialog from "@/components/ui/custom/AppDialog/AppDialog";
+import CourseEnrollmentForm from "@/components/ui/custom/CourseEnrollmentForm/CourseEnrollmentForm";
 
 interface AnimatedArticleProps {
   articleContent: PortableTextBlock[];
-  featuredTreatments?: ListItemData[];
+  categoryResources?: ListItemData[];
+  resourceType?: ResourceType;
+  isDetailPage?: boolean;
+  availableTrainings?: BasicEntityReference[];
 }
 
 export default function AnimatedArticle({
   articleContent,
-  featuredTreatments,
+  categoryResources,
+  resourceType,
+  isDetailPage = false,
+  availableTrainings = [],
 }: AnimatedArticleProps) {
+  const isResourceListVisible = categoryResources && resourceType;
+  const isActionButtonVisible = isDetailPage && resourceType === "training";
+  const [isDialogOpen, setIsDialogOpen] = useState(false);
+
+  function dialogCloseHandler() {
+    setIsDialogOpen(false);
+  }
+
   return (
     <RevealWrapper
       origin="bottom"
@@ -27,14 +48,27 @@ export default function AnimatedArticle({
       className="md:order-2"
     >
       <article>
-        {
-          <PortableText
-            value={articleContent}
-            components={portableTextComponentConfig}
+        <PortableText
+          value={articleContent}
+          components={portableTextComponentConfig}
+        />
+
+        <AppDialog
+          isTriggerVisible={isActionButtonVisible}
+          open={isDialogOpen}
+          onOpenChange={setIsDialogOpen}
+        >
+          <CourseEnrollmentForm
+            availableTrainings={availableTrainings}
+            onSubmit={dialogCloseHandler}
           />
-        }
-        {featuredTreatments && (
-          <FeaturedTreatments treatmentsData={featuredTreatments} />
+        </AppDialog>
+
+        {isResourceListVisible && (
+          <CategoryResourceList
+            resources={categoryResources}
+            resourceType={resourceType}
+          />
         )}
       </article>
     </RevealWrapper>

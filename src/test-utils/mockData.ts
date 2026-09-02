@@ -1,23 +1,35 @@
 import { PostDetails } from "@/types/types";
 
-export const mockNavData = [
-  {
-    _id: "07a9584e-1b85-4119-897f-6f019d36ff65",
-    slug: {
-      _type: "slug",
-      current: "holistyczne-zabiegi-na-twarz",
+export const mockNavData = {
+  treatment: [
+    {
+      _id: "139d73fa-5222-4f63-a960-54b1cf9158f9",
+      slug: {
+        _type: "slug",
+        current: "laseroterapia",
+      },
+      title: "Laseroterapia",
     },
-    title: "Holistyczne zabiegi na twarz",
-  },
-  {
-    _id: "2ecfee50-4387-4fa5-ace4-67aff9b369d3",
-    slug: {
-      _type: "slug",
-      current: "kosmetologia-i-medycyna-estetyczna",
+    {
+      _id: "1cd516a8-2be5-4754-bf9b-4edc0add74f4",
+      slug: {
+        _type: "slug",
+        current: "kosmetologia-i-medycyna-estetyczna",
+      },
+      title: "Kosmetologia i medycyna estetyczna",
     },
-    title: "Kosmetologia i medycyna estetyczna",
-  },
-];
+  ],
+  training: [
+    {
+      _id: "b57da1ef-3797-4f11-a096-3d67264ce113",
+      slug: {
+        _type: "slug",
+        current: "podstawy-kosmetologii",
+      },
+      title: "Podstawy kosmetologii",
+    },
+  ],
+};
 
 export const mockPostDetailsWithTreatment: PostDetails = {
   altForMainImage:
@@ -337,9 +349,7 @@ export const mockPostDetailsWithTreatment: PostDetails = {
   title: "Luksusowy zabieg na ciało, na który Cię stać",
   treatment: {
     treatmentCategory: {
-      categorySlug: {
-        current: "modelowanie-sylwetki",
-      },
+      current: "modelowanie-sylwetki",
     },
     treatmentSlug: {
       current: "icoone",

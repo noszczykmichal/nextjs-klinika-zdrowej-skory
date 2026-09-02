@@ -8,9 +8,10 @@ import { mockNavData } from "@/test-utils/mockData";
 import { NavigationMenu } from "@/components/ui/navigation-menu";
 import NavigationItem from "@/components/Layout/Navigation/NavigationItems/NavigationItem/NavigationItem";
 import nextNavigation from "next/navigation";
+import { NavConfigItem } from "@/types/types";
 
 describe("NavigationItem Component", () => {
-  let mockLinkData = {
+  let mockLinkData: NavConfigItem = {
     id: "blog",
     label: "Blog",
     href: "/blog",
@@ -69,6 +70,7 @@ describe("NavigationItem Component", () => {
       id: "zabiegi",
       label: "Zabiegi",
       href: "/zabiegi",
+      resourceType: "treatment",
     };
 
     render(
@@ -84,7 +86,7 @@ describe("NavigationItem Component", () => {
     const dropDownTrigger = screen.getByRole("button");
 
     fireEvent.click(dropDownTrigger);
-    const dropDownElement = screen.getByTestId("dropDown");
+    const dropDownElement = screen.getByTestId("dropDown-zabiegi");
 
     expect(dropDownElement).toBeVisible();
   });
@@ -94,6 +96,7 @@ describe("NavigationItem Component", () => {
       id: "zabiegi",
       label: "Zabiegi",
       href: "/zabiegi",
+      resourceType: "treatment",
     };
 
     render(
@@ -106,8 +109,12 @@ describe("NavigationItem Component", () => {
       </NavigationMenu>,
     );
 
-    const accordionTriggerElement = screen.getByRole("button");
-    const accordionContentElement = screen.getByTestId("accordionContent");
+    const accordionTriggerElement = screen.getByTestId(
+      "accordionTrigger-zabiegi",
+    );
+    const accordionContentElement = screen.getByTestId(
+      "accordionContent-zabiegi",
+    );
 
     expect(accordionContentElement).not.toBeVisible();
     expect(accordionContentElement).toHaveAttribute("data-state", "closed");

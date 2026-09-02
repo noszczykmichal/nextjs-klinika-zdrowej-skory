@@ -1,23 +1,29 @@
-"use client";
-
 import { useState } from "react";
 import { Form } from "react-final-form";
 
-import ContactFormContent from "@/components/Layout/Footer/ContactForm/ContactFormContent/ContactFormContent";
-import { FormValues } from "@/types/types";
+import EnrollmentFormContent from "@/components/ui/custom/CourseEnrollmentForm/EnrollmentFormContent/EnrollmentFormContent";
+import { BasicEntityReference, FormValues } from "@/types/types";
 
-type ContactFormValues = Pick<
+type CourseEnrollmentFormValues = Pick<
   FormValues,
-  "full_name" | "email" | "tel" | "message"
+  "name" | "surname" | "email" | "tel" | "selected_training" | "privacy_policy"
 >;
 
-export default function ContactForm() {
+interface CourseEnrollmentFormProps {
+  availableTrainings: BasicEntityReference[];
+  onSubmit: () => void;
+}
+
+export default function CourseEnrollmentForm({
+  availableTrainings,
+  onSubmit,
+}: CourseEnrollmentFormProps) {
   const [errorState, setErrorState] = useState({
     errorMessage: "",
     hasError: false,
   });
 
-  const submitHandler = async (formData: ContactFormValues) => {
+  const submitHandler = async (formData: CourseEnrollmentFormValues) => {
     try {
       setErrorState({
         errorMessage: "",
@@ -32,7 +38,7 @@ export default function ContactForm() {
         body: JSON.stringify(formData),
       };
 
-      const sendData = await fetch("https://formspree.io/f/xvgrklwk", data);
+      const sendData = await fetch("https://formspree.io/f/xnpaknye", data);
       const response = await sendData.json();
 
       if (!response.ok) {
@@ -50,13 +56,15 @@ export default function ContactForm() {
     <Form
       onSubmit={submitHandler}
       render={({ handleSubmit, submitting, submitSucceeded, form }) => (
-        <ContactFormContent
+        <EnrollmentFormContent
           handleSubmit={handleSubmit}
           submitting={submitting}
           submitSucceeded={submitSucceeded}
           formRestartHandler={() => form.restart()}
           errorData={errorState}
           setErrorHandler={setErrorState}
+          availableTrainings={availableTrainings}
+          onCloseDialog={onSubmit}
         />
       )}
     />

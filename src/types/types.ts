@@ -1,7 +1,12 @@
 import { HTMLInputTypeAttribute } from "react";
 import type { PortableTextBlock } from "@portabletext/types";
+import { SanityImageSource } from "@sanity/image-url/lib/types/types";
 
 export type IconVariants = "facebook" | "instagram" | "booksy";
+
+interface SlugField {
+  current: string;
+}
 
 export interface SocialIcon {
   name: IconVariants;
@@ -9,17 +14,9 @@ export interface SocialIcon {
   className: string;
 }
 
-export interface ImageDetails {
-  _type: "image";
-  asset: {
-    _ref: string;
-    _type: "reference";
-  };
-}
-
 export interface CategoryDetails {
   title: string;
-  categorySlug: { current: string };
+  categorySlug: SlugField;
 }
 
 export interface PlaiceholderResult {
@@ -45,8 +42,8 @@ export interface BannerData extends BaseContentData {
 export interface ListItemData extends BannerData {
   _id?: string;
   category: CategoryDetails;
-  slug?: { current: string };
-  mainImage: ImageDetails;
+  slug?: SlugField;
+  mainImage: SanityImageSource;
 }
 
 export interface PostDetails extends ListItemData {
@@ -56,26 +53,26 @@ export interface PostDetails extends ListItemData {
     categorySlug: { current: string };
   } | null;
   treatment: {
-    treatmentCategory: { categorySlug: { current: string } };
-    treatmentSlug: { current: string };
+    treatmentCategory: SlugField;
+    treatmentSlug: SlugField;
   } | null;
 }
 
-export interface TreatmentProcedure extends BaseContentData {
+export interface Resource extends BaseContentData {
   description: PortableTextBlock[];
-  mainImage: ImageDetails;
+  mainImage: SanityImageSource;
 }
 
-export interface TreatmentDetails extends TreatmentProcedure {
-  treatmentCategory: { categorySlug: { current: string }; title: string };
+export interface ResourceDetails extends Resource {
+  category: CategoryDetails;
 }
 
-export interface TreatmentCategory extends TreatmentProcedure {
+export interface ResourceCategory extends Resource {
   _id: string;
-  categorySlug: { current: string };
+  categorySlug: SlugField;
 }
 
-export type TopLevelRoute = "blog" | "zabiegi";
+export type TopLevelRoute = "blog" | "zabiegi" | "szkolenia";
 
 export interface RouteData {
   routeName: string;
@@ -88,11 +85,12 @@ export interface HeroArticleData {
 }
 
 export interface FormFieldConfig {
-  component?: "input" | "textarea";
+  component?: "input" | "textarea" | "select";
   type?: HTMLInputTypeAttribute;
-  name: string;
+  name: keyof FormValues;
   label: string;
-  validator: (_v: string) => string | undefined;
+  validator: (v: unknown) => string | undefined;
+  wrapperClassName?: string;
 }
 
 export interface ErrorState {
@@ -107,4 +105,33 @@ export interface GalleryImage {
     url: string;
     metadata: { dimensions: { width: number; height: number }; lqip?: string };
   };
+}
+
+export interface NavigationDataInterface {
+  [key: string]: Partial<ListItemData>[];
+}
+
+export type ResourceType = "treatment" | "training";
+
+export interface NavConfigItem {
+  id: string;
+  label: string;
+  href: string;
+  resourceType?: ResourceType;
+}
+
+export interface BasicEntityReference {
+  _id: string;
+  title: string;
+}
+
+export interface FormValues {
+  full_name: string;
+  email: string;
+  tel: number;
+  message: string;
+  name: string;
+  surname: string;
+  selected_training: string;
+  privacy_policy: boolean;
 }

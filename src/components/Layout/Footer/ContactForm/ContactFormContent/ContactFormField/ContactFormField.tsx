@@ -1,15 +1,15 @@
 import { FormFieldConfig } from "@/types/types";
 import { Field } from "react-final-form";
 
-interface FormFieldProps {
+interface ContactFormFieldProps {
   fieldData: FormFieldConfig;
 }
 
-export default function FormField({ fieldData }: FormFieldProps) {
+export default function ContactFormField({ fieldData }: ContactFormFieldProps) {
   const { component = "input", type, name, label, validator } = fieldData;
 
   const sharedClasses =
-    "cursor-pointer border-b border-[var(--magenta-100)] text-[var(--white-100)] [--webkit-text-fill-color:#f00]";
+    "cursor-pointer border-b border-magenta-100 text-[var(--white-100)] autofill:!shadow-[inset_0_0_0_1000px_theme(colors.black.100)] autofill:[-webkit-text-fill-color:theme(colors.white.100)_!important] autofill:!font-medium autofill:[font-family:inherit_!important] autofill:[transition:background-color_5000s_ease-in-out_0s]";
 
   return (
     <Field component={component} name={name} validate={validator}>
