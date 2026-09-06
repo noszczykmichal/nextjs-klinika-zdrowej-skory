@@ -31,7 +31,7 @@ Cypress.Commands.add("waitForHydration", () => {
 
 Cypress.Commands.add("clickAccordionTrigger", (selector: string) => {
   cy.get(selector).click();
-  cy.wait(300);
+  cy.wait(600);
 });
 
 declare global {
