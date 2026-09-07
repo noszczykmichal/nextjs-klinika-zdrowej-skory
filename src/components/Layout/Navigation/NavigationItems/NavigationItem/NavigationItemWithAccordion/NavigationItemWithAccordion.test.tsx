@@ -31,10 +31,7 @@ describe("NavigationItemWithAccordion Component", () => {
     fireEvent.click(accordionTriggerElement);
     const testedLink = screen.getByText(mockNavData.treatment[0].title);
 
-    expect(testedLink).toHaveClass(
-      "before:w-full",
-      "text-[var(--magenta-100)]",
-    );
+    expect(testedLink).toHaveClass("before:w-full", "text-magenta-100");
   });
 
   it("does not apply active styling when pathname does not match href", () => {
@@ -51,7 +48,7 @@ describe("NavigationItemWithAccordion Component", () => {
     fireEvent.click(accordionTriggerElement);
     const testedLink = screen.getByText(mockNavData.treatment[1].title);
 
-    expect(testedLink).toHaveClass("before:w-[0px]");
+    expect(testedLink).toHaveClass("before:w-0");
   });
 
   it("calls onClick handler when a link in the accordion is clicked", () => {
