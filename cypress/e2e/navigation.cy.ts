@@ -268,10 +268,6 @@ describe("Navigation", () => {
 
       cy.get(hamburgerElement).click();
       cy.get(mobileNavElement).should("have.class", "sideNav-enter-done");
-      cy.get(accordionTriggerElementTrainings).should(
-        "have.length",
-        1,
-      ); /*to be removed*/
       cy.clickAccordionTrigger(
         accordionTriggerElementTrainings,
         accordionItemElementTrainings,
