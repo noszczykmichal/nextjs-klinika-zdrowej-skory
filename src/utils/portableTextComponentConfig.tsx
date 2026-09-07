@@ -1,8 +1,8 @@
 import { PortableTextComponents } from "next-sanity";
-import Image from "next/image";
 
-import { urlFor } from "@/utils/clientSideUtils";
-import PortableTextGallery from "@/components/BlogPage/Category/PostPage/PortableTextGallery/PortableTextGallery";
+import PortableTextImage from "@/components/PortableText/PortableTextImage/PortableTextImage";
+import PortableTextGallery from "@/components/PortableText/PortableTextGallery/PortableTextGallery";
+import PortableTextTable from "@/components/PortableText/PortableTextTable/PortableTextTable";
 
 export const portableTextComponentConfig: PortableTextComponents = {
   marks: {
@@ -17,31 +17,12 @@ export const portableTextComponentConfig: PortableTextComponents = {
     ),
   },
   types: {
-    blockContentImage: ({ value }) => {
-      const { height, width } = value.asset?.metadata?.dimensions ?? {};
-      const sizeClass =
-        value.size === "small"
-          ? "w-1/2 mx-auto"
-          : value.size === "medium"
-            ? "w-3/4 mx-auto"
-            : "w-full";
-
-      return (
-        <div className={`relative py-3 ${sizeClass}`}>
-          <Image
-            src={urlFor(value.asset)?.fit("max").url() || ""}
-            alt={value.alt}
-            width={width}
-            height={height}
-            className="h-auto w-full object-contain"
-          />
-        </div>
-      );
-    },
+    blockContentImage: PortableTextImage,
     gallery: PortableTextGallery,
+    tableWithCaption: PortableTextTable,
   },
   block: {
-    normal: ({ children }) => <p className="mb-4">{children}</p>,
+    normal: ({ children }) => <p className="mb-4 text-justify">{children}</p>,
     h1: ({ children }) => <h1>{children}</h1>,
     h2: ({ children }) => (
       <h2 className="text-2xl leading-normal">{children}</h2>
@@ -53,6 +34,9 @@ export const portableTextComponentConfig: PortableTextComponents = {
   list: {
     bullet: ({ children }) => (
       <ul className="my-2 list-disc space-y-1.5 pl-5">{children}</ul>
+    ),
+    number: ({ children }) => (
+      <ol className="my-2 list-decimal space-y-1.5 pl-5">{children}</ol>
     ),
   },
 };
