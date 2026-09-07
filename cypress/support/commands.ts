@@ -29,17 +29,23 @@ Cypress.Commands.add("waitForHydration", () => {
   cy.get('html[data-hydrated="true"]', { timeout: 10000 }).should("exist");
 });
 
-Cypress.Commands.add("clickAccordionTrigger", (selector: string) => {
-  cy.get(selector).click();
-  cy.wait(300);
-});
+Cypress.Commands.add(
+  "clickAccordionTrigger",
+  (triggerSelector: string, itemSelector: string) => {
+    cy.get(triggerSelector).click();
+    cy.get(itemSelector).should("have.attr", "data-state", "open");
+  },
+);
 
 declare global {
   // eslint-disable-next-line @typescript-eslint/no-namespace
   namespace Cypress {
     interface Chainable {
       waitForHydration(): Chainable<JQuery<HTMLElement>>;
-      clickAccordionTrigger(selector: string): Chainable<void>;
+      clickAccordionTrigger(
+        triggerSelector: string,
+        itemSelector: string,
+      ): Chainable<void>;
     }
   }
 }

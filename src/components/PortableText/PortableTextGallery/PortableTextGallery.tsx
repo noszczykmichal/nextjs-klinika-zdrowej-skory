@@ -61,7 +61,7 @@ export default function PortableTextGallery({
             key={img._key}
             type="button"
             onClick={() => setActiveIndex(i)}
-            className="relative aspect-square overflow-hidden rounded-[var(--big-border-radius)]"
+            className="rounded-big relative aspect-square overflow-hidden"
           >
             <Image
               src={img.asset.url}

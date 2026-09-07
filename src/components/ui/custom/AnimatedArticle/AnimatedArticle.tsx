@@ -29,7 +29,8 @@ export default function AnimatedArticle({
   isDetailPage = false,
   availableTrainings = [],
 }: AnimatedArticleProps) {
-  const isResourceListVisible = categoryResources && resourceType;
+  const isResourceListVisible =
+    categoryResources && categoryResources.length > 0 && resourceType;
   const isActionButtonVisible = isDetailPage && resourceType === "training";
   const [isDialogOpen, setIsDialogOpen] = useState(false);
 

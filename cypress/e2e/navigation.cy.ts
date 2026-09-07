@@ -178,12 +178,6 @@ describe("Navigation", () => {
       cy.get(hamburgerElement).click();
       cy.get(mobileNavElement).should("have.class", "sideNav-enter-done");
 
-      cy.get(accordionItemElementTreatment).should("be.visible");
-      cy.get(accordionItemElementTreatment).should(
-        "have.attr",
-        "data-state",
-        "closed",
-      );
       cy.get(accordionTriggerElementTreatment).should("be.visible");
       cy.get(accordionTriggerElementTreatment).should(
         "have.attr",
@@ -196,13 +190,12 @@ describe("Navigation", () => {
         "false",
       );
 
-      cy.get(accordionTriggerElementTreatment).click();
-      cy.get(mobileNavElement).should("have.class", "sideNav-enter-done");
-      cy.get(accordionItemElementTreatment).should(
-        "have.attr",
-        "data-state",
-        "open",
+      cy.clickAccordionTrigger(
+        accordionTriggerElementTreatment,
+        accordionItemElementTreatment,
       );
+      cy.get(mobileNavElement).should("have.class", "sideNav-enter-done");
+
       cy.get(accordionTriggerElementTreatment).should(
         "have.attr",
         "data-state",
@@ -238,7 +231,10 @@ describe("Navigation", () => {
 
       cy.get(hamburgerElement).click();
       cy.get(mobileNavElement).should("have.class", "sideNav-enter-done");
-      cy.clickAccordionTrigger(accordionTriggerElementTreatment);
+      cy.clickAccordionTrigger(
+        accordionTriggerElementTreatment,
+        accordionItemElementTreatment,
+      );
 
       cy.get(holisticTreatmentsLink).should("be.visible");
       cy.get(holisticTreatmentsLink).click();
@@ -249,7 +245,10 @@ describe("Navigation", () => {
 
       cy.get(hamburgerElement).click();
       cy.get(mobileNavElement).should("have.class", "sideNav-enter-done");
-      cy.clickAccordionTrigger(accordionTriggerElementTreatment);
+      cy.clickAccordionTrigger(
+        accordionTriggerElementTreatment,
+        accordionItemElementTreatment,
+      );
 
       cy.get(laserTherapyLink).should("be.visible");
       cy.get(laserTherapyLink).click();
@@ -269,7 +268,10 @@ describe("Navigation", () => {
 
       cy.get(hamburgerElement).click();
       cy.get(mobileNavElement).should("have.class", "sideNav-enter-done");
-      cy.clickAccordionTrigger(accordionTriggerElementTrainings);
+      cy.clickAccordionTrigger(
+        accordionTriggerElementTrainings,
+        accordionItemElementTrainings,
+      );
 
       cy.get(fundamentalsOfCosmetologyLink).should("be.visible");
       cy.get(fundamentalsOfCosmetologyLink).click();
@@ -280,7 +282,10 @@ describe("Navigation", () => {
 
       cy.get(hamburgerElement).click();
       cy.get(mobileNavElement).should("have.class", "sideNav-enter-done");
-      cy.clickAccordionTrigger(accordionTriggerElementTrainings);
+      cy.clickAccordionTrigger(
+        accordionTriggerElementTrainings,
+        accordionItemElementTrainings,
+      );
 
       cy.get(aestheticCosmetologyLink).should("be.visible");
       cy.get(aestheticCosmetologyLink).click();

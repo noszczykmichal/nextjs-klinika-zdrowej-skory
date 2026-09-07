@@ -56,7 +56,7 @@ export default function NavigationItemWithDropDown({
         className="mt-2.5!"
         data-testid={`dropDown-${mainRoute}`}
       >
-        <ul className="flex w-75 flex-col justify-center gap-4 py-4">
+        <ul className="flex w-80 flex-col justify-center gap-4 py-4">
           {filteredNavItems.map((link) => (
             <li key={link._id}>
               <NavigationMenuLink asChild>
