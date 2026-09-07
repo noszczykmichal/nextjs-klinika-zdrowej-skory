@@ -30,22 +30,22 @@ export default function NavigationItemWithAccordion({
 
   const activeLinkClasses =
     `/${pathname.split("/")[1]}` === href
-      ? "before:w-full text-[var(--magenta-100)]"
-      : "before:w-[0px]";
+      ? "before:w-full text-magenta-100"
+      : "before:w-0";
 
   const isDropDownLinkActive = (link: Partial<ListItemData>) =>
     pathname.split("/")[2] === link?.slug?.current
-      ? "before:w-full text-[var(--magenta-100)]"
-      : "before:w-[0px]";
+      ? "before:w-full text-magenta-100"
+      : "before:w-0";
 
   return (
     <Accordion type="multiple" className="w-full pl-2">
       <AccordionItem
-        value="treatments"
+        value={mainRoute}
         data-testid={`accordionItem-${mainRoute}`}
       >
         <AccordionTrigger
-          className={`w-auto grow-0 py-0 text-[18px] font-normal focus:no-underline focus:outline-none active:no-underline [&>svg]:self-center`}
+          className={`w-auto grow-0 py-0 text-lg font-normal focus:no-underline focus:outline-none active:no-underline [&>svg]:self-center`}
           data-testid={`accordionTrigger-${mainRoute}`}
         >
           <span
