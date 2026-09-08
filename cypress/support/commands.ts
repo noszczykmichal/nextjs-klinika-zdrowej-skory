@@ -33,11 +33,6 @@ Cypress.Commands.add(
   "clickAccordionTrigger",
   (triggerSelector: string, itemSelector: string) => {
     cy.get(triggerSelector).click();
-    cy.get(itemSelector)
-      .invoke("attr", "data-state")
-      .then((state) => {
-        cy.log(`data-state after click: ${state}`);
-      });
     cy.get(itemSelector).should("have.attr", "data-state", "open");
   },
 );
