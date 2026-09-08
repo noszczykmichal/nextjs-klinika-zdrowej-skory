@@ -18,7 +18,9 @@ A fully functional website for a small business in the wellness industry, develo
   </a>
 </p>
 
-![demo](https://raw.githubusercontent.com/noszczykmichal/nextjs-klinika-zdrowej-skory/main/src/assets/demo-healthy-skin-clinic.png)
+<p align="center">
+  <img src="https://raw.githubusercontent.com/noszczykmichal/nextjs-klinika-zdrowej-skory/main/src/assets/demo-healthy-skin-clinic.png" width="700" alt="demo" />
+</p>
 
 ## Related Repositories
 
