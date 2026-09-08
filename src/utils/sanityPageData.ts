@@ -49,7 +49,7 @@ const RESOURCE_TYPES: ResourceType[] = ["treatment", "training"];
 async function getNavData(): Promise<NavigationDataInterface> {
   const entries = await Promise.all(
     RESOURCE_TYPES.map(async (resource) => {
-      const NAV_CATEGORY_QUERY = `*[_type=='${resource}Category']{_id, title, "slug":categorySlug}`;
+      const NAV_CATEGORY_QUERY = `*[_type=='${resource}Category'] | order(order asc) {_id, title, "slug":categorySlug}`;
 
       const queryResult = await client.fetch<Partial<ListItemData>[]>(
         NAV_CATEGORY_QUERY,

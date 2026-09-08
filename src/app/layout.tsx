@@ -59,7 +59,7 @@ export default async function RootLayout({
         <Navigation navData={navData} />
         <div id="overlay-root" />
         {children}
-        <Footer className="mx-auto pb-[50px]" />
+        <Footer className="mx-auto pb-12.5" />
       </body>
     </html>
   );
