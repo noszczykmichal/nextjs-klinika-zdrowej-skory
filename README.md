@@ -20,16 +20,21 @@ A fully functional website for a small business in the wellness industry, develo
 
 ![demo](https://raw.githubusercontent.com/noszczykmichal/nextjs-klinika-zdrowej-skory/main/src/assets/demo-healthy-skin-clinic.png)
 
+## Related Repositories
+
+This frontend is powered by a separate Sanity Studio backend:
+
+- [studio-klinika-zdrowej-skory](https://github.com/noszczykmichal/studio-klinika-zdrowej-skory) — content schema, validation rules, and CMS configuration
+
 ## Table of Contents
 
 - [General Info](#general-information)
 - [Technologies Used](#technologies-used)
-- [Setup](#setup)
 - [Contact](#contact)
 
 ## General Information
 
-This is a fully functional website that I built and continue to maintain and develop for a small business in the wellness industry. The project leverages a modern frontend stack and integrates with a headless CMS (Sanity) to enable dynamic content updates. Selected routes are statically generated, while others are rendered on the fly based on live CMS data. The site is optimized for performance and SEO, and will be further developed to include features such as service pricing page, course enrolment, and integrated payment functionality.
+The project leverages a modern frontend stack and integrates with a headless CMS (Sanity) to enable dynamic content updates. Selected routes are statically generated, while others are rendered on the fly based on live CMS data. The site is optimized for performance and SEO, and will be further developed to include features such as service pricing page, course enrolment, and integrated payment functionality.
 
 ## Technologies Used
 
@@ -40,34 +45,8 @@ This is a fully functional website that I built and continue to maintain and dev
 - SVGs: [SVGR](https://react-svgr.com/)
 - CMS: [Sanity](https://www.sanity.io/)
 - Code Quality: [ESLint](https://eslint.org/), [Prettier](https://prettier.io/)
-- Testing: [Cypress](https://www.cypress.io/)
+- Testing: [Cypress](https://www.cypress.io/), [Jest](https://jestjs.io/)
 - CI/CD: Custom GitHub Actions pipeline (linting, component testing, e2e testing) → [Vercel](https://vercel.com/) handles final build & deployment
-
-## Setup
-
-1. Clone this repository
-
-   ```sh
-   $git clone https://github.com/noszczykmichal/nextjs-klinika-zdrowej-skory
-   ```
-
-2. Go into the repository
-
-   ```sh
-   $cd nextjs-klinika-zdrowej-skory
-   ```
-
-3. Install dependencies
-
-   ```sh
-   $npm install
-   ```
-
-4. Start the development server
-
-   ```sh
-   $npm run start
-   ```
 
 ## Contact
 
