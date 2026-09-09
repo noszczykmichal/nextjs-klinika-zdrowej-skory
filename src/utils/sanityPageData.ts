@@ -6,9 +6,11 @@ import {
   ResourceType,
   NavigationDataInterface,
   BasicEntityReference,
+  ResourceDetails,
 } from "@/types/types";
 import { urlFor } from "@/utils/clientSideUtils";
 import { getImage } from "@/utils/serverSideUtils";
+import { Metadata } from "next";
 
 const options = { next: { revalidate: 30 } };
 
@@ -42,6 +44,56 @@ async function getCategoryPageData(
   const imageData = await getImage(mainImageUrl);
 
   return { categoryData, categoryResources, imageData };
+}
+
+/** function for fetching data required by individual resource page either treatment or training specific */
+async function getResourcePageData(
+  resourceType: ResourceType,
+  resourceSlug: string,
+) {
+  const RESOURCE_QUERY = `*[_type == "${resourceType}" && ${resourceType}Slug.current == $resourceSlug][0]{
+  mainImage,
+  title,
+  summary,
+  altForMainImage,
+   "category": ${resourceType}Category->{title, categorySlug},
+  description[]{
+    ...,
+    _type == "image" => {
+      ...,
+      alt,
+      asset->{
+        _id,
+        url,
+        metadata {
+          dimensions {
+            width,
+            height,
+            aspectRatio
+          }
+        }
+      }
+    }
+  }
+}`;
+
+  const resourceData = await client.fetch<ResourceDetails>(
+    RESOURCE_QUERY,
+    { resourceSlug },
+    options,
+  );
+
+  if (!resourceData) {
+    return null;
+  }
+
+  const mainImageUrl = urlFor(resourceData.mainImage)!.fit("max").url();
+  const imageData = await getImage(mainImageUrl);
+
+  return {
+    resourceData,
+    imageData,
+  };
 }
 
 const RESOURCE_TYPES: ResourceType[] = ["treatment", "training"];
@@ -112,10 +164,90 @@ async function getAllTrainings() {
   }
 }
 
+/**
+ * Builds a Next.js Metadata object (title, description, OG and Twitter tags)
+ * for a single resource page (treatment/training detail page).
+ *
+ * @param title - Page title, used for <title>, og:title, twitter:title
+ * @param description - Meta description, used for og:description, twitter:description
+ * @param imageUrl - Absolute image URL for social preview cards
+ * @param imageWidth - Image width in pixels (required by og:image:width)
+ * @param imageHeight - Image height in pixels (required by og:image:height)
+ * @returns A partial Metadata object to return from generateMetadata
+ */
+
+function buildSEOMetaData({
+  title,
+  description,
+  imageUrl,
+  imageWidth,
+  imageHeight,
+}: {
+  title: string;
+  description: string;
+  imageUrl: string;
+  imageWidth: number;
+  imageHeight: number;
+}): Pick<Metadata, "title" | "description" | "openGraph" | "twitter"> {
+  return {
+    title,
+    description,
+    openGraph: {
+      title,
+      description,
+      images: [
+        {
+          url: imageUrl,
+          width: imageWidth,
+          height: imageHeight,
+        },
+      ],
+    },
+    twitter: {
+      card: "summary_large_image",
+      title,
+      description,
+      images: [imageUrl],
+    },
+  };
+}
+
+function createResourceMetadataGenerator(resourceType: ResourceType) {
+  return async function generateMetadata({
+    params,
+  }: {
+    params: Promise<{ [key: string]: string }>;
+  }): Promise<Metadata> {
+    const resolvedParams = await params;
+    const slug = resolvedParams[resourceType];
+
+    const pageData = await getResourcePageData(resourceType, slug);
+
+    if (!pageData || !pageData.imageData) {
+      return {};
+    }
+
+    const { imageData, resourceData } = pageData;
+    const { title, summary } = resourceData;
+    const { src, height, width } = imageData.img;
+
+    return buildSEOMetaData({
+      title,
+      description: summary,
+      imageUrl: src,
+      imageWidth: width,
+      imageHeight: height,
+    });
+  };
+}
+
 export {
   getCategoryPageData,
+  getResourcePageData,
   getNavData,
   getCategoriesNavData,
   getAllResources,
   getAllTrainings,
+  buildSEOMetaData,
+  createResourceMetadataGenerator,
 };

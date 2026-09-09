@@ -1,64 +1,38 @@
-import { client } from "@/sanity/client";
-
-import { ResourceDetails } from "@/types/types";
 import LayoutWrapper from "@/components/Layout/LayoutWrapper/LayoutWrapper";
 import BannerWithSummary from "@/components/ui/custom/BannerWithSummary/BannerWithSummary";
 import AsideNavigation from "@/components/ui/custom/AsideNavigation/AsideNavigation";
 import AnimatedArticle from "@/components/ui/custom/AnimatedArticle/AnimatedArticle";
-import { urlFor } from "@/utils/clientSideUtils";
-import { getImage } from "@/utils/serverSideUtils";
+import { getResourcePageData } from "@/utils/sanityPageData";
+import { notFound } from "next/navigation";
+import { createResourceMetadataGenerator } from "@/utils/sanityPageData";
 
-// to-do: refactor and move query to the dedicated handler
-const TREATMENT_QUERY = `*[_type == "treatment" && treatmentSlug.current == $treatment][0]{
-  mainImage,
-  title,
-  summary,
-  altForMainImage,
-   "category": treatmentCategory->{title, categorySlug},
-  description[]{
-    ...,
-    _type == "image" => {
-      ...,
-      alt,
-      asset->{
-        _id,
-        url,
-        metadata {
-          dimensions {
-            width,
-            height,
-            aspectRatio
-          }
-        }
-      }
-    }
-  }
-}`;
+type TreatmentPageParams = Promise<{
+  treatmentCategory: string;
+  treatment: string;
+}>;
 
-const options = { next: { revalidate: 30 } };
+export const generateMetadata = createResourceMetadataGenerator("treatment");
 
 export default async function TreatmentPage({
   params,
 }: {
-  params: Promise<{ treatmentCategory: string; treatment: string }>;
+  params: TreatmentPageParams;
 }) {
-  const treatment = await client.fetch<ResourceDetails>(
-    TREATMENT_QUERY,
-    await params,
-    options,
-  );
+  const { treatment } = await params;
+  const pageData = await getResourcePageData("treatment", treatment);
 
+  if (!pageData) {
+    return notFound();
+  }
+
+  const { imageData, resourceData } = pageData;
   const {
     title: treatmentName,
     category: treatmentCategory,
     description,
-    mainImage,
     summary,
     altForMainImage,
-  } = treatment;
-
-  const mainImageUrl = urlFor(mainImage)!.fit("max").url();
-  const imageData = await getImage(mainImageUrl);
+  } = resourceData;
 
   const bannerData = {
     title: treatmentName,
@@ -84,7 +58,7 @@ export default async function TreatmentPage({
   return (
     <LayoutWrapper breadcrumbData={routesData}>
       <BannerWithSummary bannerData={bannerData} />
-      <div className="grid max-w-[1300px] grid-cols-1 gap-[20px] md:grid-cols-[4fr__6fr] md:gap-[40px] lg:gap-[60px] xl:gap-[90px]">
+      <div className="grid max-w-325 grid-cols-1 gap-5 md:grid-cols-[4fr__6fr] md:gap-10 lg:gap-15 xl:gap-22.5">
         <AsideNavigation
           className="order-2 md:order-1"
           resourceType="treatment"
