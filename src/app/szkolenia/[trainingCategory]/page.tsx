@@ -38,7 +38,7 @@ export default async function TrainingCategoryPage({
   return (
     <LayoutWrapper breadcrumbData={routesData}>
       <BannerWithSummary bannerData={bannerData} />
-      <div className="grid max-w-[1300px] grid-cols-1 gap-[20px] md:grid-cols-[4fr__6fr] md:gap-[40px] lg:gap-[60px] xl:gap-[90px]">
+      <div className="grid max-w-325 grid-cols-1 gap-5 md:grid-cols-[4fr__6fr] md:gap-10 lg:gap-15 xl:gap-22.5">
         <AsideNavigation
           className="order-2 sm:order-1"
           currentCategory={trainingCategory}
