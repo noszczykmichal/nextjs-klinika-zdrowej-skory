@@ -59,17 +59,17 @@ export default async function RootLayout({
 
   return (
     <html lang="pl" style={{ scrollBehavior: "auto" }}>
-      <link rel="me" href="https://www.facebook.com/OlgaNoszczykKlinika" />
-      <link
-        rel="me"
-        href="https://www.instagram.com/klinikazdrowejskory.warszawa"
-      />
-      <link
-        rel="me"
-        href="https://booksy.com/pl-pl/13989_olga-noszczyk-klinika-zdrowej-skory_medycyna-estetyczna_3_warszawa"
-      />
-      <StructuredData />
       <body className={`${montserrat.className} antialiased`}>
+        <link rel="me" href="https://www.facebook.com/OlgaNoszczykKlinika" />
+        <link
+          rel="me"
+          href="https://www.instagram.com/klinikazdrowejskory.warszawa"
+        />
+        <link
+          rel="me"
+          href="https://booksy.com/pl-pl/13989_olga-noszczyk-klinika-zdrowej-skory_medycyna-estetyczna_3_warszawa"
+        />
+        <StructuredData />
         <Navigation navData={navData} />
         <div id="overlay-root" />
         {children}

@@ -13,17 +13,17 @@ export default function Footer({ className }: FooterProps) {
   return (
     <footer
       className={clsx(
-        "text-white-100 w-full px-[25px] text-[15px] leading-[26px] md:px-11",
+        "text-white-100 w-full px-6.25 text-[15px] leading-6.5 md:px-11",
         className,
       )}
       id="contact"
     >
-      <section className="rounded-big bg-black-100 mx-auto flex h-[100%] w-full max-w-[1300px] flex-col gap-10 px-10 py-[65px] sm:justify-between sm:px-[50px] lg:justify-start">
-        <div className="flex w-full flex-col gap-10 sm:flex-row sm:gap-[50px] lg:gap-20">
-          <div className="flex max-w-[530px] flex-col gap-10 sm:w-1/2 lg:flex-row">
-            <div className="flex max-w-[280px] flex-col justify-center gap-8 lg:w-1/2">
-              <Logo className="fill-white-100 h-[45px]" />
-              <div className="flex items-center gap-[33px]">
+      <section className="rounded-big bg-black-100 mx-auto flex h-full w-full max-w-325 flex-col gap-10 px-10 py-16.25 sm:justify-between sm:px-12.5 lg:justify-start">
+        <div className="flex w-full flex-col gap-10 sm:flex-row sm:gap-12.5 lg:gap-20">
+          <div className="flex max-w-132.5 flex-col gap-10 sm:w-1/2 lg:flex-row">
+            <div className="flex max-w-70 flex-col justify-center gap-8 lg:w-1/2">
+              <Logo className="fill-white-100 h-11.25" />
+              <div className="flex items-center gap-8.25">
                 {socialIconsConfig.map((element) => (
                   <Icon
                     key={element.name}
@@ -43,7 +43,7 @@ export default function Footer({ className }: FooterProps) {
                 </p>
               </div>
             </div>
-            <div className="flex max-w-[300px] flex-col flex-wrap justify-between lg:w-1/2">
+            <div className="flex max-w-75 flex-col flex-wrap justify-between lg:w-1/2">
               <div>
                 <p className="font-semibold">Adres</p>
                 <a
@@ -66,12 +66,12 @@ export default function Footer({ className }: FooterProps) {
               </div>
               <div>
                 <p>pon. - czw. 10:00 - 21:00</p>
-                <p>pt. 10:00 - 15:00</p>
+                <p>pt. 10:00 - 19:00</p>
               </div>
             </div>
           </div>
 
-          <div className="flex max-w-[400px] flex-col flex-wrap justify-between sm:w-1/2">
+          <div className="flex max-w-100 flex-col flex-wrap justify-between sm:w-1/2">
             <ContactForm />
           </div>
         </div>
