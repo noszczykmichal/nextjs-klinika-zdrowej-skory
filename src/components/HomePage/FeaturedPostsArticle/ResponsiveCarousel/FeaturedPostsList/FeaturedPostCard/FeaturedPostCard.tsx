@@ -18,11 +18,11 @@ export default function FeaturedPostCard({
   const imageUrl = urlFor(featuredPost.mainImage)?.fit("max").url() || "";
 
   return (
-    <CarouselItem className="pl-1 sm:basis-1/2 lg:basis-1/3">
-      <div className="h-full sm:p-[17px]">
+    <CarouselItem className="pl-4 sm:basis-1/2 lg:basis-1/3">
+      <div className="h-full sm:p-4.25">
         <Card className="h-full rounded-none border-none bg-transparent p-0 shadow-none">
-          <CardContent className="relative flex h-full flex-col justify-between gap-[40px] p-0">
-            <div className="relative aspect-square overflow-hidden rounded-tl-[var(--big-border-radius)] rounded-br-[var(--big-border-radius)] border-none p-0">
+          <CardContent className="relative flex h-full min-w-0 flex-col justify-between gap-10 p-0">
+            <div className="rounded-tl-big rounded-br-big relative aspect-square overflow-hidden border-none p-0">
               <Image
                 src={imageUrl}
                 alt={altForMainImage}
@@ -31,7 +31,10 @@ export default function FeaturedPostCard({
                 sizes="(max-width: 640px) 100vw, (max-width: 1024px) 40vw, (min-width: 1025px) min(30vw, 385px)"
               />
             </div>
-            <h3 className="xxs:break-normal min-h-[100px] text-[17px] break-all whitespace-break-spaces lg:text-[22px]">
+            <h3
+              lang="pl"
+              className="min-h-25 min-w-0 text-[17px] wrap-anywhere hyphens-auto lg:text-[22px]"
+            >
               {title}
             </h3>
             <StyledButton

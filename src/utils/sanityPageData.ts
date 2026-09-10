@@ -1,4 +1,5 @@
 import { client } from "@/sanity/client";
+import { cache } from "react";
 
 import {
   ListItemData,
@@ -18,21 +19,18 @@ async function getCategoryPageData(
   resourceType: ResourceType,
   categorySlug: string,
 ) {
-  const categoryType = `${resourceType}Category`;
-
-  const CATEGORY_QUERY = `*[_type== '${categoryType}' && categorySlug.current==$categorySlug][0]{_id, altForMainImage, description, categorySlug, mainImage, title, summary}`;
-
   const CATEGORY_RESOURCES_QUERY = `*[_type=='${resourceType}' && ${resourceType}Category->categorySlug.current==$categorySlug]{_id, altForMainImage, mainImage, title, summary, "slug": ${resourceType}Slug, "category": ${resourceType}Category->{title, categorySlug} }`;
 
-  const categoryData = await client.fetch<ResourceCategory>(
-    CATEGORY_QUERY,
-    { categorySlug },
-    options,
+  const fetchedResources = await getCategoryResources(
+    resourceType,
+    categorySlug,
   );
 
-  if (!categoryData) {
+  if (!fetchedResources) {
     return null;
   }
+
+  const { categoryData, imageData } = fetchedResources;
 
   const categoryResources = await client.fetch<ListItemData[]>(
     CATEGORY_RESOURCES_QUERY,
@@ -40,18 +38,35 @@ async function getCategoryPageData(
     options,
   );
 
-  const mainImageUrl = urlFor(categoryData.mainImage)!.fit("max").url();
-  const imageData = await getImage(mainImageUrl);
-
   return { categoryData, categoryResources, imageData };
 }
 
+const getCategoryResources = cache(
+  async (resourceType: ResourceType, categorySlug: string) => {
+    const categoryType = `${resourceType}Category`;
+    const CATEGORY_QUERY = `*[_type== '${categoryType}' && categorySlug.current==$categorySlug][0]{_id, altForMainImage, description, categorySlug, mainImage, title, summary}`;
+
+    const categoryData = await client.fetch<ResourceCategory>(
+      CATEGORY_QUERY,
+      { categorySlug },
+      options,
+    );
+
+    if (!categoryData) {
+      return null;
+    }
+
+    const mainImageUrl = urlFor(categoryData.mainImage)!.fit("max").url();
+    const imageData = await getImage(mainImageUrl);
+
+    return { categoryData, imageData };
+  },
+);
+
 /** function for fetching data required by individual resource page either treatment or training specific */
-async function getResourcePageData(
-  resourceType: ResourceType,
-  resourceSlug: string,
-) {
-  const RESOURCE_QUERY = `*[_type == "${resourceType}" && ${resourceType}Slug.current == $resourceSlug][0]{
+const getResourcePageData = cache(
+  async (resourceType: ResourceType, resourceSlug: string) => {
+    const RESOURCE_QUERY = `*[_type == "${resourceType}" && ${resourceType}Slug.current == $resourceSlug][0]{
   mainImage,
   title,
   summary,
@@ -77,24 +92,25 @@ async function getResourcePageData(
   }
 }`;
 
-  const resourceData = await client.fetch<ResourceDetails>(
-    RESOURCE_QUERY,
-    { resourceSlug },
-    options,
-  );
+    const resourceData = await client.fetch<ResourceDetails>(
+      RESOURCE_QUERY,
+      { resourceSlug },
+      options,
+    );
 
-  if (!resourceData) {
-    return null;
-  }
+    if (!resourceData) {
+      return null;
+    }
 
-  const mainImageUrl = urlFor(resourceData.mainImage)!.fit("max").url();
-  const imageData = await getImage(mainImageUrl);
+    const mainImageUrl = urlFor(resourceData.mainImage)!.fit("max").url();
+    const imageData = await getImage(mainImageUrl);
 
-  return {
-    resourceData,
-    imageData,
-  };
-}
+    return {
+      resourceData,
+      imageData,
+    };
+  },
+);
 
 const RESOURCE_TYPES: ResourceType[] = ["treatment", "training"];
 /** fetches the data used for building main navigation */
@@ -220,7 +236,6 @@ function createResourceMetadataGenerator(resourceType: ResourceType) {
   }): Promise<Metadata> {
     const resolvedParams = await params;
     const slug = resolvedParams[resourceType];
-
     const pageData = await getResourcePageData(resourceType, slug);
 
     if (!pageData || !pageData.imageData) {
@@ -229,6 +244,37 @@ function createResourceMetadataGenerator(resourceType: ResourceType) {
 
     const { imageData, resourceData } = pageData;
     const { title, summary } = resourceData;
+    const { src, height, width } = imageData.img;
+
+    return buildSEOMetaData({
+      title,
+      description: summary,
+      imageUrl: src,
+      imageWidth: width,
+      imageHeight: height,
+    });
+  };
+}
+
+function createCategoryMetadataGenerator(resourceType: ResourceType) {
+  return async function generateMetadata({
+    params,
+  }: {
+    params: Promise<{ [key: string]: string }>;
+  }): Promise<Metadata> {
+    const resolvedParams = await params;
+    const categorySlug =
+      resourceType === "training"
+        ? resolvedParams["trainingCategory"]
+        : resolvedParams["treatmentCategory"];
+    const pageData = await getCategoryResources(resourceType, categorySlug);
+
+    if (!pageData || !pageData.imageData) {
+      return {};
+    }
+
+    const { imageData, categoryData } = pageData;
+    const { title, summary } = categoryData;
     const { src, height, width } = imageData.img;
 
     return buildSEOMetaData({
@@ -250,4 +296,5 @@ export {
   getAllTrainings,
   buildSEOMetaData,
   createResourceMetadataGenerator,
+  createCategoryMetadataGenerator,
 };

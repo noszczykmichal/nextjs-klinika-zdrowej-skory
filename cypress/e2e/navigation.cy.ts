@@ -74,7 +74,7 @@ describe("Navigation", () => {
     });
 
     it("should allow to navigate to correct page when link inside 'Zabiegi' dropdown is clicked", () => {
-      const aestheticCosmetologyDropdownLink = `${dropDownElementTreatments} a:contains('Kosmetologia i medycyna estetyczna')`;
+      const aestheticCosmetologyDropdownLink = `${dropDownElementTreatments} a:contains('Kosmetologia estetyczna')`;
       const bodyShapingDropdownLink = `${dropDownElementTreatments} a:contains('Modelowanie sylwetki')`;
 
       cy.get(dropDownTriggerTreatments).click();
@@ -83,11 +83,9 @@ describe("Navigation", () => {
       cy.get(dropDownElementTreatments).should("not.be.visible");
       cy.url(customTimeout).should(
         "include",
-        "/zabiegi/kosmetologia-i-medycyna-estetyczna",
+        "/zabiegi/kosmetologia-estetyczna",
       );
-      cy.contains("h1", "Kosmetologia i medycyna estetyczna").should(
-        "be.visible",
-      );
+      cy.contains("h1", "Kosmetologia estetyczna").should("be.visible");
 
       cy.get(dropDownTriggerTreatments).click();
       cy.get(bodyShapingDropdownLink).should("be.visible");

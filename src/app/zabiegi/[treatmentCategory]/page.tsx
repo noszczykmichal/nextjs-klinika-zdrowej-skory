@@ -4,6 +4,9 @@ import AsideNavigation from "@/components/ui/custom/AsideNavigation/AsideNavigat
 import AnimatedArticle from "@/components/ui/custom/AnimatedArticle/AnimatedArticle";
 import { getCategoryPageData } from "@/utils/sanityPageData";
 import { notFound } from "next/navigation";
+import { createCategoryMetadataGenerator } from "@/utils/sanityPageData";
+
+export const generateMetadata = createCategoryMetadataGenerator("treatment");
 
 export default async function TreatmentCategoryPage({
   params,
@@ -13,7 +16,7 @@ export default async function TreatmentCategoryPage({
   const { treatmentCategory } = await params;
   const pageData = await getCategoryPageData("treatment", treatmentCategory);
   if (!pageData) {
-    notFound();
+    return notFound();
   }
 
   const { categoryData, categoryResources, imageData } = pageData;
