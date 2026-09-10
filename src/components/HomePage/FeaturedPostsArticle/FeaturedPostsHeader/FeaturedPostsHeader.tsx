@@ -14,7 +14,7 @@ export default function FeaturedPostsHeader() {
     >
       <header>
         <h2 className="text-center text-[28px] lg:text-[54px]">Nasz blog</h2>
-        <h3 className="text-center text-[15px] text-[var(--magenta-100)] uppercase lg:text-[16px]">
+        <h3 className="text-magenta-100 text-center text-[15px] uppercase lg:text-[16px]">
           O kosmetologii i medycynie estetycznej
         </h3>
       </header>

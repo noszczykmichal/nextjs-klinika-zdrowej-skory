@@ -15,7 +15,7 @@ export default function HeroArticle({
 }: HeroArticleProps) {
   const content = articleContent.map((el, index) => (
     <p
-      className={`${index < articleContent.length - 1 ? "pb-[26px]" : ""} `}
+      className={`${index < articleContent.length - 1 ? "pb-6.5" : ""} `}
       key={el.id}
     >
       {el.paragraphContent}
@@ -32,7 +32,7 @@ export default function HeroArticle({
         viewFactor={0.1}
         easing="cubic-bezier(0.645, 0.045, 0.355, 1)"
       >
-        <div className="flex flex-col gap-x-[50px] lg:flex-row">
+        <div className="flex flex-col gap-x-12.5 lg:flex-row">
           <h2
             style={{
               fontSize: "var(--font-size-heading)",
@@ -41,7 +41,7 @@ export default function HeroArticle({
           >
             {headerText}
           </h2>
-          <div className="pt-[26px] text-justify text-[17px] lg:w-[50%] lg:pt-0">
+          <div className="pt-6.5 text-justify text-[17px] lg:w-[50%] lg:pt-0">
             {content}
           </div>
         </div>
