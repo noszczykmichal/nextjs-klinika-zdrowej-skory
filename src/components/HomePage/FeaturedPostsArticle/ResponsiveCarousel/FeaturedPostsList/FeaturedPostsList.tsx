@@ -9,7 +9,7 @@ interface FeaturedPostsListProps {
 
 export default function FeaturedPostsList({ posts }: FeaturedPostsListProps) {
   return (
-    <CarouselContent className="-ml-1">
+    <CarouselContent className="-ml-4">
       {posts.map((post) => (
         <FeaturedPostCard featuredPost={post} key={post._id} />
       ))}

@@ -14,9 +14,9 @@ export const mockNavData = {
       _id: "1cd516a8-2be5-4754-bf9b-4edc0add74f4",
       slug: {
         _type: "slug",
-        current: "kosmetologia-i-medycyna-estetyczna",
+        current: "kosmetologia-estetyczna",
       },
-      title: "Kosmetologia i medycyna estetyczna",
+      title: "Kosmetologia estetyczna",
     },
   ],
   training: [

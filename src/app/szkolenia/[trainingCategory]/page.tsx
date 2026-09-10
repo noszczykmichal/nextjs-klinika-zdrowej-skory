@@ -4,6 +4,9 @@ import AsideNavigation from "@/components/ui/custom/AsideNavigation/AsideNavigat
 import AnimatedArticle from "@/components/ui/custom/AnimatedArticle/AnimatedArticle";
 import { getCategoryPageData } from "@/utils/sanityPageData";
 import { notFound } from "next/navigation";
+import { createCategoryMetadataGenerator } from "@/utils/sanityPageData";
+
+export const generateMetadata = createCategoryMetadataGenerator("training");
 
 export default async function TrainingCategoryPage({
   params,
@@ -14,7 +17,7 @@ export default async function TrainingCategoryPage({
   const pageData = await getCategoryPageData("training", trainingCategory);
 
   if (!pageData) {
-    notFound();
+    return notFound();
   }
 
   const { categoryData, categoryResources, imageData } = pageData;

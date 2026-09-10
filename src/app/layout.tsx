@@ -16,7 +16,7 @@ export const metadata: Metadata = {
     process.env.NEXT_PUBLIC_SITE_URL || "http://localhost:3000",
   ),
   title: {
-    default: "Klinika Zdrowej Skóry — Medycyna Estetyczna Warszawa",
+    default: "Klinika Zdrowej Skóry — Kosmetologia Estetyczna Warszawa",
     template: "%s | Klinika Zdrowej Skóry",
   },
   description:
@@ -58,6 +58,16 @@ export default async function RootLayout({
 
   return (
     <html lang="pl" style={{ scrollBehavior: "auto" }}>
+      <link rel="me" href="https://www.facebook.com/OlgaNoszczykKlinika" />
+      <link
+        rel="me"
+        href="https://www.instagram.com/klinikazdrowejskory.warszawa"
+      />
+      <link
+        rel="me"
+        href="https://booksy.com/pl-pl/13989_olga-noszczyk-klinika-zdrowej-skory_medycyna-estetyczna_3_warszawa"
+      />
+
       <body className={`${montserrat.className} antialiased`}>
         <Navigation navData={navData} />
         <div id="overlay-root" />

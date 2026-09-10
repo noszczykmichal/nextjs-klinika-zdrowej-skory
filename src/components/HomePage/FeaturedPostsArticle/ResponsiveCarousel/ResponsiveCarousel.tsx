@@ -2,6 +2,7 @@
 
 import { useState, useRef, useEffect } from "react";
 import Autoplay from "embla-carousel-autoplay";
+import clsx from "clsx";
 
 import {
   Carousel,
@@ -59,15 +60,14 @@ export function ResponsiveCarousel({ posts }: ResponsiveCarouselProps) {
   };
 
   const controlButtons = (
-    <div className="flex gap-[10px] py-2 lg:invisible">
+    <div className="flex gap-2.5 py-2 lg:invisible">
       {Array.from({ length: count }).map((_slide, index) => (
         <button
           aria-label={`Przejdź do slajdu ${index + 1}`}
-          className={`h-[10px] w-[10px] rounded-[50%] hover:cursor-pointer ${
-            current === index + 1
-              ? "bg-[var(--black-100)]"
-              : "bg-[var(--gray-100)]"
-          }`}
+          className={clsx(
+            "h-2.5 w-2.5 rounded-[50%] hover:cursor-pointer",
+            current === index + 1 ? "bg-black-100" : "bg-gray-100",
+          )}
           key={index}
           onClick={onControlButtonClick(index)}
         />
@@ -76,7 +76,7 @@ export function ResponsiveCarousel({ posts }: ResponsiveCarouselProps) {
   );
 
   return (
-    <div className="flex flex-col items-center gap-[50px]">
+    <div className="flex flex-col items-center gap-12.5">
       {prefersReducedMotion ? (
         <Carousel
           opts={{
@@ -86,8 +86,8 @@ export function ResponsiveCarousel({ posts }: ResponsiveCarouselProps) {
           className="w-[90%]"
         >
           <FeaturedPostsList posts={posts} />
-          <CarouselPrevious className="ml-[15px] cursor-pointer md:ml-[5px] lg:hidden" />
-          <CarouselNext className="mr-[15px] cursor-pointer md:mr-[5px] lg:hidden" />
+          <CarouselPrevious className="ml-3.75 cursor-pointer md:ml-1.25 lg:hidden" />
+          <CarouselNext className="mr-3.75 cursor-pointer md:mr-1.25 lg:hidden" />
         </Carousel>
       ) : (
         <>
