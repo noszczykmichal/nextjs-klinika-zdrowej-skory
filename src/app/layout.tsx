@@ -4,6 +4,7 @@ import { Montserrat } from "next/font/google";
 import Footer from "@/components/Layout/Footer/Footer";
 import Navigation from "@/components/Layout/Navigation/Navigation";
 import { getNavData } from "@/utils/sanityPageData";
+import StructuredData from "@/app/StructuredData";
 import "@/styles/globals.css";
 
 const montserrat = Montserrat({
@@ -67,7 +68,7 @@ export default async function RootLayout({
         rel="me"
         href="https://booksy.com/pl-pl/13989_olga-noszczyk-klinika-zdrowej-skory_medycyna-estetyczna_3_warszawa"
       />
-
+      <StructuredData />
       <body className={`${montserrat.className} antialiased`}>
         <Navigation navData={navData} />
         <div id="overlay-root" />
