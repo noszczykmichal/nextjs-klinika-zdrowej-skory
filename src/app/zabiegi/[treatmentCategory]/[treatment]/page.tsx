@@ -4,7 +4,7 @@ import AsideNavigation from "@/components/ui/custom/AsideNavigation/AsideNavigat
 import AnimatedArticle from "@/components/ui/custom/AnimatedArticle/AnimatedArticle";
 import { getResourcePageData } from "@/utils/sanityPageData";
 import { notFound } from "next/navigation";
-import { createResourceMetadataGenerator } from "@/utils/sanityPageData";
+import { createResourceMetadataGenerator } from "@/utils/metadata";
 
 type TreatmentPageParams = Promise<{
   treatmentCategory: string;

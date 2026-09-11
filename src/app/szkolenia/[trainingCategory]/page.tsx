@@ -4,7 +4,7 @@ import AsideNavigation from "@/components/ui/custom/AsideNavigation/AsideNavigat
 import AnimatedArticle from "@/components/ui/custom/AnimatedArticle/AnimatedArticle";
 import { getCategoryPageData } from "@/utils/sanityPageData";
 import { notFound } from "next/navigation";
-import { createCategoryMetadataGenerator } from "@/utils/sanityPageData";
+import { createCategoryMetadataGenerator } from "@/utils/metadata";
 
 export const generateMetadata = createCategoryMetadataGenerator("training");
 

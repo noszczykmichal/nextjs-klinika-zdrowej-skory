@@ -5,7 +5,7 @@ import AnimatedArticle from "@/components/ui/custom/AnimatedArticle/AnimatedArti
 import { getAllTrainings } from "@/utils/sanityPageData";
 import { getResourcePageData } from "@/utils/sanityPageData";
 import { notFound } from "next/navigation";
-import { createResourceMetadataGenerator } from "@/utils/sanityPageData";
+import { createResourceMetadataGenerator } from "@/utils/metadata";
 
 type TrainingPageParams = Promise<{
   trainingCategory: string;

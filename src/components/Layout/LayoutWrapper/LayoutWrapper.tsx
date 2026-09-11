@@ -15,8 +15,8 @@ export default function LayoutWrapper({
   return (
     <>
       <BreadcrumbWrapper routesData={breadcrumbData} />
-      <main className="mx-auto flex w-full flex-col items-center px-[25px] md:px-[42px]">
-        <section className="flex w-full max-w-[1300px] flex-col gap-y-[70px] pb-[70px] lg:gap-y-[100px] lg:pb-[100px]">
+      <main className="mx-auto flex w-full flex-col items-center px-6.25 md:px-10.5">
+        <section className="flex w-full max-w-325 flex-col gap-y-17.5 pb-17.5 lg:gap-y-25 lg:pb-25">
           {children}
         </section>
       </main>
