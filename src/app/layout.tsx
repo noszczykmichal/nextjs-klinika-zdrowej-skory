@@ -18,7 +18,7 @@ export const metadata: Metadata = {
   ),
   title: {
     default: "Klinika Zdrowej Skóry — Kosmetologia Estetyczna Warszawa",
-    template: "%s | Klinika Zdrowej Skóry",
+    template: "%s Warszawa Wawer i Praga Południe | Klinika Zdrowej Skóry",
   },
   description:
     "Klinika Zdrowej Skóry w Warszawie — kosmetologia holistyczna, estetyczna i hi-tech. Zabiegi na twarz, mezoterapia igłowa, stymulatory tkankowe, powiększanie ust.",

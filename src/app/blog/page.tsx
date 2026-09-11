@@ -1,20 +1,11 @@
-import { client } from "@/sanity/client";
-
 import LayoutWrapper from "@/components/Layout/LayoutWrapper/LayoutWrapper";
 import MainBanner from "@/components/HomePage/MainBanner/MainBanner";
 import ItemsList from "@/components/ui/custom/ItemsList/ItemsList";
-import { ListItemData } from "@/types/types";
 import blogPhoto from "@/assets/blog.jpg";
-
-const POSTS_QUERY = `*[
-  _type == "post"
-  && defined(slug.current)
-]|order(publishedAt desc)[0...12]{_id, altForMainImage, title, slug, mainImage, summary, category->{title, categorySlug}}`;
-
-const options = { next: { revalidate: 30 } };
+import { getAllPostData } from "@/utils/sanityPageData";
 
 export default async function BlogPage() {
-  const posts = await client.fetch<ListItemData[]>(POSTS_QUERY, {}, options);
+  const posts = await getAllPostData();
 
   const routesData = [
     {
@@ -27,7 +18,7 @@ export default async function BlogPage() {
       <MainBanner
         headerText="Blog"
         customImage={blogPhoto}
-        customAlt="Olga Noszczyk uśmiechnięta, ubrana w czarną, błyszczącą stylizację, pozuje na tle zielonej rośliny w jasnym wnętrzu."
+        customAlt="Olga Noszczyk w białym fartuchu medycznym przegląda atlas anatomii klinicznej twarzy z ilustracją struktur anatomicznych, w tle widoczne podręczniki medyczne na regale."
       />
       <ItemsList listItemsData={posts} />
     </LayoutWrapper>

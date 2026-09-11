@@ -240,6 +240,22 @@ const getSinglePostData = cache(async ({ post }: { post: string }) => {
   return { postData, imageData };
 });
 
+/** fetches all posts data for page /blog */
+async function getAllPostData() {
+  const POSTS_QUERY = `*[
+  _type == "post"
+  && defined(slug.current)
+]|order(publishedAt desc)[0...12]{_id, altForMainImage, title, slug, mainImage, summary, category->{title, categorySlug}}`;
+
+  const posts = await client.fetch<ListItemData[]>(POSTS_QUERY, {}, options);
+
+  if (!posts || posts.length === 0) {
+    return null;
+  }
+
+  return posts;
+}
+
 export {
   getCategoryPageData,
   getResourcePageData,
@@ -250,4 +266,5 @@ export {
   getCategoryResources,
   getPostsByCategory,
   getSinglePostData,
+  getAllPostData,
 };
