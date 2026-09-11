@@ -1,26 +1,22 @@
-import { client } from "@/sanity/client";
+import { notFound } from "next/navigation";
 
 import LayoutWrapper from "@/components/Layout/LayoutWrapper/LayoutWrapper";
 import MainBanner from "@/components/HomePage/MainBanner/MainBanner";
 import ItemsList from "@/components/ui/custom/ItemsList/ItemsList";
-import { PostDetails } from "@/types/types";
-
-const POSTS_BY_CATEGORY_QUERY = `*[
-  _type == "post"
-  && category->categorySlug.current==$category]|order(publishedAt desc)[0...12]{_id, altForMainImage, title, slug, mainImage, summary, category->{title, categorySlug}}`;
-
-const options = { next: { revalidate: 30 } };
+import { getPostsByCategory } from "@/utils/sanityPageData";
 
 export default async function CategoryPage({
   params,
 }: {
-  params: Promise<{ category: string }>;
+  params: Promise<{ postCategory: string }>;
 }) {
-  const posts = await client.fetch<PostDetails[]>(
-    POSTS_BY_CATEGORY_QUERY,
-    await params,
-    options,
-  );
+  const { postCategory } = await params;
+
+  const posts = await getPostsByCategory({ postCategorySlug: postCategory });
+
+  if (posts.length === 0) {
+    return notFound();
+  }
 
   const { title: categoryTitle } = posts[0].category;
 
