@@ -135,3 +135,14 @@ export interface FormValues {
   selected_training: string;
   privacy_policy: boolean;
 }
+
+export interface SitemapResourceEntry {
+  slug: string;
+  categorySlug: string;
+  _updatedAt: string;
+}
+
+export interface SitemapCategoryEntry {
+  slug: string;
+  _updatedAt: string;
+}

@@ -12,7 +12,7 @@ export default function AboutUs() {
       <MainBanner
         headerText="O Nas"
         customImage={oNas}
-        customAlt="Olga Noszczyk siedzi na krześle, ubrana w czarny, teksturowany strój."
+        customAlt="Olga Noszczyk w białym fartuchu medycznym z czarnymi guzikami uśmiecha się, opierając podbródek na dłoni, na jednolitym jasnym tle."
       />
       <HeroArticle
         headerText="Olga Noszczyk - Ekspert któremu możesz zaufać"

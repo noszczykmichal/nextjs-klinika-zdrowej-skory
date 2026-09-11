@@ -42,7 +42,7 @@ export default function MainBanner({
           blurDataURL={blurData}
           alt={
             customAlt ||
-            "Olga Noszczyk trzymająca ampułko strzykawkę z preparatem do stymulacji skóry."
+            "Olga Noszczyk w białym fartuchu medycznym opiera się o stertę książek branżowych ('Skuteczna Stymulacja Tkankowa' tom I i II oraz 'Iniekcje Estetyczne Twarzy') stojąc na tle bujnych liści monstery, obok bukietu różowych kwiatów"
           }
           fill
           className="rounded-br-big rounded-bl-big sm:rounded-tr-big object-cover object-top sm:rounded-bl-none"
