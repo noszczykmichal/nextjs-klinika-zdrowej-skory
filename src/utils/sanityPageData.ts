@@ -69,6 +69,7 @@ const getResourcePageData = cache(
     const RESOURCE_QUERY = `*[_type == "${resourceType}" && ${resourceType}Slug.current == $resourceSlug][0]{
   mainImage,
   title,
+  metaDescription,
   summary,
   altForMainImage,
    "category": ${resourceType}Category->{title, categorySlug},
