@@ -69,12 +69,12 @@ function createResourceMetadataGenerator(resourceType: ResourceType) {
     }
 
     const { imageData, resourceData } = pageData;
-    const { title, summary } = resourceData;
+    const { title, metaDescription } = resourceData;
     const { src, height, width } = imageData.img;
 
     return buildSEOMetaData({
       title,
-      description: summary,
+      description: metaDescription,
       imageUrl: src,
       imageWidth: width,
       imageHeight: height,

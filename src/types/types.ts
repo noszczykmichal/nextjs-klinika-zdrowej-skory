@@ -64,6 +64,7 @@ export interface Resource extends BaseContentData {
 }
 
 export interface ResourceDetails extends Resource {
+  metaDescription: string;
   category: CategoryDetails;
 }
 
