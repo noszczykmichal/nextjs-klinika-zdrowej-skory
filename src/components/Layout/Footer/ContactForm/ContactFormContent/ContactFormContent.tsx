@@ -60,7 +60,9 @@ export default function FormContent({
           <ContactFormField fieldData={inputEl} key={inputEl.name} />
         ))}
       </fieldset>
-      <OutlineButton type="submit">Wyślij</OutlineButton>
+      <OutlineButton type="submit" footnote={true}>
+        Wyślij
+      </OutlineButton>
       <LoaderMessage submitting={submitting} />
       <SuccessMessage showSuccess={!errorData.errorMessage && showSuccess} />
       <ErrorMessage errorData={errorData} setErrorHandler={setErrorHandler} />

@@ -147,3 +147,7 @@ export interface SitemapCategoryEntry {
   slug: string;
   _updatedAt: string;
 }
+
+export interface PrivacyPolicyDetails {
+  policyContent: PortableTextBlock[];
+}

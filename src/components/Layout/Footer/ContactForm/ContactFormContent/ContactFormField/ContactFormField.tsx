@@ -9,7 +9,7 @@ export default function ContactFormField({ fieldData }: ContactFormFieldProps) {
   const { component = "input", type, name, label, validator } = fieldData;
 
   const sharedClasses =
-    "cursor-pointer border-b border-magenta-100 text-[var(--white-100)] autofill:!shadow-[inset_0_0_0_1000px_theme(colors.black.100)] autofill:[-webkit-text-fill-color:theme(colors.white.100)_!important] autofill:!font-medium autofill:[font-family:inherit_!important] autofill:[transition:background-color_5000s_ease-in-out_0s]";
+    "autofill:!shadow-[0_0_0_1000px_var(--black-100)_inset] autofill:![-webkit-text-fill-color:var(--white-100)] autofill:!font-medium autofill:!font-[inherit] autofill:[transition:background-color_5000s_ease-in-out_0s]";
 
   return (
     <Field component={component} name={name} validate={validator}>
@@ -24,9 +24,9 @@ export default function ContactFormField({ fieldData }: ContactFormFieldProps) {
               type={type}
               name={name}
               placeholder={label}
-              className={`${sharedClasses}`}
+              className={`contact-form-input ${sharedClasses}`}
               id={name}
-              autoComplete="true"
+              autoComplete="on"
               spellCheck="false"
             />
           ) : (
@@ -39,7 +39,7 @@ export default function ContactFormField({ fieldData }: ContactFormFieldProps) {
               id={name}
             />
           )}
-          <p className="min-h-[27px] text-[12px] text-red-500">
+          <p className="min-h-6.75 text-[12px] text-red-500">
             {meta.error && meta.touched ? meta.error : ""}
           </p>
         </div>

@@ -81,7 +81,7 @@ export default function EnrollmentFormField({
               placeholder={label}
               className={sharedClasses}
               id={name}
-              autoComplete="true"
+              autoComplete="on"
               spellCheck="false"
             />
           );
@@ -93,7 +93,7 @@ export default function EnrollmentFormField({
               {label}
             </label>
             {renderedInput}
-            <p className="min-h-[27px] text-[12px] text-red-500">
+            <p className="min-h-6.75 text-[12px] text-red-500">
               {meta.error && meta.touched ? meta.error : ""}
             </p>
           </div>
