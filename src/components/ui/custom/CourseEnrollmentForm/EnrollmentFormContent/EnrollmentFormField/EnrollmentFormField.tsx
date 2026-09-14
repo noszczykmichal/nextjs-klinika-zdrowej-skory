@@ -3,6 +3,14 @@ import { Field } from "react-final-form";
 import { BasicEntityReference } from "@/types/types";
 import clsx from "clsx";
 
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select";
+
 interface EnrollmentFormFieldProps {
   fieldData: FormFieldConfig;
   availableTrainings?: BasicEntityReference[];
@@ -38,24 +46,23 @@ export default function EnrollmentFormField({
 
         if (component === "select") {
           renderedInput = (
-            <select
-              {...input}
-              name={name}
-              className={clsx(sharedClasses, {
-                "text-gray-500": isSelectPlaceholder,
-                "text-black": !isSelectPlaceholder,
-              })}
-              id={name}
-            >
-              <option value="" disabled>
-                Wybierz szkolenie z listy
-              </option>
-              {availableTrainings?.map((training) => (
-                <option value={training.title} key={training._id}>
-                  {training.title}
-                </option>
-              ))}
-            </select>
+            <Select value={input.value} onValueChange={input.onChange}>
+              <SelectTrigger
+                className={clsx(sharedClasses, {
+                  "text-gray-500": isSelectPlaceholder,
+                  "text-black": !isSelectPlaceholder,
+                })}
+              >
+                <SelectValue placeholder="Wybierz szkolenie z listy" />
+              </SelectTrigger>
+              <SelectContent>
+                {availableTrainings?.map((training) => (
+                  <SelectItem value={training.title} key={training._id}>
+                    {training.title}
+                  </SelectItem>
+                ))}
+              </SelectContent>
+            </Select>
           );
         } else if (type === "checkbox") {
           renderedInput = (

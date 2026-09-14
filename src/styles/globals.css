@@ -14,7 +14,7 @@
   }
 }
 
-*:focus-visible {
+*:focus-visible:not([role="option"]) {
   outline: 2px dashed var(--magenta-100);
   outline-offset: 2px;
   animation: focus-shrink 0.3s ease-out forwards;

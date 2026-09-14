@@ -9,7 +9,7 @@ export default function ContactFormField({ fieldData }: ContactFormFieldProps) {
   const { component = "input", type, name, label, validator } = fieldData;
 
   const sharedClasses =
-    "autofill:!shadow-[0_0_0_1000px_var(--black-100)_inset] autofill:![-webkit-text-fill-color:var(--white-100)] autofill:!font-medium autofill:!font-[inherit] autofill:[transition:background-color_5000s_ease-in-out_0s]";
+    "cursor-pointer border-b border-magenta-100 text-white-100  autofill:!shadow-[0_0_0_1000px_var(--black-100)_inset] autofill:![-webkit-text-fill-color:var(--white-100)] autofill:!font-medium autofill:!font-[inherit] autofill:[transition:background-color_5000s_ease-in-out_0s]";
 
   return (
     <Field component={component} name={name} validate={validator}>
