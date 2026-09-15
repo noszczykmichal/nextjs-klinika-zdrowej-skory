@@ -183,7 +183,7 @@ const fieldRegistry: FormFieldConfig[] = [
   {
     type: "checkbox",
     name: "privacy_policy",
-    label: "Zapoznałem/am się z polityką prywatności.",
+    label: "Zapoznałem/am się z",
     validator: (v: unknown) =>
       v !== true ? "To pole jest wymagane" : undefined,
     wrapperClassName: "md:col-span-2",

@@ -55,11 +55,11 @@ export default function Footer({ className }: FooterProps) {
                   <br /> 04-306 Warszawa
                 </a>
               </div>
-              <div className="py-2.5">
+              <div className="py-2.5 lg:py-0">
                 <p className="font-semibold">Telefon</p>
                 <a href="tel:+48508832553">508 832 553</a>
               </div>
-              <div className="py-2.5">
+              <div className="py-2.5 lg:py-0">
                 <p className="font-semibold">E-mail</p>
                 <a href="mailto:olga.noszczyk@gmail.com">
                   olga.noszczyk@gmail.com

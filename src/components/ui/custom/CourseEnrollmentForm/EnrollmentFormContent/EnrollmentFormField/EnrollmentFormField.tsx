@@ -2,6 +2,7 @@ import { FormFieldConfig } from "@/types/types";
 import { Field } from "react-final-form";
 import { BasicEntityReference } from "@/types/types";
 import clsx from "clsx";
+import Link from "next/link";
 
 import {
   Select,
@@ -66,7 +67,7 @@ export default function EnrollmentFormField({
           );
         } else if (type === "checkbox") {
           renderedInput = (
-            <label className="cursor-pointer">
+            <div className="flex items-center">
               <input
                 {...input}
                 type={type}
@@ -76,8 +77,18 @@ export default function EnrollmentFormField({
                 autoComplete="true"
                 spellCheck="false"
               />
-              {label}
-            </label>
+              <label htmlFor={name} className="cursor-pointer">
+                {label}{" "}
+                <Link
+                  href="/polityka-prywatnosci"
+                  className="hover:text-magenta-100 underline decoration-1 underline-offset-2 transition-colors duration-150"
+                  onClick={(e) => e.stopPropagation()}
+                >
+                  polityką prywatności
+                </Link>
+                .
+              </label>
+            </div>
           );
         } else {
           renderedInput = (
@@ -96,9 +107,11 @@ export default function EnrollmentFormField({
 
         return (
           <div className={wrapperClassName}>
-            <label htmlFor={name} className="sr-only">
-              {label}
-            </label>
+            {type !== "checkbox" && (
+              <label htmlFor={name} className="sr-only">
+                {label}
+              </label>
+            )}
             {renderedInput}
             <p className="min-h-6.75 text-[12px] text-red-500">
               {meta.error && meta.touched ? meta.error : ""}

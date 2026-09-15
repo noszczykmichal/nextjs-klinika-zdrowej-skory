@@ -53,7 +53,10 @@ export default function FormContent({
   }, [submitSucceeded, errorMessage, formRestartHandler]);
 
   return (
-    <form onSubmit={handleSubmit} className="relative flex flex-col">
+    <form
+      onSubmit={handleSubmit}
+      className="relative flex flex-col justify-between"
+    >
       <fieldset className="flex flex-col">
         <legend className="font-semibold">Napisz do nas!</legend>
         {contactFormConfig.map((inputEl) => (
