@@ -87,6 +87,11 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
       changeFrequency: "yearly" as const,
       priority: 0.5,
     },
+    {
+      url: `${BASE_URL}/polityka-prywatnosci`,
+      changeFrequency: "yearly" as const,
+      priority: 0.5,
+    },
   ].map((r) => ({ ...r, lastModified: new Date() }));
 
   return [
