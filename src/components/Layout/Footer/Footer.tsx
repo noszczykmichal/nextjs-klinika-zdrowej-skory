@@ -1,9 +1,10 @@
-import Icon from "@/components/Layout/Icon/Icon";
+import clsx from "clsx";
+import Link from "next/link";
 
+import Icon from "@/components/Layout/Icon/Icon";
 import Logo from "@/components/Layout/Icon/Icons/Logo";
 import { socialIconsConfig } from "@/utils/config";
 import ContactForm from "@/components/Layout/Footer/ContactForm/ContactForm";
-import clsx from "clsx";
 
 interface FooterProps {
   className: string;
@@ -54,11 +55,11 @@ export default function Footer({ className }: FooterProps) {
                   <br /> 04-306 Warszawa
                 </a>
               </div>
-              <div className="py-2.5">
+              <div className="py-2.5 lg:py-0">
                 <p className="font-semibold">Telefon</p>
                 <a href="tel:+48508832553">508 832 553</a>
               </div>
-              <div className="py-2.5">
+              <div className="py-2.5 lg:py-0">
                 <p className="font-semibold">E-mail</p>
                 <a href="mailto:olga.noszczyk@gmail.com">
                   olga.noszczyk@gmail.com
@@ -75,8 +76,8 @@ export default function Footer({ className }: FooterProps) {
             <ContactForm />
           </div>
         </div>
-        <div className="border-white-100/50 w-full border-t">
-          <p className="xs:flex-row text-white-100/50 flex flex-col items-center p-4 text-[12px]">
+        <div className="border-white-100/50 text-white-100/50 flex w-full flex-col justify-between border-t p-4 text-[12px] md:flex-row">
+          <p>
             <span>
               © 2026 Copyright by{" "}
               <a
@@ -91,6 +92,14 @@ export default function Footer({ className }: FooterProps) {
             </span>
             <span>{"\u00A0"}All rights reserved.</span>
           </p>
+          <ul>
+            <Link
+              href="/polityka-prywatnosci"
+              className="before:bg-white-100 active:text-white-100 hover:text-white-100 relative duration-300 before:absolute before:-bottom-1.25 before:h-px before:w-0 before:transition-all before:duration-300 before:content-[''] hover:transition-all hover:before:w-full active:transition-all active:before:w-full"
+            >
+              Polityka prywatności
+            </Link>
+          </ul>
         </div>
       </section>
     </footer>
