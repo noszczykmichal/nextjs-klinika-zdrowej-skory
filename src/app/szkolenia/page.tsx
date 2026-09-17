@@ -1,9 +1,16 @@
+import { Metadata } from "next";
+
 import LayoutWrapper from "@/components/Layout/LayoutWrapper/LayoutWrapper";
 import MainBanner from "@/components/HomePage/MainBanner/MainBanner";
 import ItemsList from "@/components/ui/custom/ItemsList/ItemsList";
-
 import blogPhoto from "@/assets/blog.jpg";
 import { getAllResources } from "@/utils/sanityPageData";
+
+export const metadata: Metadata = {
+  alternates: {
+    canonical: "/szkolenia",
+  },
+};
 
 export default async function AllTrainingsPage() {
   const allTrainings = await getAllResources("training");

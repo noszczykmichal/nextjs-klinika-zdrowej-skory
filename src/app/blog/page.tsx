@@ -1,8 +1,15 @@
+import { Metadata } from "next";
 import LayoutWrapper from "@/components/Layout/LayoutWrapper/LayoutWrapper";
 import MainBanner from "@/components/HomePage/MainBanner/MainBanner";
 import ItemsList from "@/components/ui/custom/ItemsList/ItemsList";
 import blogPhoto from "@/assets/blog.jpg";
 import { getAllPostData } from "@/utils/sanityPageData";
+
+export const metadata: Metadata = {
+  alternates: {
+    canonical: "/blog",
+  },
+};
 
 export default async function BlogPage() {
   const posts = await getAllPostData();

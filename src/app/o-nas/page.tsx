@@ -1,8 +1,16 @@
+import { Metadata } from "next";
+
 import LayoutWrapper from "@/components/Layout/LayoutWrapper/LayoutWrapper";
 import MainBanner from "@/components/HomePage/MainBanner/MainBanner";
 import oNas from "@/assets/o-nas.jpg";
 import HeroArticle from "@/components/HomePage/HeroArticle/HeroArticle";
 import { aboutUsArticleContent } from "@/utils/config";
+
+export const metadata: Metadata = {
+  alternates: {
+    canonical: "/o-nas",
+  },
+};
 
 export default function AboutUs() {
   const routesData = [{ routeName: "O Nas" }];
