@@ -53,14 +53,19 @@ export default function FormContent({
   }, [submitSucceeded, errorMessage, formRestartHandler]);
 
   return (
-    <form onSubmit={handleSubmit} className="relative flex flex-col">
+    <form
+      onSubmit={handleSubmit}
+      className="relative flex flex-col justify-between"
+    >
       <fieldset className="flex flex-col">
         <legend className="font-semibold">Napisz do nas!</legend>
         {contactFormConfig.map((inputEl) => (
           <ContactFormField fieldData={inputEl} key={inputEl.name} />
         ))}
       </fieldset>
-      <OutlineButton type="submit">Wyślij</OutlineButton>
+      <OutlineButton type="submit" footnote={true}>
+        Wyślij
+      </OutlineButton>
       <LoaderMessage submitting={submitting} />
       <SuccessMessage showSuccess={!errorData.errorMessage && showSuccess} />
       <ErrorMessage errorData={errorData} setErrorHandler={setErrorHandler} />

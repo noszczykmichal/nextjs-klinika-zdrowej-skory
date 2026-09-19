@@ -2,6 +2,15 @@ import { FormFieldConfig } from "@/types/types";
 import { Field } from "react-final-form";
 import { BasicEntityReference } from "@/types/types";
 import clsx from "clsx";
+import Link from "next/link";
+
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select";
 
 interface EnrollmentFormFieldProps {
   fieldData: FormFieldConfig;
@@ -38,28 +47,27 @@ export default function EnrollmentFormField({
 
         if (component === "select") {
           renderedInput = (
-            <select
-              {...input}
-              name={name}
-              className={clsx(sharedClasses, {
-                "text-gray-500": isSelectPlaceholder,
-                "text-black": !isSelectPlaceholder,
-              })}
-              id={name}
-            >
-              <option value="" disabled>
-                Wybierz szkolenie z listy
-              </option>
-              {availableTrainings?.map((training) => (
-                <option value={training.title} key={training._id}>
-                  {training.title}
-                </option>
-              ))}
-            </select>
+            <Select value={input.value} onValueChange={input.onChange}>
+              <SelectTrigger
+                className={clsx(sharedClasses, {
+                  "text-gray-500": isSelectPlaceholder,
+                  "text-black": !isSelectPlaceholder,
+                })}
+              >
+                <SelectValue placeholder="Wybierz szkolenie z listy" />
+              </SelectTrigger>
+              <SelectContent>
+                {availableTrainings?.map((training) => (
+                  <SelectItem value={training.title} key={training._id}>
+                    {training.title}
+                  </SelectItem>
+                ))}
+              </SelectContent>
+            </Select>
           );
         } else if (type === "checkbox") {
           renderedInput = (
-            <label className="cursor-pointer">
+            <div className="flex items-center">
               <input
                 {...input}
                 type={type}
@@ -69,8 +77,18 @@ export default function EnrollmentFormField({
                 autoComplete="true"
                 spellCheck="false"
               />
-              {label}
-            </label>
+              <label htmlFor={name} className="cursor-pointer">
+                {label}{" "}
+                <Link
+                  href="/polityka-prywatnosci"
+                  className="hover:text-magenta-100 underline decoration-1 underline-offset-2 transition-colors duration-150"
+                  onClick={(e) => e.stopPropagation()}
+                >
+                  polityką prywatności
+                </Link>
+                .
+              </label>
+            </div>
           );
         } else {
           renderedInput = (
@@ -81,7 +99,7 @@ export default function EnrollmentFormField({
               placeholder={label}
               className={sharedClasses}
               id={name}
-              autoComplete="true"
+              autoComplete="on"
               spellCheck="false"
             />
           );
@@ -89,11 +107,13 @@ export default function EnrollmentFormField({
 
         return (
           <div className={wrapperClassName}>
-            <label htmlFor={name} className="sr-only">
-              {label}
-            </label>
+            {type !== "checkbox" && (
+              <label htmlFor={name} className="sr-only">
+                {label}
+              </label>
+            )}
             {renderedInput}
-            <p className="min-h-[27px] text-[12px] text-red-500">
+            <p className="min-h-6.75 text-[12px] text-red-500">
               {meta.error && meta.touched ? meta.error : ""}
             </p>
           </div>

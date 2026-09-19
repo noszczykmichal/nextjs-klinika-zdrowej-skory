@@ -148,6 +148,9 @@ export interface SitemapCategoryEntry {
   _updatedAt: string;
 }
 
+export interface PrivacyPolicyDetails {
+  policyContent: PortableTextBlock[];
+}
 export type ResourceCategoryType =
   | "treatmentCategory"
   | "trainingCategory"

@@ -9,6 +9,7 @@ import {
   BasicEntityReference,
   ResourceDetails,
   PostDetails,
+  PrivacyPolicyDetails,
 } from "@/types/types";
 import { urlFor } from "@/utils/clientSideUtils";
 import { getImage } from "@/utils/serverSideUtils";
@@ -257,6 +258,22 @@ async function getAllPostData() {
   return posts;
 }
 
+async function getPrivacyPolicyPageData() {
+  const PRIVACY_POLICY_QUERY = `*[_type == "privacyPolicy"]{policyContent}[0]`;
+
+  const privacyPolicyData = await client.fetch<PrivacyPolicyDetails>(
+    PRIVACY_POLICY_QUERY,
+    {},
+    options,
+  );
+
+  if (!privacyPolicyData) {
+    return null;
+  }
+
+  return privacyPolicyData;
+}
+
 export {
   getCategoryPageData,
   getResourcePageData,
@@ -268,4 +285,5 @@ export {
   getPostsByCategory,
   getSinglePostData,
   getAllPostData,
+  getPrivacyPolicyPageData,
 };
