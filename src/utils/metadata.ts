@@ -1,6 +1,10 @@
 import { Metadata } from "next";
 
-import { ResourceType } from "@/types/types";
+import {
+  ResourceType,
+  ResourceCategoryType,
+  TopLevelRoute,
+} from "@/types/types";
 import {
   getResourcePageData,
   getCategoryResources,
@@ -19,19 +23,40 @@ import {
  * @returns A partial Metadata object to return from generateMetadata
  */
 function buildSEOMetaData({
+  resourceType,
+  categorySlug,
+  resourceSlug = null,
   title,
   description,
   imageUrl,
   imageWidth,
   imageHeight,
 }: {
+  resourceType: ResourceType;
+  categorySlug: string;
+  resourceSlug?: string | null;
   title: string;
   description: string;
   imageUrl: string;
   imageWidth: number;
   imageHeight: number;
-}): Pick<Metadata, "title" | "description" | "openGraph" | "twitter"> {
+}): Pick<
+  Metadata,
+  "alternates" | "title" | "description" | "openGraph" | "twitter"
+> {
+  const resourceTypeMap: Record<ResourceType, TopLevelRoute> = {
+    treatment: "zabiegi",
+    training: "szkolenia",
+    post: "blog",
+  };
+
+  const mainRoute = resourceTypeMap[resourceType];
+  const categoryRoute = `/${mainRoute}/${categorySlug}`;
+  const resourceRoute = resourceSlug ? `/${resourceSlug}` : "";
+  const canonicalUrl = categoryRoute + resourceRoute;
+
   return {
+    alternates: { canonical: canonicalUrl },
     title,
     description,
     openGraph: {
@@ -62,6 +87,8 @@ function createResourceMetadataGenerator(resourceType: ResourceType) {
   }): Promise<Metadata> {
     const resolvedParams = await params;
     const slug = resolvedParams[resourceType];
+    const categoryType: ResourceCategoryType = `${resourceType}Category`;
+    const categorySlug = resolvedParams[categoryType];
     const pageData = await getResourcePageData(resourceType, slug);
 
     if (!pageData || !pageData.imageData) {
@@ -73,11 +100,14 @@ function createResourceMetadataGenerator(resourceType: ResourceType) {
     const { src, height, width } = imageData.img;
 
     return buildSEOMetaData({
+      categorySlug,
+      resourceType,
       title,
       description: metaDescription,
       imageUrl: src,
       imageWidth: width,
       imageHeight: height,
+      resourceSlug: slug,
     });
   };
 }
@@ -104,6 +134,8 @@ function createCategoryMetadataGenerator(resourceType: ResourceType) {
     const { src, height, width } = imageData.img;
 
     return buildSEOMetaData({
+      resourceType,
+      categorySlug,
       title,
       description: summary,
       imageUrl: src,
@@ -120,6 +152,7 @@ function createPostMetaData() {
     params: Promise<{ [key: string]: string }>;
   }): Promise<Metadata> {
     const resolvedParams = await params;
+    const postCategorySlug = resolvedParams["postCategory"];
     const postSlug = resolvedParams["post"];
 
     const fetchedData = await getSinglePostData({ post: postSlug });
@@ -133,6 +166,9 @@ function createPostMetaData() {
     const { src, height, width } = imageData.img;
 
     return buildSEOMetaData({
+      categorySlug: postCategorySlug,
+      resourceType: "post",
+      resourceSlug: postSlug,
       title,
       description: summary,
       imageUrl: src,

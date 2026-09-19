@@ -112,7 +112,7 @@ export interface NavigationDataInterface {
   [key: string]: Partial<ListItemData>[];
 }
 
-export type ResourceType = "treatment" | "training";
+export type ResourceType = "treatment" | "training" | "post";
 
 export interface NavConfigItem {
   id: string;
@@ -151,3 +151,7 @@ export interface SitemapCategoryEntry {
 export interface PrivacyPolicyDetails {
   policyContent: PortableTextBlock[];
 }
+export type ResourceCategoryType =
+  | "treatmentCategory"
+  | "trainingCategory"
+  | "postCategory";
