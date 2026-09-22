@@ -5,6 +5,9 @@ import Footer from "@/components/Layout/Footer/Footer";
 import Navigation from "@/components/Layout/Navigation/Navigation";
 import { getNavData } from "@/utils/sanityPageData";
 import StructuredData from "@/app/StructuredData";
+import { GoogleTag } from "@/components/analytics/GoogleTag";
+import { ContactTracking } from "@/components/analytics/ContactTracking";
+import { CookieConsent } from "@/components/analytics/CookieConsent";
 import "@/styles/globals.css";
 
 const montserrat = Montserrat({
@@ -74,6 +77,9 @@ export default async function RootLayout({
         <div id="overlay-root" />
         {children}
         <Footer className="mx-auto pb-12.5" />
+        <GoogleTag />
+        <ContactTracking />
+        <CookieConsent />
       </body>
     </html>
   );

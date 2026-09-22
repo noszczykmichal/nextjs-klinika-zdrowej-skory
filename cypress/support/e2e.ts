@@ -5,3 +5,7 @@ Cypress.on("uncaught:exception", (err, _runnable) => {
   console.error("Stack trace:", err.stack);
   return true;
 });
+
+Cypress.on("window:before:load", (win) => {
+  win.localStorage.setItem("cookie-consent", "denied");
+});
