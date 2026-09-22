@@ -5,6 +5,7 @@ import { Form } from "react-final-form";
 
 import ContactFormContent from "@/components/Layout/Footer/ContactForm/ContactFormContent/ContactFormContent";
 import { FormValues } from "@/types/types";
+import { LABELS, trackConversion } from "@/lib/gtag";
 
 type ContactFormValues = Pick<
   FormValues,
@@ -35,9 +36,15 @@ export default function ContactForm() {
       const sendData = await fetch("https://formspree.io/f/xvgrklwk", data);
       const response = await sendData.json();
 
-      if (!response.ok) {
-        throw new Error(response.error);
+      if (!sendData.ok || !response.ok) {
+        throw new Error(
+          response.errors
+            ?.map((e: { message: string }) => e.message)
+            .join(", ") || "Nie udało się wysłać wiadomości",
+        );
       }
+
+      trackConversion(LABELS.form);
     } catch (error) {
       setErrorState({
         errorMessage: `${error}`,
