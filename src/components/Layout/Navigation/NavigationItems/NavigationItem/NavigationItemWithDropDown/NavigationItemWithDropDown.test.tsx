@@ -33,7 +33,7 @@ describe("NavigationItemWithDropDown", () => {
       </NavigationMenu>,
     );
 
-    const dropDownTrigger = screen.getByRole("button");
+    const dropDownTrigger = screen.getByRole("link");
 
     fireEvent.click(dropDownTrigger);
     const testedLink = screen.getByText(mockNavData.treatment[0].title);
@@ -54,7 +54,7 @@ describe("NavigationItemWithDropDown", () => {
       </NavigationMenu>,
     );
 
-    const dropDownTrigger = screen.getByRole("button");
+    const dropDownTrigger = screen.getByRole("link");
     fireEvent.click(dropDownTrigger);
     const testedLink = screen.getByText(mockNavData.treatment[1].title);
 

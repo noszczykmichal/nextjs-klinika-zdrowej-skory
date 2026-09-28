@@ -6,7 +6,7 @@ describe("Navigation", () => {
     const aboutUsLinkDesktop = `${mainNavigationElement} a[data-testid="o-nas"]`;
     const blogLinkDesktop = `${mainNavigationElement} a[data-testid="blog"]`;
     const dropDownTriggerTreatments =
-      'button[data-testid="dropDownTrigger-zabiegi"]';
+      'a[data-testid="dropDownTrigger-zabiegi"]';
     const dropDownElementTreatments = 'div[data-testid="dropDown-zabiegi"]';
 
     beforeEach(() => {
@@ -97,7 +97,7 @@ describe("Navigation", () => {
 
     it("should display 'Szkolenia' dropdown and navigate to correct pages when links are clicked", () => {
       const dropDownTriggerTrainings =
-        'button[data-testid="dropDownTrigger-szkolenia"]';
+        'a[data-testid="dropDownTrigger-szkolenia"]';
       const dropDownElementTrainings = 'div[data-testid="dropDown-szkolenia"]';
       const fundamentalsOfCosmetologyLink = `${dropDownElementTrainings} a:contains('Podstawy kosmetologii')`;
       const aestheticCosmetologyLink = `${dropDownElementTrainings} a:contains('Kosmetologia estetyczna')`;

@@ -83,7 +83,7 @@ describe("NavigationItem Component", () => {
       </NavigationMenu>,
     );
 
-    const dropDownTrigger = screen.getByRole("button");
+    const dropDownTrigger = screen.getByRole("link");
 
     fireEvent.click(dropDownTrigger);
     const dropDownElement = screen.getByTestId("dropDown-zabiegi");
