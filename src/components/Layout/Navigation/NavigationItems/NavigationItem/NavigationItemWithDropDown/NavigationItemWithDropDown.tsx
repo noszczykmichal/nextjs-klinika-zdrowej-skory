@@ -1,13 +1,15 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import clsx from "clsx";
+import { ChevronDownIcon } from "lucide-react";
+import * as NavigationMenuPrimitive from "@radix-ui/react-navigation-menu";
 
 import { ListItemData, NavigationDataInterface } from "@/types/types";
 import {
   NavigationMenuContent,
   NavigationMenuItem,
   NavigationMenuLink,
-  NavigationMenuTrigger,
+  navigationMenuTriggerStyle,
 } from "@/components/ui/navigation-menu";
 import { NavConfigItem } from "@/types/types";
 
@@ -39,19 +41,36 @@ export default function NavigationItemWithDropDown({
       ? "before:w-full text-magenta-100"
       : "before:w-[0px]";
 
+  const preventTriggerNavigation = (e: React.MouseEvent<HTMLLIElement>) => {
+    const trigger = (e.target as HTMLElement).closest("a[data-nav-trigger]");
+    if (trigger && !e.metaKey && !e.ctrlKey && !e.shiftKey) {
+      e.preventDefault();
+    }
+  };
+
   return (
-    <NavigationMenuItem>
-      <NavigationMenuTrigger
-        className={clsx(
-          "bg-transparent! text-lg leading-none data-[state=open]:bg-transparent!",
-          linkClasses,
-        )}
-        data-testid={`dropDownTrigger-${mainRoute}`}
-      >
-        <span className={`${contentClasses} ${mainLinkActiveIndicator} `}>
-          {label}
-        </span>
-      </NavigationMenuTrigger>
+    <NavigationMenuItem onClick={preventTriggerNavigation}>
+      <NavigationMenuPrimitive.Trigger asChild>
+        <a
+          href={href}
+          data-nav-trigger=""
+          data-testid={`dropDownTrigger-${mainRoute}`}
+          className={clsx(
+            navigationMenuTriggerStyle(),
+            "group bg-transparent! text-lg! leading-none data-[state=open]:bg-transparent!",
+            linkClasses,
+          )}
+          data-slot="navigation-menu-trigger"
+        >
+          <span className={`${contentClasses} ${mainLinkActiveIndicator}`}>
+            {label}
+          </span>
+          <ChevronDownIcon
+            aria-hidden="true"
+            className="relative top-[1px] mt-0.5 h-4.5 w-6 stroke-gray-100 transition duration-300 group-data-[state=open]:rotate-180"
+          />
+        </a>
+      </NavigationMenuPrimitive.Trigger>
       <NavigationMenuContent
         className="mt-2.5!"
         data-testid={`dropDown-${mainRoute}`}
