@@ -8,6 +8,7 @@ import StructuredData from "@/app/StructuredData";
 import { GoogleTag } from "@/components/analytics/GoogleTag";
 import { ContactTracking } from "@/components/analytics/ContactTracking";
 import { CookieConsent } from "@/components/analytics/CookieConsent";
+import { SpeedInsights } from "@vercel/speed-insights/next";
 import "@/styles/globals.css";
 
 const montserrat = Montserrat({
@@ -80,6 +81,7 @@ export default async function RootLayout({
         <GoogleTag />
         <ContactTracking />
         <CookieConsent />
+        <SpeedInsights />
       </body>
     </html>
   );
