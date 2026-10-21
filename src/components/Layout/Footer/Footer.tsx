@@ -6,6 +6,9 @@ import Logo from "@/components/Layout/Icon/Icons/Logo";
 import { socialIconsConfig } from "@/utils/config";
 import ContactForm from "@/components/Layout/Footer/ContactForm/ContactForm";
 
+const underlineOnHoverLinkClasses =
+  "before:bg-white-100 active:text-white-100 hover:text-white-100 relative duration-300 before:absolute before:-bottom-1.25 before:h-px before:w-0 before:transition-all before:duration-300 before:content-[''] hover:transition-all hover:before:w-full active:transition-all active:before:w-full";
+
 interface FooterProps {
   className: string;
 }
@@ -14,12 +17,13 @@ export default function Footer({ className }: FooterProps) {
   return (
     <footer
       className={clsx(
-        "text-white-100 w-full px-6.25 text-[15px] leading-6.5 md:px-11",
+        "text-white-100 w-full px-6.25 text-[15px] leading-6.5 [--focus-ring-color:var(--white-100)] md:px-11",
         className,
       )}
       id="contact"
     >
-      <section className="rounded-big bg-black-100 mx-auto flex h-full w-full max-w-325 flex-col gap-10 px-10 py-16.25 sm:justify-between sm:px-12.5 lg:justify-start">
+      <div className="rounded-big bg-black-100 mx-auto flex h-full w-full max-w-325 flex-col gap-10 px-10 py-16.25 sm:justify-between sm:px-12.5 lg:justify-start">
+        <h2 className="sr-only">Kontakt</h2>
         <div className="flex w-full flex-col gap-10 sm:flex-row sm:gap-12.5 lg:gap-20">
           <div className="flex max-w-132.5 flex-col gap-10 sm:w-1/2 lg:flex-row">
             <div className="flex max-w-70 flex-col justify-center gap-8 lg:w-1/2">
@@ -35,21 +39,22 @@ export default function Footer({ className }: FooterProps) {
                 ))}
               </div>
               <div>
-                <p className="text-[12px] font-bold">
+                <p className="text-xs font-bold">
                   Olga Noszczyk Klinika Zdrowej Skóry
                 </p>
-                <p className="text-[12px]">
+                <p className="text-xs">
                   Radiofrekwencja Mikroigłowa | Icoone | Mezoterapia Igłowa |
                   Warszawa Praga Południe
                 </p>
               </div>
             </div>
-            <div className="flex max-w-75 flex-col flex-wrap justify-between lg:w-1/2">
+            <address className="flex max-w-75 flex-col flex-wrap justify-between not-italic lg:w-1/2">
               <div>
                 <p className="font-semibold">Adres</p>
                 <a
                   href="https://maps.app.goo.gl/GBaDRtSft9FWCSuW8"
                   target="_blank"
+                  rel="noopener noreferrer"
                 >
                   ul. Szaserów 31/LU. 2,
                   <br /> 04-306 Warszawa
@@ -69,14 +74,14 @@ export default function Footer({ className }: FooterProps) {
                 <p>pon. - czw. 10:00 - 21:00</p>
                 <p>pt. 10:00 - 19:00</p>
               </div>
-            </div>
+            </address>
           </div>
 
           <div className="flex max-w-100 flex-col flex-wrap justify-between sm:w-1/2">
             <ContactForm />
           </div>
         </div>
-        <div className="border-white-100/50 text-white-100/50 flex w-full flex-col justify-between border-t p-4 text-[12px] md:flex-row">
+        <div className="border-white-100/50 text-white-100/50 flex w-full flex-col justify-between border-t p-4 text-xs md:flex-row">
           <p>
             <span>
               © 2026 Copyright by{" "}
@@ -84,7 +89,7 @@ export default function Footer({ className }: FooterProps) {
                 href="https://michalnoszczyk.com/"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="hover:text-magenta-100 active:text-magenta-100 transition-colors duration-150"
+                className={underlineOnHoverLinkClasses}
               >
                 MNSS
               </a>
@@ -93,15 +98,17 @@ export default function Footer({ className }: FooterProps) {
             <span>{"\u00A0"}All rights reserved.</span>
           </p>
           <ul>
-            <Link
-              href="/polityka-prywatnosci"
-              className="before:bg-white-100 active:text-white-100 hover:text-white-100 relative duration-300 before:absolute before:-bottom-1.25 before:h-px before:w-0 before:transition-all before:duration-300 before:content-[''] hover:transition-all hover:before:w-full active:transition-all active:before:w-full"
-            >
-              Polityka prywatności
-            </Link>
+            <li>
+              <Link
+                href="/polityka-prywatnosci"
+                className={underlineOnHoverLinkClasses}
+              >
+                Polityka prywatności
+              </Link>
+            </li>
           </ul>
         </div>
-      </section>
+      </div>
     </footer>
   );
 }

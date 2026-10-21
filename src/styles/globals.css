@@ -6,16 +6,17 @@
     outline-color: transparent;
   }
   20% {
-    outline-color: var(--magenta-100);
+    outline-color: var(--focus-ring-color, var(--magenta-100));
   }
   100% {
     outline-offset: 2px;
-    outline-color: var(--magenta-100);
+    outline-color: var(--focus-ring-color, var(--magenta-100));
   }
 }
 
+/* Set --focus-ring-color on a dark container to keep the ring visible inside it */
 *:focus-visible:not([role="option"]) {
-  outline: 2px dashed var(--magenta-100);
+  outline: 2px dashed var(--focus-ring-color, var(--magenta-100));
   outline-offset: 2px;
   animation: focus-shrink 0.3s ease-out forwards;
 }
