@@ -35,7 +35,7 @@ gtag('config', '${ADS_ID}');
       </Script>
       <Script
         src={`https://www.googletagmanager.com/gtag/js?id=${ADS_ID}`}
-        strategy="afterInteractive"
+        strategy="lazyOnload"
       />
     </>
   );
