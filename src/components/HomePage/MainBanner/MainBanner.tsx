@@ -45,6 +45,7 @@ export default function MainBanner({
           }
           fill
           className="rounded-br-big rounded-bl-big sm:rounded-tr-big object-cover object-top sm:rounded-bl-none"
+          loading="eager"
           fetchPriority="high"
           sizes="(max-width: 640px) 100vw, (min-width: 641px) min(50vw, 650px)"
         />
