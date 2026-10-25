@@ -28,7 +28,6 @@ export default function MainBanner({
           fill
           placeholder="blur"
           blurDataURL={pkBannerLeft.blurDataURL}
-          priority
           sizes="(max-width: 640px) 100vw, 50vw"
         />
         <h1 className="whitespace-wrap xxs:text-(length:--font-big-banner) absolute w-full text-center text-[30px] font-extralight sm:text-(length:--font-small-banner) sm:whitespace-normal lg:text-(length:--font--medium-banner)">
@@ -46,7 +45,7 @@ export default function MainBanner({
           }
           fill
           className="rounded-br-big rounded-bl-big sm:rounded-tr-big object-cover object-top sm:rounded-bl-none"
-          priority
+          fetchPriority="high"
           sizes="(max-width: 640px) 100vw, (min-width: 641px) min(50vw, 650px)"
         />
       </div>
