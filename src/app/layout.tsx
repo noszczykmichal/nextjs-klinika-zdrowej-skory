@@ -13,7 +13,8 @@ import "@/styles/globals.css";
 
 const montserrat = Montserrat({
   variable: "--font-montserrat",
-  subsets: ["latin"],
+  subsets: ["latin", "latin-ext"],
+  preload: true,
 });
 
 export const metadata: Metadata = {
