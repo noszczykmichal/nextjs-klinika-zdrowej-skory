@@ -4,6 +4,7 @@ import LayoutWrapper from "@/components/Layout/LayoutWrapper/LayoutWrapper";
 import Post from "@/components/BlogPage/Category/PostPage/Post/Post";
 import { getSinglePostData } from "@/utils/sanityPageData";
 import { createPostMetaData } from "@/utils/metadata";
+import { categoryGuard } from "@/utils/clientSideUtils";
 
 export const generateMetadata = createPostMetaData();
 
@@ -12,7 +13,7 @@ export default async function PostPage({
 }: {
   params: Promise<{ postCategory: string; post: string }>;
 }) {
-  const { post } = await params;
+  const { postCategory: categoryFromParams, post } = await params;
   const fetchedData = await getSinglePostData({ post });
 
   if (!fetchedData) {
@@ -22,6 +23,15 @@ export default async function PostPage({
   const { postData, imageData } = fetchedData;
   const { title: postTitle, category } = postData;
   const { title: categoryTitle } = category;
+
+  const categorySlugFromSanity = category?.categorySlug?.current;
+
+  categoryGuard({
+    categoryFromParams,
+    categorySlugFromSanity,
+    resourceSlugFromParams: post,
+    mainRoute: "blog",
+  });
 
   const postDetails = { ...postData, imageData };
 

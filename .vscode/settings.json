@@ -1,0 +1,10 @@
+{
+  "cSpell.words": ["macbook", "scrollreveal"],
+  "js/ts.preferences.importModuleSpecifier": "non-relative",
+  "editor.quickSuggestions": {
+    "strings": true
+  },
+  "tailwindCSS.lint.recommendedVariantOrder": "warning",
+  "tailwindCSS.experimental.configFile": "src/styles/globals.css",
+  "tailwindCSS.lint.suggestCanonicalClasses": "warning"
+}

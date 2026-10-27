@@ -53,7 +53,9 @@ export interface PostDetails extends ListItemData {
     categorySlug: { current: string };
   } | null;
   treatment: {
-    treatmentCategory: SlugField;
+    treatmentCategory: {
+      categorySlug: { current: string };
+    } | null;
     treatmentSlug: SlugField;
   } | null;
 }
@@ -155,3 +157,5 @@ export type ResourceCategoryType =
   | "treatmentCategory"
   | "trainingCategory"
   | "postCategory";
+
+export type MainRoute = "zabiegi" | "szkolenia" | "blog";

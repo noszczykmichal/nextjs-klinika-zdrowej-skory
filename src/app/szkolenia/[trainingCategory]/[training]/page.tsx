@@ -6,6 +6,7 @@ import { getAllTrainings } from "@/utils/sanityPageData";
 import { getResourcePageData } from "@/utils/sanityPageData";
 import { notFound } from "next/navigation";
 import { createResourceMetadataGenerator } from "@/utils/metadata";
+import { categoryGuard } from "@/utils/clientSideUtils";
 
 type TrainingPageParams = Promise<{
   trainingCategory: string;
@@ -19,7 +20,7 @@ export default async function TrainingPage({
 }: {
   params: TrainingPageParams;
 }) {
-  const { training } = await params;
+  const { trainingCategory: categoryFromParams, training } = await params;
   const pageData = await getResourcePageData("training", training);
 
   if (!pageData) {
@@ -33,6 +34,15 @@ export default async function TrainingPage({
     summary,
     altForMainImage,
   } = resourceData;
+
+  const categorySlugFromSanity = trainingCategory?.categorySlug?.current;
+
+  categoryGuard({
+    categoryFromParams,
+    categorySlugFromSanity,
+    resourceSlugFromParams: training,
+    mainRoute: "szkolenia",
+  });
 
   const bannerData = {
     title: trainingName,

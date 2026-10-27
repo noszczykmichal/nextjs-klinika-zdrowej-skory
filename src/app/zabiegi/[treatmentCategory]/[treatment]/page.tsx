@@ -1,10 +1,12 @@
+import { notFound, permanentRedirect } from "next/navigation";
+
 import LayoutWrapper from "@/components/Layout/LayoutWrapper/LayoutWrapper";
 import BannerWithSummary from "@/components/ui/custom/BannerWithSummary/BannerWithSummary";
 import AsideNavigation from "@/components/ui/custom/AsideNavigation/AsideNavigation";
 import AnimatedArticle from "@/components/ui/custom/AnimatedArticle/AnimatedArticle";
 import { getResourcePageData } from "@/utils/sanityPageData";
-import { notFound } from "next/navigation";
 import { createResourceMetadataGenerator } from "@/utils/metadata";
+import { categoryGuard } from "@/utils/clientSideUtils";
 
 type TreatmentPageParams = Promise<{
   treatmentCategory: string;
@@ -18,7 +20,7 @@ export default async function TreatmentPage({
 }: {
   params: TreatmentPageParams;
 }) {
-  const { treatment } = await params;
+  const { treatmentCategory: categoryFromParams, treatment } = await params;
   const pageData = await getResourcePageData("treatment", treatment);
 
   if (!pageData) {
@@ -33,6 +35,15 @@ export default async function TreatmentPage({
     summary,
     altForMainImage,
   } = resourceData;
+
+  const categorySlugFromSanity = treatmentCategory?.categorySlug?.current;
+
+  categoryGuard({
+    categoryFromParams,
+    categorySlugFromSanity,
+    resourceSlugFromParams: treatment,
+    mainRoute: "zabiegi",
+  });
 
   const bannerData = {
     title: treatmentName,

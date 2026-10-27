@@ -26,7 +26,7 @@ export default function Post({ postData }: PostProps) {
         easing="cubic-bezier(0.645, 0.045, 0.355, 1)"
       >
         <article className="text-justify text-[15px]">
-          <p className="pb-[16px] font-semibold">{summary}</p>
+          <p className="pb-4 font-semibold">{summary}</p>
           <PortableText
             value={postContent}
             components={portableTextComponentConfig}
