@@ -1,14 +1,9 @@
 import { defineConfig, globalIgnores } from "eslint/config";
-import { FlatCompat } from "@eslint/eslintrc";
-import js from "@eslint/js";
-import nextPlugin from "@next/eslint-plugin-next";
-import tsPlugin from "@typescript-eslint/eslint-plugin";
-import tsParser from "@typescript-eslint/parser";
-
-const compat = new FlatCompat({
-  baseDirectory: import.meta.dirname,
-  recommendedConfig: js.configs.recommended,
-});
+import nextVitals from "eslint-config-next/core-web-vitals";
+import nextTs from "eslint-config-next/typescript";
+import jsxA11y from "eslint-plugin-jsx-a11y";
+import prettier from "eslint-config-prettier/flat";
+import chaiFriendly from "eslint-plugin-chai-friendly";
 
 const eslintConfig = defineConfig([
   globalIgnores([
@@ -21,36 +16,13 @@ const eslintConfig = defineConfig([
     "node_modules/**",
     "coverage/**",
   ]),
-
-  // 1. Next.js Rules
+  ...nextVitals,
+  ...nextTs,
   {
-    plugins: {
-      "@next/next": nextPlugin,
-    },
-    rules: {
-      ...nextPlugin.configs.recommended.rules,
-      ...nextPlugin.configs["core-web-vitals"].rules,
-    },
+    rules: jsxA11y.flatConfigs.recommended.rules,
   },
-
-  // 2. Legacy Plugins via FlatCompat
-  ...compat.config({
-    extends: ["next/typescript", "plugin:jsx-a11y/recommended", "prettier"],
-  }),
-
-  // 3. TypeScript Rules & Plugin Definition
   {
     files: ["**/*.ts", "**/*.tsx"],
-    languageOptions: {
-      parser: tsParser,
-      parserOptions: {
-        ecmaVersion: "latest",
-        sourceType: "module",
-      },
-    },
-    plugins: {
-      "@typescript-eslint": tsPlugin,
-    },
     rules: {
       "no-unused-vars": "off",
       "@typescript-eslint/no-unused-vars": [
@@ -64,14 +36,22 @@ const eslintConfig = defineConfig([
       },
     },
   },
-
-  // 4. Declaration file overrides
   {
     files: ["**/*.d.ts"],
     rules: {
       "@typescript-eslint/no-unused-vars": "off",
     },
   },
+  {
+    files: ["cypress/**/*.{ts,tsx}"],
+    plugins: { "chai-friendly": chaiFriendly },
+    rules: {
+      "no-unused-expressions": "off",
+      "@typescript-eslint/no-unused-expressions": "off",
+      "chai-friendly/no-unused-expressions": "error",
+    },
+  },
+  prettier,
 ]);
 
 export default eslintConfig;

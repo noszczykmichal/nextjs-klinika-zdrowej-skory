@@ -60,7 +60,7 @@ export default function CourseEnrollmentForm({
           handleSubmit={handleSubmit}
           submitting={submitting}
           submitSucceeded={submitSucceeded}
-          formRestartHandler={() => form.restart()}
+          formRestartHandler={form.restart}
           errorData={errorState}
           setErrorHandler={setErrorState}
           availableTrainings={availableTrainings}

@@ -73,7 +73,7 @@ const getResourcePageData = cache(
   metaDescription,
   summary,
   altForMainImage,
-   "category": ${resourceType}Category->{title, categorySlug},
+  "category": ${resourceType}Category->{title, categorySlug},
   description[]{
     ...,
     _type == "image" => {

@@ -1,4 +1,5 @@
-import { HTMLInputTypeAttribute } from "react";
+import type { HTMLInputTypeAttribute, SetStateAction, Dispatch } from "react";
+
 import type { PortableTextBlock } from "@portabletext/types";
 import { SanityImageSource } from "@sanity/image-url/lib/types/types";
 
@@ -53,7 +54,9 @@ export interface PostDetails extends ListItemData {
     categorySlug: { current: string };
   } | null;
   treatment: {
-    treatmentCategory: SlugField;
+    treatmentCategory: {
+      categorySlug: { current: string };
+    } | null;
     treatmentSlug: SlugField;
   } | null;
 }
@@ -155,3 +158,18 @@ export type ResourceCategoryType =
   | "treatmentCategory"
   | "trainingCategory"
   | "postCategory";
+
+export type MainRoute = "zabiegi" | "szkolenia" | "blog";
+
+interface InputData {
+  [key: string]: string;
+}
+
+export interface FormControls {
+  handleSubmit: () => void;
+  submitting: boolean | undefined;
+  submitSucceeded: boolean | undefined;
+  formRestartHandler: (_initialValues?: Partial<InputData> | undefined) => void;
+  errorData: ErrorState;
+  setErrorHandler: Dispatch<SetStateAction<ErrorState>>;
+}

@@ -4,53 +4,44 @@ type ScrollDirections = "down" | "up";
 
 export default function useScrollDirection({
   initialDirection,
-  thresholdPixels,
-  off,
+  thresholdPixels = 0,
 }: {
   initialDirection?: ScrollDirections;
   thresholdPixels?: number;
-  off?: boolean;
 } = {}) {
   const [scrollDir, setScrollDir] = useState(initialDirection);
 
   useEffect(() => {
-    const threshold = thresholdPixels || 0;
-    let lastScrollY = window.pageYOffset;
+    let lastScrollY = window.scrollY;
     let ticking = false;
+    let frameId = 0;
 
     const updateScrollDir = () => {
-      const scrollY = window.pageYOffset;
+      const scrollY = window.scrollY;
+      ticking = false;
 
-      if (Math.abs(scrollY - lastScrollY) < threshold) {
-        // We haven't exceeded the threshold
-        ticking = false;
+      if (Math.abs(scrollY - lastScrollY) <= thresholdPixels) {
         return;
       }
 
       setScrollDir(scrollY > lastScrollY ? "down" : "up");
-      lastScrollY = scrollY > 0 ? scrollY : 0;
-      ticking = false;
+      lastScrollY = Math.max(scrollY, 0);
     };
 
     const onScroll = () => {
       if (!ticking) {
-        window.requestAnimationFrame(updateScrollDir);
+        frameId = window.requestAnimationFrame(updateScrollDir);
         ticking = true;
       }
     };
 
-    /**
-     * Bind the scroll handler if `off` is set to false.
-     * If `off` is set to true reset the scroll direction.
-     */
-    if (!off) {
-      window.addEventListener("scroll", onScroll);
-    } else {
-      setScrollDir(initialDirection);
-    }
+    window.addEventListener("scroll", onScroll, { passive: true });
 
-    return () => window.removeEventListener("scroll", onScroll);
-  }, [initialDirection, thresholdPixels, off]);
+    return () => {
+      window.removeEventListener("scroll", onScroll);
+      window.cancelAnimationFrame(frameId);
+    };
+  }, [thresholdPixels]);
 
   return scrollDir;
 }

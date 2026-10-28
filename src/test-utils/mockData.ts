@@ -349,7 +349,7 @@ export const mockPostDetailsWithTreatment: PostDetails = {
   title: "Luksusowy zabieg na ciało, na który Cię stać",
   treatment: {
     treatmentCategory: {
-      current: "modelowanie-sylwetki",
+      categorySlug: { current: "modelowanie-sylwetki" },
     },
     treatmentSlug: {
       current: "icoone",

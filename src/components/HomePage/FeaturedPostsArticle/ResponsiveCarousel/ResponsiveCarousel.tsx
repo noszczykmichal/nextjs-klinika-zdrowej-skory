@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useRef, useEffect } from "react";
+import { useState, useRef, useEffect, useCallback } from "react";
 import Autoplay from "embla-carousel-autoplay";
 import clsx from "clsx";
 
@@ -13,6 +13,7 @@ import {
 import usePrefersReducedMotion from "@/hooks/usePrefersReducedMotion";
 import { ListItemData } from "@/types/types";
 import FeaturedPostsList from "@/components/HomePage/FeaturedPostsArticle/ResponsiveCarousel/FeaturedPostsList/FeaturedPostsList";
+import { useCarouselSnaps } from "@/hooks/useCarouselSnaps";
 
 interface ResponsiveCarouselProps {
   posts: ListItemData[];
@@ -20,43 +21,31 @@ interface ResponsiveCarouselProps {
 
 export function ResponsiveCarousel({ posts }: ResponsiveCarouselProps) {
   const [api, setApi] = useState<CarouselApi>();
-  const [current, setCurrent] = useState(0);
-  const [count, setCount] = useState(0);
-  const plugin = useRef(Autoplay({ delay: 5000, stopOnInteraction: true }));
+  const [autoplay] = useState(() =>
+    Autoplay({ delay: 5000, stopOnInteraction: true }),
+  );
+  const resumeTimerRef = useRef<ReturnType<typeof setTimeout>>(undefined);
   const prefersReducedMotion = usePrefersReducedMotion();
+  const { count, current } = useCarouselSnaps(api);
 
-  const resumeAutoplayHandler = () => {
-    setTimeout(() => {
-      plugin.current?.play();
-    }, 3000);
-  };
+  const scheduleResume = useCallback(() => {
+    clearTimeout(resumeTimerRef.current);
+    resumeTimerRef.current = setTimeout(() => autoplay.play(), 3000);
+  }, [autoplay]);
 
   useEffect(() => {
-    if (!api) {
-      return;
-    }
-
-    const resizeHandler = () => {
-      setCount(api.scrollSnapList().length);
+    if (!api) return;
+    api.on("pointerUp", scheduleResume);
+    return () => {
+      api.off("pointerUp", scheduleResume);
+      clearTimeout(resumeTimerRef.current);
     };
-
-    setCount(api.scrollSnapList().length);
-    setCurrent(api.selectedScrollSnap() + 1);
-    window.addEventListener("resize", resizeHandler);
-
-    api.on("select", () => {
-      setCurrent(api.selectedScrollSnap() + 1);
-    });
-
-    api.on("pointerUp", resumeAutoplayHandler);
-
-    return () => window.removeEventListener("resize", resizeHandler);
-  }, [api]);
+  }, [api, scheduleResume]);
 
   const onControlButtonClick = (index: number) => () => {
     api?.scrollTo(index);
-    plugin.current.stop();
-    resumeAutoplayHandler();
+    autoplay.stop();
+    scheduleResume();
   };
 
   const controlButtons = (
@@ -98,7 +87,7 @@ export function ResponsiveCarousel({ posts }: ResponsiveCarouselProps) {
               loop: true,
               slidesToScroll: 1,
             }}
-            plugins={[plugin.current]}
+            plugins={[autoplay]}
             className="w-full"
           >
             <FeaturedPostsList posts={posts} />
