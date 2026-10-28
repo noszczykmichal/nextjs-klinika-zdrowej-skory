@@ -1,36 +1,48 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useState, useSyncExternalStore } from "react";
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import { CONSENT_KEY, updateConsent, type ConsentChoice } from "@/lib/gtag";
 
-export function CookieConsent() {
-  const [open, setOpen] = useState(false);
+function subscribe(onChange: () => void) {
+  window.addEventListener("storage", onChange);
 
-  useEffect(() => {
-    try {
-      if (!localStorage.getItem(CONSENT_KEY)) setOpen(true);
-    } catch {
-      setOpen(true);
-    }
-  }, []);
+  return () => window.removeEventListener("storage", onChange);
+}
+
+function needsConsentSnapshot() {
+  try {
+    return !localStorage.getItem(CONSENT_KEY);
+  } catch {
+    return true;
+  }
+}
+
+export function CookieConsent() {
+  const needsConsent = useSyncExternalStore(
+    subscribe,
+    needsConsentSnapshot,
+    () => false,
+  );
+
+  const [dismissed, setDismissed] = useState(false);
 
   function choose(choice: ConsentChoice) {
     try {
       localStorage.setItem(CONSENT_KEY, choice);
     } catch {}
     updateConsent(choice);
-    setOpen(false);
+    setDismissed(true);
   }
 
-  if (!open) return null;
+  if (!needsConsent || dismissed) return null;
 
   return (
     <div
       role="dialog"
       aria-label="Zgoda na pliki cookie"
-      className="fixed inset-x-4 bottom-4 z-50 mx-auto max-w-xl rounded-lg border bg-background p-4 shadow-lg md:left-auto md:right-4"
+      className="bg-background fixed inset-x-4 bottom-4 z-50 mx-auto max-w-xl rounded-lg border p-4 shadow-lg md:right-4 md:left-auto"
     >
       <p className="text-sm">
         Używamy plików cookie Google do pomiaru skuteczności reklam. Możesz je

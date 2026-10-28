@@ -1,4 +1,5 @@
-import { HTMLInputTypeAttribute } from "react";
+import type { HTMLInputTypeAttribute, SetStateAction, Dispatch } from "react";
+
 import type { PortableTextBlock } from "@portabletext/types";
 import { SanityImageSource } from "@sanity/image-url/lib/types/types";
 
@@ -159,3 +160,16 @@ export type ResourceCategoryType =
   | "postCategory";
 
 export type MainRoute = "zabiegi" | "szkolenia" | "blog";
+
+interface InputData {
+  [key: string]: string;
+}
+
+export interface FormControls {
+  handleSubmit: () => void;
+  submitting: boolean | undefined;
+  submitSucceeded: boolean | undefined;
+  formRestartHandler: (_initialValues?: Partial<InputData> | undefined) => void;
+  errorData: ErrorState;
+  setErrorHandler: Dispatch<SetStateAction<ErrorState>>;
+}

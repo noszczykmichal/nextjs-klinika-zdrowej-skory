@@ -18,9 +18,6 @@ export default function PortableTextGallery({
   const { images } = value;
   const [activeIndex, setActiveIndex] = useState<number | null>(null);
   const [api, setApi] = useState<CarouselApi>();
-  const [mounted, setMounted] = useState(false);
-
-  useEffect(() => setMounted(true), []);
 
   const close = useCallback(() => setActiveIndex(null), []);
 
@@ -76,7 +73,7 @@ export default function PortableTextGallery({
         ))}
       </div>
 
-      {mounted && lightbox && createPortal(lightbox, document.body)}
+      {lightbox && createPortal(lightbox, document.body)}
     </>
   );
 }

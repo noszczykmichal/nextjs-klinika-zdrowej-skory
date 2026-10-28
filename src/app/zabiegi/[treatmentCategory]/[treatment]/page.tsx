@@ -1,4 +1,4 @@
-import { notFound, permanentRedirect } from "next/navigation";
+import { notFound } from "next/navigation";
 
 import LayoutWrapper from "@/components/Layout/LayoutWrapper/LayoutWrapper";
 import BannerWithSummary from "@/components/ui/custom/BannerWithSummary/BannerWithSummary";

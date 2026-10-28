@@ -1,7 +1,8 @@
 "use client";
 
-import { useState, useEffect, useMemo } from "react";
+import { useState, useEffect } from "react";
 import { Smartphone } from "lucide-react";
+import clsx from "clsx";
 
 import { UIContextProvider } from "@/store/uiContext";
 import NavigationItems from "@/components/Layout/Navigation/NavigationItems/NavigationItems";
@@ -16,60 +17,56 @@ interface NavigationProps {
   navData: NavigationDataInterface;
 }
 
-export default function Navigation({ navData }: NavigationProps) {
-  const headerClasses = useMemo(
-    () => ({
-      toolbar:
-        "w-full flex items-center z-[5] fixed top-0 left-0 transition-all duration-[0.25s] ease-[var(--transition-navigation)] text-lg",
-      toolbarBoxShadow:
-        "bg-[var(--white-100)] shadow-[var(--navigation-box-shadow)] backdrop-blur-sm",
-      toolbarHidden:
-        "transform -translate-y-full shadow-[var(--navigation-box-shadow)]",
-    }),
-    [],
-  );
+const headerClasses = {
+  toolbar:
+    "w-full flex items-center z-[5] fixed top-0 left-0 transition-all duration-[0.25s] ease-[var(--transition-navigation)] text-lg",
+  toolbarBoxShadow:
+    "bg-[var(--white-100)] shadow-[var(--navigation-box-shadow)] backdrop-blur-sm",
+  toolbarHidden:
+    "transform -translate-y-full shadow-[var(--navigation-box-shadow)]",
+};
 
+export default function Navigation({ navData }: NavigationProps) {
   const scrollDirection = useScrollDirection({ initialDirection: "down" });
-  const [attachedClasses, setAttachedClasses] = useState([
-    headerClasses.toolbar,
-  ]);
   const isTop = useHandleScroll();
 
-  useEffect(() => {
-    const { toolbar, toolbarBoxShadow, toolbarHidden } = headerClasses;
-    if (isTop) {
-      setAttachedClasses([toolbar]);
-    } else if (!isTop && scrollDirection === "up") {
-      setAttachedClasses([toolbar, toolbarBoxShadow]);
-    } else if (!isTop && scrollDirection === "down") {
-      setAttachedClasses([toolbar, toolbarHidden]);
-    }
-  }, [scrollDirection, isTop, headerClasses]);
+  const [forcedVisible, setForcedVisible] = useState(false);
+  const scrollKey = `${isTop}-${scrollDirection}`;
+  const [prevScrollKey, setPrevScrollKey] = useState(scrollKey);
+
+  if (prevScrollKey !== scrollKey) {
+    setPrevScrollKey(scrollKey);
+    setForcedVisible(false);
+  }
+
+  const showShadow = !isTop && (forcedVisible || scrollDirection === "up");
+  const isHidden = !isTop && !forcedVisible && scrollDirection === "down";
+
+  const attachedClasses = clsx(
+    headerClasses.toolbar,
+    showShadow && headerClasses.toolbarBoxShadow,
+    isHidden && headerClasses.toolbarHidden,
+  );
 
   useEffect(() => {
     document.documentElement.setAttribute("data-hydrated", "true");
   }, []);
 
-  const clickHandler = () => {
-    setAttachedClasses([headerClasses.toolbar, headerClasses.toolbarBoxShadow]);
-  };
+  const clickHandler = () => setForcedVisible(true);
 
   return (
     <UIContextProvider>
-      <header className={`px-[10px] md:px-[42px] ${attachedClasses.join(" ")}`}>
-        <div className="mx-auto flex w-full max-w-[1300px] items-center justify-between py-[20px]">
-          <Logo
-            className="h-[40px] w-full fill-[var(--gray-100)]"
-            id="header-logo"
-          />
+      <header className={clsx("px-2.5 md:px-10.5", attachedClasses)}>
+        <div className="mx-auto flex w-full max-w-325 items-center justify-between py-5">
+          <Logo className="h-10 w-full fill-(--gray-100)" />
           <NavigationItems
             navData={navData}
             listClasses="hidden h-full gap-0 lg:flex"
           />
-          <div className="ml-[10px] flex max-w-[250px] flex-grow-[0.5] items-center justify-between lg:justify-end">
+          <div className="ml-2.5 flex max-w-62.5 grow-[0.5] items-center justify-between lg:justify-end">
             <a
               href="tel:+48508832553"
-              className="mr-2 flex items-center rounded-[var(--big-border-radius)] bg-[var(--gray-25)] px-4 py-2 text-[15px] font-extralight text-nowrap"
+              className="mr-2 flex items-center rounded-(--big-border-radius) bg-(--gray-25) px-4 py-2 text-[15px] font-extralight text-nowrap"
             >
               <Smartphone className="stroke-1" /> Umów wizytę
             </a>
