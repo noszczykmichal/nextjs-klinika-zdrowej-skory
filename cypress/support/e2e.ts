@@ -1,4 +1,5 @@
 import "./commands";
+import "cypress-real-events";
 
 Cypress.on("uncaught:exception", (err, _runnable) => {
   console.error("Uncaught exception in this spec:", err);

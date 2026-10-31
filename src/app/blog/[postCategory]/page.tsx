@@ -1,9 +1,18 @@
+import { client } from "@/sanity/client";
 import { notFound } from "next/navigation";
 
 import LayoutWrapper from "@/components/Layout/LayoutWrapper/LayoutWrapper";
 import MainBanner from "@/components/HomePage/MainBanner/MainBanner";
 import ItemsList from "@/components/ui/custom/ItemsList/ItemsList";
 import { getPostsByCategory } from "@/utils/sanityPageData";
+
+export async function generateStaticParams() {
+  return client.fetch<{ postCategory: string }[]>(`
+    *[_type == "category" && defined(categorySlug.current)]{
+      "postCategory": categorySlug.current
+    }
+  `);
+}
 
 export default async function CategoryPage({
   params,

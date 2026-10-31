@@ -77,9 +77,9 @@ describe("Navigation", () => {
       const aestheticCosmetologyDropdownLink = `${dropDownElementTreatments} a:contains('Kosmetologia estetyczna')`;
       const bodyShapingDropdownLink = `${dropDownElementTreatments} a:contains('Modelowanie sylwetki')`;
 
-      cy.get(dropDownTriggerTreatments).click();
+      cy.get(dropDownTriggerTreatments).realHover();
       cy.get(aestheticCosmetologyDropdownLink).should("be.visible");
-      cy.get(aestheticCosmetologyDropdownLink).click();
+      cy.get(aestheticCosmetologyDropdownLink).realClick();
       cy.get(dropDownElementTreatments).should("not.be.visible");
       cy.url(customTimeout).should(
         "include",
@@ -87,9 +87,14 @@ describe("Navigation", () => {
       );
       cy.contains("h1", "Kosmetologia estetyczna").should("be.visible");
 
-      cy.get(dropDownTriggerTreatments).click();
+      cy.get(dropDownTriggerTreatments).realHover();
+      cy.get(dropDownTriggerTreatments).should(
+        "have.attr",
+        "data-state",
+        "open",
+      );
       cy.get(bodyShapingDropdownLink).should("be.visible");
-      cy.get(bodyShapingDropdownLink).click();
+      cy.get(bodyShapingDropdownLink).realClick();
       cy.get(dropDownElementTreatments).should("not.be.visible");
       cy.url().should("include", "/zabiegi/modelowanie-sylwetki");
       cy.contains("h1", "Modelowanie sylwetki").should("be.visible");
@@ -102,21 +107,21 @@ describe("Navigation", () => {
       const fundamentalsOfCosmetologyLink = `${dropDownElementTrainings} a:contains('Podstawy kosmetologii')`;
       const aestheticCosmetologyLink = `${dropDownElementTrainings} a:contains('Kosmetologia estetyczna')`;
 
-      cy.get(dropDownTriggerTrainings).click();
+      cy.get(dropDownTriggerTrainings).realHover();
       cy.get(dropDownElementTrainings).should("be.visible");
       cy.get(`${dropDownElementTrainings} a`).should(
         "have.length.greaterThan",
         0,
       );
 
-      cy.get(fundamentalsOfCosmetologyLink).click();
+      cy.get(fundamentalsOfCosmetologyLink).realClick();
       cy.url().should("include", "/szkolenia/podstawy-kosmetologii");
       cy.contains("h1", "Podstawy kosmetologii").should("be.visible");
 
-      cy.get(dropDownTriggerTrainings).click();
+      cy.get(dropDownTriggerTrainings).realHover();
       cy.get(dropDownElementTrainings).should("be.visible");
 
-      cy.get(aestheticCosmetologyLink).click();
+      cy.get(aestheticCosmetologyLink).realClick();
       cy.url().should("include", "/szkolenia/kosmetologia-estetyczna");
       cy.contains("h1", "Kosmetologia estetyczna").should("be.visible");
     });
