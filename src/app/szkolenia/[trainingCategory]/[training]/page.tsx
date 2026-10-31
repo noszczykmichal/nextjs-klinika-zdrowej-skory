@@ -1,10 +1,12 @@
+import { client } from "@/sanity/client";
+import { notFound } from "next/navigation";
+
 import LayoutWrapper from "@/components/Layout/LayoutWrapper/LayoutWrapper";
 import BannerWithSummary from "@/components/ui/custom/BannerWithSummary/BannerWithSummary";
 import AsideNavigation from "@/components/ui/custom/AsideNavigation/AsideNavigation";
 import AnimatedArticle from "@/components/ui/custom/AnimatedArticle/AnimatedArticle";
 import { getAllTrainings } from "@/utils/sanityPageData";
 import { getResourcePageData } from "@/utils/sanityPageData";
-import { notFound } from "next/navigation";
 import { createResourceMetadataGenerator } from "@/utils/metadata";
 import { categoryGuard } from "@/utils/clientSideUtils";
 
@@ -12,6 +14,15 @@ type TrainingPageParams = Promise<{
   trainingCategory: string;
   training: string;
 }>;
+
+export async function generateStaticParams() {
+  return client.fetch<{ trainingCategory: string; training: string }[]>(`
+    *[_type == "training" && defined(trainingSlug.current)]{
+      "training": trainingSlug.current,
+      "trainingCategory": trainingCategory->categorySlug.current
+    }
+  `);
+}
 
 export const generateMetadata = createResourceMetadataGenerator("training");
 

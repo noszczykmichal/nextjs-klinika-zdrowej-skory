@@ -1,3 +1,4 @@
+import { client } from "@/sanity/client";
 import LayoutWrapper from "@/components/Layout/LayoutWrapper/LayoutWrapper";
 import BannerWithSummary from "@/components/ui/custom/BannerWithSummary/BannerWithSummary";
 import AsideNavigation from "@/components/ui/custom/AsideNavigation/AsideNavigation";
@@ -5,6 +6,14 @@ import AnimatedArticle from "@/components/ui/custom/AnimatedArticle/AnimatedArti
 import { getCategoryPageData } from "@/utils/sanityPageData";
 import { notFound } from "next/navigation";
 import { createCategoryMetadataGenerator } from "@/utils/metadata";
+
+export async function generateStaticParams() {
+  return client.fetch<{ treatmentCategory: string }[]>(`
+    *[_type == "treatmentCategory" && defined(categorySlug.current)]{
+      "treatmentCategory": categorySlug.current
+    }
+  `);
+}
 
 export const generateMetadata = createCategoryMetadataGenerator("treatment");
 

@@ -1,3 +1,4 @@
+import { client } from "@/sanity/client";
 import { notFound } from "next/navigation";
 
 import LayoutWrapper from "@/components/Layout/LayoutWrapper/LayoutWrapper";
@@ -12,6 +13,15 @@ type TreatmentPageParams = Promise<{
   treatmentCategory: string;
   treatment: string;
 }>;
+
+export async function generateStaticParams() {
+  return client.fetch<{ treatmentCategory: string; treatment: string }[]>(`
+    *[_type == "treatment" && defined(treatmentSlug.current)]{
+      "treatment": treatmentSlug.current,
+      "treatmentCategory": treatmentCategory->categorySlug.current
+    }
+  `);
+}
 
 export const generateMetadata = createResourceMetadataGenerator("treatment");
 

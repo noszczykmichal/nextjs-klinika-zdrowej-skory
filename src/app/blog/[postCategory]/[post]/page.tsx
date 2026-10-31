@@ -1,3 +1,4 @@
+import { client } from "@/sanity/client";
 import { notFound } from "next/navigation";
 
 import LayoutWrapper from "@/components/Layout/LayoutWrapper/LayoutWrapper";
@@ -5,6 +6,15 @@ import Post from "@/components/BlogPage/Category/PostPage/Post/Post";
 import { getSinglePostData } from "@/utils/sanityPageData";
 import { createPostMetaData } from "@/utils/metadata";
 import { categoryGuard } from "@/utils/clientSideUtils";
+
+export async function generateStaticParams() {
+  return client.fetch<{ postCategory: string; post: string }[]>(`
+    *[_type == "post" && defined(slug.current)]{
+      "post": slug.current,
+      "postCategory": category->categorySlug.current
+    }
+  `);
+}
 
 export const generateMetadata = createPostMetaData();
 
